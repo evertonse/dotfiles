@@ -17,8 +17,12 @@ local wezterm = require 'wezterm'
 return {
   -- Run any program with default args
   --default_prog = {'C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe'},
-  default_prog = {[[C:\\Program Files\\PowerShell\\7\\pwsh.exe]]},
-  
+  --default_prog = {[[C:\\Program Files\\PowerShell\\7\\pwsh.exe]], '-NoLogo'}, -- Powershell 7.+
+  default_prog = {[[C:\\Program Files\\PowerShell\\7\\pwsh.exe]], 
+    '-NoLogo','-noe','-c',
+   [[&{Import-Module "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"; Enter-VsDevShell ccb1610a}]] },
+
+
   window_background_opacity = 0.92,
   font = wezterm.font 'MesloLGS NF',
   --font = wezterm.font 'Consolas',
@@ -31,6 +35,12 @@ return {
     right   = '0px',
     top     = '0px',
     bottom  = '0px',
+  }, 
+  set_environment_variables = {
+    -- This changes the default prompt for cmd.exe to report the
+    -- current directory using OSC 7, show the current time and
+    -- the current directory colored in the prompt.
+    --prompt = '$E]7;file://localhost/$P$E\\$E[32m$T$E[0m $E[35m$P$E[36m$_$G$E[0m ',
   },
   window_decorations = "RESIZE", -- RESIZE|NONE|TITLE
   window_frame = {
@@ -61,4 +71,9 @@ return {
     copy_mode_inactive_highlight_bg = { Color = '#52ad70' },
     copy_mode_inactive_highlight_fg = { AnsiColor = 'White' },
   },
+  default_cwd = "D:",
+  launch_menu = { 
+	{ args = { [[C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat]] }
+	}
+   },
 }
