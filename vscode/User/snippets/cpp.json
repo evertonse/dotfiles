@@ -1,0 +1,88 @@
+{
+	// Place your snippets for c here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"inverted for": {
+		"prefix": "forr",
+		"body": [
+			"for (int i = length - 1; i >= 0; i--)",
+			"{",
+			"$0",
+			"}",
+			"$2"
+		],
+		"description": "inverted for"
+	},
+	"normal for": {
+		"prefix": "for",
+		"body": [
+			"for (int i = 0; i < length; i++)",
+			"{",
+			"$0",
+			"}",
+			"$2"
+		],
+		"description": "normal for"
+	},
+	"switch": {
+		"prefix": "switch-brackets",
+		"body": [
+		"switch (/*variable*/)",
+		"{",
+		"\tcase /*case1*/$0:",
+		"\t{",	
+		"\t\tbreak;",
+		"\t}",
+		"\tdefault:",
+		"\t{",
+		"\t\tbreak;",
+		"\t}",
+		"}"
+		],
+		"description": "switch with brackets"
+	},
+	"rangefor": {
+		"prefix": "rfor",
+		"body": [
+		"for (auto& item : v) {",
+		"\t $0",
+		"}"
+		],
+		"description": "range for"
+	},
+	"iterfor": {
+		"prefix": "ifor",
+		"body": [
+		"for (it = vec.begin(); it != vec.end(); ++it) {",
+		"\tint& n = *it;",
+		"\ttotal += n;",
+		"}",
+		],
+		"description": "iter range for unsugarfied"
+	},
+	"cout": {
+		"prefix": "cout",
+		"body": [
+		"std::cout << $0 << '\n';",
+		],
+		"description": "\\n terminated cout"
+	},
+
+	"template": {
+		"prefix": "template",
+		"body": [
+		"template<typename T>\n",
+		],
+		"description": "Template with type T"
+	},
+}
