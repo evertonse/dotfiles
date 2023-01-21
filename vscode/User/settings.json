@@ -28,15 +28,16 @@
   "vim.enableNeovim" : true,
   "vim.visualModeKeyBindings": [
     {
-      "before": [">"],
-      "after": [">", "g", "v"]
+      "before": ["g", "h"],
+      "after" : ["0"] 
     },
     {
-      "before": ["<"],
-      "after": ["", "g", "v"]
+      "before": ["g", "l"],
+      "after" : ["$"] 
     },
   ],
   "vim.normalModeKeyBindings": [
+    
     {
       "before": ["<leader>", "f"],
       "commands": ["workbench.action.quickOpen"]
@@ -54,6 +55,35 @@
  
 
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-d>"],
+      "after":  ["<C-d>","z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after":  ["<C-u>","z", "z"]
+    },    
+    {
+      "before": ["g", "h"],
+      "after" : ["0"] 
+    },
+    {
+      "before": ["g", "l"],
+      "after" : ["$"] 
+    },
+    {
+      "before": ["g", "e"],
+      "after" : ["G"] 
+    },
+    {
+      "before": ["<leader>", "<A-i>"],
+      "commands": [ 
+        {
+          "command": "workbench.action.terminal.new",
+          "when":    "terminalFocus"
+        }
+      ]
+    },
     {
       "before": ["<leader>", "t"],
       "commands": [ 
@@ -161,16 +191,16 @@
       "after": ["b"],
     },
     {
+      "before": ["<C-l>"],
+      "after": ["e"],
+    },
+    {
       "before": ["<C-k>"],
       "after": ["{"],
     },
     {
       "before": ["<C-j>"],
       "after": ["}"],
-    },
-    {
-      "before": ["<C-l>"],
-      "after": ["w"],
     },
     {
       "before": ["K"],
@@ -1339,6 +1369,8 @@
   "window.zoomLevel": 1,
   "workbench.editor.enablePreview": false,
   "workbench.layoutControl.enabled": false,
+  "window.menuBarVisibility": "compact",
+  "workbench.activityBar.visible": false,
   // <<< ================================== Colour Custom ====================================*
 
 
