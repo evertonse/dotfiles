@@ -105,22 +105,7 @@
          "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
       ]
     },
-    //    {
-//     "before": [":"],
-//     "commands": ["workbench.action.showCommands",],
-//      "silent": true
-//    },https://marketplace.visualstudio.com/items?itemName=vscodevim.vim
-    {
-      "before": [
-          "p",
-      ],
-      "after": [
-          "p",
-          "g",
-          "v",
-          "y"
-      ]
-    },   
+  
     {
       "before": ["H"],
       "commands": ["workbench.action.previousEditor"]
@@ -441,7 +426,7 @@
       "*.global": "#F8D1EF",
       "*.private": "#DADADAFF",
       "property":"#DADADA",
-      "selfParameter": "#CAC4FF",
+      "selfParameter": "#2369a2",
     }
   },
 
@@ -1369,7 +1354,13 @@
   "window.zoomLevel": 1,
   "workbench.editor.enablePreview": false,
   "workbench.layoutControl.enabled": false,
+  "window.autoDetectHighContrast": false,
+  "window.closeWhenEmpty": true,
   "window.menuBarVisibility": "compact",
+  "window.dialogStyle": "custom",
+  "explorer.autoReveal": false,
+  "explorer.compactFolders": false,
+  "screencastMode.verticalOffset": 10,
   "workbench.activityBar.visible": false,
   // <<< ================================== Colour Custom ====================================*
 

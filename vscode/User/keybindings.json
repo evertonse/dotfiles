@@ -1,6 +1,12 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     //>> ** MODIFIED BY ME **
+  
+  {
+    "key": "space f",
+    "command": "workbench.action.quickOpen",
+    "when":"filesExplorerFocus"
+  },
   {
     "key": "alt+i",
     "command": "workbench.action.terminal.toggleTerminal",    
@@ -53,8 +59,8 @@
     "key": "ctrl+shift+oem_3",
     "command": "workbench.action.toggleActivityBarVisibility"
   },
-
-
-
-
+  {
+    "key": "ctrl+p",
+    "command": "-workbench.action.quickOpen"
+  }
 ]
