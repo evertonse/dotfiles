@@ -32,7 +32,7 @@ return {
   --color_scheme = 'Batman',
   color_scheme = "Vacuous 2 (terminal.sexy)",
   window_close_confirmation = 'NeverPrompt',
-  cursor_blink_rate = 350,
+  cursor_blink_rate = 250,
   window_padding = {
     left    = '0px',
     right   = '0px',
@@ -90,9 +90,10 @@ return {
     copy_mode_inactive_highlight_bg = { Color = '#52ad70' },
     copy_mode_inactive_highlight_fg = { AnsiColor = 'White' },
   },
-  default_cwd = "D:",
+  default_cwd = "D:/code",
   launch_menu = { 
-	{ args = { [[C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat]] }
-	}
-   },
+	 { 
+      args = { [[C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat]] }
+	 }
+  },
 }
