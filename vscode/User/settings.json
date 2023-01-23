@@ -28,6 +28,10 @@
   "vim.enableNeovim" : true,
   "vim.visualModeKeyBindings": [
     {
+      "before": ["s"],
+      "after": ["\"", "_", "d", "i"]
+    },
+    {
       "before": ["g", "h"],
       "after" : ["0"] 
     },
@@ -55,10 +59,13 @@
  
 
   "vim.normalModeKeyBindingsNonRecursive": [
-
+    {
+      "before": ["s"],
+      "after": ["\"", "_", "d", "l", "i"]
+    },
     {
       "before": ["<leader>", "d"],
-      "after": ["\"_", "d"]
+      "after": ["\"","_", "d"]
     },
     {
       "before": ["<C-d>"],
@@ -150,7 +157,6 @@
     {
       "before": ["<leader>", "F"],
       "commands": ["workbench.action.findInFiles"]
-      
     },
     {
       "before": ["x"],
@@ -180,11 +186,63 @@
       "before":["U"], 
       "after":["<C-r>"],
       "silent" : true
-    }
-    
+    },
+    {
+      "before": ["<C-Up>"],
+      "after": ["{"],
+    },
+    {
+      "before": ["<C-Down>"],
+      "after": ["}"],
+    },
+    {
+      "before": ["<C-Left>"],
+      "after": ["b"],
+    },
+    {
+      "before": ["<C-Right>"],
+      "after": ["e"],
+    },
   ],
   // VISUAL 
   "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-h>"],
+      "after": ["b"],
+    },
+    {
+      "before": ["<C-l>"],
+      "after": ["e"],
+    },
+    {
+      "before": ["<C-k>"],
+      "after": ["{"],
+    },
+    {
+      "before": ["<C-j>"],
+      "after": ["}"],
+    },
+    {
+      "before":["U"], 
+      "after":["<C-r>"],
+      "silent" : true
+    },
+    {
+      "before": ["<C-Up>"],
+      "after": ["{"],
+    },
+    {
+      "before": ["<C-Down>"],
+      "after": ["}"],
+    },
+    {
+      "before": ["<C-Left>"],
+      "after": ["b"],
+    },
+    {
+      "before": ["<C-Right>"],
+      "after": ["e"],
+    },
     {
       "before": ["<C-k>"],
       "after": ["{"],
@@ -206,6 +264,11 @@
   
 
   "vim.handleKeys": {
+    "<C-Up>": true,
+    "<C-Down>": true,
+    "<C-Left>": true,
+    "<C-Right>": true,
+
     "<C-a>": true,
     "<C-f>": true,
     // VS Code new marker @ next occurence
@@ -227,15 +290,15 @@
   "editor.fastScrollSensitivity": 6.5,
   "java.debug.settings.showStaticVariables": true,
   "workbench.panel.defaultLocation": "right",
-  "editor.lineHeight": 18.6,
-  "editor.fontSize": 13.9,
+  "editor.lineHeight": 18.2,
+  "editor.fontSize": 12.5,
   "jupyter.askForKernelRestart": false,
   "security.workspace.trust.untrustedFiles": "open",
   "editor.fontFamily":"'MesloLGM','MesloLGS NF','Cascadia Code Medium','Cascadia Mono', 'Consolas','Cascadia Mono SemiLight','Cascadia Code','JetBrains Mono','Cascadia Mono Light', 'Cascadia Mono PL Light','Cascadia Mono', Consolas, 'Courier New'",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontFamily": "'Cascadia Mono Medium','Cascadia Mono SemiLight',monospace",
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontSize": 14.3,
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.defaultProfile.linux": "zsh",
   "hexeditor.columnWidth": 16,
@@ -243,7 +306,7 @@
   "hexeditor.defaultEndianness": "little",
   "hexeditor.inspectorType": "aside",
   //"terminal.integrated.defaultProfile.windows": "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/PowerShell/PowerShell7",
-  "terminal.integrated.defaultProfile.windows": "C:/Users/ExCyber/Desktop/Terminal.lnk",
+  "terminal.integrated.defaultProfile.windows": "pwsh",
   //"terminal.integrated.defaultProfile.windows": "C:/dev/programs/cmder/Cmder.exe",
   //"terminal.integrated.profiles.windows": {
   //	"cmder": {
@@ -1336,7 +1399,6 @@
   "editor.accessibilitySupport": "off",
   "editor.lineNumbers": "relative",
   "notebook.lineNumbers": "on",
-  "window.zoomLevel": 1,
   "workbench.editor.enablePreview": false,
   "workbench.layoutControl.enabled": false,
   "window.autoDetectHighContrast": false,
@@ -1346,6 +1408,8 @@
   "explorer.autoReveal": false,
   "explorer.compactFolders": false,
   "screencastMode.verticalOffset": 10,
+  "workbench.activityBar.visible": false,
+  "window.zoomLevel": 1,
   // <<< ================================== Colour Custom ====================================*
 
 

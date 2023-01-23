@@ -1,3 +1,10 @@
+
+#shell:
+  #program: 'C:\Program Files\PowerShell\7\pwsh.exe'
+#enable_experimental_conpty_backend: false 
+env:
+  #TERM: alacritty
+  TERM: xterm-256color
 font:
   normal:
     family: MesloLGS NF
@@ -15,24 +22,22 @@ font:
     family: MesloLGS NF
     style: Bold Italic
 
-  size: 12.1
+  size: 12
 # vscode dark and light theme alacritty 
 # Bt https://githib.com/mofiqul
-
+#winpty_backend: false 
 
 window:
   padding:
-    x: 0
-    y: 0
+    x: 10
+    y: 5
 
-  dynamic_padding: false
+  dynamic_padding: false 
   
-  decorations: full
-  #startup_mode: Fullscreen
-  #opacity: 0.9
-  dimensions:
-    columns: 90
-    lines: 30
+  dynamic_title: true
+  decorations: none 
+  #startup_mode: Maximized 
+  opacity: 0.9
 
 schemes:
   codelight: &light

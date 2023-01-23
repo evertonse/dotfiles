@@ -1,0 +1,17 @@
+[[language]]
+name = "python"
+#language-server = { command = "pyright-langserver", args = ["--stdio"] }
+config = """
+{
+  "python": {
+    "analisys": {
+      "autoSearchPaths": true, 
+      "diagnosticMode": "workspace",
+      "useLibraryCodeForTypes": true,
+      "typeCheckingMode": "off"
+    },
+    [pycodestyle]
+    ignore = E226,E302,E41,E111,E303,E501 ,W293
+  },
+}
+"""
