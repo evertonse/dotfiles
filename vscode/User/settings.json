@@ -14,6 +14,8 @@
   "vim.visualstar":true,
   "vim.leader": "<space>",
   "vim.whichwrap": "h,l,>,<,[,]f", 
+  
+  // [INSERT]
   "vim.insertModeKeyBindings": [
     {
       "before": ["j", "k"],
@@ -25,8 +27,38 @@
     }
   ],
   
-  //"vim.enableNeovim" : true,
+  // [VISUAL]
   "vim.visualModeKeyBindings": [
+    // >> without yanking
+    {
+      "before": ["X"],
+      "after": ["\"","_","X"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"","_","x"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "after": ["\"", "_", "d"]
+    },
+    { 
+      "before": ["<leader>", "d"],
+      "after": ["\"","_", "d"]
+    },
+    { 
+      "before": ["<leader>", "D"],
+      "after": ["\"","_", "D"]
+    },
+    { 
+      "before": ["<leader>", "p"],
+      "after": ["\"","_", "d" , "p"]
+    },
+    { 
+      "before": ["<leader>", "P"],
+      "after": ["\"","_","d", "P"]
+    },
+    // <<
     {
       "before": ["s"],
       "after": ["\"", "_", "d", "i"]
@@ -40,6 +72,7 @@
       "after" : ["$"] 
     },
   ],
+  // [NORMAL]
   "vim.normalModeKeyBindings": [
     
     {
@@ -64,15 +97,46 @@
     },
   ],
  
-  //N
+  // [NORMAL] [NON RECURSIVE REMAP]
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["s"],
       "after": ["\"", "_", "d", "l", "i"]
     },
+    
+    // >> without yanking
+    {
+      "before": ["X"],
+      "after": ["\"","_","X"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"","_","x"]
+    },
     {
       "before": ["<leader>", "d"],
+      "after": ["\"", "_", "d"]
+    },
+    { 
+      "before": ["<leader>", "d"],
       "after": ["\"","_", "d"]
+    },
+    { 
+      "before": ["<leader>", "D"],
+      "after": ["\"","_", "D"]
+    },
+    { 
+      "before": ["<leader>", "p"],
+      "after": ["\"","_","d", "p"]
+    },
+    { 
+      "before": ["<leader>", "P"],
+      "after": ["\"","_","d", "P"]
+    },
+    // <<
+    { //Make it consistent with other uppercase
+      "before": ["Y"],
+      "after":  ["y", "$"]
     },
     {
       "before": ["<C-d>"],
@@ -164,14 +228,6 @@
     {
       "before": ["<leader>", "F"],
       "commands": ["workbench.action.findInFiles"]
-    },
-    {
-      "before": ["x"],
-      "after": ["\"","_","x"]
-    },
-    {
-      "before": ["<leader>", "d"],
-      "after": ["\"", "_", "d"]
     },
     {
       "before": ["<C-h>"],
@@ -275,6 +331,8 @@
     "<C-Down>": true,
     "<C-Left>": true,
     "<C-Right>": true,
+    
+    "<C-backspace>": true,
 
     "<C-a>": true,
     "<C-f>": true,
@@ -304,7 +362,7 @@
   "editor.fontFamily":"'MesloLGM','MesloLGS NF','Cascadia Code Medium','Cascadia Mono', 'Consolas','Cascadia Mono SemiLight','Cascadia Code','JetBrains Mono','Cascadia Mono Light', 'Cascadia Mono PL Light','Cascadia Mono', Consolas, 'Courier New'",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.external.osxExec": "iTerm.app",
-  "terminal.integrated.fontFamily": "'Cascadia Mono Medium','Cascadia Mono SemiLight',monospace",
+  "terminal.integrated.fontFamily": "'MesloLGM','MesloLGS NF','Cascadia Mono SemiLight','Cascadia Mono Medium',monospace",
   "terminal.integrated.fontSize": 14.3,
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.defaultProfile.linux": "zsh",
@@ -1418,6 +1476,7 @@
   "cmake.configureOnOpen": true,
   "workbench.startupEditor": "none",
   "window.zoomLevel": 1,
+  "workbench.activityBar.visible": false,
   // <<< ================================== Colour Custom ====================================*
 
 
