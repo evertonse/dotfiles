@@ -5,7 +5,7 @@
   {
     "key": "space f",
     "command": "workbench.action.quickOpen",
-    "when":"filesExplorerFocus"
+    "when":"filesExplorerFocus && !terminalFocus"
   },
   {
     "key": "alt+i",
@@ -69,41 +69,41 @@
   {
     "key": "d",
     "command": "deleteFile",
-    "when": "filesExplorerFocus"
+    "when": "filesExplorerFocus && !terminalFocus"
   },
   {
     "key": "a",
     "command": "explorer.newFile",
-    "when": "filesExplorerFocus"
+    "when": "filesExplorerFocus && !terminalFocus"
   },
   {
     "key": "m f",
     "command": "explorer.newFile",
-    "when": "filesExplorerFocus"
+    "when": "filesExplorerFocus && !terminalFocus"
   },
   {
     "key": "c",
     "command": "filesExplorer.copy",
-    "when": "filesExplorerFocus"
-    //"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
+    "when": "filesExplorerFocus && !terminalFocus"
+    //"when": "explorerViewletVisible && filesExplorerFocus && !terminalFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
   },
   {
     "key": "p",
     "command": "filesExplorer.paste",
-    "when": "filesExplorerFocus"
-    //"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
+    "when": "filesExplorerFocus && !terminalFocus"
+    //"when": "explorerViewletVisible && filesExplorerFocus && !terminalFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
   },
   {
     "key": "s",
     "command": "revealFileInOS",
-    "when": "filesExplorerFocus"
-    //"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
+    "when": "filesExplorerFocus && !terminalFocus"
+    //"when": "explorerViewletVisible && filesExplorerFocus && !terminalFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
   },
   {
     "key": "m d",
     "command": "explorer.newFolder",
-    "when": "filesExplorerFocus"
-    //"when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
+    "when": "filesExplorerFocus && !terminalFocus"
+    //"when": "explorerViewletVisible && filesExplorerFocus && !terminalFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
   },
   {
     "key": "ctrl+k r",
@@ -118,5 +118,14 @@
     "key": "ctrl+k f12",
     "command": "-editor.action.revealDefinitionAside",
     "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
+  {
+    "key": "ctrl+k e",
+    "command": "-workbench.files.action.focusOpenEditorsView",
+    "when": "workbench.explorer.openEditorsView.active"
+  },
+  {
+    "key": "shift+e",
+    "command": ""
   }
 ]

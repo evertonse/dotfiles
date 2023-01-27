@@ -9,7 +9,7 @@
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.sneak": true,
-  "vim.easymotionMarkerooundColor": "#020202",
+  //"vim.easymotionMarkerooundColor": "#020202",
   "vim.highlightedyank.enable" : true,
   "vim.visualstar":true,
   "vim.leader": "<space>",
@@ -25,7 +25,7 @@
     }
   ],
   
-  "vim.enableNeovim" : true,
+  //"vim.enableNeovim" : true,
   "vim.visualModeKeyBindings": [
     {
       "before": ["s"],
@@ -51,13 +51,20 @@
       "commands": ["workbench.view.explorer"]
     },   
     {
+      "before": ["<leader>", "E"],
+      "commands": ["workbench.files.action.showActiveFileInExplorer"]
+    },   
+    {
       "before":["<leader>", "C"],
       "commands":["workbench.action.reopenClosedEditor"]
-    }
-    
+    },
+    {
+      "before":["<leader>", "t", "i"],
+      "commands":["editor.action.inspectTMScopes"]
+    },
   ],
  
-
+  //N
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["s"],
@@ -1408,9 +1415,9 @@
   "explorer.autoReveal": false,
   "explorer.compactFolders": false,
   "screencastMode.verticalOffset": 10,
-  "window.zoomLevel": 1,
   "cmake.configureOnOpen": true,
   "workbench.startupEditor": "none",
+  "window.zoomLevel": 1,
   // <<< ================================== Colour Custom ====================================*
 
 
