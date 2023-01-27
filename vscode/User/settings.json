@@ -136,7 +136,7 @@
     },
     {
       "before": ["<leader>", "c"],
-      "commands": [":bd"]
+      "commands": [":bd!"]
     },
     {
       "before": ["<C-n>"],
@@ -325,7 +325,7 @@
   "editor.guides.bracketPairs": "active",
   "editor.fontLigatures": true,
   //"editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
-  
+  //"workbench.editor.tabSizing": "fit",
   "workbench.bracketPairColorization.enabled": false,
   "workbench.guides.bracketPairs": "active",
  
@@ -1408,8 +1408,9 @@
   "explorer.autoReveal": false,
   "explorer.compactFolders": false,
   "screencastMode.verticalOffset": 10,
-  "workbench.activityBar.visible": false,
   "window.zoomLevel": 1,
+  "cmake.configureOnOpen": true,
+  "workbench.startupEditor": "none",
   // <<< ================================== Colour Custom ====================================*
 
 
