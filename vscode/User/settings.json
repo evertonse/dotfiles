@@ -417,6 +417,10 @@
   "python.languageServer": "Pylance",
   "explorer.confirmDelete": false,
   "editor.tabSize": 2,
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4  
+  },
   "javascript.format.enable": false,
   "editor.formatOnPaste": true,
   "json.format.enable": false,
@@ -907,7 +911,7 @@
         "name": "this.self",
         "scope": "variable.language",
         "settings": {
-          "foreground": "#569cd6"
+          "foreground": "#2369a2"
         }
     },
     // https://github.com/microsoft/vscode/blob/master/extensions/theme-defaults/themes/dark_plus.json
@@ -1464,11 +1468,9 @@
   "editor.accessibilitySupport": "off",
   "editor.lineNumbers": "relative",
   "notebook.lineNumbers": "on",
-  "workbench.editor.enablePreview": false,
   "workbench.layoutControl.enabled": false,
   "window.autoDetectHighContrast": false,
   "window.closeWhenEmpty": true,
-  "window.menuBarVisibility": "compact",
   "window.dialogStyle": "custom",
   "explorer.autoReveal": false,
   "explorer.compactFolders": false,
