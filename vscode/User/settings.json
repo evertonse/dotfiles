@@ -8,20 +8,25 @@
   code --install-extension iocave.customize-ui 
   code --install-extension vscodevim.vim
   code --install-extension  ms-python.python 
-  run this
+  code --install-extension s-nlf-fh.glassit
+  optionsall install : {
+    redhat.java]
+    ms-python.vscode-pylance
+  }
   */ 
   /*
   */
   //"customvscodeuicss.css": ".title-bar { display: none !important; }",
-    "window.titleBarStyle": "native",
+    "window.titleBarStyle": "custom",
+
     "customizeUI.stylesheet": {
           ".decorationsOverviewRuler": "display: none;",
           ".editor-group-container .title *": "display: none;",
           ".editor-group-container .title": "pointer-events: none !important;",
-          //".editor-group-container.empty": "-webkit-app-region: drag;",
+          ".editor-group-container.empty": "-webkit-app-region: drag;",
           ".monaco-editor .scroll-decoration": "box-shadow: none;"
       },
-    "customizeUI.titleBar": "frameless",
+    //"customizeUI.titleBar": "regular",
   
     "vim.easymotion": false,
     "vim.incsearch": true,
@@ -48,6 +53,10 @@
     
     // [VISUAL]
     "vim.visualModeKeyBindings": [
+      {
+        "before": ["g", "e"],
+        "after" : ["G"] 
+      },
       // >> without yanking
       {
         "before": ["X"],
@@ -372,6 +381,15 @@
     
     /* > ===================================IMPORTANT =================================*/
     // >> [EDITOR]
+    "customizeUI.titleBar": "inline",
+    "debug.console.fontFamily": "JetBrains Mono",
+    "debug.console.fontSize": 15,
+    "debug.console.lineHeight": 36,
+    "debug.toolBarLocation": "docked",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": false,
+    "editor.colorDecorators": false,
+
     "editor.titleBar.enabled": false,
     "vscode_custom_css.imports": [""],
     "editor.fastScrollSensitivity": 6.5,
@@ -415,12 +433,51 @@
     "window.enableMenuBarMnemonicsctivityBar.visible": false,
   
     // >> [WORKBENCH]
-    //"workbench.editor.tabSizing": "fit",
+    "workbench.editor.tabSizing": "fit",
     "workbench.bracketPairColorization.enabled": false,
     "workbench.guides.bracketPairs": "active",
     "workbench.panel.defaultLocation": "right",
     "workbench.startupEditor": "none",
     "workbench.layoutControl.enabled": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.revealIfOpen": true,
+    "workbench.editor.showTabs": true,
+    "workbench.editor.untitled.hint": "hidden",
+    //"workbench.iconTheme": null, // null is devoided of icons, it's pretty clean
+    "workbench.list.horizontalScrolling": true,
+    "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+    "workbench.tips.enabled": false,
+    "workbench.tree.indent": 16,
+    "workbench.tree.renderIndentGuides": "none",
+
+    "workbench.titleBar.enabled": false,
+    "workbench.colorCustomizations": {
+      "editor.background": "#1E1E1E",
+      "editor.foreground": "#D4D4D4",
+      "editor.inactiveSelectionBackground": "#3A3D41",
+      "editorIndentGuide.background": "#404040",
+      "editorIndentGuide.activeBackground": "#707070",
+      "editor.selectionHighlightBackground": "#ADD6FF26",
+      "list.dropBackground": "#383B3D",
+      "activityBarBadge.background": "#007ACC",
+      "sideBarTitle.foreground": "#BBBBBB",
+      "input.placeholderForeground": "#A6A6A6",
+      "settings.textInputBackground": "#292929",
+      "settings.numberInputBackground": "#292929",
+      "menu.background": "#252526",
+      "menu.foreground": "#CCCCCC",
+      "statusBarItem.remoteForeground": "#FFF",
+      "statusBarItem.remoteBackground": "#16825D",
+      "sideBarSectionHeader.background": "#0000",
+      "sideBarSectionHeader.border": "#ccc3",
+      "editor.lineHighlightBorder": "#a1c0fa06",
+
+      "titleBar.border": "#00000000",
+      "titleBar.forground": "#00000000",
+      "titleBar.activeForeground": "#FFFFFFFF",
+      "titleBar.background": "#00000000",
+      "titleBar.activeBackground": "#00000000",
+    },
   
     "java.debug.settings.showStaticVariables": true,
     "jupyter.askForKernelRestart": false,
@@ -454,7 +511,6 @@
     "julia.enableTelemetry": true,
     "haskell.manageHLS": "GHCup",
    
-    "workbench.iconTheme": "vscode-icons",
     "jupyter.debugJustMyCode": false,
     "vsicons.dontShowNewVersionMessage": true,
   
@@ -483,7 +539,6 @@
     "python.formatting.autopep8Args": [
       "\"python.formatting.autopep8Args\": [\"--ignore\",\"E402\"]"
     ],
-    "workbench.editor.untitled.hint": "hidden",
     "files.exclude": {
       "**/.classpath": true,
       "**/.project": true,
@@ -547,34 +602,6 @@
     
     
     // >>> ================================== Colour Custom ====================================*
-    "workbench.titleBar.enabled": true,
-    "workbench.colorCustomizations": {
-      "editor.background": "#1E1E1E",
-      "editor.foreground": "#D4D4D4",
-      "editor.inactiveSelectionBackground": "#3A3D41",
-      "editorIndentGuide.background": "#404040",
-      "editorIndentGuide.activeBackground": "#707070",
-      "editor.selectionHighlightBackground": "#ADD6FF26",
-      "list.dropBackground": "#383B3D",
-      "activityBarBadge.background": "#007ACC",
-      "sideBarTitle.foreground": "#BBBBBB",
-      "input.placeholderForeground": "#A6A6A6",
-      "settings.textInputBackground": "#292929",
-      "settings.numberInputBackground": "#292929",
-      "menu.background": "#252526",
-      "menu.foreground": "#CCCCCC",
-      "statusBarItem.remoteForeground": "#FFF",
-      "statusBarItem.remoteBackground": "#16825D",
-      "sideBarSectionHeader.background": "#0000",
-      "sideBarSectionHeader.border": "#ccc3",
-      "titleBar.border": "#00000000",
-      "editor.lineHighlightBorder": "#a1c0fa06",
-      "titleBar.forground": "#00000000",
-      "titleBar.activeForeground": "#00000000",
-      "titleBar.background": "#00000000",
-      "titleBar.activeBackground": "#00000000",
-    },
-  
     "editor.semanticTokenColorCustomizations": {
       "rules": {
         "parameter": "#9a9a9a",
@@ -1501,19 +1528,19 @@
       "markdown",
       "php"
     ],
-    "C_Cpp_Runner.cppCompilerPath": "gcc",
     "tabnine.experimentalAutoImports": true,
     
     "notebook.lineNumbers": "on",
     "screencastMode.verticalOffset": 10,
     "cmake.configureOnOpen": true,
-    "window.zoomLevel": 1,
-    "julia.executablePath": "D:\\tools\\julia-1.8.5\\bin",
     "glassit.alpha": 250,
     "glassit.step": 1,
+    "window.zoomLevel": 1,
+    "window.enableMenuBarMnemonics": false,
+    "window.customMenuBarAltFocus": false,
+    "window.menuBarVisibility": "hidden",
+
+    "C_Cpp_Runner.cppCompilerPath": "gcc",
+    "julia.executablePath": "D:\\tools\\julia-1.8.5\\bin",
     "workbench.activityBar.visible": false,
-    
-  
-  
-  
-  }
+}
