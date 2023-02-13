@@ -14,7 +14,6 @@
   "vim.visualstar":true,
   "vim.leader": "<space>",
   "vim.whichwrap": "h,l,>,<,[,]f", 
-  
   // [INSERT]
   "vim.insertModeKeyBindings": [
     {
@@ -352,26 +351,75 @@
   },
   
   /* > ===================================IMPORTANT =================================*/
+  // >> [EDITOR]
   "editor.fastScrollSensitivity": 6.5,
-  "java.debug.settings.showStaticVariables": true,
-  "workbench.panel.defaultLocation": "right",
+  "editor.glyphMargin": false,
+  "editor.folding": true,
+  "editor.fontFamily":"'MesloLGM','MesloLGS NF','Cascadia Code Medium','Cascadia Mono', 'Consolas','Cascadia Mono SemiLight','Cascadia Code','JetBrains Mono','Cascadia Mono Light', 'Cascadia Mono PL Light','Cascadia Mono', Consolas, 'Courier New'",
   "editor.lineHeight": 18.2,
   "editor.fontSize": 12.5,
+  "editor.bracketPairColorization.enabled": false,
+  "editor.guides.bracketPairs": "active",
+  "editor.fontLigatures": true,
+  "editor.renderControlCharacters": true,
+  "editor.linkedEditing": true,
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "off",
+  "editor.tabSize": 2,
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.formatOnType": true
+  },
+  "editor.guides.highlightActiveBracketPair": false,
+  "[cpp]": {
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+    "editor.wordBasedSuggestions": false,
+    "editor.suggest.insertMode": "replace",
+    "editor.semanticHighlighting.enabled": true
+  },
+  "[bat]":{
+    "editor.fontSize": 13.8
+  },
+  "editor.accessibilitySupport": "off",
+  "editor.lineNumbers": "relative",
+  "[sql]": {
+    "editor.defaultFormatter": "mtxr.sqltools"
+  },
+  // >> [WINDOW]
+  "window.menuBarVisibility": "hidden",
+  "window.autoDetectHighContrast": false,
+  "window.closeWhenEmpty": true,
+  "window.dialogStyle": "custom",
+  "window.enableMenuBarMnemonicsctivityBar.visible": false,
+
+  // >> [WORKBENCH]
+  //"workbench.editor.tabSizing": "fit",
+  "workbench.bracketPairColorization.enabled": false,
+  "workbench.guides.bracketPairs": "active",
+  "workbench.panel.defaultLocation": "right",
+  "workbench.startupEditor": "none",
+  "workbench.layoutControl.enabled": false,
+  "workbench.activityBar.visible": false,
+
+  "java.debug.settings.showStaticVariables": true,
   "jupyter.askForKernelRestart": false,
+
+  // >> [TERMINAL]
   "security.workspace.trust.untrustedFiles": "open",
-  "editor.fontFamily":"'MesloLGM','MesloLGS NF','Cascadia Code Medium','Cascadia Mono', 'Consolas','Cascadia Mono SemiLight','Cascadia Code','JetBrains Mono','Cascadia Mono Light', 'Cascadia Mono PL Light','Cascadia Mono', Consolas, 'Courier New'",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontFamily": "'MesloLGM','MesloLGS NF','Cascadia Mono SemiLight','Cascadia Mono Medium',monospace",
   "terminal.integrated.fontSize": 14.3,
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.defaultProfile.windows": "pwsh",
   "hexeditor.columnWidth": 16,
   "hexeditor.showDecodedText": true,
   "hexeditor.defaultEndianness": "little",
   "hexeditor.inspectorType": "aside",
   //"terminal.integrated.defaultProfile.windows": "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/PowerShell/PowerShell7",
-  "terminal.integrated.defaultProfile.windows": "pwsh",
   //"terminal.integrated.defaultProfile.windows": "C:/dev/programs/cmder/Cmder.exe",
   //"terminal.integrated.profiles.windows": {
   //	"cmder": {
@@ -386,41 +434,26 @@
   "julia.symbolCacheDownload": true,
   "julia.enableTelemetry": true,
   "haskell.manageHLS": "GHCup",
-  "editor.bracketPairColorization.enabled": false,
-  "editor.guides.bracketPairs": "active",
-  "editor.fontLigatures": true,
-  //"editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
-  //"workbench.editor.tabSizing": "fit",
-  "workbench.bracketPairColorization.enabled": false,
-  "workbench.guides.bracketPairs": "active",
  
   "workbench.iconTheme": "vscode-icons",
-  "editor.guides.highlightActiveBracketPair": false,
   "jupyter.debugJustMyCode": false,
-  /* << ===================================IMPORTANT =================================*/
-
-
   "vsicons.dontShowNewVersionMessage": true,
-  //"editor.fontLigatures": true,
+
+
+  //>> [EXPLORER]
   "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "explorer.autoReveal": false,
+  "explorer.compactFolders": false,
+
   "liveServer.settings.donotShowInfoMsg": true,
-  "editor.renderControlCharacters": true,
-  "editor.linkedEditing": true,
-  "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "diffEditor.wordWrap": "off",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook",
   },
-  "editor.tabCompletion": "off",
   "liveServer.settings.donotVerifyTags": true,
   "python.languageServer": "Pylance",
-  "explorer.confirmDelete": false,
-  "editor.tabSize": 2,
-  "[python]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 4  
-  },
   "javascript.format.enable": false,
   "editor.formatOnPaste": true,
   "json.format.enable": false,
@@ -439,15 +472,8 @@
     "**/.factorypath": true
   },
   "editor.detectIndentation": false,
-  "theme-by-language.themes": {
-    "java": "Visual Studio 2019 Dark",
-    "c": "Visual Studio 2019 Dark",
-    "*": "Visual Studio 2019 Dark",
-    "cpp": "Visual Studio 2019 Dark",
-    "python": "Visual Studio 2019 Dark"
-  },
-  "java.format.enabled": false,
   "debug.onTaskErrors": "debugAnyway",
+  "java.format.enabled": false,
   "java.test.config": {},
   
   ///*================================== TODO APP ====================================*
@@ -496,17 +522,6 @@
     "editor.semanticHighlighting.enabled": true
     
   },	
-  "[cpp]": {
-    "editor.formatOnSave": false,
-    "editor.formatOnPaste": false,
-    "editor.wordBasedSuggestions": false,
-    "editor.suggest.insertMode": "replace",
-    "editor.semanticHighlighting.enabled": true
-    
-  },
-  "[bat]":{
-    "editor.fontSize": 13.8
-  },
   // <<< *========================== Editor By language =====================*
 
 
@@ -556,7 +571,6 @@
         "scope": [
           "meta.embedded",
           "source.groovy.embedded",
-          
         ],
         "settings": {
           "foreground": "#D4D4D4"
@@ -1453,10 +1467,9 @@
         
       ],
   },
+  // <<< ================================== Colour Custom ====================================*
+
   "java.debug.settings.console": "externalTerminal",
-  "[sql]": {
-    "editor.defaultFormatter": "mtxr.sqltools"
-  },
   "php.suggest.basic": false,
   "php.validate.enable": false,
   "emmet.excludeLanguages": [
@@ -1465,21 +1478,15 @@
   ],
   "C_Cpp_Runner.cppCompilerPath": "gcc",
   "tabnine.experimentalAutoImports": true,
-  "editor.accessibilitySupport": "off",
-  "editor.lineNumbers": "relative",
+  
   "notebook.lineNumbers": "on",
-  "workbench.layoutControl.enabled": false,
-  "window.autoDetectHighContrast": false,
-  "window.closeWhenEmpty": true,
-  "window.dialogStyle": "custom",
-  "explorer.autoReveal": false,
-  "explorer.compactFolders": false,
   "screencastMode.verticalOffset": 10,
   "cmake.configureOnOpen": true,
-  "workbench.startupEditor": "none",
   "window.zoomLevel": 1,
-  "workbench.activityBar.visible": false,
-  // <<< ================================== Colour Custom ====================================*
+  "julia.executablePath": "D:\\tools\\julia-1.8.5\\bin",
+  "glassit.alpha": 250,
+  "glassit.step": 1,
+  
 
 
 
