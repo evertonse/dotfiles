@@ -9,7 +9,9 @@
   code --install-extension vscodevim.vim
   code --install-extension  ms-python.python 
   code --install-extension s-nlf-fh.glassit
+  code --install-extension kamikillerto.vscode-colorize
   optionsall install : {
+
     redhat.java]
     ms-python.vscode-pylance
   }
@@ -526,9 +528,10 @@
     "diffEditor.wordWrap": "off",
     "workbench.editorAssociations": {
       "*.ipynb": "jupyter-notebook",
+      "*.pdf": "default"
     },
     "liveServer.settings.donotVerifyTags": true,
-    "python.languageServer": "Pylance",
+    "python.languageServer": "Jedi",
     "javascript.format.enable": false,
     "editor.formatOnPaste": true,
     "json.format.enable": false,
@@ -611,6 +614,8 @@
         "*.private": "#DADADAFF",
         "property":"#DADADA",
         "selfParameter": "#2369a2",
+        "macro": "#CAC4FF",
+        "enumMember": "#FFA3A3",
       }
     },
   
@@ -791,7 +796,8 @@
             "entity.name.function.preprocessor"
           ],
           "settings": {
-            "foreground": "#569cd6"
+            //"foreground": "#569cd6"
+            "foreground": "#CAC4FF"
           }
       },
       {
@@ -1402,7 +1408,7 @@
             "scope":[
               "entity.name.function.preprocessor.cpp",
               "entity.name.function.preprocessor.c",
-        
+              "meta.preprocessor"
             ],
             "settings": {
               "foreground": "#CAC4FF",
@@ -1543,4 +1549,11 @@
     "C_Cpp_Runner.cppCompilerPath": "gcc",
     "julia.executablePath": "D:\\tools\\julia-1.8.5\\bin",
     "workbench.activityBar.visible": false,
+    "terminal.integrated.allowChords": false,
+    "C_Cpp_Runner.cStandard": "c17",
+    "colorize.languages": [
+        "javascript",
+        "json"
+        // ...
+      ]
 }
