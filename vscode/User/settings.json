@@ -24,6 +24,7 @@
     "customizeUI.stylesheet": {
           ".decorationsOverviewRuler": "display: none;",
           ".editor-group-container .title *": "display: none;",
+          "* .title": "display: none;",
           ".editor-group-container .title": "pointer-events: none !important;",
           ".editor-group-container.empty": "-webkit-app-region: drag;",
           ".monaco-editor .scroll-decoration": "box-shadow: none;"
@@ -121,6 +122,11 @@
         "before":["<leader>", "C"],
         "commands":["workbench.action.reopenClosedEditor"]
       },
+      {
+        "before":["<leader>", "l", "c"],
+        "commands":["workbench.action.closeEditorsToTheRight"]
+      },
+
       {
         "before":["<leader>", "t", "i"],
         "commands":["editor.action.inspectTMScopes"]
@@ -449,10 +455,10 @@
     "workbench.list.horizontalScrolling": true,
     "workbench.preferredDarkColorTheme": "Visual Studio Dark",
     "workbench.tips.enabled": false,
-    "workbench.tree.indent": 16,
+    "workbench.tree.indent": 12,
     "workbench.tree.renderIndentGuides": "none",
 
-    "workbench.titleBar.enabled": false,
+    "workbench.editor.titleScrollbarSizing": "default",
     "workbench.colorCustomizations": {
       "editor.background": "#1E1E1E",
       "editor.foreground": "#D4D4D4",
@@ -487,35 +493,29 @@
     // >> [TERMINAL]
     "security.workspace.trust.untrustedFiles": "open",
     "terminal.integrated.defaultProfile.osx": "zsh",
-    "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.fontFamily": "'MesloLGM','MesloLGS NF','Cascadia Mono SemiLight','Cascadia Mono Medium',monospace",
-    "terminal.integrated.fontSize": 14.3,
+
+    "terminal.integrated.fontSize": 13.3,
     "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.allowChords": false,
+    "terminal.explorerKind": "external",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "terminal.integrated.automationProfile.windows": {
+        //"path": "C:\\WINDOWS\\System32\\cmd.exe",
+        "path": "ComSpec"
+    },  
     "terminal.integrated.defaultProfile.linux": "zsh",
-    "terminal.integrated.defaultProfile.windows": "pwsh",
+    //mucho pesado //"terminal.integrated.defaultProfile.windows": "pwsh",
+
+    // >> [MISC]
     "hexeditor.columnWidth": 16,
     "hexeditor.showDecodedText": true,
     "hexeditor.defaultEndianness": "little",
     "hexeditor.inspectorType": "aside",
-    //"terminal.integrated.defaultProfile.windows": "C:/ProgramData/Microsoft/Windows/Start Menu/Programs/PowerShell/PowerShell7",
-    //"terminal.integrated.defaultProfile.windows": "C:/dev/programs/cmder/Cmder.exe",
-    //"terminal.integrated.profiles.windows": {
-    //	"cmder": {
-    //			"path": "C:\\WINDOWS\\System32\\cmd.exe",
-    //			"args": ["/K", "C:\\dev\\programs\\cmder\\vendor\\invscode_init.cmd"]
-    //	}
-    //},
     
-    "terminal.integrated.commandsToSkipShell": [
-      "language-julia.interrupt"
-    ],
-    "julia.symbolCacheDownload": true,
-    "julia.enableTelemetry": true,
     "haskell.manageHLS": "GHCup",
    
     "jupyter.debugJustMyCode": false,
-    "vsicons.dontShowNewVersionMessage": true,
-  
   
     //>> [EXPLORER]
     "explorer.confirmDragAndDrop": false,
@@ -523,15 +523,12 @@
     "explorer.autoReveal": false,
     "explorer.compactFolders": false,
   
-    "liveServer.settings.donotShowInfoMsg": true,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "diffEditor.wordWrap": "off",
     "workbench.editorAssociations": {
       "*.ipynb": "jupyter-notebook",
       "*.pdf": "default"
     },
-    "liveServer.settings.donotVerifyTags": true,
-    "python.languageServer": "Jedi",
     "javascript.format.enable": false,
     "editor.formatOnPaste": true,
     "json.format.enable": false,
@@ -539,6 +536,9 @@
       "default": "right",
       "jupyter-notebook": "left"
     },
+
+    // [PYTHON]
+    "python.languageServer": "Pylance",
     "python.formatting.autopep8Args": [
       "\"python.formatting.autopep8Args\": [\"--ignore\",\"E402\"]"
     ],
@@ -551,7 +551,6 @@
     "editor.detectIndentation": false,
     "debug.onTaskErrors": "debugAnyway",
     "java.format.enabled": false,
-    "java.test.config": {},
     
     ///*================================== TODO APP ====================================*
     "todo-tree.filtering.scopes": [
@@ -597,7 +596,6 @@
       "editor.wordBasedSuggestions": false,
       "editor.suggest.insertMode": "replace",
       "editor.semanticHighlighting.enabled": true
-      
     },	
     // <<< *========================== Editor By language =====================*
   
@@ -1539,21 +1537,25 @@
     "notebook.lineNumbers": "on",
     "screencastMode.verticalOffset": 10,
     "cmake.configureOnOpen": true,
-    "glassit.alpha": 250,
+    "glassit.alpha": 245,
     "glassit.step": 1,
     "window.zoomLevel": 1,
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
-    "window.menuBarVisibility": "hidden",
 
     "C_Cpp_Runner.cppCompilerPath": "gcc",
     "julia.executablePath": "D:\\tools\\julia-1.8.5\\bin",
-    "workbench.activityBar.visible": false,
-    "terminal.integrated.allowChords": false,
     "C_Cpp_Runner.cStandard": "c17",
     "colorize.languages": [
         "javascript",
         "json"
         // ...
-      ]
+      ],
+      "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+      ],
+      "julia.symbolCacheDownload": true,
+      "julia.enableTelemetry": false,
+      "window.menuBarVisibility": "compact",
+      "workbench.activityBar.visible": false,
 }
