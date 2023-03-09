@@ -107,6 +107,10 @@
     "vim.normalModeKeyBindings": [
       
       {
+        "before": ["K"],
+        "commands": ["editor.action.triggerParameterHints"]
+      },    
+      {
         "before": ["<leader>", "f"],
         "commands": ["workbench.action.quickOpen"]
       },    
@@ -1557,5 +1561,4 @@
       "julia.symbolCacheDownload": true,
       "julia.enableTelemetry": false,
       "window.menuBarVisibility": "compact",
-      "workbench.activityBar.visible": false,
 }
