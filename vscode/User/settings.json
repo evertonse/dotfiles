@@ -103,9 +103,17 @@
         "after" : ["$"] 
       },
     ],
+
     // [NORMAL]
     "vim.normalModeKeyBindings": [
-      
+      {
+        "before": ["A","k"],
+        "commands": ["editor.action.moveLinesUpAction"]
+      },    
+      {
+        "before": ["A","j"],
+        "commands": ["editor.action.moveLinesDownAction"]
+      },    
       {
         "before": ["K"],
         "commands": ["editor.action.triggerParameterHints"]
@@ -143,7 +151,6 @@
         "before": ["s"],
         "after": ["\"", "_", "d", "l", "i"]
       },
-      
       // >> without yanking
       {
         "before": ["X"],
