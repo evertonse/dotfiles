@@ -57,6 +57,20 @@
     // [VISUAL]
     "vim.visualModeKeyBindings": [
       {
+        "before": ["<leader>", "r", "e"],
+        "after" : [
+          ":",
+          "s",
+          "/",
+          "/",
+          "/",
+          "g",
+          "Left",
+          "Left",
+          "Left",
+        ] 
+      },
+      {
         "before": ["g", "e"],
         "after" : ["G"] 
       },
@@ -83,11 +97,11 @@
       },
       { 
         "before": ["<leader>", "p"],
-        "after": ["\"","_", "d" , "p"]
+        "after": ["\"","_", "p"]
       },
       { 
         "before": ["<leader>", "P"],
-        "after": ["\"","_","d", "P"]
+        "after": ["\"","_","P"]
       },
       // <<
       {
@@ -106,6 +120,37 @@
 
     // [NORMAL]
     "vim.normalModeKeyBindings": [
+      {
+        "before": ["<leader>", "s", "e"],
+        "after" : [
+          "/",
+          "\"", "_", "d", "i",
+          "%",
+          "s",
+          "/",
+          "/",
+          "/",
+          "g",
+          "Left",
+          "Left",
+          "Left",
+        ] 
+      },
+      {
+        "before": ["<leader>", "r", "e"],
+        "after" : [
+          ":",
+          "%",
+          "s",
+          "/",
+          "/",
+          "/",
+          "g",
+          "Left",
+          "Left",
+          "Left",
+        ] 
+      },
       {
         "before": ["A","k"],
         "commands": ["editor.action.moveLinesUpAction"]
@@ -174,11 +219,11 @@
       },
       { 
         "before": ["<leader>", "p"],
-        "after": ["\"","_","d", "p"]
+        "after": ["\"","_", "p"]
       },
       { 
         "before": ["<leader>", "P"],
-        "after": ["\"","_","d", "P"]
+        "after": ["\"","_","P"]
       },
       // <<
       { //Make it consistent with other uppercase
@@ -235,7 +280,6 @@
            "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
         ]
       },
-    
       {
         "before": ["H"],
         "commands": ["workbench.action.previousEditor"]
@@ -314,11 +358,16 @@
         "after": ["e"],
       },
     ],
+
     // VISUAL 
     "vim.visualModeKeyBindingsNonRecursive": [
       {
+        "before": ["x"],
+        "after": ["d"]
+      },
+      {
         "before": ["<C-h>"],
-        "after": ["b"],
+        "after": ["b"]
       },
       {
         "before": ["<C-l>"],
@@ -385,17 +434,19 @@
       "<C-f>": true,
       // VS Code new marker @ next occurence
       "<C-d>": true,
-      // Copy
+      // Coy
       "<C-c>": true,
       // Cut
       "<C-x>": true,
       // Save 
       "<C-s>": true,
       "s": true,
+      "x": false,
+      "X": false,
       // Paste
       "<C-v>": true,
       "<C-z>": true,
-      "<C-y>": true,
+      "<C-y>": true
     },
     
     /* > ===================================IMPORTANT =================================*/
@@ -1550,7 +1601,6 @@
     "cmake.configureOnOpen": true,
     "glassit.alpha": 245,
     "glassit.step": 1,
-    "window.zoomLevel": 1,
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
 
@@ -1568,4 +1618,7 @@
       "julia.symbolCacheDownload": true,
       "julia.enableTelemetry": false,
       "window.menuBarVisibility": "compact",
+      "window.zoomLevel": 1,
+      "git.openRepositoryInParentFolders": "never",
+      "workbench.activityBar.visible": false,
 }

@@ -15,10 +15,10 @@
 	"Main function": {
 		"prefix": "__main__",
 		"body": [
-			"def __main__():",
+			"def main():",
 			"\tpass$0\n",
 			"if __name__ == '__main__':",
-			"\t__main__()"
+			"\tmain()"
 		],
 		"description": "create main function .py"
 	},
