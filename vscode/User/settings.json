@@ -20,7 +20,7 @@
   */
   //"customvscodeuicss.css": ".title-bar { display: none !important; }",
     "window.titleBarStyle": "custom",
-
+    "editor.inlayHints.enabled" : "off",
     "customizeUI.stylesheet": {
           ".decorationsOverviewRuler": "display: none;",
           ".editor-group-container .title *": "display: none;",
@@ -38,7 +38,7 @@
     "vim.hlsearch": true,
     "vim.sneak": true,
     //"vim.easymotionMarkerooundColor": "#020202",
-    "vim.highlightedyank.enable" : true,
+    "vim.highightedyank.enable" : true,
     "vim.visualstar":true,
     "vim.leader": "<space>",
     "vim.whichwrap": "h,l,>,<,[,]f", 
@@ -74,36 +74,6 @@
         "before": ["g", "e"],
         "after" : ["G"] 
       },
-      // >> without yanking
-      {
-        "before": ["X"],
-        "after": ["\"","_","X"]
-      },
-      {
-        "before": ["x"],
-        "after": ["\"","_","x"]
-      },
-      {
-        "before": ["<leader>", "d"],
-        "after": ["\"", "_", "d"]
-      },
-      { 
-        "before": ["<leader>", "d"],
-        "after": ["\"","_", "d"]
-      },
-      { 
-        "before": ["<leader>", "D"],
-        "after": ["\"","_", "D"]
-      },
-      { 
-        "before": ["<leader>", "p"],
-        "after": ["\"","_", "p"]
-      },
-      { 
-        "before": ["<leader>", "P"],
-        "after": ["\"","_","P"]
-      },
-      // <<
       {
         "before": ["s"],
         "after": ["\"", "_", "d", "i"]
@@ -151,6 +121,10 @@
           "Left",
         ] 
       },
+      {
+        "before": ["<leader>","o","s"],
+        "commands": ["revealFileInOS"]
+      },    
       {
         "before": ["A","k"],
         "commands": ["editor.action.moveLinesUpAction"]
@@ -359,8 +333,37 @@
       },
     ],
 
-    // VISUAL 
+    // [VISUAL] [NON-RECURSIVE] 
     "vim.visualModeKeyBindingsNonRecursive": [
+      // >> without yanking
+      {
+        "before": ["X"],
+        "after": ["\"","_","X"]
+      },
+      {
+        "before": ["x"],
+        "after": ["\"","_","d"]
+      },
+      {
+        "before": ["<leader>", "d"],
+        "after": ["\"", "_", "d"]
+      },
+      { 
+        "before": ["<leader>", "d"],
+        "after": ["\"","_", "d"]
+      },
+      { 
+        "before": ["<leader>", "D"],
+        "after": ["\"","_", "D"]
+      },
+      { 
+        "before": ["<leader>", "p"],
+        "after": ["\"","_","d","P"]
+      },
+      { 
+        "before": ["<leader>", "P"],
+        "after": ["\"","_","x","P"]
+      },
       {
         "before": ["x"],
         "after": ["d"]
@@ -456,21 +459,21 @@
     "debug.console.fontSize": 15,
     "debug.console.lineHeight": 36,
     "debug.toolBarLocation": "docked",
-    "diffEditor.ignoreTrimWhitespace": false,
-    "diffEditor.renderSideBySide": false,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "diffEditor.renderSideBySide": true,
     "editor.colorDecorators": false,
 
     "editor.titleBar.enabled": false,
     "vscode_custom_css.imports": [""],
     "editor.fastScrollSensitivity": 6.5,
-    "editor.glyphMargin": false,
-    "editor.folding": true,
+    "editor.glyphMargin": true, // set to true to see the debugging red dot
+    "editor.folding": false,
     "editor.fontFamily":"'MesloLGM','MesloLGS NF','Cascadia Code Medium','Cascadia Mono', 'Consolas','Cascadia Mono SemiLight','Cascadia Code','JetBrains Mono','Cascadia Mono Light', 'Cascadia Mono PL Light','Cascadia Mono', Consolas, 'Courier New'",
     "editor.lineHeight": 18.2,
     "editor.fontSize": 12.5,
     "editor.bracketPairColorization.enabled": false,
     "editor.guides.bracketPairs": "active",
-    "editor.fontLigatures": true,
+    "editor.fontLigatures": false,
     "editor.renderControlCharacters": true,
     "editor.linkedEditing": true,
     "editor.suggestSelection": "first",
@@ -534,7 +537,7 @@
       "input.placeholderForeground": "#A6A6A6",
       "settings.textInputBackground": "#292929",
       "settings.numberInputBackground": "#292929",
-      "menu.background": "#252526",
+      "menu.background": "#252626",
       "menu.foreground": "#CCCCCC",
       "statusBarItem.remoteForeground": "#FFF",
       "statusBarItem.remoteBackground": "#16825D",
@@ -561,10 +564,9 @@
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "terminal.integrated.allowChords": false,
     "terminal.explorerKind": "external",
-    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    //"terminal.integrated.defaultProfile.windows": "Command Prompt",
     "terminal.integrated.automationProfile.windows": {
-        //"path": "C:\\WINDOWS\\System32\\cmd.exe",
-        "path": "ComSpec"
+        "path": "C:\\WINDOWS\\System32\\cmd.exe",
     },  
     "terminal.integrated.defaultProfile.linux": "zsh",
     //mucho pesado //"terminal.integrated.defaultProfile.windows": "pwsh",
@@ -674,6 +676,7 @@
         "*.private": "#DADADAFF",
         "property":"#DADADA",
         "selfParameter": "#2369a2",
+        "selfKeyword": "#2369a2",
         "macro": "#CAC4FF",
         "enumMember": "#FFA3A3",
       }
@@ -852,8 +855,10 @@
       },
       {
           "scope": [
+            "entity.name.function.macro.rust",
             "meta.preprocessor",
-            "entity.name.function.preprocessor"
+            "entity.name.function.preprocessor",
+            "meta.macro.rust"
           ],
           "settings": {
             //"foreground": "#569cd6"
@@ -1610,7 +1615,9 @@
     "colorize.languages": [
         "javascript",
         "json"
-        // ...
+      ],
+    "colorize.colorized_colors": [
+        "HEXA"
       ],
       "terminal.integrated.commandsToSkipShell": [
         "language-julia.interrupt"
@@ -1618,7 +1625,7 @@
       "julia.symbolCacheDownload": true,
       "julia.enableTelemetry": false,
       "window.menuBarVisibility": "compact",
-      "window.zoomLevel": 1,
       "git.openRepositoryInParentFolders": "never",
-      "workbench.activityBar.visible": false,
+      "lldb.suppressUpdateNotifications": true,
+      "window.zoomLevel": 1,
 }

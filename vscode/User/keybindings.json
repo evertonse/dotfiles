@@ -261,4 +261,14 @@
     "command": "-editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly"
   },
+  {
+    "key": "f12",
+    "command": "revealFileInOS",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "shift+alt+r",
+    "command": "-revealFileInOS",
+    "when": "!editorFocus"
+  },
 ]
