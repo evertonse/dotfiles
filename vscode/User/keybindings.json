@@ -59,7 +59,7 @@
     "command": "workbench.action.toggleActivityBarVisibility"
   },
   {
-    "key": "ctrl+p",
+    "key": "ctrl+shift+n",
     "command": "-workbench.action.quickOpen"
   },
   {
@@ -152,7 +152,7 @@
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   },
   {
-    "key": "ctrl+p",
+    "key": "ctrl+shift+n",
     "command": "list.focusUp",
     "when": "listFocus && !inputFocus"
   },
@@ -162,7 +162,7 @@
     "when": "listFocus && !inputFocus"
   },
   {
-    "key": "ctrl+p",
+    "key": "ctrl+shift+n",
     "command": "workbench.banner.focusPreviousAction",
     "when": "bannerFocused"
   },
@@ -172,7 +172,7 @@
     "when": "bannerFocused"
   },
   {
-    "key": "ctrl+p",
+    "key": "ctrl+shift+n",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
@@ -182,7 +182,7 @@
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
   {
-    "key": "ctrl+p",
+    "key": "ctrl+shift+n",
     "command": "showPrevParameterHint",
     "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
   },

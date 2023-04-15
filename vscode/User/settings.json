@@ -31,14 +31,16 @@
       },
     //"customizeUI.titleBar": "regular",
   
-    "vim.easymotion": false,
+    "vim.easymotion": true,
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
     "vim.sneak": true,
-    //"vim.easymotionMarkerooundColor": "#020202",
-    "vim.highightedyank.enable" : true,
+    "vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf;",
+    "vim.highlightedyank.color" : "rgba(150, 140, 255, 0.19)",
+    "vim.searchHighlightColor": "rgba(250, 140, 255, 0.05)",
+    "vim.highlightedyank.enable" : true,
     "vim.visualstar":true,
     "vim.leader": "<space>",
     "vim.whichwrap": "h,l,>,<,[,]f", 
@@ -122,7 +124,7 @@
         ] 
       },
       {
-        "before": ["<leader>","o","s"],
+        "before": ["<leader>","r","f"],
         "commands": ["revealFileInOS"]
       },    
       {
@@ -274,10 +276,6 @@
         "before": ["<leader>", "c"],
         "commands": [":bd!"]
       },
-      {
-        "before": ["<C-n>"],
-        "commands": [":nohl"]
-      },
       //{
         //"before": ["<leader>", "w"],
         //"commands": ["workbench.action.splitEditor"]
@@ -413,7 +411,6 @@
         "before": ["<C-j>"],
         "after": ["}"],
       },
-      
       {
         "before": ["<C-h>"],
         "after": ["b"],
@@ -444,8 +441,8 @@
       // Save 
       "<C-s>": true,
       "s": true,
-      "x": false,
-      "X": false,
+      "x": true,
+      "X": true,
       // Paste
       "<C-v>": true,
       "<C-z>": true,
@@ -1628,4 +1625,5 @@
       "git.openRepositoryInParentFolders": "never",
       "lldb.suppressUpdateNotifications": true,
       "window.zoomLevel": 1,
+      "redhat.telemetry.enabled": false,
 }
