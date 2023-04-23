@@ -37,9 +37,9 @@
 	"switch": {
 		"prefix": "switch-brackets",
 		"body": [
-		"switch (/*variable*/)",
+		"switch ($0)",
 		"{",
-		"\tcase /*case1*/$0:",
+		"\tcase $1:",
 		"\t{",	
 		"\t\tbreak;",
 		"\t}",
@@ -51,6 +51,7 @@
 		],
 		"description": "switch with brackets"
 	},
+
 	"rangefor": {
 		"prefix": "rfor",
 		"body": [

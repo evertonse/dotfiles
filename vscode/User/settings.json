@@ -475,7 +475,7 @@
     "editor.linkedEditing": true,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "off",
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "[python]": {
       "editor.insertSpaces": true,
       "editor.tabSize": 4,
@@ -509,7 +509,6 @@
     "workbench.panel.defaultLocation": "right",
     "workbench.startupEditor": "none",
     "workbench.layoutControl.enabled": false,
-    "workbench.editor.enablePreview": false,
     "workbench.editor.revealIfOpen": true,
     "workbench.editor.showTabs": true,
     "workbench.editor.untitled.hint": "hidden",
@@ -597,7 +596,9 @@
       "default": "right",
       "jupyter-notebook": "left"
     },
-
+    //>> [EDITOR]
+    "files.insertFinalNewline": false,
+    "files.eol": "\n",
     // [PYTHON]
     "python.languageServer": "Pylance",
     "python.formatting.autopep8Args": [
@@ -1623,7 +1624,8 @@
       "julia.enableTelemetry": false,
       "window.menuBarVisibility": "compact",
       "git.openRepositoryInParentFolders": "never",
-      "lldb.suppressUpdateNotifications": true,
-      "window.zoomLevel": 1,
-      "redhat.telemetry.enabled": false,
+    "lldb.suppressUpdateNotifications": true,
+    "redhat.telemetry.enabled": false,
+    "workbench.activityBar.visible": false,
+    "window.zoomLevel": 1,
 }
