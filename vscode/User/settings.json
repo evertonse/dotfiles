@@ -36,8 +36,7 @@
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
-    "vim.sneak": true,
-    "vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf;",
+    //"vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf;",
     "vim.highlightedyank.color" : "rgba(150, 140, 255, 0.19)",
     "vim.searchHighlightColor": "rgba(250, 140, 255, 0.05)",
     "vim.highlightedyank.enable" : true,
@@ -75,10 +74,6 @@
       {
         "before": ["g", "e"],
         "after" : ["G"] 
-      },
-      {
-        "before": ["s"],
-        "after": ["\"", "_", "d", "i"]
       },
       {
         "before": ["g", "h"],
@@ -168,11 +163,15 @@
    
     // [NORMAL] [NON RECURSIVE REMAP]
     "vim.normalModeKeyBindingsNonRecursive": [
+      // >> without yanking
       {
         "before": ["s"],
-        "after": ["\"", "_", "d", "l", "i"]
+        "after": ["\"","_","s"]
       },
-      // >> without yanking
+      {
+        "before": ["S"],
+        "after": ["\"","_","s"]
+      },
       {
         "before": ["X"],
         "after": ["\"","_","X"]
@@ -335,6 +334,14 @@
     "vim.visualModeKeyBindingsNonRecursive": [
       // >> without yanking
       {
+        "before": ["s"],
+        "after": ["\"","_","s"]
+      },
+      {
+        "before": ["S"],
+        "after": ["\"","_","s"]
+      },
+      {
         "before": ["X"],
         "after": ["\"","_","X"]
       },
@@ -361,10 +368,6 @@
       { 
         "before": ["<leader>", "P"],
         "after": ["\"","_","x","P"]
-      },
-      {
-        "before": ["x"],
-        "after": ["d"]
       },
       {
         "before": ["<C-h>"],
@@ -440,9 +443,9 @@
       "<C-x>": true,
       // Save 
       "<C-s>": true,
-      "s": true,
-      "x": true,
-      "X": true,
+      //"s": true,
+      //"x": true,
+      //"X": true,
       // Paste
       "<C-v>": true,
       "<C-z>": true,
