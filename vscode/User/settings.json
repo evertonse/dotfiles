@@ -430,6 +430,10 @@
       "<C-Down>": true,
       "<C-Left>": true,
       "<C-Right>": true,
+      "Up": true,
+      "Down": true,
+      "Left": true,
+      "Right": true,
       
       "<C-backspace>": true,
   
@@ -449,7 +453,9 @@
       // Paste
       "<C-v>": true,
       "<C-z>": true,
-      "<C-y>": true
+      "<C-y>": true,
+      "g": true,
+      "f": true
     },
     
     /* > ===================================IMPORTANT =================================*/
@@ -602,6 +608,7 @@
     //>> [EDITOR]
     "files.insertFinalNewline": false,
     "files.eol": "\n",
+
     // [PYTHON]
     "python.languageServer": "Pylance",
     "python.formatting.autopep8Args": [
@@ -1629,6 +1636,6 @@
       "git.openRepositoryInParentFolders": "never",
     "lldb.suppressUpdateNotifications": true,
     "redhat.telemetry.enabled": false,
-    "workbench.activityBar.visible": false,
     "window.zoomLevel": 1,
+    "workbench.activityBar.visible": false,
 }
