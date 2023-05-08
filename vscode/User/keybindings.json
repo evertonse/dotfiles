@@ -5,7 +5,7 @@
   {
     "key": "space f",
     "command": "workbench.action.quickOpen",
-    "when":"filesExplorerFocus && !terminalFocus && !extensionSearchHasText"
+    "when":"!searchEnabled &&  !findInFiles && filesExplorerFocus && !terminalFocus && !extensionSearchHasText"
   },
   {
     "key": "alt+i",
@@ -35,12 +35,12 @@
   {
     "key": "space e",
     "command": "workbench.view.explorer",
-    "when": "!editorTextFocus && !terminalFocus && !extensionSearchHasText"
+    "when": "!searchEnabled &&!findInFiles &&!editorTextFocus && !terminalFocus && !extensionSearchHasTextaa"
   },
   {
     "key": "space c",
     "command": "workbench.action.toggleSidebarVisibility",
-    "when": "!editorTextFocus && !terminalFocus && !extensionSearchHasText"
+    "when": "!searchEnabled &&!findInFiles &&!editorTextFocus && !terminalFocus && !extensionSearchHasText && !findInFiles"
   },
   {
     "key": "ctrl+shift+oem_3",
@@ -189,14 +189,14 @@
     "when": "inQuickOpen && inViewsPicker"
 },
 {
+    "key": "ctrl+shift+n",
+    "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+    "when": "inFilesPicker && inQuickOpen"
+},
+{
     "key": "ctrl+q",
     "command": "workbench.action.quickOpenNavigateNextInViewPicker",
     "when": "inQuickOpen && inViewsPicker"
-},
-{
-    "key": "ctrl+shift+n",
-    "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
-    "when": "inFilesPicker && inQuickOpen"
 },
 {
     "key": "ctrl+shift+e",
@@ -250,13 +250,13 @@
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
 },
 {
-    "key": "down",
-    "command": "-selectNextSuggestion",
+    "key": "ctrl+shift+n",
+    "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
 },
 {
-    "key": "ctrl+shift+n",
-    "command": "-selectPrevSuggestion",
+    "key": "down",
+    "command": "-selectNextSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
 },
 {
@@ -276,7 +276,7 @@
 },
 {
     "key": "ctrl+n",
-    "command": "showNextParameterHint",
+    "command": "-showNextParameterHint",
     "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
 },
 {
@@ -287,7 +287,7 @@
 {
     "key": "space c",
     "command": "workbench.action.closeGroup",
-    "when": "activeEditorGroupEmpty && multipleEditorGroups && !extensionSearchHasText "
+    "when": "!searchEnabled &&!findInFiles && activeEditorGroupEmpty && multipleEditorGroups && !extensionSearchHasText "
 },
 {
     "key": "ctrl+w",
@@ -297,7 +297,7 @@
 {
     "key": "space c",
     "command": "workbench.action.closeActiveEditor",
-    "when": "!editorTextFocus && !terminalFocus && !filesExplorerFocus && !extensionSearchHasText"
+    "when": "!searchEnabled &&!findInFiles &&!editorTextFocus && !terminalFocus && !filesExplorerFocus && !extensionSearchHasText"
 },
 {
     "key": "ctrl+w",
@@ -328,6 +328,52 @@
     "command": "-settings.action.focusSettingsFile",
     "when": "inSettingsSearch && !suggestWidgetVisible"
 },
+{
+    "key": "ctrl+k v",
+    "command": "-markdown.showPreviewToSide",
+    "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+},
+{
+    "key": "ctrl+o",
+    "command": "-workbench.action.navigateBack",
+    "when": "canNavigateBack && vim.mode == 'Normal'"
+},
+{
+    "key": "shift+l",
+    //"command": "workbench.action.nextEditorInGroup",
+    "command": "workbench.action.nextEditor",
+    "when":"!listFocus && !inputFocus" 
+},
+{
+    "key": "shift+h",
+    "command": "workbench.action.previousEditor",
+    "when":"!listFocus && !inputFocus" 
+},
+{
+    "key": "alt+left",
+    "command": "-workbench.action.navigateBack",
+    "when": "canNavigateBack"
+},
+{
+    "key": "g",
+    "command": "-workbench.action.gotoFile"
+},
+{
+    "key": "g f",
+    "command": "-workbench.action.gotoFile"
+},
+{
+    "key": "e w",
+    "command": "-welcome.showNewFileEntries"
+},
+{
+    "key": "ctrl+alt+win+n",
+    "command": "-welcome.showNewFileEntries"
+},
+{
+    "key": "ctrl+k w",
+    "command": "-workbench.action.closeEditorsInGroup"
+}
 //  {
     //"key": "up",
     //"command": "list.focusUp",

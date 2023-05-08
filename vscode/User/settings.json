@@ -21,24 +21,16 @@
   //"customvscodeuicss.css": ".title-bar { display: none !important; }",
     "window.titleBarStyle": "custom",
     "editor.inlayHints.enabled" : "off",
-    "customizeUI.stylesheet": {
-          ".decorationsOverviewRuler": "display: none;",
-          ".editor-group-container .title *": "display: none;",
-          "* .title": "display: none;",
-          ".editor-group-container .title": "pointer-events: none !important;",
-          ".editor-group-container.empty": "-webkit-app-region: drag;",
-          ".monaco-editor .scroll-decoration": "box-shadow: none;"
-      },
     //"customizeUI.titleBar": "regular",
   
-    "vim.easymotion": true,
+    //"vim.easymotion": true,
     "vim.incsearch": true,
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
     //"vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf;",
     "vim.highlightedyank.color" : "rgba(150, 140, 255, 0.19)",
-    "vim.searchHighlightColor": "rgba(250, 140, 255, 0.05)",
+    "vim.searchHighlightColor": "rgba(250, 140, 255, 0.02)",
     "vim.highlightedyank.enable" : true,
     "vim.visualstar":true,
     "vim.leader": "<space>",
@@ -83,6 +75,10 @@
         "before": ["g", "l"],
         "after" : ["$"] 
       },
+      {
+        "before": ["g", "f"],
+        "after" : ["$"] 
+      },
     ],
 
     // [NORMAL]
@@ -121,7 +117,14 @@
       {
         "before": ["<leader>","r","f"],
         "commands": ["revealFileInOS"]
-      },    
+      },
+      {
+        "before": ["<leader>","o","p"],
+        "commands": [
+            "markdown.showPreviewToSide",
+            "workbench.action.navigateBack"
+        ]
+      },      
       {
         "before": ["A","k"],
         "commands": ["editor.action.moveLinesUpAction"]
@@ -257,15 +260,15 @@
       },
       {
         "before": ["H"],
-        "commands": ["workbench.action.previousEditor"]
+        "commands": ["workbench.action.previousEditorInGroup"]
       },
       {
         "before": ["L"],
-        "commands": ["workbench.action.nextEditor"]
+        "commands": ["workbench.action.nextEditorInGroup"]
       },
       {
         "before": ["<leader>", "q"],
-        "commands": [":q"]
+        "commands": ["workbench.action.closeEditorsInGroup"]
       },
       {
         "before": ["<leader>", "w"],
@@ -455,7 +458,8 @@
       "<C-z>": true,
       "<C-y>": true,
       "g": true,
-      "f": true
+      "g f": true,
+      "f": true,
     },
     
     /* > ===================================IMPORTANT =================================*/
@@ -1631,11 +1635,16 @@
         "language-julia.interrupt"
       ],
       "julia.symbolCacheDownload": true,
-      "julia.enableTelemetry": false,
-      "window.menuBarVisibility": "compact",
+    "julia.enableTelemetry": false,
       "git.openRepositoryInParentFolders": "never",
     "lldb.suppressUpdateNotifications": true,
     "redhat.telemetry.enabled": false,
     "window.zoomLevel": 1,
-    "workbench.activityBar.visible": false,
+    "[java]": {
+    "editor.autoSurround": "never",
+        "editor.suggest.snippetsPreventQuickSuggestions": false
+    },
+    "workbench.editor.enablePreview": false,
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.size": "fit",
 }
