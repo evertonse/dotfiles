@@ -19,6 +19,9 @@
   /*
   */
   //"customvscodeuicss.css": ".title-bar { display: none !important; }",
+
+    "glassit.alpha": 249,
+    "glassit.step": 1,
     "window.titleBarStyle": "custom",
     "editor.inlayHints.enabled" : "off",
     //"customizeUI.titleBar": "regular",
@@ -166,6 +169,11 @@
    
     // [NORMAL] [NON RECURSIVE REMAP]
     "vim.normalModeKeyBindingsNonRecursive": [
+
+      {
+        "before": ["n"],
+        "after": ["n","z","z"]
+      },
       // >> without yanking
       {
         "before": ["s"],
@@ -335,7 +343,33 @@
 
     // [VISUAL] [NON-RECURSIVE] 
     "vim.visualModeKeyBindingsNonRecursive": [
+
+      //-- Move text up and down
+      {
+        "before": ["<A-j>"],
+        "command": [":m .+1<CR>=="]
+      },
+      {
+        "before": ["<A-k>"],
+        "commands": [":m .-2<CR>=="]
+      },
+      {
+        "before": ["<"],
+        "after": ["<","g","v"]
+      },
       // >> without yanking
+      {
+        "before": ["<"],
+        "after": ["<","g","v"]
+      },
+      {
+        "before": [">"],
+        "after": [">","g","v"]
+      },
+      {
+        "before": ["n"],
+        "after": ["n","z","z","z"]
+      },
       {
         "before": ["s"],
         "after": ["\"","_","s"]
@@ -433,6 +467,7 @@
       "<C-Down>": true,
       "<C-Left>": true,
       "<C-Right>": true,
+      "<A>": true,
       "Up": true,
       "Down": true,
       "Left": true,
@@ -459,7 +494,7 @@
       "<C-y>": true,
       "g": true,
       "g f": true,
-      "f": true,
+      "f": true
     },
     
     /* > ===================================IMPORTANT =================================*/
@@ -599,8 +634,15 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "diffEditor.wordWrap": "off",
     "workbench.editorAssociations": {
-      "*.ipynb": "jupyter-notebook",
-      "*.pdf": "default"
+        "*.ipynb": "jupyter-notebook",
+        "*.pdf": "default",
+        "*.o": "hexEditor.hexedit",
+        "*.exe": "hexEditor.hexedit",
+        "*.ilk": "hexEditor.hexedit",
+        "*.pdb": "hexEditor.hexedit",
+        "*.lib": "hexEditor.hexedit",
+        "*.dll": "hexEditor.hexedit",
+        "*.obj": "hexEditor.hexedit"
     },
     "javascript.format.enable": false,
     "editor.formatOnPaste": true,
@@ -1331,7 +1373,7 @@
           "name": "Enum",
           "scope": "entity.name.type.enum",
           "settings": {
-            "foreground": "#b8d7a3"
+            "foreground": "#000000"
           }
       },
       {
@@ -1616,8 +1658,6 @@
     "notebook.lineNumbers": "on",
     "screencastMode.verticalOffset": 10,
     "cmake.configureOnOpen": true,
-    "glassit.alpha": 245,
-    "glassit.step": 1,
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
 
@@ -1639,7 +1679,6 @@
       "git.openRepositoryInParentFolders": "never",
     "lldb.suppressUpdateNotifications": true,
     "redhat.telemetry.enabled": false,
-    "window.zoomLevel": 1,
     "[java]": {
     "editor.autoSurround": "never",
         "editor.suggest.snippetsPreventQuickSuggestions": false
@@ -1647,4 +1686,7 @@
     "workbench.editor.enablePreview": false,
     "editor.minimap.renderCharacters": false,
     "editor.minimap.size": "fit",
+    "workbench.activityBar.visible": false,
+    "window.menuBarVisibility": "compact",
+    "window.zoomLevel": 1,
 }
