@@ -33,7 +33,7 @@ M.plugins = {
     -->> LSP
     {
         'VonHeikemen/lsp-zero.nvim',
-        requires = {
+        dependencies = {
             -- LSP Support
             {'neovim/nvim-lspconfig'},
             {'williamboman/mason.nvim'},
@@ -63,7 +63,7 @@ M.plugins = {
         "nvim-telescope/telescope.nvim",   
         opts = overrides.telescope,          
     },
-    -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+    -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
     { 'nvim-telescope/telescope-fzf-native.nvim', 
         run = 'make', 
         cond = vim.fn.executable 'make' == 1 

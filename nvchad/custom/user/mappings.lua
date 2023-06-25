@@ -602,4 +602,13 @@ M.nvimtree = {
   },
 }
 
+M.disabled = {
+  n = {
+      ["<leader>ch"] = "",
+      ["<leader>ca"] = "",
+      ["<leader>cm"] = "",
+      ["<leader>cc"] = "",
+  }
+}
+
 return M
