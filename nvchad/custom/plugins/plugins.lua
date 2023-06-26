@@ -3,34 +3,10 @@ local overrides = require('custom.plugins.opts')
 local M  = {}
 
 M.plugins = {
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      -- format & linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
-    },
-    config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
-  },
-    { "windwp/nvim-autopairs",                  }, -- Autopairs, integrates with both cmp and treesitter
-    { "numToStr/Comment.nvim",                  },
-    -- MAYBE  file browser instead https://github.com/nvim-telescope/telescope-file-browser.nvim
-    { "moll/vim-bbye",                          }, -- Avoid messing with windwos layouts when closing buffers
-    --{ "ahmedkhalf/project.nvim",                }, -- Discover your projects Automatically
-    { "lewis6991/impatient.nvim",               },
-    { "lukas-reineke/indent-blankline.nvim",    }, -- Show identations lines
-    { "goolord/alpha-nvim", opts = function() require 'custom.plugins.config.alpha' end,                     }, -- UI Library with dashboard
-    { "folke/which-key.nvim",opts = function() require 'custom.plugins.config.whichkey' end,                 }, -- Show Key popup
 
-    -->> Cmp 
-    -->> LSP
+    { "moll/vim-bbye",                          }, -- Avoid messing with windwos layouts when closing buffers
+    { "lewis6991/impatient.nvim",               },
+
     {
         'VonHeikemen/lsp-zero.nvim',
         dependencies = {
@@ -113,7 +89,7 @@ M.plugins = {
 
     -- Argument Coloring
     -- {'octol/vim-cpp-enhanced-highlight',                }, -- still haven't d but adds cpp keywords for highlight tweak even further
-    {'m-demare/hlargs.nvim',                            },
+    {'m-demare/hlargs.nvim', opts = overrides.hlargs},
 
         -->> Git
     {"lewis6991/gitsigns.nvim",                         },
@@ -166,4 +142,4 @@ M.plugins = {
   },
 }
 
-return {}
+return M.plugins

@@ -3,7 +3,52 @@ local noremap_opts = { noremap = true, silent = true }
 local nowait_opts = { noremap = true, silent = true, nowait = true }
 
 local M = {}
-
+-- add this table only when you want to disable default keys
+M.disabled = {
+  n = {
+    ["<leader>ch"] = "",
+    ["<leader>ca"] = "",
+    ["<leader>cm"] = "",
+    ["<leader>cc"] = "",
+    -- which-key
+    ["<leader>wK"] = "",
+    ["<leader>wk"] = "",
+    ["<leader>fw"] = "",
+    ["<leader>tk"] = "",
+    -- bufferline
+    ["<leader>x"] = "",
+    ["<S-b>"] = "",
+    -- comment
+    ["<leader>/"] = "",
+    -- lspconfig
+    ["d]"] = "",
+    ["[d"] = "",
+    ["<leader>f"] = "",
+    ["<leader>gt"] = "",
+    ["<leader>cm"] = "",
+    -- nvterm
+    ["<leader>h"] = "",
+    ["<leader>v"] = "",
+    ["<A-i>"] = "",
+    ["<A-h>"] = "",
+    ["<A-v>"] = "",
+    -- nvimtree
+    ["<leader>e"] = "",
+    -- bufferline
+    ["<leader>b"] = "",
+    ["<leader>x"] = "",
+  },
+  v = {
+    -- comment
+    ["<leader>/"] = "",
+  },
+  t = {
+    -- nvterm
+    ["<A-i>"] = "",
+    ["<A-h>"] = "",
+    ["<A-v>"] = "",
+  },
+}
 M.general = {
     n = {
    
@@ -30,7 +75,7 @@ M.general = {
 
     -- new buffer
     ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
-    ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
+    ["<leader>nvc"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
         ['<M-Up>'] = { "ddkP",opts = noremap_opts }, --// Moving the line up
         ['<M-Down>'] = { "ddjP",opts = noremap_opts}, -- // Moving the line down
         ["<M-[>"] = {":resize -2<CR>", opts = noremap_opts},
@@ -58,7 +103,7 @@ M.general = {
 
         ["<leader>w"] = { ':w<CR>',opts = noremap_opts},
         ["<leader>q"] = { ':q<CR>',opts = noremap_opts},
-        ["<leader>c"] = { ':c<CR>',opts = noremap_opts},
+        ["<leader>c"] = { ':bd!<CR>',opts = noremap_opts},
         -- >> Clip Board option 
         ["<leader>y"] = { '"_y',opts = noremap_opts},
         ["<leader>Y"] = { '"_Y',opts = noremap_opts},
@@ -307,7 +352,7 @@ M.lspconfig = {
       "LSP rename",
     },
 
-    ["<leader>ca"] = {
+    ["<leader>lca"] = {
       function()
         vim.lsp.buf.code_action()
       end,
@@ -508,7 +553,7 @@ M.blankline = {
   plugin = true,
 
   n = {
-    ["<leader>cc"] = {
+    ["<leader>jc"] = {
       function()
         local ok, start = require("indent_blankline.utils").get_current_context(
           vim.g.indent_blankline_context_patterns,
@@ -595,20 +640,12 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
-
+    --["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
   },
 }
 
-M.disabled = {
-  n = {
-      ["<leader>ch"] = "",
-      ["<leader>ca"] = "",
-      ["<leader>cm"] = "",
-      ["<leader>cc"] = "",
-  }
-}
+
 
 return M
