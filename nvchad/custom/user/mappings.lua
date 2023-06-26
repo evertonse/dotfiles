@@ -539,8 +539,8 @@ M.whichkey = {
     },
     ["<leader>wk"] = {
       function()
-        local input = vim.fn.input "WhichKey: "
-        vim.cmd("WhichKey " .. input)
+        --local input = vim.fn.input "WhichKey: "
+        --vim.cmd("WhichKey " .. input)
       end,
       "Which-key query lookup",
     },
