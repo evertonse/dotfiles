@@ -1,6 +1,6 @@
 local ui = {}
 ui = {
-    theme = 'vscode',
+    --theme = 'vscode',
     --theme = 'vscode',
     lsp_semantic_tokens = true,
     nvdash = {
@@ -20,4 +20,4 @@ ui = {
     transparency = true,
 }
 
-return ui 
+return ui

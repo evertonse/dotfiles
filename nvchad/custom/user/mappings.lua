@@ -8,7 +8,6 @@ M.disabled = {
   n = {
     ["<leader>ch"] = "",
     ["<leader>ca"] = "",
-    ["<leader>cm"] = "",
     ["<leader>cc"] = "",
     -- which-key
     ["<leader>wK"] = "",
@@ -36,7 +35,6 @@ M.disabled = {
     ["<leader>e"] = "",
     -- bufferline
     ["<leader>b"] = "",
-    ["<leader>x"] = "",
   },
   v = {
     -- comment

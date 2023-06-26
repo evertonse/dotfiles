@@ -7,7 +7,6 @@ local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
   return
 end
-local tree_cb = nvim_tree_config.nvim_tree_callback
 
 local M = {}
 
@@ -122,21 +121,20 @@ local function nvimtree_on_attach(bufnr)
   -- You will need to insert "your code goes here" for any mappings with a custom action_cb
   vim.keymap.set('n', 'l', api.node.open.no_window_picker, opts('Open: No Window Picker'))
   vim.keymap.set('n', '<CR>', api.node.open.no_window_picker, opts('Open: No Window Picker'))
-  vim.keymap.set('n', 'o', api.node.open.no_window_picker, opts('Open: No Window Picker'))
+  vim.keymap.set('n', 'o', api.tree.change_root_to_node, opts('Open: No Window Picker'))
+  vim.keymap.set('n', '<BS>',  api.tree.change_root_to_parent,        opts('Close Directory'))
+
   vim.keymap.set('n', '<leader>c', api.tree.close, opts('Close'))
   vim.keymap.set('n', '<leader>e', function(node) vim.cmd(":wincmd p"); end , opts('Go back to previous Window'))
   vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
   vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
+  vim.keymap.del('n', '<C-k>', opts('Info'))
 
 end
 
 M.nvimtree = {
 
     on_attach=nvimtree_on_attach,
-    filters = {
-        dotfiles = false,
-        exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
-    },
     git = {
         enable = false,
         ignore = true,
@@ -151,12 +149,6 @@ M.nvimtree = {
   },
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
-  ignore_ft_on_setup = {
-    "startify",
-    "dashboard",
-    "alpha",
-  },
 
   open_on_tab = false,
   hijack_cursor = false,
@@ -266,12 +258,12 @@ M.hlargs = {
 M.telescope = {
     defaults = {
         --פֿ
-        prompt_prefix = " ",
+        --prompt_prefix = " ",
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },
         
-        --- fzf native
+        -- fzf native
         fzf = {
             fuzzy = true,                    -- false will only do exact matching
             override_generic_sorter = true,  -- override the generic sorter
