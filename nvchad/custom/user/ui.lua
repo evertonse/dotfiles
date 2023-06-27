@@ -1,8 +1,7 @@
 local ui = {}
 local highlights = require "custom.user.highlights"
 ui = {
-    --theme = 'vscode',
-    --theme = 'vscode',
+    --theme = 'vs',
     lsp_semantic_tokens = true,
     nvdash = {
         load_on_startup = true,

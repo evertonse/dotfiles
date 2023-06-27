@@ -8,14 +8,15 @@ local M = {}
 M.override = {
   Comment = {
     italic = true,
-    fg = "#989898",
+    fg = "#922922",
   },
+
+  NvimTreeOpenedFolderName = { fg = "#9099dd", bold = true },
 }
 
 ---@type HLTable
 M.add = {
-  NvimTreeOpenedFolderName = { fg = "green", bold = true },
-  Nvim
+  NvimTreeOpenedFolderName = { fg = "#9099dd", bold = true },
 }
 
 return M

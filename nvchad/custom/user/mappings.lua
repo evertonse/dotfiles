@@ -6,6 +6,30 @@ local M = {}
 -- add this table only when you want to disable default keys
 M.disabled = {
   n = {
+    ["<leader>fo"] = "",
+    ["<leader>fa"] = "",
+    ["<leader>fb"] = "",
+    ["<leader>fc"] = "",
+    ["<leader>fd"] = "",
+    ["<leader>fe"] = "",
+    ["<leader>ff"] = "",
+    ["<leader>fg"] = "",
+    ["<leader>fh"] = "",
+    ["<leader>fi"] = "",
+    ["<leader>fj"] = "",
+    ["<leader>fl"] = "",
+    ["<leader>fm"] = "",
+    ["<leader>fn"] = "",
+    ["<leader>fp"] = "",
+    ["<leader>fq"] = "",
+    ["<leader>fr"] = "",
+    ["<leader>fs"] = "",
+    ["<leader>ft"] = "",
+    ["<leader>fu"] = "",
+    ["<leader>fv"] = "",
+    ["<leader>fx"] = "",
+    ["<leader>fz"] = "",
+
     ["<leader>ch"] = "",
     ["<leader>ca"] = "",
     ["<leader>cc"] = "",
@@ -22,7 +46,6 @@ M.disabled = {
     -- lspconfig
     ["d]"] = "",
     ["[d"] = "",
-    ["<leader>f"] = "",
     ["<leader>gt"] = "",
     ["<leader>cm"] = "",
     -- nvterm
@@ -364,7 +387,7 @@ M.lspconfig = {
       "LSP references",
     },
 
-    ["<leader>f"] = {
+    ["<leader>of"] = {
       function()
         vim.diagnostic.open_float { border = "rounded" }
       end,
@@ -385,35 +408,35 @@ M.lspconfig = {
       "Goto next",
     },
 
-    ["<leader>dq"] = {
+    ["<leader>loc"] = {
       function()
         vim.diagnostic.setloclist()
       end,
       "Diagnostic setloclist",
     },
 
-    ["<leader>fm"] = {
+    ["<leader>lf"] = {
       function()
         vim.lsp.buf.format { async = true }
       end,
       "LSP formatting",
     },
 
-    ["<leader>wa"] = {
+    ["<leader>lwa"] = {
       function()
         vim.lsp.buf.add_workspace_folder()
       end,
       "Add workspace folder",
     },
 
-    ["<leader>wr"] = {
+    ["<leader>lwr"] = {
       function()
         vim.lsp.buf.remove_workspace_folder()
       end,
       "Remove workspace folder",
     },
 
-    ["<leader>wl"] = {
+    ["<leader>lwl"] = {
       function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end,
@@ -430,6 +453,7 @@ M.nvimtree = {
     ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
+    ["<leader>E"] = { "<cmd> NvimTreeFindFile <CR>", "Focus Current file" },
   },
 }
 
@@ -438,13 +462,13 @@ M.telescope = {
 
   n = {
     -- find
-    ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
-    ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
-    ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-    ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
-    ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
-    ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
-    ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>f"] = { "<cmd> Telescope find_files <CR>", "Find files" },
+    ["<leader>af"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
+    ["<leader>F"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
+    ["<leader>b"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
+    ["<leader>tf"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
+    ["<leader>of"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
+    ["<leader>cf"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
     ["<leader>gcm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },

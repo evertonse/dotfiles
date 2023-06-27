@@ -122,7 +122,8 @@ local function nvimtree_on_attach(bufnr)
   vim.keymap.set('n', 'l', api.node.open.no_window_picker, opts('Open: No Window Picker'))
   vim.keymap.set('n', '<CR>', api.node.open.no_window_picker, opts('Open: No Window Picker'))
   vim.keymap.set('n', 'o', api.tree.change_root_to_node, opts('Open: No Window Picker'))
-  vim.keymap.set('n', '<BS>',  api.tree.change_root_to_parent,        opts('Close Directory'))
+  --vim.keymap.set('n', '<BS>',  api.tree.change_root_to_parent,        opts('Close Directory'))
+  vim.keymap.set('n', 'p',  api.tree.change_root_to_parent,        opts('Close Directory'))
 
   vim.keymap.set('n', '<leader>c', api.tree.close, opts('Close'))
   vim.keymap.set('n', '<leader>e', function(node) vim.cmd(":wincmd p"); end , opts('Go back to previous Window'))
@@ -285,6 +286,7 @@ M.telescope = {
                 ["<Up>"] = actions.move_selection_previous,
 
                 ["<CR>"] = actions.select_default,
+                ["<C-l>"] = actions.select_default,
                 ["<C-x>"] = actions.select_horizontal,
                 ["<C-v>"] = actions.select_vertical,
                 ["<C-t>"] = actions.select_tab,
@@ -299,7 +301,7 @@ M.telescope = {
                 ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
                 ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
                 ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-                ["<C-l>"] = actions.complete_tag,
+                --["<C-l>"] = actions.complete_tag,
                 ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
                 ["<esc>"] = actions.close,
             },
