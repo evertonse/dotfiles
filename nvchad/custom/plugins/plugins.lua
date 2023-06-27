@@ -9,6 +9,14 @@ M.plugins = {
 
     {
         'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        lazy = true,
+        config = function()
+          -- This is where you modify the settings for lsp-zero
+          -- Note: autocompletion settings will not take effect
+
+          require('lsp-zero.settings').preset({})
+        end,
         dependencies = {
             -- LSP Support
             {'neovim/nvim-lspconfig'},
@@ -27,6 +35,35 @@ M.plugins = {
             {'L3MON4D3/LuaSnip'},
             {'rafamadriz/friendly-snippets'},
         },
+    },
+    {
+      'neovim/nvim-lspconfig',
+      cmd = 'LspInfo',
+      event = {'BufReadPre', 'BufNewFile'},
+      dependencies = {
+        {'hrsh7th/cmp-nvim-lsp'},
+        {'williamboman/mason-lspconfig.nvim'},
+        {
+          'williamboman/mason.nvim',
+          build = function()
+            pcall(vim.cmd, 'MasonUpdate')
+          end,
+        },
+      },
+      config = function()
+        -- This is where all the LSP shenanigans will live
+        require "plugins.configs.lspconfig"
+        local lsp = require('lsp-zero')
+
+        lsp.on_attach(function(client, bufnr)
+          lsp.default_keymaps({buffer = bufnr})
+        end)
+
+        -- (Optional) Configure lua language server for neovim
+        require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+        lsp.setup()
+      end
     },
     { "onsails/lspkind.nvim",}, -- better lsp cmp icons
     { "jose-elias-alvarez/null-ls.nvim",        }, -- for formatters and linters
@@ -82,7 +119,7 @@ M.plugins = {
 
     { --https://github.com/andymass/vim-matchup
         'andymass/vim-matchup',
-        setup = function()
+        config = function()
             -- may set any options here
             vim.g.matchup_matchparen_offscreen = { method = "popup"}
         end
