@@ -159,8 +159,6 @@ M.override = {
   ['@text.title']= { fg = c.vscBlue, bold = true },
   ['@text.literal']= { fg = c.vscFront, bg = 'NONE' },
 
-  ['@namespace'] = { fg = vs.Namespace, bg = 'NONE' },
-  
   --['@definition.macro']= { fg = vs.Macro, bg = 'NONE' },
   --['@definition.var']= { fg = vs.Macro, bg = 'NONE' },
 

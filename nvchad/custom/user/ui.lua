@@ -1,7 +1,7 @@
 local ui = {}
 local highlights = require "custom.user.highlights"
 ui = {
-    theme = 'ashes',
+    theme = 'nightlamp',
     lsp_semantic_tokens = true,
     nvdash = {
         load_on_startup = true,
