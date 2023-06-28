@@ -44,6 +44,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+code='~/code/' 
+if [[ $(grep -i Microsoft /proc/version) ]]; then
+  code='/mnt/d/code' 
+echo "Bash is running on WSL"
+fi
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
