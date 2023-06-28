@@ -76,12 +76,12 @@ M.plugins = {
         "nvim-telescope/telescope.nvim",
         opts = overrides.telescope,
     },
+
     -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
     { 'nvim-telescope/telescope-fzf-native.nvim', 
         run = 'make', 
         cond = vim.fn.executable 'make' == 1 
     },
-    {'NvChad/nvim-colorizer.lua',             },
 
     --Optionally  mine https://github.com/evertonse/nvim-treesitter, removed bug with windows that wasnt adressed nor have I seen any issues opened
     --{'evertonse/nvim-treesitter'},
@@ -91,27 +91,32 @@ M.plugins = {
 
     -- Argument Coloring
     -- {'octol/vim-cpp-enhanced-highlight',                }, -- still haven't d but adds cpp keywords for highlight tweak even further
-    {'m-demare/hlargs.nvim', opts = overrides.hlargs},
-
-        -->> Git
-    {"lewis6991/gitsigns.nvim",                         },
-
+    {
+      'm-demare/hlargs.nvim',
+      lazy=false,
+      opts = overrides.hlargs,
+      config = function() require "custom.plugins.configs.hlargs" end
+    },
         -->> Colorschemes
      {'marko-cerovac/material.nvim'},
      { "folke/tokyonight.nvim",  },
-    -- { "lunarvim/darkplus.nvim",  },
-    -- 'tomasiser/vim-code-dark'
-    -- 'shaunsingh/nord.nvim'
-    -- Another vs code theme:
-    -- for more options see: https://github.com/Mofiqul/vscode.nvim
-    -- 'Mofiqul/vscode.nvim'
-
     --[[ 
         Using my fork of Mofiqul vscode nvim theme, 
         but my theme is Focusing on Visual Studio Theme, rather tha vs code
     --]]
     -- {'evertonse/vs.nvim', branch = "base",            }, --  this for bare minimum, first commit and base branch
-    {'evertonse/vs.nvim', branch = "dev"},
+    {
+      'evertonse/vs.nvim', branch = "dev",
+      lazy=false,
+      config = function()
+          local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+          if not status_ok then
+            return
+          end
+          --vim.api.nvim_set_hl(0,'Normal',{bg = "none"})
+          vim.api.nvim_set_hl(0,'NormalFloat',{bg = "none"})
+      end
+    },
 
     -->> Utils
     {'dstein64/vim-startuptime',                      },
