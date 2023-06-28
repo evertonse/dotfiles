@@ -63,6 +63,11 @@ M.plugins = {
         require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
         lsp.setup()
+
+        local status_ok, _ = pcall(vim.cmd, "colorscheme vs")
+        if not status_ok then
+          return
+        end
       end
     },
     { "onsails/lspkind.nvim",}, -- better lsp cmp icons
@@ -109,7 +114,7 @@ M.plugins = {
       'evertonse/vs.nvim', branch = "dev",
       lazy=false,
       config = function()
-          local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+          local status_ok, _ = pcall(vim.cmd, "colorscheme vs")
           if not status_ok then
             return
           end
