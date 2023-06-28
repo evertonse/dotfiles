@@ -89,7 +89,7 @@ M.plugins = {
     -->> Telescope
     {
         "nvim-telescope/telescope.nvim",
-        opts = overrides.telescope,
+        --opts = overrides.telescope,
     },
 
     -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
