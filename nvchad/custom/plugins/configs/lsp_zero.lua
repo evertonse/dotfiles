@@ -18,7 +18,7 @@ lsp.ensure_installed({
 --.use() can also take a list of servers. All the servers on the list will share the same options.
 
 --- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {

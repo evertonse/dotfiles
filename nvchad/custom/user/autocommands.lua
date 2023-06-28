@@ -4,7 +4,13 @@ vim.cmd [[
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
+    autocmd BufWinEnter * :colorscheme vs
+    autocmd BufWritePost,FileWritePost * :colorscheme vs
+    autocmd BufReadPost * :colorscheme vs
+    autocmd BufEnter * :colorscheme vs
+    autocmd WinNew * :print "hello"
     autocmd FileType qf set nobuflisted
+    autocmd VimEnter * :colorscheme vs 
   augroup end
 
   augroup _git
@@ -27,6 +33,11 @@ vim.cmd [[
   augroup _alpha
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
+  augroup end
+
+  augroup _nvimtree
+    autocmd!
+    autocmd WinNew * :colorscheme blue
   augroup end
 ]]
 

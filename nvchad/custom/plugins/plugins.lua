@@ -2,6 +2,13 @@ local overrides = require('custom.plugins.opts')
 
 local M  = {}
 
+--local status_ok, _ = pcall(vim.cmd, "colorscheme vs")
+--if not status_ok then
+--return
+--end
+--vim.api.nvim_set_hl(0,'Normal',{bg = "none"})
+vim.api.nvim_set_hl(0,'NormalFloat',{bg = "none"})
+
 M.plugins = {
 
     { "moll/vim-bbye", lazy = false}, -- Avoid messing with windwos layouts when closing buffers
@@ -15,7 +22,8 @@ M.plugins = {
           -- This is where you modify the settings for lsp-zero
           -- Note: autocompletion settings will not take effect
 
-          require('lsp-zero.settings').preset({})
+          --require('lsp-zero.settings').preset({})
+          require "custom.plugins.configs.lsp_zero"
         end,
         dependencies = {
             -- LSP Support
@@ -65,14 +73,15 @@ M.plugins = {
 
         lsp.setup()
 
-        local status_ok, _ = pcall(vim.cmd, "colorscheme vs")
-        if not status_ok then
-          return
-        end
       end
     },
     { "onsails/lspkind.nvim",}, -- better lsp cmp icons
-    { "jose-elias-alvarez/null-ls.nvim",        }, -- for formatters and linters
+    {
+      "jose-elias-alvarez/null-ls.nvim", 
+      config = function() 
+        require 'custom.plugins.configs.null-ls'
+      end
+    }, -- for formatters and linters
     { "RRethy/vim-illuminate",                  },
     { "folke/trouble.nvim",                   }, -- LPS Diagnostic with colors and shit
     { 'folke/lsp-colors.nvim',                }, -- LSP colors that might be missings
@@ -93,7 +102,7 @@ M.plugins = {
     --{'evertonse/nvim-treesitter'},
     {"JoosepAlviste/nvim-ts-context-commentstring",     }, -- Nice Vim commenting --  context_commentstring { enable = true },
     -- {'David-Kunz/markid',                                                                       }, -- Every identifier has the same color
-    {'nvim-treesitter/playground',                      },
+    {'nvim-treesitter/playground', enable=true                      },
 
     -- Argument Coloring
     -- {'octol/vim-cpp-enhanced-highlight',                }, -- still haven't d but adds cpp keywords for highlight tweak even further
@@ -142,7 +151,10 @@ M.plugins = {
 
   {
     "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
+    opts = function()
+      vim.cmd "colorscheme vs"
+      return overrides.nvimtree;
+    end,
   },
 
   -- Install a plugin
