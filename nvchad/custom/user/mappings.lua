@@ -124,7 +124,7 @@ M.general = {
 
         ["<leader>w"] = { ':w<CR>',opts = noremap_opts},
         ["<leader>q"] = { ':q<CR>',opts = noremap_opts},
-        ["<leader>c"] = { ':bd!<CR>',opts = noremap_opts},
+        ["<leader>c"] = { ':Bdelete!<CR>',opts = noremap_opts},
         -- >> Clip Board option 
         ["<leader>y"] = { '"_y',opts = noremap_opts},
         ["<leader>Y"] = { '"_Y',opts = noremap_opts},
@@ -468,7 +468,7 @@ M.telescope = {
     ["<leader>b"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>tf"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>of"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
-    ["<leader>cf"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>bf"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
     ["<leader>gcm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },

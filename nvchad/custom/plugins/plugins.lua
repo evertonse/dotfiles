@@ -4,7 +4,7 @@ local M  = {}
 
 M.plugins = {
 
-    { "moll/vim-bbye",                          }, -- Avoid messing with windwos layouts when closing buffers
+    { "moll/vim-bbye", lazy = false}, -- Avoid messing with windwos layouts when closing buffers
     { "lewis6991/impatient.nvim",               },
 
     {
@@ -36,6 +36,7 @@ M.plugins = {
             {'rafamadriz/friendly-snippets'},
         },
     },
+    {'famiu/bufdelete.nvim'},
     {
       'neovim/nvim-lspconfig',
       cmd = 'LspInfo',
