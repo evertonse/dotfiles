@@ -97,7 +97,6 @@ M.plugins = {
     },
 
     --Optionally  mine https://github.com/evertonse/nvim-treesitter, removed bug with windows that wasnt adressed nor have I seen any issues opened
-    --{'evertonse/nvim-treesitter'},
     {"JoosepAlviste/nvim-ts-context-commentstring",     }, -- Nice Vim commenting --  context_commentstring { enable = true },
     -- {'David-Kunz/markid',                                                                       }, -- Every identifier has the same color
     {

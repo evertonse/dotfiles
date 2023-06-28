@@ -7,7 +7,8 @@ end
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'pyright',
+  --'pyright',
+  'pylsp',
   'jdtls',
   'clangd',
   'tsserver',
