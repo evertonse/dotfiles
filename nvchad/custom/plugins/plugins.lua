@@ -141,13 +141,12 @@ M.plugins = {
       config = function() require "custom.plugins.configs.hlargs" end
     },
         -->> Colorschemes
-     {'marko-cerovac/material.nvim'},
-     { "folke/tokyonight.nvim",  },
+     --{'marko-cerovac/material.nvim'},
+     --{ "folke/tokyonight.nvim",  },
     --[[ 
         Using my fork of Mofiqul vscode nvim theme, 
         but my theme is Focusing on Visual Studio Theme, rather tha vs code
     --]]
-    -- {'evertonse/vs.nvim', branch = "base",            }, --  this for bare minimum, first commit and base branch
     {
       'evertonse/vs.nvim', branch = "dev",
       lazy=true,
