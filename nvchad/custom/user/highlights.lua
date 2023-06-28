@@ -6,7 +6,8 @@ local M = {}
 local c = require "custom.user.colors.vscode"
 local vs = require "custom.user.colors.vs"
 
-local editor = {
+---@type Base46HLGroupsList
+M.override = {
     Normal          =   { fg = c.vscFront, bg = c.vscBack },
     ColorColumn     =   { fg = 'NONE', bg = c.vscCursorDarkDark },
     Cursor          =   { fg = c.vscCursorDark, bg = c.vscCursorLight },
@@ -47,10 +48,7 @@ local editor = {
     Visual          =   { fg = c.vscNone, bg = c.vscSelection },
     VisualNOS       =   { fg = c.vscNone, bg = c.vscSelection },
     WarningMsg      =   { fg = c.vscRed, bg = c.vscBack, bold = true },
-    WildMenu        =   { fg = c.vscNone, bg = c.vscSelection }
-  }
-
-  local syntax = {
+    WildMenu        =   { fg = c.vscNone, bg = c.vscSelection },
     Comment           =   { fg = vs.Comment, bg = 'NONE' },
     Variable          = { fg = vs.Variable, bg = 'None'},
     --Constant        =   { fg = "None", bg = 'NONE' },
@@ -93,12 +91,21 @@ local editor = {
     SpellRare       =   { fg = c.vscRed, bg = c.vscBack, undercurl = true, sp = c.vscRed },
     SpellLocal      =   { fg = c.vscRed, bg = c.vscBack, undercurl = true, sp = c.vscRed },
     Whitespace      =   { fg = c.vscLineNumber },
-    TODO            =   { fg = c.vscRed }
-   --[[   --]]
-  }
+    TODO            =   { fg = c.vscRed },
+    LspGlobal         = { fg = vs.Global, bg = 'None', bold = true},
+    GlobalScope       = { fg = vs.Global, bg = 'None', bold = true},
+    ['@global']       = { fg = vs.Global, bg = 'None', bold = true},
+    LspGlobalScope    = { fg = vs.Global, bg = 'None', bold = true},
+    LspNamespace      = { fg = vs.Global, bg = 'None', bold = true},
+    namespace         = { fg = vs.Global, bg = 'None'},
+    ['@class']        = { fg = vs.Type,   bold = false, italic = false},
+    ['@macro']        = { fg = vs.Macro,  bold = false, italic = false},
+    ['@namespace']    = { fg = vs.Namespace,  bold = false, italic = false},
+    ['@globalScope']  = { italic = true,  bold = true},
+    --['@variable#globalScope']  ={ fg = vs.Global,italic = true,  bold = true},
+    ['@defaultLibrary.lua']  = { fg = vs.Native},
+    ['@defaultLibrary.python']  = { fg = vs.Native},
 
-  -->> Treesitter
-  local treesitter = {
   ['@comment']= { fg = vs.Comment, bg = 'NONE',  },
   ['@keyword']= { fg = vs.Keyword, bg = 'NONE' },
   ['@keyword.return']= { fg = vs.ControlFlow, bg = 'NONE' }, -- return,
@@ -149,7 +156,7 @@ local editor = {
   ['@tag.delimiter']= { fg = c.vscGray, bg = 'NONE' },
   ['@tag.attribute']= { fg = c.Keyword, bg = 'NONE' },
 
-  ['@text.title']= { fg = isDark and c.vscBlue or c.vscYellowOrange, bold = true },
+  ['@text.title']= { fg = c.vscBlue, bold = true },
   ['@text.literal']= { fg = c.vscFront, bg = 'NONE' },
 
   ['@namespace'] = { fg = vs.Namespace, bg = 'NONE' },
@@ -195,30 +202,6 @@ local editor = {
   -- ['@text.warning']= { fg = c.vscYellowOrange, bg = 'NONE', bold = true },
   -- ['@text.danger']= { fg = c.vscRed, bg = 'NONE', bold = true },
   -- ['@scope']= { fg = c.vscRed, bg = 'NONE', bold = true },
-  }
-
-  local lsp_semantic  = {
-    LspGlobal         = { fg = vs.Global, bg = 'None', bold = true},
-    GlobalScope       = { fg = vs.Global, bg = 'None', bold = true},
-    ['@global']       = { fg = vs.Global, bg = 'None', bold = true},
-    LspGlobalScope    = { fg = vs.Global, bg = 'None', bold = true},
-    LspNamespace      = { fg = vs.Global, bg = 'None', bold = true},
-    namespace         = { fg = vs.Global, bg = 'None'},
-    ['@class']        = { fg = vs.Type,   bold = false, italic = false},
-    ['@macro']        = { fg = vs.Macro,  bold = false, italic = false},
-    ['@namespace']    = { fg = vs.Namespace,  bold = false, italic = false},
-    ['@globalScope']  = { italic = true,  bold = true},
-    --['@variable#globalScope']  ={ fg = vs.Global,italic = true,  bold = true},
-    ['@defaultLibrary.lua']  = { fg = vs.Native},
-    ['@defaultLibrary.python']  = { fg = vs.Native},
-  }
----@type Base46HLGroupsList
-M.override = {
-  Comment = {
-    italic = true,
-    --fg = "#323232",
-  },
-
   NvimTreeOpenedFolderName = { 
     --fg = "#9099dd", 
     bold = true
@@ -229,5 +212,6 @@ M.override = {
 M.add = {
   NvimTreeOpenedFolderName = { fg = "#9099dd", bold = true },
 }
+
 
 return M
