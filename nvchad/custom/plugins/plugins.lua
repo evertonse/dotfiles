@@ -2,18 +2,16 @@ local overrides = require('custom.plugins.opts')
 
 local M  = {}
 
---local status_ok, _ = pcall(vim.cmd, "colorscheme vs")
---if not status_ok then
---return
---end
---vim.api.nvim_set_hl(0,'Normal',{bg = "none"})
-vim.api.nvim_set_hl(0,'NormalFloat',{bg = "none"})
-
 M.plugins = {
 
     { "moll/vim-bbye", lazy = false}, -- Avoid messing with windwos layouts when closing buffers
-    { "lewis6991/impatient.nvim",               },
-
+    {
+      "lewis6991/impatient.nvim",
+      lazy=false,
+      config = function()
+        require('impatient')
+      end
+    },
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
