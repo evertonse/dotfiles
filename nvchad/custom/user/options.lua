@@ -36,7 +36,7 @@ local options = {
   scrolloff       = 5,                           -- minimal number of screen lines to keep above and below the cursor
   sidescrolloff   = 5,                       -- minimal number of screen columns either side of cursor if wrap is `false`
   -- guifont = "MesloLGS NF:h9",               -- the font used in graphical neovim applications
-  guifont = "JetBrainsMono NF:h8",               -- the font used in graphical neovim applications
+  guifont = "JetBrainsMono NF:h9.1",               -- the font used in graphical neovim applications
   whichwrap = "bs<>[]hl",                  -- which "horizontal" keys are allowed to travel to prev/next line
 }
 
