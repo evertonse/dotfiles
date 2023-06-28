@@ -1,7 +1,6 @@
 local M = {}
 
 require 'custom.user.options'
---require 'custom.user.autocommands'
 
 M.plugins = 'custom.plugins.plugins'
 M.ui = require  'custom.user.ui'

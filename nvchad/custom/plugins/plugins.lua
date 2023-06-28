@@ -89,7 +89,7 @@ M.plugins = {
     -->> Telescope
     {
         "nvim-telescope/telescope.nvim",
-        --opts = overrides.telescope,
+        opts = overrides.telescope,
     },
 
     -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
@@ -122,7 +122,7 @@ M.plugins = {
     -- {'evertonse/vs.nvim', branch = "base",            }, --  this for bare minimum, first commit and base branch
     {
       'evertonse/vs.nvim', branch = "dev",
-      lazy=false,
+      lazy=true,
       config = function()
           local status_ok, _ = pcall(vim.cmd, "colorscheme vs")
           if not status_ok then
@@ -152,7 +152,7 @@ M.plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     opts = function()
-      vim.cmd "colorscheme vs"
+      --vim.cmd "colorscheme vs"
       return overrides.nvimtree;
     end,
   },
