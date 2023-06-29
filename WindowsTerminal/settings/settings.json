@@ -6,9 +6,18 @@
         {
             "command": 
             {
-                "action": "commandPalette"
+                "action": "moveFocus",
+                "direction": "down"
             },
-            "keys": "f1"
+            "keys": "ctrl+shift+j"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "right"
+            },
+            "keys": "ctrl+shift+v"
         },
         {
             "command": 
@@ -21,23 +30,13 @@
         {
             "command": 
             {
-                "action": "splitPane",
-                "split": "right"
+                "action": "commandPalette"
             },
-            "keys": "ctrl+shift+v"
+            "keys": "f1"
         },
         {
             "command": "paste",
             "keys": "ctrl+shift+p"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
         },
         {
             "command": 
@@ -55,8 +54,17 @@
             "command": 
             {
                 "action": "splitPane",
-                "split": "down"
-            }
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
+            "command": 
+            {
+                "action": "scrollDown"
+            },
+            "keys": "ctrl+shift+d"
         },
         {
             "command": "unbound",
@@ -115,6 +123,26 @@
             "keys": ""
         },
         {
+            "command": "unbound",
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+f4"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "down"
+            },
+            "keys": "ctrl+shift+\\"
+        },
+        {
             "command": 
             {
                 "action": "moveFocus",
@@ -151,6 +179,13 @@
         {
             "command": 
             {
+                "action": "scrollUp"
+            },
+            "keys": "ctrl+shift+u"
+        },
+        {
+            "command": 
+            {
                 "action": "splitPane",
                 "split": "left"
             }
@@ -170,6 +205,14 @@
                 "direction": "next"
             },
             "keys": "ctrl+alt+n"
+        },
+        {
+            "command": 
+            {
+                "action": "moveFocus",
+                "direction": "up"
+            },
+            "keys": "ctrl+shift+k"
         },
         {
             "command": "tabSearch",
@@ -196,6 +239,10 @@
                 "action": "prevTab"
             },
             "keys": "ctrl+alt+h"
+        },
+        {
+            "command": "closeWindow",
+            "keys": "win+delete"
         }
     ],
     "centerOnLaunch": true,
@@ -231,14 +278,6 @@
         "list": 
         [
             {
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell",
-                "opacity": 95,
-                "padding": "0"
-            },
-            {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
@@ -262,7 +301,7 @@
                 "cursorShape": "filledBox",
                 "font": 
                 {
-                    "face": "FiraCode NFM"
+                    "face": "FiraCode Nerd Font Mono"
                 },
                 "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
                 "hidden": false,
@@ -307,6 +346,11 @@
                 "hidden": true,
                 "name": "Developer PowerShell for VS 2019",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
             }
         ]
     },

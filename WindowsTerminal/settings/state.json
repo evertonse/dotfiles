@@ -5,15 +5,16 @@
 	],
 	"generatedProfiles" : 
 	[
-		"{574e775e-4f2a-5b96-ac1e-a2962a402336}",
 		"{841ef8ab-9cd7-5811-859e-312676e8d755}",
+		"{574e775e-4f2a-5b96-ac1e-a2962a402336}",
 		"{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
-		"{2c4de342-38b7-51cf-b940-2309a097f518}",
 		"{16a73b88-4fc9-5be1-805c-a146a3098eb3}",
+		"{2c4de342-38b7-51cf-b940-2309a097f518}",
 		"{df5c400c-415e-5d25-b743-5fd85c4e36d9}",
 		"{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
 		"{29a0bf85-142d-53cd-a27c-05f3d37d4a83}",
-		"{51855cb2-8cce-5362-8f54-464b92b32386}"
+		"{51855cb2-8cce-5362-8f54-464b92b32386}",
+		"{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
 	],
 	"persistedWindowLayouts" : 
 	[
@@ -34,9 +35,28 @@
 					"startingDirectory" : "~",
 					"suppressApplicationTitle" : false,
 					"tabTitle" : "Arch"
+				},
+				{
+					"action" : "splitPane",
+					"commandline" : "C:\\Windows\\system32\\wsl.exe -d Arch",
+					"profile" : "Arch",
+					"size" : 0.44999998807907104,
+					"split" : "right",
+					"splitMode" : "manual",
+					"startingDirectory" : "~",
+					"suppressApplicationTitle" : false,
+					"tabTitle" : "Arch"
+				},
+				{
+					"action" : "focusPane",
+					"id" : 1
+				},
+				{
+					"action" : "openSettings",
+					"target" : "settingsUI"
 				}
 			]
 		}
 	],
-	"settingsHash" : "603d28676f5b26bd-01d9aa38e1007a70"
+	"settingsHash" : "a71665605ba578df-01d9aa7a15b8dbeb"
 }
