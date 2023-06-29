@@ -6,10 +6,9 @@
         {
             "command": 
             {
-                "action": "splitPane",
-                "split": "right"
+                "action": "commandPalette"
             },
-            "keys": "ctrl+shift+v"
+            "keys": "f1"
         },
         {
             "command": 
@@ -22,17 +21,23 @@
         {
             "command": 
             {
-                "action": "commandPalette"
+                "action": "splitPane",
+                "split": "right"
             },
-            "keys": "f1"
+            "keys": "ctrl+shift+v"
         },
         {
             "command": "paste",
             "keys": "ctrl+shift+p"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
         },
         {
             "command": 
@@ -43,13 +48,8 @@
             "keys": "ctrl+shift+comma"
         },
         {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -158,18 +158,18 @@
         {
             "command": 
             {
-                "action": "findMatch",
-                "direction": "next"
-            },
-            "keys": "ctrl+alt+n"
-        },
-        {
-            "command": 
-            {
                 "action": "moveFocus",
                 "direction": "nextInOrder"
             },
             "keys": "ctrl+shift+n"
+        },
+        {
+            "command": 
+            {
+                "action": "findMatch",
+                "direction": "next"
+            },
+            "keys": "ctrl+alt+n"
         },
         {
             "command": "tabSearch",
@@ -256,11 +256,6 @@
                 "name": "PowerShell",
                 "opacity": 98,
                 "source": "Windows.Terminal.PowershellCore",
-                "unfocusedAppearance": 
-                {
-                    "experimental.retroTerminalEffect": false,
-                    "intenseTextStyle": "bright"
-                },
                 "useAcrylic": false
             },
             {
