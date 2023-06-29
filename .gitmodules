@@ -1,0 +1,4 @@
+[submodule "nvchad"]
+	path = nvchad
+	url = https://github.com/evertonse/nvchad-custom.git
+	branch = main
