@@ -74,3 +74,7 @@ if ! command -v vivid > /dev/null; then
 else
     export LS_COLORS="$(vivid generate catppuccin-frappe)"
 fi 
+
+touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
+alias touch='touch2'
+
