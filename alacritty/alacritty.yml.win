@@ -31,12 +31,11 @@ window:
   #
   # Number of lines/columns (not pixels) in the terminal. The number of columns
   # must be at least `2`, while using a value of `0` for columns and lines will
-  opacity: 0.91
   # fall back to the window manager's recommended size.
   #dimensions:
   #  columns: 0
   #  lines: 0
-  dynamic_padding: false
+
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -118,7 +117,7 @@ font:
     family: JetBrainsMono Nerd Font
     style: Bold Italic
 
-  size: 10
+  size: 12
 # Font configuration
 #font:
   # Normal (roman) font face
@@ -374,7 +373,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-# background_opacity: 0.92 #depracated
+background_opacity: 0.92
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -454,7 +453,7 @@ working_directory: None
 #winpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
-#alt_send_esc: false 
+alt_send_esc: true
 
 #mouse:
   # Click settings
