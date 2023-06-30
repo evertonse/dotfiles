@@ -30,6 +30,10 @@ Configure Credential Caching
 Lastly, to ensure the local computer remembers the token, we can enable caching of the credentials. This configures the computer to remember the complex token so that we dont have too.
 
 git config --global credential.helper cache
-If needed, you can later clear the token from the local computer by running
+
+export GCM_CREDENTIAL_CACHE_OPTIONS="--timeout 300"
+# or
+git config --global credential.cacheOptions "--timeout 300"
+git config --global credential.credentialStore cacheclear the token from the local computer by running
 
 git config --global --unset credential.helper
