@@ -1,0 +1,25 @@
+[$Version]
+update_info=dolphin_detailsmodesettings.upd:rename-leading-padding
+
+[ExtractDialog]
+1366x768 screen: Height=512
+1366x768 screen: Width=910
+DirHistory[$e]=$HOME/Downloads/
+
+[General]
+Version=202
+ViewPropsTimestamp=2023,6,21,6,13,45.592
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+Recent Files[$e]=file:$HOME,file:///bin/debtap
+Recent URLs[$e]=file:$HOME/Downloads/,file:///bin/,file:$HOME/
+detailViewIconSize=16
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[Search]
+Location=Everywhere

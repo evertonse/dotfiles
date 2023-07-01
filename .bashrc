@@ -15,7 +15,6 @@ bind '"\e[B":history-search-forward'
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias grep='grep --color=auto'
 
 # @important one of these belo has to work for tmux -2 forces 256 colors.
 # Also make  /usr/bin/tmux some how fucks up csome colors
@@ -53,7 +52,7 @@ if [ -x /usr/bin/dircolors ]; then
 
 fi
 alias fgrep='fgrep --color=auto'
-alias grep='grep --color=auto'
+alias grep='grep -i --color=auto'
 alias egrep='egrep --color=auto'
 alias pacman='pacman --color=auto'
 alias yay='yay --color=auto'
