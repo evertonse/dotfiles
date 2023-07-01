@@ -1,6 +1,8 @@
 # lifetime-config-files
 dotfiles and +
+- .linuxtips for frequently questioins I have
 # github
+
 Get Token
 The first step in using tokens is to generate a token from the GitHub website. Note that it would be best practice to use different tokens for different computers/systems/services/tasks so that they can be easily managed.
 
