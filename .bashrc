@@ -1,36 +1,3 @@
-#
-# ~/.bashrc
-#
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-[[ -f ~/.welcome_screen ]] && . ~/.welcome_screen
-
-_set_liveuser_PS1() {
-    PS1='[\u@\h \W]\$ '
-    if [ "$(whoami)" = "liveuser" ] ; then
-        local iso_version="$(grep ^VERSION= /usr/lib/endeavouros-release 2>/dev/null | cut -d '=' -f 2)"
-        if [ -n "$iso_version" ] ; then
-            local prefix="eos-"
-            local iso_info="$prefix$iso_version"
-            PS1="[\u@$iso_info \W]\$ "
-        fi
-    fi
-}
-_set_liveuser_PS1
-unset -f _set_liveuser_PS1
-
-ShowInstallerIsoInfo() {
-    local file=/usr/lib/endeavouros-release
-    if [ -r $file ] ; then
-        cat $file
-    else
-        echo "Sorry, installer ISO info is not available." >&2
-    fi
-}
-
-
 alias ls='ls --color=auto'
 alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
 alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles except "."
@@ -44,50 +11,6 @@ alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles exce
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
-################################################################################
-## Some generally useful functions.
-## Consider uncommenting aliases below to start using these functions.
-##
-## October 2021: removed many obsolete functions. If you still need them, please look at
-## https://github.com/EndeavourOS-archive/EndeavourOS-archiso/raw/master/airootfs/etc/skel/.bashrc
-
-_open_files_for_editing() {
-    # Open any given document file(s) for editing (or just viewing).
-    # Note1:
-    #    - Do not use for executable files!
-    # Note2:
-    #    - Uses 'mime' bindings, so you may need to use
-    #      e.g. a file manager to make proper file bindings.
-
-    if [ -x /usr/bin/exo-open ] ; then
-        echo "exo-open $@" >&2
-        setsid exo-open "$@" >& /dev/null
-        return
-    fi
-    if [ -x /usr/bin/xdg-open ] ; then
-        for file in "$@" ; do
-            echo "xdg-open $file" >&2
-            setsid xdg-open "$file" >& /dev/null
-        done
-        return
-    fi
-
-    echo "$FUNCNAME: package 'xdg-utils' or 'exo' is required." >&2
-}
-
-#------------------------------------------------------------
-
-## Aliases for the functions above.
-## Uncomment an alias if you want to use it.
-##
-
-# alias ef='_open_files_for_editing'     # 'ef' opens given file(s) for editing
-# alias pacdiff=eos-pacdiff
-################################################################################
-
-#
-# ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -109,8 +32,6 @@ PATH=/bin/:$PATH:~/.cargo/bin
 #PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\]:$PWD\$' 
 #PS1='[\u \w/ \e[32m]\$\e[0m '
 PS1='[\u \w]\$ '
-DISPLAY=172.17.80.1:0.0
-LIBGL_ALWAYS_INDIRECT=1
 ## test for an existing bus daemon, just to be safe
 if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
   ## if not found, launch a new one
@@ -121,7 +42,7 @@ if test -z "$XDG_RUNTIME_DIR" ; then
   export XDG_RUNTIME_DIR=/run/user/$(id -u)
 fi
 
-export EDITOR=nvim
+export EDITOR=neovide
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -130,12 +51,12 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias pacman='pacman --color=auto'
-    alias yay='yay --color=auto'
 fi
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias pacman='pacman --color=auto'
+alias yay='yay --color=auto'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -145,6 +66,8 @@ alias l='ls -CF'
 code='~/code/' 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
   #echo "Bash is running on WSL"
+  DISPLAY=172.17.80.1:0.0
+  LIBGL_ALWAYS_INDIRECT=1
   code='/mnt/d/code' 
   alias explorer='explorer.exe'
 fi
@@ -153,9 +76,9 @@ fi
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+# if [ -f ~/.bash_aliases ]; then
+#     . ~/.bash_aliases
+# fi
 
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
 
