@@ -83,7 +83,7 @@ fi
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
 
 export TERM=xterm-256color
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export GREP_OPTIONS='--color=auto' GREP_COLORS='mt=1;32'
 export CLICOLOR=1
 #force_color_prompt=yes
 #eval `dircolors ~/.config/dircolors/moonshine`
@@ -99,3 +99,5 @@ fi
 touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
 alias touch='touch2'
 
+github='https://github.com'
+alias py='python3'
