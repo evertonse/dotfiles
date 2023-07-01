@@ -144,8 +144,9 @@ alias l='ls -CF'
 
 code='~/code/' 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
-  code='/mnt/d/code' 
   #echo "Bash is running on WSL"
+  code='/mnt/d/code' 
+  alias explorer='explorer.exe'
 fi
 # Alias definitions.
 # You may want to put all your additions into a separate file like
