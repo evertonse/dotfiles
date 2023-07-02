@@ -513,7 +513,7 @@
     "editor.fastScrollSensitivity": 6.5,
     "editor.glyphMargin": true, // set to true to see the debugging red dot
     "editor.folding": false,
-    "editor.fontFamily":"'MesloLGM','MesloLGS NF','Cascadia Code Medium','Cascadia Mono', 'Consolas','Cascadia Mono SemiLight','Cascadia Code','JetBrains Mono','Cascadia Mono Light', 'Cascadia Mono PL Light','Cascadia Mono', Consolas, 'Courier New'",
+    "editor.fontFamily":"'JetBrains Mono NF','MesloLGS NF','MesloLGM','Cascadia Code Medium','Cascadia Mono', 'Consolas','Cascadia Mono SemiLight','Cascadia Code','JetBrains Mono','Cascadia Mono Light', 'Cascadia Mono PL Light','Cascadia Mono', Consolas, 'Courier New'",
     "editor.lineHeight": 18.2,
     "editor.fontSize": 12.5,
     "editor.bracketPairColorization.enabled": false,
@@ -1686,7 +1686,7 @@
     "workbench.editor.enablePreview": false,
     "editor.minimap.renderCharacters": false,
     "editor.minimap.size": "fit",
-    "workbench.activityBar.visible": false,
     "window.menuBarVisibility": "compact",
     "window.zoomLevel": 1,
+    "workbench.activityBar.visible": false,
 }

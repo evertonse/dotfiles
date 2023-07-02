@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 import sys
 import os
 from pathlib import Path
@@ -10,6 +10,7 @@ home = Path.home()
 installs = {
     1: "vscode",
     2: "dotfiles",
+    3: "kitty"
 }
 
 def dotfiles():
@@ -34,5 +35,9 @@ def main():
 
     elif which == 'dotfiles':
         dotfiles()
+    elif which == 'kitty':
+        dest = Path(home,'.config','kitty')
+        if input(f'about to  copy src=./kitty in to dest={dest}[y/n]' ).lower() == 'y':
+            copydir('./kitty',dest)
 
 main()
