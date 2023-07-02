@@ -60,6 +60,7 @@ alias ls='ls -AF --color=always --group-directories-first'
 alias ll='ls -AlF --color=always --group-directories-first'
 alias l='ls -CF'
 alias gdb='gdb -tui -iex "set disassembly-flavor intel"'
+alias objdump='objdump -M intel'
 
 code='~/code/' 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
