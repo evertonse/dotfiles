@@ -19,8 +19,7 @@ bind '"\e[B":history-search-forward'
 #alias tmux='TERM=xterm-256color tmux -2'
 #alias tmux='TERM=screen-256color-bce /bin/tmux -2'
 #alias tmux='TERM=screen-256color /bin/tmux'
-alias tmux='/bin/tmux'
-alias tmux='/bin/tmux -2'
+alias tmux='/bin/tmux a -2 || /bin/tmux -2'
 
 PATH=/bin/:$PATH:~/.cargo/bin
 #PS1='[\u@\h \W]\$ '

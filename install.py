@@ -38,6 +38,6 @@ def main():
     elif which == 'kitty':
         dest = Path(home,'.config','kitty')
         if input(f'about to  copy src=./kitty in to dest={dest}[y/n]' ).lower() == 'y':
-            copydir('./kitty',dest)
+            copydir('./kitty',dest, dirs_exist_ok=True)
 
 main()
