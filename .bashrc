@@ -65,10 +65,14 @@ alias objdump='objdump -M intel'
 code='~/code/' 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
   #echo "Bash is running on WSL"
-  DISPLAY=172.17.80.1:0.0
+  export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
   LIBGL_ALWAYS_INDIRECT=1
   code='/mnt/d/code' 
   alias explorer='explorer.exe'
+  if ! command -v wsl-open > /dev/null; then
+    echo 'your using wsl, but does not have wsl-open, which is a pretty good utility to open win10+ apps from wsl'
+  fi
+  alias open='wsl-open'
 fi
 # Alias definitions.
 # You may want to put all your additions into a separate file like
