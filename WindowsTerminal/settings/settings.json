@@ -6,6 +6,21 @@
         {
             "command": 
             {
+                "action": "commandPalette"
+            },
+            "keys": "f1"
+        },
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+shift+y"
+        },
+        {
+            "command": 
+            {
                 "action": "moveFocus",
                 "direction": "down"
             },
@@ -20,35 +35,8 @@
             "keys": "ctrl+shift+v"
         },
         {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+shift+y"
-        },
-        {
-            "command": 
-            {
-                "action": "commandPalette"
-            },
-            "keys": "f1"
-        },
-        {
             "command": "paste",
             "keys": "ctrl+shift+p"
-        },
-        {
-            "command": 
-            {
-                "action": "resizePane",
-                "direction": "left"
-            },
-            "keys": "ctrl+shift+comma"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -65,6 +53,18 @@
                 "action": "scrollDown"
             },
             "keys": "ctrl+shift+d"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "resizePane",
+                "direction": "left"
+            },
+            "keys": "ctrl+shift+comma"
         },
         {
             "command": "unbound",
@@ -193,18 +193,18 @@
         {
             "command": 
             {
-                "action": "moveFocus",
-                "direction": "nextInOrder"
-            },
-            "keys": "ctrl+shift+n"
-        },
-        {
-            "command": 
-            {
                 "action": "findMatch",
                 "direction": "next"
             },
             "keys": "ctrl+alt+n"
+        },
+        {
+            "command": 
+            {
+                "action": "moveFocus",
+                "direction": "nextInOrder"
+            },
+            "keys": "ctrl+shift+n"
         },
         {
             "command": 
@@ -250,9 +250,10 @@
     "copyOnSelect": false,
     "defaultProfile": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
     "disableAnimations": true,
-    "experimental.rendering.forceFullRepaint": false,
+    "experimental.rendering.forceFullRepaint": true,
+    "experimental.rendering.software": false,
     "firstWindowPreference": "persistedWindowLayout",
-    "launchMode": "maximized",
+    "launchMode": "fullscreen",
     "newTabMenu": 
     [
         {
@@ -263,17 +264,20 @@
     {
         "defaults": 
         {
+            "adjustIndistinguishableColors": "indexed",
             "antialiasingMode": "cleartype",
             "bellStyle": "none",
             "colorScheme": "One Half Dark",
             "cursorShape": "filledBox",
             "font": 
             {
-                "face": "JetBrainsMono Nerd Font Mono"
+                "face": "JetBrainsMonoNL Nerd Font Mono",
+                "weight": "light"
             },
             "intenseTextStyle": "all",
             "opacity": 97,
-            "padding": "0"
+            "padding": "0",
+            "useAtlasEngine": true
         },
         "list": 
         [
@@ -301,7 +305,8 @@
                 "cursorShape": "filledBox",
                 "font": 
                 {
-                    "face": "FiraCode Nerd Font Mono"
+                    "face": "JetBrainsMono Nerd Font Mono",
+                    "weight": "semi-light"
                 },
                 "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
                 "hidden": false,
@@ -403,7 +408,7 @@
             "yellow": "#C19C00"
         },
         {
-            "background": "#222024",
+            "background": "#1E1E1E",
             "black": "#000000",
             "blue": "#61AFEF",
             "brightBlack": "#5A6374",
@@ -416,7 +421,7 @@
             "brightYellow": "#E5C07B",
             "cursorColor": "#FFFFFF",
             "cyan": "#56B6C2",
-            "foreground": "#DCDFE4",
+            "foreground": "#D4D4D4",
             "green": "#98C379",
             "name": "One Half Dark",
             "purple": "#C678DD",
