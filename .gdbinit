@@ -1,9 +1,1 @@
-
-define hook-next
-  refresh
-end
-
-define mynext
-  next
-  refresh
-end
+set commands echo "refresh\n" | gdb-remote -ex "flushregs" -ex "show reg" -ex "show stack" -ex "info threads"
