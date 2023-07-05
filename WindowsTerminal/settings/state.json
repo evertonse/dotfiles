@@ -35,9 +35,17 @@
 					"startingDirectory" : "~",
 					"suppressApplicationTitle" : false,
 					"tabTitle" : "Arch"
+				},
+				{
+					"action" : "openSettings",
+					"target" : "settingsUI"
+				},
+				{
+					"action" : "switchToTab",
+					"index" : 0
 				}
 			]
 		}
 	],
-	"settingsHash" : "e81dab1bdc49784d-01d9ac872b1c0ea7"
+	"settingsHash" : "e64a063360f08944-01d9af57a19c2fe2"
 }

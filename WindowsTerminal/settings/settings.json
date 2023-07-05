@@ -6,21 +6,6 @@
         {
             "command": 
             {
-                "action": "commandPalette"
-            },
-            "keys": "f1"
-        },
-        {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+shift+y"
-        },
-        {
-            "command": 
-            {
                 "action": "moveFocus",
                 "direction": "down"
             },
@@ -35,8 +20,35 @@
             "keys": "ctrl+shift+v"
         },
         {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+shift+y"
+        },
+        {
+            "command": 
+            {
+                "action": "commandPalette"
+            },
+            "keys": "f1"
+        },
+        {
             "command": "paste",
             "keys": "ctrl+shift+p"
+        },
+        {
+            "command": 
+            {
+                "action": "resizePane",
+                "direction": "left"
+            },
+            "keys": "ctrl+shift+comma"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -53,18 +65,6 @@
                 "action": "scrollDown"
             },
             "keys": "ctrl+shift+d"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": 
-            {
-                "action": "resizePane",
-                "direction": "left"
-            },
-            "keys": "ctrl+shift+comma"
         },
         {
             "command": "unbound",
@@ -135,6 +135,10 @@
             "keys": "alt+f4"
         },
         {
+            "command": "unbound",
+            "keys": "alt+enter"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -193,18 +197,18 @@
         {
             "command": 
             {
-                "action": "findMatch",
-                "direction": "next"
-            },
-            "keys": "ctrl+alt+n"
-        },
-        {
-            "command": 
-            {
                 "action": "moveFocus",
                 "direction": "nextInOrder"
             },
             "keys": "ctrl+shift+n"
+        },
+        {
+            "command": 
+            {
+                "action": "findMatch",
+                "direction": "next"
+            },
+            "keys": "ctrl+alt+n"
         },
         {
             "command": 
@@ -243,6 +247,10 @@
         {
             "command": "closeWindow",
             "keys": "win+delete"
+        },
+        {
+            "command": "toggleFullscreen",
+            "keys": "win+f"
         }
     ],
     "centerOnLaunch": true,
@@ -274,9 +282,10 @@
                 "face": "JetBrainsMonoNL Nerd Font Mono",
                 "weight": "light"
             },
-            "intenseTextStyle": "all",
-            "opacity": 97,
+            "intenseTextStyle": "bright",
+            "opacity": 95,
             "padding": "0",
+            "useAcrylic": true,
             "useAtlasEngine": true
         },
         "list": 
@@ -592,7 +601,9 @@
             "yellow": "#808000"
         }
     ],
+    "showTabsInTitlebar": true,
     "showTerminalTitleInTitlebar": false,
     "startOnUserLogin": true,
-    "themes": []
+    "themes": [],
+    "useAcrylicInTabRow": false
 }
