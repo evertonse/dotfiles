@@ -27,6 +27,7 @@ PATH=/bin/:$PATH:~/.cargo/bin
 #PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\]:$PWD\$' 
 #PS1='[\u \w/ \e[32m]\$\e[0m '
 PS1='[\u \w]\$ '
+PS1='[\u \w] \n$ '
 ## test for an existing bus daemon, just to be safe
 if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
   ## if not found, launch a new one
