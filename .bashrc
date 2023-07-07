@@ -104,3 +104,5 @@ alias touch='touch2'
 
 github='https://github.com'
 alias py='python3'
+
+onedrive = '/mnt/c/users/excyber/onedrive/'
