@@ -17,10 +17,16 @@ def dotfiles():
     files = ['./.bashrc', './.tmux.conf', './.gdbinit', './.zshrc', './.p10k.zsh']
     for f in files:
         f = Path(f)
-        if input(f'About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?').lower() == 'y':
+        if autoyes or input(f'About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?').lower() == 'y':
             cp(f, Path(home,f))
 
+autoyes = False 
 def main():
+    global autoyes
+    if sys.argv[1].lower() == '-y':
+        print('Chose -y, will not prompt and will override config ')
+        autoyes = True
+    
     if os.name == 'nt':
         print('Windows not supported for automatically install')
         exit(69)
@@ -37,7 +43,7 @@ def main():
         dotfiles()
     elif which == 'kitty':
         dest = Path(home,'.config','kitty')
-        if input(f'about to  copy src=./kitty in to dest={dest}[y/n]' ).lower() == 'y':
+        if autoyes or input(f'about to  copy src=./kitty in to dest={dest}[y/n]' ).lower() == 'y':
             copydir('./kitty',dest, dirs_exist_ok=True)
 
 main()

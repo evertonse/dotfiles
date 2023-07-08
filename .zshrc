@@ -55,12 +55,10 @@ alias l='ls -CF'
 alias gdb='gdb -tui -iex "set disassembly-flavor intel"'
 alias objdump='objdump -M intel'
 
-code='~/code/' 
-if [[ $(grep -i Microsoft /proc/version) ]]; then
-  #echo "Bash is running on WSL"
-  export GDK_BACKEND=x11
 
 if [[ $(grep -i Microsoft /proc/version) ]]; then
+  code='~/code/' 
+  export GDK_BACKEND=x11
   export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
   #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
   LIBGL_ALWAYS_INDIRECT=1
