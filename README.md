@@ -39,3 +39,30 @@ git config --global credential.cacheOptions "--timeout 300"
 git config --global credential.credentialStore cacheclear the token from the local computer by running
 
 git config --global --unset credential.helper
+
+# WSL
+- donwload ``GWSL`` from microsoft store
+- donwload Arch.zip from ``https://github.com/yuk7/ArchWSL``
+- follow this guide ``https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/#initialize-keyring``
+
+- [user@PC-NAME]$ sudo pacman-key --init
+
+- [user@PC-NAME]$ sudo pacman-key --populate
+
+- [user@PC-NAME]$ sudo pacman -Sy archlinux-keyring
+
+- [user@PC-NAME]$ sudo pacman -Su
+- sudo pacman -S --needed base-devel
+
+- sudo pacman -S archlinux-keyring && sudo pacman -Syu
+- edit /etc/pacman.conf, add "ParallelDonwloads = 5"
+- yay -S ttf-jetbrains-mono-nerd 3.0.2-1
+- power level10k, and change to zsh
+### shell 
+- yay -S --noconfirm zsh
+- yay -S --noconfirm zsh-theme-powerlevel10k-git
+- echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+- chsh -s /usr/bin/zsh
+- git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+- yay -S exa
+- ps -p $$ check your shell with

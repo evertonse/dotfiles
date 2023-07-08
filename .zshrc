@@ -1,24 +1,16 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-[[ "$(whoami)" = "root" ]] && return
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-[[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-## Use the up and down arrow keys for finding a command in history
-## (you can write some initial letters of the command first).
-bind '"\e[A":history-search-backward'
-bind '"\e[B":history-search-forward'
-
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-
-# @important one of these belo has to work for tmux -2 forces 256 colors.
-# Also make  /usr/bin/tmux some how fucks up csome colors
-# Changed to /bin/tmux and it solved 
-#alias tmux='TERM=xterm-256color tmux -2'
-#alias tmux='TERM=screen-256color-bce /bin/tmux -2'
-#alias tmux='TERM=screen-256color /bin/tmux'
 alias tm='/bin/tmux -2 a  || /bin/tmux -2'
 
 PATH=/bin/:$PATH:~/.cargo/bin

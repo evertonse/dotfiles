@@ -14,7 +14,7 @@ installs = {
 }
 
 def dotfiles():
-    files = ['./.bashrc', './.tmux.conf', './.gdbinit']
+    files = ['./.bashrc', './.tmux.conf', './.gdbinit', './.zshrc', './.p10k.zsh']
     for f in files:
         f = Path(f)
         if input(f'About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?').lower() == 'y':
