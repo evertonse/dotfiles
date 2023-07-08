@@ -5,11 +5,12 @@
 	],
 	"generatedProfiles" : 
 	[
-		"{574e775e-4f2a-5b96-ac1e-a2962a402336}",
 		"{841ef8ab-9cd7-5811-859e-312676e8d755}",
+		"{574e775e-4f2a-5b96-ac1e-a2962a402336}",
 		"{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
-		"{2c4de342-38b7-51cf-b940-2309a097f518}",
+		"{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
 		"{16a73b88-4fc9-5be1-805c-a146a3098eb3}",
+		"{2c4de342-38b7-51cf-b940-2309a097f518}",
 		"{df5c400c-415e-5d25-b743-5fd85c4e36d9}",
 		"{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
 		"{29a0bf85-142d-53cd-a27c-05f3d37d4a83}",
@@ -19,13 +20,13 @@
 	"persistedWindowLayouts" : 
 	[
 		{
-			"initialPosition" : "0,0",
+			"initialPosition" : "-31992,-32000",
 			"initialSize" : 
 			{
-				"height" : 1081.0,
-				"width" : 2560.0
+				"height" : 1041.0,
+				"width" : 2558.0
 			},
-			"launchMode" : "fullscreen",
+			"launchMode" : "maximized",
 			"tabLayout" : 
 			[
 				{
@@ -33,12 +34,16 @@
 					"commandline" : "C:\\Windows\\system32\\wsl.exe -d Arch",
 					"profile" : "Arch",
 					"startingDirectory" : "~",
-					"suppressApplicationTitle" : false,
+					"suppressApplicationTitle" : true,
 					"tabTitle" : "Arch"
 				},
 				{
-					"action" : "openSettings",
-					"target" : "settingsUI"
+					"action" : "newTab",
+					"commandline" : "C:\\Windows\\system32\\wsl.exe -d Arch",
+					"profile" : "Arch",
+					"startingDirectory" : "~",
+					"suppressApplicationTitle" : true,
+					"tabTitle" : "Arch"
 				},
 				{
 					"action" : "switchToTab",
@@ -47,5 +52,5 @@
 			]
 		}
 	],
-	"settingsHash" : "e64a063360f08944-01d9af57a19c2fe2"
+	"settingsHash" : "9fe5993dafaf7fd3-01d9b0adc6fbc326"
 }
