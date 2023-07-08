@@ -41,10 +41,12 @@ git config --global credential.credentialStore cacheclear the token from the loc
 git config --global --unset credential.helper
 
 # WSL
-- donwload ``GWSL`` from microsoft store
+
+### xorg
+- donwload ``GWSL`` from microsoft store optionally ``X410``
 - donwload Arch.zip from ``https://github.com/yuk7/ArchWSL``
 - follow this guide ``https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/#initialize-keyring``
-
+### pacman
 - [user@PC-NAME]$ sudo pacman-key --init
 
 - [user@PC-NAME]$ sudo pacman-key --populate
