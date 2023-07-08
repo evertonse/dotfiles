@@ -68,3 +68,6 @@ git config --global --unset credential.helper
 - git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 - yay -S exa
 - ps -p $$ check your shell with
+### display manager (dont)
+### xorg
+- sudo pacman -S --noconfirm xorg
