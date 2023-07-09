@@ -71,3 +71,7 @@ git config --global --unset credential.helper
 ### display manager (dont)
 ### xorg
 - sudo pacman -S --noconfirm xorg
+
+# Vim tips
+- :g/<!-- [A-Z]\+[0-9]\+/norm $da<0P
+- :read !ls *pdf
