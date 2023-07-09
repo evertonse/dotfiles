@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 #
-stty -ixon
+# stty -ixon
 # source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.sh/aliases.sh
@@ -18,7 +18,6 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
   ## if not found, launch a new one
  eval `dbus-launch --sh-syntax`
 fi
-
 
 
 # enable color support of ls and also add handy aliases
@@ -47,6 +46,23 @@ function tmux_last_session(){
    LAST_TMUX_SESSION=$(tmux list-sessions | awk -F ":" '{print$1}' | tail -n1);
    tmux attach -t $LAST_TMUX_SESSION
 }
+
+function git_branch_name()
+{
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  if [[ $branch == "" ]];
+  then
+    :
+  else
+    echo '('$branch') '
+  fi
+}
+setopt prompt_subst
+
+NEWLINE=$'\n'
+PROMPT="[%n @ %~] ${NEWLINE}$ "
+RPROMPT="$(git_branch_name)%T"
+
 bindkey -s '^s' 'tmux_last_session ^M'
 bindkey "^L" forward-word
 bindkey "^H" backward-word
