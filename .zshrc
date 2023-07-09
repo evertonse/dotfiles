@@ -59,8 +59,17 @@ function git_branch_name()
 }
 setopt prompt_subst
 
+autoload -U colors && colors
+function change_color() {
+    if [[ "$?" = 0 ]]; then
+    return "green"
+  else
+    return "red"
+  fi
+}
+
 NEWLINE=$'\n'
-PROMPT="[%n @ %~] ${NEWLINE}$ "
+PROMPT="[%n @ %B%~%b] ${NEWLINE}$ "
 RPROMPT="$(git_branch_name)%T"
 
 bindkey -s '^s' 'tmux_last_session ^M'
