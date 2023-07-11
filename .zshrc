@@ -5,12 +5,6 @@ source ~/.sh/aliases.sh
 source ~/.sh/vars.sh
 
 
-if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
-  ## if not found, launch a new one
- eval `dbus-launch --sh-syntax`
-fi
-
-
 if [[ $(grep -i Microsoft /proc/version) ]]; then
   code='~/code/' 
   export GDK_BACKEND=x11
