@@ -1,8 +1,8 @@
 stty -ixon
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.sh/aliases.sh
-source ~/.sh/vars.sh
+source ~/.config/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/.sh/aliases.sh
+source ~/.config/.sh/vars.sh
 
 
 if [[ $(grep -i Microsoft /proc/version) ]]; then

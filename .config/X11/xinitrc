@@ -1,0 +1,3 @@
+xset r rate 190 30
+xset s off -dpms
+exec dwm

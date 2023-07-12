@@ -1,7 +1,0 @@
-[Desktop Entry]
-Exec=/home/excyber/.config/autostart/startup.desktop
-Icon=dialog-scripts
-Name=startup.desktop
-Path=
-Type=Application
-X-KDE-AutostartScript=true

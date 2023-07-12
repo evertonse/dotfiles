@@ -11,4 +11,4 @@ sudo pacman -S mpv --noconfirm
 sudo pacman -S zsh --noconfirm
 sudo pacman -S neovim --noconfirm
 sudo pacman -S gotop --noconfirm
-
+sudo pacman -S xwallpaper --noconfirm
