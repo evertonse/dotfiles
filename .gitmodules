@@ -1,7 +1,3 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = https://github.com/NvChad/NvChad
-[submodule "config/nvim/lua/custom"]
-	path = config/nvim/lua/custom
-	url = https://github.com/evertonse/nvchad-custom.git
-	branch = main
