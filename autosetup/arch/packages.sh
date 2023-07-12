@@ -12,5 +12,6 @@ sudo pacman -S zsh --noconfirm
 sudo pacman -S neovim --noconfirm
 sudo pacman -S gotop --noconfirm
 # python-pywal -> wal
-sudo pacman -S xwallpaper picom python-pywal --noconfirm
+sudo pacman -S xwallpaper picom python-pywal ueberzug --noconfirm
 sudo pacman -S tmux --noconfirm
+
