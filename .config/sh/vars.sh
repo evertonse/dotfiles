@@ -1,5 +1,5 @@
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
-export EDITOR=neovide
+export EDITOR=nvim
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto' GREP_COLORS='mt=1;32'
 export CLICOLOR=1

@@ -12,14 +12,9 @@ installs = ["dotfiles", 'dotdirs']
 
 def dotdirs():
     dirs = [
-        './.config/.sh/',
-        './.config/.zsh/',
-        './.config/alacritty/',
-        './.config/kitty/',
-        './.config/tmux/',
-        './.config/lf/',
-        './.config/X11/',
+        *set(glob('.config/*/')) - {'./.config/nvchad/'},
         './autosetup/',
+        './.scripts/',
     ]
 
     for dir in dirs:
