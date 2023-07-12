@@ -11,4 +11,6 @@ sudo pacman -S mpv --noconfirm
 sudo pacman -S zsh --noconfirm
 sudo pacman -S neovim --noconfirm
 sudo pacman -S gotop --noconfirm
-sudo pacman -S xwallpaper --noconfirm
+# python-pywal -> wal
+sudo pacman -S xwallpaper picom python-pywal --noconfirm
+sudo pacman -S tmux --noconfirm

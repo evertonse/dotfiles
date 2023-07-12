@@ -16,6 +16,9 @@ def dotdirs():
         './.config/.zsh/',
         './.config/alacritty/',
         './.config/kitty/',
+        './.config/tmux/',
+        './.config/lf/',
+        './.config/X11/',
         './autosetup/',
     ]
 
@@ -31,8 +34,8 @@ def dotdirs():
             cpdir(dir, Path(home, dir))
     
 def dotfiles():
-    files = ["./.bashrc",
-        "./.tmux.conf",
+    files = [
+        "./.bashrc",
         "./.gdbinit",
         "./.zshrc",
     ]
