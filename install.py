@@ -8,13 +8,13 @@ from functools import partial
 
 cpdir = partial(copytree, dirs_exist_ok=True)
 home = Path.home()
-installs = ["dotfiles", 'dotdirs', 'dotrepos']
+installs = ["dotfiles", 'dotdirs', 'dotrepos', 'neovim', 'pacman.conf']
 
 def dotdirs():
     dirs = [
         *glob('.config/*/'),
         './autosetup/',
-        './.local/bin'
+        './.local/bin',
     ]
 
     for dir in dirs:
@@ -39,10 +39,12 @@ def dotrepos():
 
 def neovim():
     neovim_path = Path(home,'code','neovim')
+    neovim_path.mkdir(parents=True, exist_ok=True)
+    if neovim_path.is_dir():
+        rmdir(neovim_path)
     os.system(f"git clone  https://github.com/neovim/neovim {neovim_path}")
     os.system(f"cd {neovim_path}")
-    os.system(f"make CMAKE_BUILD_TYPE=RelWithDebInfo")
-    os.system("sudo make install")
+    os.system(f"make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install")
 
     
 def dotfiles():
@@ -50,6 +52,7 @@ def dotfiles():
         "./.bashrc",
         "./.gdbinit",
         "./.zshrc",
+        './.gitconfig',
     ]
 
 
@@ -67,6 +70,16 @@ def dotfiles():
 
 autoyes = False
 
+def pacman():
+    if (
+        autoyes
+        or input(
+            f"About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?"
+        ).lower()
+        == "y"
+    ):
+        cp(Path('./pacman.conf'), Path('/etc','pacman.conf'))
+        
 
 def main():
     global autoyes
@@ -90,6 +103,8 @@ def main():
         dotfiles()
     elif which == "dotrepos":
         dotrepos()
+    elif which == "neovim":
+        neovim()
 
 
 if __name__ == "__main__":
