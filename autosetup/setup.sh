@@ -31,7 +31,6 @@ sudo pacman -S zsh --noconfirm
 # python-pywal -> wal
 sudo pacman -S xwallpaper picom python-pywal ueberzug --noconfirm
 sudo pacman -S tmux --noconfirm
-yay --noconfirm vivid
-o
-o
+yay --noconfirm vivid fd ripgrep
+
 
