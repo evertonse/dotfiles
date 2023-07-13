@@ -62,5 +62,5 @@ fi
 sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 #sudo pacman -S neovim --noconfirm
 # python-pywal -> wal
-sudo pacman -S xwallpaper picom python-pywal ueberzug --noconfirm
+sudo pacman -S xwallpaper picom python-pywal ueberzug ttf-jetbrains-mono-nerd --noconfirm
 yay --noconfirm vivid fd ripgrep wget
