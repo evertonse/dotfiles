@@ -1,0 +1,17 @@
+#!/bin/sh
+# A wrapper for the changing the backlighco
+
+max_brightness=$(cat /sys/class/backlight/*/max_brightness)
+brightness=$(cat /sys/class/backlight/*/brightness)
+brightness_file=$(echo /sys/class/backlight/*/brightness)
+chosen_brightness="$1"
+
+if [ $# -eq "0" ]; then
+  echo "Choose Backlight Brightness, maximum is $max_brightness current is $brightness" && read -rp "> [0-$max_brightness] " chosen_brightness 
+fi
+
+
+[ "$chosen_brightness" -lt "10" ] && echo "you shant choose less than 10 brightness" && exit 1
+[ "$chosen_brightness" -gt "$max_brightness" ] && echo "you shant choose more than $max_brightness brightness" && exit 1
+echo "About to change to $chosen_brightness"
+echo $chosen_brightness > $brightness_file 

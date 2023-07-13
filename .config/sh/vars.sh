@@ -15,7 +15,7 @@ if test -z "$XDG_RUNTIME_DIR" ; then
   export XDG_RUNTIME_DIR=/run/user/$(id -u)
 fi
 
-PATH=/bin/:$PATH:~/.cargo/bin
+PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin
 #PS1='[\u@\h \W]\$ '
 #PS1="\[\`if [[ \$? = "0" ]]; then echo '\e[32m\h\e[0m'; else echo '\e[31m\h\e[0m' ; fi\`:\w\n\$ "
 #PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\]:$PWD\$' 

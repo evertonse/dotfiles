@@ -15,6 +15,7 @@ def dotdirs():
         *set(glob('.config/*/')) - {'./.config/nvchad/'},
         './autosetup/',
         './.scripts/',
+        './.local/bin'
     ]
 
     for dir in dirs:
