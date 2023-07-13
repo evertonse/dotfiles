@@ -12,7 +12,7 @@ installs = ["dotfiles", 'dotdirs', 'dotrepos']
 
 def dotdirs():
     dirs = [
-        *set(glob('.config/*/')) - {'./.config/nvchad/'},
+        *glob('.config/*/'),
         './autosetup/',
         './.local/bin'
     ]
@@ -30,8 +30,10 @@ def dotdirs():
 
     
 def dotrepos():
-    
-    os.system("rm -rf ~/.config/nvim; rm -rf ~/.local/share/nvim")
+    home = Path.home()
+    os.system(f"rm -rf {Path(home,'.config','nvim').resolve()}")
+    os.system(f"rm -rf {Path(home,'.local','share','nvim').resolve()}")
+
     os.system(f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1")
     os.system(f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}")
 
