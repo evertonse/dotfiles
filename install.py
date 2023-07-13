@@ -36,6 +36,8 @@ def dotrepos():
 
     os.system(f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1")
     os.system(f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}")
+    rocks = Path(home,'code','rocks')
+    os.system(f"git clone https://github.com/evertonse/rocks {rocks} && cd {rocks} && ./install.sh")
 
 # def neovim():
 #     neovim_path = Path(home,'code','neovim')
