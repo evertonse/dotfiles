@@ -2,19 +2,18 @@
 import sys
 import os
 from pathlib import Path
-from shutil import copytree, rmtree as rmdir, copy as cp
+from shutil import copytree, rmtree as rmdir, copy as cp, move as mv 
 from glob import glob
 from functools import partial
 
 cpdir = partial(copytree, dirs_exist_ok=True)
 home = Path.home()
-installs = ["dotfiles", 'dotdirs']
+installs = ["dotfiles", 'dotdirs', 'dotrepos']
 
 def dotdirs():
     dirs = [
         *set(glob('.config/*/')) - {'./.config/nvchad/'},
         './autosetup/',
-        './.scripts/',
         './.local/bin'
     ]
 
@@ -28,6 +27,14 @@ def dotdirs():
             == "y"
         ):
             cpdir(dir, Path(home, dir))
+
+    
+def dotrepos():
+    
+    os.system("rm -rf ~/.config/nvim; rm -rf ~/.local/share/nvim")
+    os.system(f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1")
+    os.system(f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}")
+
     
 def dotfiles():
     files = [
@@ -72,6 +79,8 @@ def main():
         dotdirs()
     elif which == "dotfiles":
         dotfiles()
+    elif which == "dotrepos":
+        dotrepos()
 
 
 if __name__ == "__main__":
