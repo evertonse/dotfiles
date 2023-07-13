@@ -1,7 +1,7 @@
 # @basic
 echo " This script assumes every git clone will be placed under ~/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
-sudo pacman -Syu --noconfirm git make cmake
+sudo pacman -Syu --noconfirm git make cmake wget unzip npm ripgrep fd
 # @firmware
 read -p "Do you want install firmware and update it with fwupd? [y/n]: " answer
 
