@@ -1,10 +1,17 @@
 # @basic
+
+installpkg() {
+	pacman --noconfirm --needed -S "$1" >/dev/null 2>&1
+}
+
 echo " This script assumes every git clone will be placed under ~/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
-sudo pacman -Syu --noconfirm git make cmake wget unzip npm ripgrep fd
+for x in curl ca-certificates base-devel git ntp zsh make cmake wget unzip npm ripgrep fd; do
+	installpkg "$x"
+done
+
 # @firmware
 read -p "Do you want install firmware and update it with fwupd? [y/n]: " answer
-
 if [ "$answer" = "y" ]; then
   sudo pacman -Syu --noconfirm fwupd
   sudo fwupdmgr get-devices
