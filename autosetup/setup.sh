@@ -69,7 +69,11 @@ fi
 sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 #sudo pacman -S neovim --noconfirm
 # python-pywal -> wal
-sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug ttf-jetbrains-mono-nerd nerd-fonts-complete-mono-glyphs 
+sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug
 sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget pulseaudio pulseaudio-equalizer pavucontrol netctl networkmanager pamixer
 yay --noconfirm vivid  
-yay --noconfirm nerd-fonts-complete-mono-glyphs 
+
+read -p "Do you want install nerdfonts? [y/n]: " answer
+if [ "$answer" = "y" ]; then
+  yay --noconfirm nerd-fonts-complete-mono-glyphs ttf-jetbrains-mono-nerd
+fi
