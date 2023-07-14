@@ -2,7 +2,11 @@
 
 [ $(pamixer --get-mute) = true ] && echo 🔇 && exit
 
-vol="$(pamixer --get-volume)"
+vol="$(pamixer --get-volume)" || exit 1
+
+if [ "$vol" == "Conection error" ]; then
+  exit 1
+fi
 
 if [ "$vol" -gt "70" ]; then
 	icon="🔊"
