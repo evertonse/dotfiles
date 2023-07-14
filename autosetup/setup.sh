@@ -50,7 +50,7 @@ fi
 read -p "Do you want install X11 stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm xcb-proto xcb-util xcb-util-wm xcb-util-cursor xcb-util-keysyms
-  sudo pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot
+  sudo pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight
 fi
 
 read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
@@ -62,6 +62,7 @@ fi
 sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 #sudo pacman -S neovim --noconfirm
 # python-pywal -> wal
-sudo pacman -S xwallpaper picom python-pywal ueberzug ttf-jetbrains-mono-nerd --noconfirm
-sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget pulseaudio pulseaudio-equalizer pavucontrol netctl
+sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug ttf-jetbrains-mono-nerd nerd-fonts-complete-mono-glyphs 
+sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget pulseaudio pulseaudio-equalizer pavucontrol netctl networkmanager pamixer
 yay --noconfirm vivid  
+yay --noconfirm nerd-fonts-complete-mono-glyphs 
