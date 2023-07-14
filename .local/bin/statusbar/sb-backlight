@@ -1,3 +1,4 @@
 #!/bin/sh
 
-printf "💡%.0f%%\n" "$(xbacklight)"
+brightness=$(cat /sys/class/backlight/*/brightness)
+printf "💡%.0f%%\n" "$brightness"
