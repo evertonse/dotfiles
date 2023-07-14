@@ -1,0 +1,3 @@
+#!/bin/sh
+
+printf "%s%.0f\n" "🌓" "$(cat /sys/class/leds/smc::kbd_backlight/brightness)"

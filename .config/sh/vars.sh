@@ -11,14 +11,7 @@ else
      export LS_COLORS="$(vivid generate catppuccin-frappe)"
 fi 
 
-PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin
-#PS1='[\u@\h \W]\$ '
-#PS1="\[\`if [[ \$? = "0" ]]; then echo '\e[32m\h\e[0m'; else echo '\e[31m\h\e[0m' ; fi\`:\w\n\$ "
-#PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\]:$PWD\$' 
-#PS1='[\u \w/ \e[32m]\$\e[0m '
-#PS1='[\u \w]\$ '
-#export PS1='[\u \w] \n$ '
-## test for an existing bus daemon, just to be safe
+PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/
 github='https://github.com'
 
 onedrive='/mnt/c/users/excyber/onedrive/'
