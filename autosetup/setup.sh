@@ -63,5 +63,5 @@ sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 #sudo pacman -S neovim --noconfirm
 # python-pywal -> wal
 sudo pacman -S xwallpaper picom python-pywal ueberzug ttf-jetbrains-mono-nerd --noconfirm
-sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget pulseaudio
+sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget pulseaudio pulseaudio-equalizer pavucontrol
 yay --noconfirm vivid  
