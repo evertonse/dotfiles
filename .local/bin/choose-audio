@@ -1,6 +1,6 @@
 #!/bin/sh
 mixer="pamixer"
-chosen="$($mixer --list-sources | sed 1,1d | dmenu -l 6 -c | awk '{print $1}')" 
+chosen="$($mixer --list-sources | sed 1,1d | dmenu -l 6 -c -p "Choose Audio Device" | awk '{print $1}')" 
 echo $chosen
 # $mixer --default-source $chosen
 $mixer --source $chosen
