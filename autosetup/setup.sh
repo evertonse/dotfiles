@@ -85,6 +85,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm Imlib2
   yay --noconfirm nsxiv
   yay --noconfirm feh
+  git clone https://github.com/vinceliuice/Lavanda-gtk-theme ~/code/git/gtk-lavanda/ && cd  ~/code/git/gtk-lavanda/ && ./install.sh
 fi
 
 read -p "Do you want install the notification pulseaudio and tui related to audio stuff? [y/n]: " answer
@@ -110,3 +111,5 @@ if [ "$answer" = "y" ]; then
   go install github.com/darkhz/bluetuith@latest
   yay --noconfirm bluetuith
 fi
+
+
