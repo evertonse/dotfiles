@@ -91,6 +91,7 @@ if [ "$answer" = "y" ]; then
   # @important(sxhkd) https://github.com/baskerville/sxhkd
   yay --noconfirm sxhkd 
   yay --noconfirm brightness-controller
+  yay --noconfirm picom-jonaburg-git # rounded corners with https://github.com/jonaburg/picom
   # @important(simple key daemon) https://github.com/baskerville/sxhkd
   git clone https://github.com/vinceliuice/Lavanda-gtk-theme ~/code/git/gtk-lavanda/ && cd  ~/code/git/gtk-lavanda/ && ./install.sh -d ~/.config/themes/lavanda
 fi
