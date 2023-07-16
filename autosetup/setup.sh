@@ -86,8 +86,12 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm nsxiv
   yay --noconfirm feh
   yay --noconfirm gummy
+  # @important(tdrop) https://www.youtube.com/watch?v=TbbsjyoK0J4 https://github.com/noctuid/tdrop
   yay --noconfirm tdrop
+  # @important(sxhkd) https://github.com/baskerville/sxhkd
+  yay --noconfirm sxhkd 
   yay --noconfirm brightness-controller
+  # @important(simple key daemon) https://github.com/baskerville/sxhkd
   git clone https://github.com/vinceliuice/Lavanda-gtk-theme ~/code/git/gtk-lavanda/ && cd  ~/code/git/gtk-lavanda/ && ./install.sh -d ~/.config/themes/lavanda
 fi
 
