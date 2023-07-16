@@ -6,7 +6,7 @@ installpkg() {
 
 echo " This script assumes every git clone will be placed under ~/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
-for x in curl ca-certificates base-devel git ntp zsh make cmake wget unzip npm ripgrep fd; do
+for x in curl ca-certificates base-devel git ntp zsh make cmake wget unzip npm ripgrep fd libxft; do
 	installpkg "$x"
 done
 
