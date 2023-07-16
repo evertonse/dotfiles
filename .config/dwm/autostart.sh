@@ -1,5 +1,5 @@
 #!/bin/sh
-xset r rate 186 20
+xset r rate 186 29
 xset s off
 xset s off -dpms
 xset s off dpms

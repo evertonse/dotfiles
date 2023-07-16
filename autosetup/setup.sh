@@ -80,6 +80,7 @@ sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmana
 yay --noconfirm vivid 
 yay --noconfirm Imlib2
 yay --noconfirm nsxiv
+yay --noconfirm feh
 
 read -p "Do you want install the notification pulseaudio and tui related to audio stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
