@@ -77,8 +77,10 @@ sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 # python-pywal -> wal
 sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug
 sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmanager 
-yay vivid 
-yay noto-fonts-emoji
+yay --noconfirm vivid 
+yay --noconfirm noto-fonts-emoji
+yay --noconfirm Imlib2
+yay --noconfirm nsxiv
 
 read -p "Do you want install the notification pulseaudio and tui related to audio stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
