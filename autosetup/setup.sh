@@ -65,6 +65,11 @@ if [ "$answer" = "y" ]; then
   git clone https://github.com/evertonse/rocks.git ~/code/rocks && cd ~/code/rocks && ./install.sh
 fi
 
+read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
+if [ "$answer" = "y" ]; then
+  git clone https://github.com/dunst-project/dunst.git ~/code/dunst && cd ~/code/dunst && make && sudo make install
+fi
+
 # @user pkg
 sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 #sudo pacman -S neovim --noconfirm
