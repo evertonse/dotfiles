@@ -1,4 +1,11 @@
+stty stop undef		# Disable ctrl-s to freeze terminal.
 stty -ixon
+# Enable colors and change prompt:
+autoload -U colors && colors	# Load colors
+#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+setopt autocd		# Automatically cd into typed directory.
+setopt interactive_comments
 
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/sh/aliases.sh

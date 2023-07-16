@@ -70,13 +70,23 @@ if [ "$answer" = "y" ]; then
   git clone https://github.com/dunst-project/dunst.git ~/code/dunst && cd ~/code/dunst && make && sudo make install
 fi
 
+
 # @user pkg
 sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 #sudo pacman -S neovim --noconfirm
 # python-pywal -> wal
 sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug
-sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget pulseaudio pulseaudio-equalizer pavucontrol netctl networkmanager pamixer
+sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmanager 
 yay --noconfirm vivid  
+
+read -p "Do you want install the notification pulseaudio and tui related to audio stuff? [y/n]: " answer
+if [ "$answer" = "y" ]; then
+  sudo pacman -S --noconfirm  pulseaudio pulseaudio-equalizer pavucontrol  pamixer
+  # look https://github.com/GeorgeFilipkin/pulsemixer
+  #curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x ./pulsemixer
+  # look https://github.com/fulhax/ncpamixer
+  yay --noconfirm ncpamixer pulsemixer
+fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
