@@ -88,7 +88,9 @@ if [ "$answer" = "y" ]; then
   # look https://github.com/GeorgeFilipkin/pulsemixer
   #curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x ./pulsemixer
   # look https://github.com/fulhax/ncpamixer
-  yay --noconfirm ncpamixer pulsemixer ncmpcpp 
+  yay --noconfirm ncpamixer
+  yay --noconfirm pulsemixer 
+  yay --noconfirm ncmpcpp 
 fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
