@@ -78,7 +78,6 @@ sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
 sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug
 sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmanager 
 yay --noconfirm vivid 
-yay --noconfirm noto-fonts-emoji
 yay --noconfirm Imlib2
 yay --noconfirm nsxiv
 
@@ -95,6 +94,7 @@ read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   yay --noconfirm nerd-fonts-complete-mono-glyphs 
   yay --noconfirm ttf-jetbrains-mono-nerd
+  yay --noconfirm noto-fonts-emoji
 fi
 
 go install github.com/darkhz/bluetuith@latest
