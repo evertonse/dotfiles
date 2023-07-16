@@ -53,7 +53,6 @@ def dotfiles():
     files = [
         "./.bashrc",
         "./.gdbinit",
-        "./.zshrc",
         './.gitconfig',
     ]
 
