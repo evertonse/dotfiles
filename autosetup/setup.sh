@@ -85,6 +85,9 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm Imlib2
   yay --noconfirm nsxiv
   yay --noconfirm feh
+  yay --noconfirm gummy
+  yay --noconfirm tdrop
+  yay --noconfirm brightness-controller
   git clone https://github.com/vinceliuice/Lavanda-gtk-theme ~/code/git/gtk-lavanda/ && cd  ~/code/git/gtk-lavanda/ && ./install.sh -d ~/.config/themes/lavanda
 fi
 
