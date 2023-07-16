@@ -18,3 +18,17 @@ alias pip='pipx'
 alias yt='youtube-dl --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
 alias yta='youtube-dl --add-metadata -xic' # Audio Only
 alias YT='youtube-viewer'
+
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+
+[ -f "$MBSYNCRC" ] && alias mbsync="mbsync -c $MBSYNCRC"
+
+# sudo not required for some system commands
+for command in backlight mount umount sv pacman updatedb su shutdown poweroff reboot ; do
+	alias $command="sudo $command"
+done; unset command
+
