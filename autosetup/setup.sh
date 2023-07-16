@@ -73,15 +73,19 @@ fi
 
 
 # @user pkg
-sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
-#sudo pacman -S neovim --noconfirm
-# python-pywal -> wal
-sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug
-sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmanager 
-yay --noconfirm vivid 
-yay --noconfirm Imlib2
-yay --noconfirm nsxiv
-yay --noconfirm feh
+
+read -p "Do you want install the user stuff (tmux, lf , zathura)? [y/n]: " answer
+if [ "$answer" = "y" ]; then
+  sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
+  #sudo pacman -S neovim --noconfirm
+  # python-pywal -> wal
+  sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug
+  sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmanager 
+  yay --noconfirm vivid 
+  yay --noconfirm Imlib2
+  yay --noconfirm nsxiv
+  yay --noconfirm feh
+fi
 
 read -p "Do you want install the notification pulseaudio and tui related to audio stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
@@ -101,4 +105,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm noto-fonts-emoji
 fi
 
-go install github.com/darkhz/bluetuith@latest
+read -p "Do you want install tui (bluetuith)? [y/n]: " answer
+if [ "$answer" = "y" ]; then
+  go install github.com/darkhz/bluetuith@latest
+fi
