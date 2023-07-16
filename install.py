@@ -27,6 +27,7 @@ def dotdirs():
             == "y"
         ):
             cpdir(dir, Path(home, dir))
+    os.system("ln -s ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
 
     
 def dotrepos():
