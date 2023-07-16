@@ -1,12 +1,13 @@
 # @basic
 
 installpkg() {
+  echo "installing package '$1'"
 	pacman --noconfirm --needed -S "$1" >/dev/null 2>&1
 }
 
 echo " This script assumes every git clone will be placed under ~/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
-for x in curl ca-certificates base-devel git ntp zsh make cmake wget unzip npm ripgrep fd libxft go; do
+for x iw curl ca-certificates base-devel git ntp zsh make cmake wget unzip npm ripgrep fd libxft go; do
 	installpkg "$x"
 done
 
