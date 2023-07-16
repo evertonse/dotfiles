@@ -93,7 +93,8 @@ fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  yay --noconfirm nerd-fonts-complete-mono-glyphs ttf-jetbrains-mono-nerd
+  yay --noconfirm nerd-fonts-complete-mono-glyphs 
+  yay --noconfirm ttf-jetbrains-mono-nerd
 fi
 
 go install github.com/darkhz/bluetuith@latest
