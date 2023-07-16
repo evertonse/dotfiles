@@ -108,4 +108,5 @@ fi
 read -p "Do you want install tui (bluetuith)? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   go install github.com/darkhz/bluetuith@latest
+  yay --noconfirm bluetuith
 fi
