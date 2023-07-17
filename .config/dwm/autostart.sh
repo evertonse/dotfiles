@@ -16,6 +16,9 @@ start() {
   pidof -sx "$1" > /dev/null 2> /dev/null || "$@" &
 }
 
+/home/excyber/.config/sh/vars.sh &
+
+start blueman-applet
 for program in $autostart; do
 	start "$program"
 done >/dev/null 2>&1
@@ -26,7 +29,6 @@ start sxhkd
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
 #start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
 pkill picom &
-/home/excyber/.config/sh/vars.sh &
 xwallpaper --zoom ~/Pictures/681587.png &
 exec dwmblocks &
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
