@@ -1,1 +1,2 @@
-source "$HOME/.config/zsh/.zshrc"
+source "$HOME/.config/sh/vars.sh"
+echo ". profile were run" > ~/home.log

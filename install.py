@@ -53,6 +53,7 @@ def dotrepos():
 def dotfiles():
     files = [
         "./.bashrc",
+        "./.profile",
         "./.gdbinit",
         './.gitconfig',
     ]
