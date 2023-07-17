@@ -3,5 +3,6 @@ xdotool key Super_L+shift+b &
 xdotool key Super_L+shift+v &
 xdotool key Super_L+shift+w &
 xdotool key Super_L+i &
+xdotool key Super_L+shift+h &
 exec brightness-controller &
 exec mpv "/home/excyber/Desktop/10 Hours Just Rain, No Thunder.mp4"
