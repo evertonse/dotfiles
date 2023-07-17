@@ -12,13 +12,19 @@ xrandr --dpi 96		# Set DPI. User may want to use a larger number for larger scre
 
 autostart="mpd xcompmgr dunst unclutter remapd " # pipewire instead of pulseaudio ? also, picom add picom
 
+start() {
+  pidof -sx "$1" > /dev/null 2> /dev/null || "$@" &
+}
+
 for program in $autostart; do
-	pidof -sx "$program" || "$program" &
+	start "$program"
 done >/dev/null 2>&1
 
+start xsettingsd
+start sxhkd
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
-#picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
+#start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
 pkill picom &
 /home/excyber/.config/sh/vars.sh &
 xwallpaper --zoom ~/Pictures/681587.png &
