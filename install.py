@@ -16,7 +16,7 @@ def dotdirs():
         './autosetup/',
         './.local/bin',
     ]
-
+    
     for dir in dirs:
         dir = Path(dir)
         if (
@@ -27,6 +27,8 @@ def dotdirs():
             == "y"
         ):
             cpdir(dir, Path(home, dir))
+    os.system("chmod +x ./.local/bin/*") 
+    os.system("chmod +x ~/.local/bin/*") 
     os.system("ln -s ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
 
     

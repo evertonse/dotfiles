@@ -1,0 +1,6 @@
+echo "" | dmenu -c -p "enter your password" | sudo -S backlight 12
+xdotool key Super_L+shift+b &
+xdotool key Super_L+shift+v &
+xdotool key Super_L+shift+w &
+exec brightness-controller &
+exec mpv "/home/excyber/Desktop/10 Hours Just Rain, No Thunder.mp4"
