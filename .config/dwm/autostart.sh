@@ -18,8 +18,8 @@ done >/dev/null 2>&1
 
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
-picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
-#pkill picom
+#picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
+pkill picom
 
 xwallpaper --zoom ~/Pictures/681587.png &
 exec dwmblocks &
