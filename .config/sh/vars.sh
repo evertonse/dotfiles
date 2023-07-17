@@ -4,6 +4,7 @@ export EDITOR=nvim
 export TERM=xterm-256color
 export TERMINAL="st"
 export TERMINAL_PROG="st"
+export EXPLORER="st -e lf"
 export GREP_OPTIONS='--color=auto' GREP_COLORS='mt=1;32'
 export CLICOLOR=1
 export BROWSER="librewolf"
@@ -16,14 +17,15 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
-export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+# export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 
 # export GTK_THEME="Adwaita:dark"
 # export QT_STYLE_OVERRIDE=adwaita-dark.
 # export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-
-export GTK_THEME="Breeze:dark"
-export QT_STYLE_OVERRIDE=breeze-dark
+export GTK2_RC_FILES=~/.local/share/themes/dark/gtk-2.0/gtkrc
+export GTK_THEME="Adwaita:dark"
+export QT_STYLE_OVERRIDE=adwaita-dark
+export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
 
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export INPUTRC="$XDG_CONFIG_HOME/sh/inputrc"
@@ -57,7 +59,7 @@ export LESS_TERMCAP_se="$(printf '%b' '[0m')"
 export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
+
 export MOZ_USE_XINPUT2="1" # Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm

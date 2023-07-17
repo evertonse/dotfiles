@@ -94,6 +94,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm picom-jonaburg-git # rounded corners with https://github.com/jonaburg/picom
   # @important(simple key daemon) https://github.com/baskerville/sxhkd
   git clone https://github.com/vinceliuice/Lavanda-gtk-theme ~/code/git/gtk-lavanda/ && cd  ~/code/git/gtk-lavanda/ && ./install.sh -d ~/.config/themes/lavanda
+  sudo pacman -S --noconfirm gnome-themes-extra adwaita-qt5 adwaita-qt6 
 fi
 
 read -p "Do you want install the notification pulseaudio and tui related to audio stuff? [y/n]: " answer
