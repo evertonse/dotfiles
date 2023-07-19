@@ -27,8 +27,10 @@ start xsettingsd
 start sxhkd
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
+
 #start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
 pkill picom &
+pkill pipewire &
 xwallpaper --zoom ~/Pictures/681587.png &
 exec dwmblocks &
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 

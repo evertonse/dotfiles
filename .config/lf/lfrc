@@ -1,6 +1,6 @@
 # see more at https://pkg.go.dev/github.com/gokcehan/lf
 # interpreter for shell commands
-set shell sh
+set shell zsh
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -71,7 +71,6 @@ set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
 set cleaner '~/.config/lf/cleaner'
 set previewer '~/.config/lf/scope'
 
-set icons
 set autoquit true
 
 # cmds/functions
