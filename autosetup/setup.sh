@@ -76,10 +76,10 @@ fi
 
 read -p "Do you want install the user stuff (tmux, lf , zathura)? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux
+  sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux mupdf
   #sudo pacman -S neovim --noconfirm
   # python-pywal -> wal
-  sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug
+  sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug 
   sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmanager 
   yay --noconfirm vivid 
   yay --noconfirm Imlib2
@@ -90,6 +90,12 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm tdrop
   # @important(sxhkd) https://github.com/baskerville/sxhkd
   yay --noconfirm sxhkd 
+  yay --noconfirm ytfzf 
+  yay --noconfirm yt-dlp
+  yay --noconfirm cwitch
+  yay --noconfirm rofi 
+  yay --noconfirm obs
+  yay --noconfirm yt-watch 
   yay --noconfirm brightness-controller
   yay --noconfirm picom-jonaburg-git # rounded corners with https://github.com/jonaburg/picom
   # @important(simple key daemon) https://github.com/baskerville/sxhkd
@@ -115,7 +121,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm noto-fonts-emoji
 fi
 
-read -p "Do you want install tui (bluetuith)? [y/n]: " answer
+read -p "Do you want install tui (bluetuith, nmtui)? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   go install github.com/darkhz/bluetuith@latest
   yay --noconfirm bluetuith
