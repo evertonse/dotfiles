@@ -16,6 +16,7 @@ source ~/.config/sh/vars.sh
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
+setopt HIST_EXPIRE_DUPS_FIRST
 
 # Load aliases and shortcuts if existent.
 
@@ -30,6 +31,7 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
+setopt NO_BEEP
 
 # vi mode
 bindkey -v
