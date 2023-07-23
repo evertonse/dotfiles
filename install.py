@@ -13,7 +13,6 @@ installs = ["dotfiles", 'dotdirs', 'dotrepos', 'pacman.conf']
 def dotdirs():
     dirs = [
         *glob('.config/*/'),
-        './autosetup/',
         './.local/bin',
     ]
     
