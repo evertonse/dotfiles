@@ -129,6 +129,7 @@ fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
+  sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-jetbrains-mono
   yay --noconfirm nerd-fonts-complete-mono-glyphs 
   yay --noconfirm ttf-jetbrains-mono-nerd
   yay --noconfirm noto-fonts-emoji
