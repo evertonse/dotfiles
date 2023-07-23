@@ -10,7 +10,7 @@ installpkg() {
 echo " This script assumes every git clone will be placed under ~/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
-for x in make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd libxft go; do
+for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd libxft go; do
 	installpkg "$x"
 done
 
@@ -47,13 +47,18 @@ fi
 # @yay
 read -p "Do you want install yay? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git ~/code/yay && cd ~/code/yay && makepkg -si
+  sudo pacman -S --needed git Base-devel
+  dir="~/code/yay"
+  [ ! -d "$dir" ] && git clone https://aur.archlinux.org/yay.git "$dir"
+  cd "$dir" && sudo makepkg -si
 fi
 
 # @neovim
 read -p "Do you want install neovim? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  git clone https://github.com/neovim/neovim.git ~/code/neovim && cd ~/code/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
+  dir="~/code/neovim"
+  [ ! -d "$dir" ] && git clone https://github.com/neovim/neovim.git $dir
+  cd ~/code/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
 fi
 
 # @x11 stuff
@@ -66,12 +71,16 @@ fi
 
 read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  git clone https://github.com/evertonse/rocks.git ~/code/rocks && cd ~/code/rocks && ./install.sh
+  dir="~/code/rocks"
+  [ ! -d "$dir" ] && git clone https://github.com/evertonse/rocks.git $dir
+   cd "$dir" && ./install.sh
 fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  git clone https://github.com/dunst-project/dunst.git ~/code/dunst && cd ~/code/dunst && make && sudo make install
+  dir="~/code/dunst"
+  [ ! -d "$dir" ] && git clone https://github.com/dunst-project/dunst.git "$dir" 
+  cd "$dir" && make && sudo make install
 fi
 
 
