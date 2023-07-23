@@ -84,8 +84,6 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
   alias open='wsl-open'
 fi
 
-touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
-
 
 function tmux_last_session(){
    LAST_TMUX_SESSION=$(tmux list-sessions | awk -F ":" '{print$1}' | tail -n1);

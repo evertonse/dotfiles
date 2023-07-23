@@ -80,7 +80,7 @@ if [ "$answer" = "y" ]; then
   #sudo pacman -S neovim --noconfirm
   # python-pywal -> wal
   sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug 
-  sudo pacman -S --noconfirm fd ripgrep flameshot sysstat wget  netctl networkmanager 
+  sudo pacman -S --noconfirm fd ripgrep flameshot grim sysstat wget  netctl networkmanager 
   yay --noconfirm vivid 
   yay --noconfirm Imlib2
   yay --noconfirm nsxiv
