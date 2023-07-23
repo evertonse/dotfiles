@@ -73,7 +73,7 @@ read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   dir="$HOME/code/rocks"
   [ ! -d $dir ] && git clone https://github.com/evertonse/rocks.git $dir
-   cd $dir && ./install.sh
+   cd $dir && ./install
 fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
