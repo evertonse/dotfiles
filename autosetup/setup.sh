@@ -49,15 +49,15 @@ read -p "Do you want install yay? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --needed git Base-devel
   dir="~/code/yay"
-  [ ! -d "$dir" ] && git clone https://aur.archlinux.org/yay.git "$dir"
-  cd "$dir" && sudo makepkg -si
+  [ ! -d $dir ] && git clone https://aur.archlinux.org/yay.git $dir
+  cd $dir && sudo makepkg -si
 fi
 
 # @neovim
 read -p "Do you want install neovim? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   dir="~/code/neovim"
-  [ ! -d "$dir" ] && git clone https://github.com/neovim/neovim.git $dir
+  [ ! -d $dir ] && git clone https://github.com/neovim/neovim.git $dir
   cd ~/code/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
 fi
 
@@ -72,15 +72,15 @@ fi
 read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   dir="~/code/rocks"
-  [ ! -d "$dir" ] && git clone https://github.com/evertonse/rocks.git $dir
-   cd "$dir" && ./install.sh
+  [ ! -d $dir ] && git clone https://github.com/evertonse/rocks.git $dir
+   cd $dir && ./install.sh
 fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   dir="~/code/dunst"
-  [ ! -d "$dir" ] && git clone https://github.com/dunst-project/dunst.git "$dir" 
-  cd "$dir" && make && sudo make install
+  [ ! -d $dir ] && git clone https://github.com/dunst-project/dunst.git $dir 
+  cd $dir && make && sudo make install
 fi
 
 
