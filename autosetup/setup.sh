@@ -4,7 +4,7 @@ autoyes="$1"
 installpkg() {
   echo "installing package $1"
 	#pacman --noconfirm --needed -S "$1" >/dev/null 2>&1
-	pacman --noconfirm --needed -S "$1"
+	sudo pacman --noconfirm --needed -S "$1"
 }
 
 echo " This script assumes every git clone will be placed under ~/code folder"
