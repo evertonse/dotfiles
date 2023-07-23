@@ -7,7 +7,7 @@ installpkg() {
 	sudo pacman --noconfirm --needed -S "$1"
 }
 
-echo " This script assumes every git clone will be placed under ~/code folder"
+echo " This script assumes every git clone will be placed under $HOME/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
 for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd libxft go; do
@@ -39,8 +39,8 @@ fi
 
 read -p "Do you want install radare ? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  git clone https://github.com/radare/radare2 ~/code/radare 
-  cd ~/code/radare 
+  git clone https://github.com/radare/radare2 $HOME/code/radare 
+  cd $HOME/code/radare 
   sh sys/install.sh
 fi
 
@@ -48,7 +48,7 @@ fi
 read -p "Do you want install yay? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --needed git Base-devel
-  dir="~/code/yay"
+  dir="$HOME/code/yay"
   [ ! -d $dir ] && git clone https://aur.archlinux.org/yay.git $dir
   cd $dir && sudo makepkg -si
 fi
@@ -56,9 +56,9 @@ fi
 # @neovim
 read -p "Do you want install neovim? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  dir="~/code/neovim"
+  dir="$HOME/code/neovim"
   [ ! -d $dir ] && git clone https://github.com/neovim/neovim.git $dir
-  cd ~/code/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
+  cd $HOME/code/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
 fi
 
 # @x11 stuff
@@ -71,14 +71,14 @@ fi
 
 read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  dir="~/code/rocks"
+  dir="$HOME/code/rocks"
   [ ! -d $dir ] && git clone https://github.com/evertonse/rocks.git $dir
    cd $dir && ./install.sh
 fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  dir="~/code/dunst"
+  dir="$HOME/code/dunst"
   [ ! -d $dir ] && git clone https://github.com/dunst-project/dunst.git $dir 
   cd $dir && make && sudo make install
 fi
@@ -111,7 +111,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm brightness-controller
   yay --noconfirm picom-jonaburg-git # rounded corners with https://github.com/jonaburg/picom
   # @important(simple key daemon) https://github.com/baskerville/sxhkd
-  git clone https://github.com/vinceliuice/Lavanda-gtk-theme ~/code/git/gtk-lavanda/ && cd  ~/code/git/gtk-lavanda/ && ./install.sh -d ~/.config/themes/lavanda
+  git clone https://github.com/vinceliuice/Lavanda-gtk-theme $HOME/code/git/gtk-lavanda/ && cd  $HOME/code/git/gtk-lavanda/ && ./install.sh -d $HOME/.config/themes/lavanda
   sudo pacman -S --noconfirm gnome-themes-extra adwaita-qt5 adwaita-qt6 
 fi
 
