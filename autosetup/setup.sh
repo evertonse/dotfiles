@@ -66,7 +66,7 @@ fi
 read -p "Do you want install X11 stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm xcb-proto xcb-util xcb-util-wm xcb-util-cursor xcb-util-keysyms
-  sudo pacman -S --noconfirm xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight
+  sudo pacman -S --noconfirm xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight
 fi
 
 read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
@@ -78,6 +78,7 @@ fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
+  sudo pacman -S --noconfirm libnotify
   dir="$HOME/code/dunst"
   [ ! -d $dir ] && git clone https://github.com/dunst-project/dunst.git $dir 
   cd $dir && make && sudo make install
@@ -140,3 +141,4 @@ if [ "$answer" = "y" ]; then
 fi
 
 chsh -s /usr/bin/zsh
+
