@@ -50,7 +50,7 @@ if [ "$answer" = "y" ]; then
   sudo pacman -S --needed git Base-devel
   dir="$HOME/code/yay"
   [ ! -d $dir ] && git clone https://aur.archlinux.org/yay.git $dir
-  cd $dir && sudo makepkg -si
+  cd $dir && makepkg -si
 fi
 
 # @neovim
