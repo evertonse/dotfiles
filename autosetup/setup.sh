@@ -130,4 +130,4 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm bluetuith
 fi
 
-
+chsh -s /usr/bin/zsh
