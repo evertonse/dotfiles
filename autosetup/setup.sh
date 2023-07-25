@@ -107,6 +107,8 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm yt-dlp
   yay --noconfirm cwitch
   yay --noconfirm rofi 
+  sudo pacman -Sy --needed rust gtk4 base-devel
+  cargo install ripgrag
   yay --noconfirm obs
   yay --noconfirm yt-watch 
   yay --noconfirm brightness-controller
@@ -141,5 +143,10 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm bluetuith
 fi
 
+read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer
+if [ "$answer" = "y" ]; then
+  yay --noconfirm pocl 
+  yay --noconfirm rusticl
+fi
 chsh -s /usr/bin/zsh
 
