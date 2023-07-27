@@ -8,16 +8,19 @@ from functools import partial
 
 cpdir = partial(copytree, dirs_exist_ok=True)
 home = Path.home()
-installs = ["dotfiles", 'dotdirs', 'dotrepos', 'pacman.conf']
+installs = ["dotfiles", 'dotdirs', 'dotrepos']
 
 def dotdirs():
     dirs = [
         *glob('.config/*/'),
         './.local/bin',
+        './.local/include',
+        './.local/share',
     ]
     
     for dir in dirs:
         dir = Path(dir)
+        assert dir.is_dir()
         if (
             autoyes
             or input(
@@ -26,9 +29,12 @@ def dotdirs():
             == "y"
         ):
             cpdir(dir, Path(home, dir))
+
+    os.system('sudo ln -i -s ~/.local/include/* /usr/include')
     os.system("chmod +x ./.local/bin/*") 
     os.system("chmod +x ~/.local/bin/*") 
     os.system("ln -s ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
+    os.system(f"cd {home}/.local/include && sudo make install")
 
     
 def dotrepos():
@@ -53,39 +59,36 @@ def dotrepos():
     
 def dotfiles():
     files = [
-        "./.bashrc",
-        "./.zshrc",
-        "./.profile",
-        "./.gdbinit",
+        *glob('./.*'),
+        "./pacman.conf",
         './.gitconfig',
     ]
 
 
     for f in files:
+        if f == "./pacman.conf":
+            # os.system(f"sudo cp {Path('./pacman.conf')}, {Path('/etc','pacman.conf')}")
+            print(f"sudo cp {Path('./pacman.conf')} {Path('/etc', 'pacman.conf')}")
+            continue
+
         f = Path(f)
+        if f.is_dir():
+            continue
+
         if (
             autoyes
             or input(
+                f'for sure this is not a dir isit : {f.is_dir()}'
+                + 
                 f"About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?"
             ).lower()
             == "y"
         ):
+            
             cp(f, Path(home, f))
 
 
 autoyes = False
-
-def pacman():
-    if (
-        autoyes
-        or input(
-            f"About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?"
-        ).lower()
-        == "y"
-    ):
-        cp(Path('./pacman.conf'), Path('/etc','pacman.conf'))
-        
-
 def main():
     global autoyes
     argc = len(sys.argv)
@@ -108,7 +111,6 @@ def main():
         dotfiles()
     elif which == "dotrepos":
         dotrepos()
-
 
 if __name__ == "__main__":
     main()
