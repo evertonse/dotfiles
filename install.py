@@ -9,6 +9,7 @@ from functools import partial
 cpdir = partial(copytree, dirs_exist_ok=True)
 home = Path.home()
 installs = ["dotfiles", 'dotdirs', 'dotrepos']
+cmd = lambda x: print(x) or os.system(x) 
 
 def dotdirs():
     dirs = [
@@ -30,31 +31,30 @@ def dotdirs():
         ):
             cpdir(dir, Path(home, dir))
 
-    os.system('sudo ln -i -s ~/.local/include/* /usr/include')
-    os.system("chmod +x ./.local/bin/*") 
-    os.system("chmod +x ~/.local/bin/*") 
-    os.system("ln -s ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
-    os.system(f"cd {home}/.local/include && sudo make install")
+    cmd('sudo ln -i -s ~/.local/include/* /usr/include')
+    cmd("chmod +x ./.local/bin/*") 
+    cmd("chmod +x ~/.local/bin/*") 
+    cmd("ln -s ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
 
     
 def dotrepos():
     home = Path.home()
-    os.system(f"rm -rf {Path(home,'.config','nvim').resolve()}")
-    os.system(f"rm -rf {Path(home,'.local','share','nvim').resolve()}")
+    cmd(f"rm -rf {Path(home,'.config','nvim').resolve()}")
+    cmd(f"rm -rf {Path(home,'.local','share','nvim').resolve()}")
 
-    os.system(f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1")
-    os.system(f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}")
+    cmd(f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1")
+    cmd(f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}")
     rocks = Path(home,'code','rocks')
-    os.system(f"git clone https://github.com/evertonse/rocks {rocks} && cd {rocks} && ./install.sh")
+    cmd(f"git clone https://github.com/evertonse/rocks {rocks} && cd {rocks} && ./install.sh")
 
 # def neovim():
 #     neovim_path = Path(home,'code','neovim')
 #     neovim_path.mkdir(parents=True, exist_ok=True)
 #     if neovim_path.is_dir():
 #         rmdir(neovim_path)
-#     os.system(f"git clone  https://github.com/neovim/neovim {neovim_path}")
-#     os.system(f"cd {neovim_path}")
-#     os.system(f"make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install")
+#     cmd(f"git clone  https://github.com/neovim/neovim {neovim_path}")
+#     cmd(f"cd {neovim_path}")
+#     cmd(f"make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install")
 
     
 def dotfiles():
@@ -67,8 +67,7 @@ def dotfiles():
 
     for f in files:
         if f == "./pacman.conf":
-            # os.system(f"sudo cp {Path('./pacman.conf')}, {Path('/etc','pacman.conf')}")
-            print(f"sudo cp {Path('./pacman.conf')} {Path('/etc', 'pacman.conf')}")
+            cmd(f"sudo cp {Path('./pacman.conf')} {Path('/etc', 'pacman.conf')}")
             continue
 
         f = Path(f)
@@ -78,8 +77,8 @@ def dotfiles():
         if (
             autoyes
             or input(
-                f'for sure this is not a dir isit : {f.is_dir()}'
-                + 
+                # f'for sure this is not a dir isit : {f.is_dir()}'
+                # + 
                 f"About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?"
             ).lower()
             == "y"
