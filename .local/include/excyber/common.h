@@ -25,7 +25,6 @@ typedef int32_t  i32;
 typedef int16_t  i16;
 typedef int8_t   i8;
 
-# define M_PI   3.14159265358979323846 
 
 #define HEADER 	"\033[95m"
 #define OKBLUE 	"\033[94m"
@@ -75,32 +74,33 @@ typedef int8_t   i8;
 //------------------------------------------------------------------------------------------------//
 #ifdef __cplusplus
 
-// https://www.reddit.com/r/ProgrammerTIL/comments/58c6dx/til_how_to_defer_in_c/
-template <typename F>
-struct saucy_defer {
-	F f;
-	saucy_defer(F f) : f(f) {}
-	~saucy_defer() { f(); }
-};
+  // https://www.reddit.com/r/ProgrammerTIL/comments/58c6dx/til_how_to_defer_in_c/
+  template <typename F>
+  struct saucy_defer {
+    F f;
+    saucy_defer(F f) : f(f) {}
+    ~saucy_defer() { f(); }
+  };
 
-template <typename F>
-saucy_defer<F> defer_func(F f) {
-	return saucy_defer<F>(f);
-}
+  template <typename F>
+  saucy_defer<F> defer_func(F f) {
+    return saucy_defer<F>(f);
+  }
 
-#ifndef defer
-#define DEFER_1(x, y) x##y
-#define DEFER_2(x, y) DEFER_1(x, y)
-#define DEFER_3(x)    DEFER_2(x, __COUNTER__)
-#define defer(code)   auto DEFER_3(_defer_) = efer_func([&](){code;})
+  #ifndef defer
+  #define DEFER_1(x, y) x##y
+  #define DEFER_2(x, y) DEFER_1(x, y)
+  #define DEFER_3(x)    DEFER_2(x, __COUNTER__)
+  #define defer(code)   auto DEFER_3(_defer_) = efer_func([&](){code;})
+  #endif
+
 #endif
 
-
-#ifndef cast
-#define cast(Type) (Type)
+#ifndef as
+#define as(Type) (Type)
 #endif
 
-// NOTE(bill): Because a signed sizeof is more useful
+// Why would a signed sizeof be more useful?
 #ifndef size_of
 #define size_of(x) (isize)(sizeof(x))
 #endif
@@ -187,7 +187,11 @@ saucy_defer<F> defer_func(F f) {
 	#define ISIZE_MIX I64_MIN
 	#define ISIZE_MAX I64_MAX
 #else
-	#error Unknown architecture size. This library only supports 32 bit and 64 bit architectures.
+	#warning Unknown architecture size. This library only supports 32 bit and 64 bit architectures.
+#endif
+
+#if !defined(M_PI)
+  #define M_PI   3.14159265358979323846 
 #endif
 
 #define F32_MIN 1.17549435e-38f
