@@ -118,6 +118,7 @@ RPROMPT="$(git_branch_name)%T"
 bindkey -s '^s' 'tmux_last_session ^M'
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^n "nvim .\n"
 bindkey '^[[Z' reverse-menu-complete
 bindkey "^L" forward-word
 bindkey "^H" backward-word
