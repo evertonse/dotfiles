@@ -10,7 +10,7 @@ installpkg() {
 echo " This script assumes every git clone will be placed under $HOME/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
-for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd libxft go; do
+for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd fzf libxft go; do
 	installpkg "$x"
 done
 

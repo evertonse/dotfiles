@@ -116,7 +116,11 @@ PROMPT="[%n @ %B%~%b] ${NEWLINE}$ "
 RPROMPT="$(git_branch_name)%T"
 
 bindkey -s '^s' 'tmux_last_session ^M'
+# Where should I put you?
+bindkey -s ^f "tmux-sessionizer\n"
+bindkey '^[[Z' reverse-menu-complete
 bindkey "^L" forward-word
 bindkey "^H" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+setopt MENU_COMPLETE
