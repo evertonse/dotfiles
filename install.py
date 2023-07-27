@@ -31,7 +31,8 @@ def dotdirs():
         ):
             cpdir(dir, Path(home, dir))
 
-    cmd('sudo ln -i -s ~/.local/include/* /usr/include')
+    # cmd('sudo ln -i -s ~/.local/include/* /usr/include')
+    cmd('sudo ln -s ~/.local/include/* /usr/include')
     cmd("chmod +x ./.local/bin/*") 
     cmd("chmod +x ~/.local/bin/*") 
     cmd("ln -s ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 

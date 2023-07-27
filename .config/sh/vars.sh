@@ -9,7 +9,8 @@ export GREP_OPTIONS='--color=auto' GREP_COLORS='mt=1;32'
 export CLICOLOR=1
 export BROWSER="librewolf"
 
-
+export WORK_DIRS="$HOME/code/"
+export PROJECT_DIRS="$HOME/code/"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
