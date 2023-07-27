@@ -4,7 +4,7 @@ autoyes="$1"
 installpkg() {
   echo "installing package $1"
 	#pacman --noconfirm --needed -S "$1" >/dev/null 2>&1
-	sudo pacman --noconfirm --needed -S "$1"
+	sudo pacman --noconfirm --needed -S "$1" || yay --noconfirm --needed -S "$1"
 }
 
 echo " This script assumes every git clone will be placed under $HOME/code folder"
@@ -137,10 +137,11 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm noto-fonts-emoji
 fi
 
-read -p "Do you want install tui (bluetuith, nmtui)? [y/n]: " answer
+read -p "Do you want install tui (bluetuith, nmtui, torque)? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   go install github.com/darkhz/bluetuith@latest
   yay --noconfirm bluetuith
+  installpkg transmission-cli
 fi
 
 read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer

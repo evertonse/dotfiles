@@ -15,6 +15,7 @@ export BROWSER="librewolf"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DESKTOP_DIR="$HOME/desktop"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 # export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
@@ -77,7 +78,7 @@ else
      export LS_COLORS="$(vivid generate catppuccin-frappe)"
 fi 
 
-PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/
+PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:~/.local/share/go/bin/
 github='https://github.com'
 
 onedrive='/mnt/c/users/excyber/onedrive/'

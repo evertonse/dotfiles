@@ -10,8 +10,8 @@ cpdir = partial(copytree, dirs_exist_ok=True)
 home = Path.home()
 installs = ["dotfiles", 'dotdirs', 'dotrepos']
 cmd = lambda x: print(x) or os.system(x) 
-
 def dotdirs():
+
     dirs = [
         *glob('.config/*/'),
         './.local/bin',
