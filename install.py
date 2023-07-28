@@ -30,7 +30,8 @@ def dotdirs():
             == "y"
         ):
             cpdir(dir, Path(home, dir))
-
+    
+    cmd('sudo cp -rf ~/.config/X11/xorg.conf.d/ /etc/X11/')
     # cmd('sudo ln -i -s ~/.local/include/* /usr/include')
     cmd('sudo ln -s ~/.local/include/* /usr/include')
     cmd("chmod +x ./.local/bin/*") 

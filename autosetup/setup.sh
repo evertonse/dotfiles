@@ -10,7 +10,7 @@ installpkg() {
 echo " This script assumes every git clone will be placed under $HOME/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
-for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd fzf libxft go; do
+for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd fzf libxft go usbutils; do
 	installpkg "$x"
 done
 
@@ -136,7 +136,7 @@ fi
 read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-jetbrains-mono
-  # yay --noconfirm nerd-fonts-complete-mono-glyphs  # these one is very slow
+  yay --noconfirm -S nerd-fonts-complete-mono-glyphs  # these one is very slow
   yay --noconfirm -S ttf-jetbrains-mono-nerd
   yay --noconfirm -S noto-fonts-emoji
 fi
