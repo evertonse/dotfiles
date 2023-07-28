@@ -25,7 +25,6 @@ pkill pipewire &
 xwallpaper --zoom ~/Pictures/681587.png &
 exec dwmblocks &
 clear lock
-xmodmap -e "keycode 66 = Escape NoSymbol Escape"
-xmodmap -e "keycode 66 = Escape Caps_Lock NoSymbol NoSymbol"
+exec xmodmap ~/.config/X11/xmodmap
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
