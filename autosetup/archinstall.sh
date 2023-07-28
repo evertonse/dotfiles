@@ -42,7 +42,7 @@ vim /etc/sudoers
 # há 1 ano (editado)
 # New linux user here, and this was my experience following this tutorial: 
 #
-# The tutorial was insanely smooth and easy to follow. Everything went as planned until I realised that grub-install wasn't working. Panicking, I restarted my entire install from the start and encountered the same issue.
+# The tutorial was insanely smooth and easy to follow. Ever thing went as planned until I realised that grub-install wasn't working. Panicking, I restarted my entire install from the start and encountered the same issue.
 #
 # If you encounter this problem, there's no need to restart. It's likely because your system is UEFI instead of EFI and that means in the step where you execute "mount /dev/sda1 /mnt/boot" you actually need to mount to /mnt/boot/efi instead. Unmount it with "umount" , create a new working directory at /mnt/boot/efi with "mkdir", and then execute the mount, this time to the correct directory. After this, grub should install as intended and you can continue with the tutorial.
 #

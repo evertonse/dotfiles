@@ -105,12 +105,12 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm sxhkd 
   yay --noconfirm ytfzf 
   yay --noconfirm yt-dlp
+  yay --noconfirm yt-watch 
   yay --noconfirm cwitch
   yay --noconfirm rofi 
   sudo pacman -Sy --needed rust gtk4 base-devel
   cargo install ripgrag
   yay --noconfirm obs
-  yay --noconfirm yt-watch 
   yay --noconfirm brightness-controller
   yay --noconfirm picom-jonaburg-git # rounded corners with https://github.com/jonaburg/picom
   # @important(simple key daemon) https://github.com/baskerville/sxhkd
@@ -120,7 +120,8 @@ fi
 
 read -p "Do you want install the notification pulseaudio and tui related to audio stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  sudo pacman -S --noconfirm  pulseaudio pulseaudio-equalizer pavucontrol  pamixer
+  sudo pacman -S --noconfirm  pipewire pipewire-alsa pipewire-jack pipewire-pulse libpulse
+  sudo pacman -S --noconfirm  pulseaudio-equalizer pavucontrol pamixer  
   # look https://github.com/GeorgeFilipkin/pulsemixer
   #curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x ./pulsemixer
   # look https://github.com/fulhax/ncpamixer
@@ -128,6 +129,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm pulsemixer 
   yay --noconfirm ncmpcpp 
 fi
+
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
