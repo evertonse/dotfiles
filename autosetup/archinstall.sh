@@ -11,10 +11,10 @@ cfdisk /dev/sda # label: choose DOS, unless drive has > 2TB then choose GPT
 # [Write] this changes
 mkfs.ext4 /dev/sda1 # the boot partition
 mkfs.ext4 /dev/sda2 # the rest
-pacstrap /mnt base base-devel linux linux-firmware vim git
+pacstrap /mnt base base-devel linux linux-firmware vim git networkmanager dialog iwd 
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
-pacman -S grub networkmanager
+pacman -S grub networkmanager 
 ls /sys/firmware/efi # if found than UEFI is enabled
 systemctl enable NetworkManager
 grub-install /dev/sda
