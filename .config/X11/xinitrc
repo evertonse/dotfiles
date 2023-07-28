@@ -34,9 +34,9 @@ fi
 
 # /usr/lib/plasma-dbus-run-session-if-needed startplasma-x11
 
-#xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock" # uncoment this to make esc act as capslock
-xmodmap -e "clear lock" 
-xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+# xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock" # uncoment this to make esc act as capslock
+# xmodmap -e "clear lock" 
+# xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
 xrandr --dpi 96		# Set DPI. User may want to use a larger number for larger screens.
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/X11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup

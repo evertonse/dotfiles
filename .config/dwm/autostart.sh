@@ -1,7 +1,5 @@
 #!/bin/sh
 
-xmodmap -e "clear lock" 
-xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 autostart="mpd xcompmgr dunst unclutter remapd " # pipewire instead of pulseaudio ? also, picom add picom
 start() {
   pidof -sx "$1" > /dev/null 2> /dev/null || "$@" &
@@ -20,6 +18,9 @@ start sxhkd
 [ -n "$xrdbpid" ] && wait "$xrdbpid"
 
 #start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
+
+# xmodmap -e "clear lock" 
+xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 pkill picom &
 pkill pipewire &
 xwallpaper --zoom ~/Pictures/681587.png &
