@@ -86,8 +86,10 @@ if [ "$answer" = "y" ]; then
   lspci -k
   read -p "Take a look at lspci and lsusb to see if you need any of rtl87*  (you might need broadcom)  [y/n]: " answer
   [ "$answer" = "y" ] && yay --noconfirm rtl87
-  iw dev wlan0 set power_save off
+  sudo iw dev wlan0 set power_save off
+  echo "might wanna check journalctl -xb"
   echo "if Problems wifi diconnecting, disable pci-express management in the bios or iw dev wlan0 set power_save off"
+  # @archwiki Network_configuration/Wireless
 fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
