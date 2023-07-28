@@ -120,7 +120,7 @@ RPROMPT="$(git_branch_name)%T"
 
 bindkey -s '^s' 'tm ^M'
 bindkey -s '^q' 'exit ^M'
-bindkey -s '^Q' 'exit ^M'
+bindkey -s '^e' 'exit ^M'
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
 bindkey -s ^n "nvim .\n"
