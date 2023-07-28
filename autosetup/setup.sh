@@ -137,8 +137,8 @@ read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-jetbrains-mono
   # yay --noconfirm nerd-fonts-complete-mono-glyphs  # these one is very slow
-  yay --noconfirm ttf-jetbrains-mono-nerd
-  yay --noconfirm noto-fonts-emoji
+  yay --noconfirm -S ttf-jetbrains-mono-nerd
+  yay --noconfirm -S noto-fonts-emoji
 fi
 
 read -p "Do you want install tui (bluetuith, nmtui, torque)? [y/n]: " answer
@@ -150,8 +150,9 @@ fi
 
 read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  yay --noconfirm pocl 
-  yay --noconfirm rusticl
+  yay --noconfirm -S pocl 
+  yay --noconfirm -S rusticl
 fi
+
 chsh -s /usr/bin/zsh
 
