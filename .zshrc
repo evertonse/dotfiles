@@ -116,7 +116,8 @@ NEWLINE=$'\n'
 PROMPT="[%n @ %B%~%b] ${NEWLINE}$ "
 RPROMPT="$(git_branch_name)%T"
 
-bindkey -s '^s' 'tmux_last_session ^M'
+bindkey -s '^s' 'tm ^M'
+bindkey -s '^q' 'exit ^M'
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
 bindkey -s ^n "nvim .\n"
