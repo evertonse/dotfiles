@@ -102,9 +102,9 @@ fi
 
 
 # @user pkg
-
 read -p "Do you want install the user stuff (tmux, lf , zathura)? [y/n]: " answer
 if [ "$answer" = "y" ]; then
+  timedatectl set-timezone America/Maceio
   sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux mupdf
   #sudo pacman -S neovim --noconfirm
   # python-pywal -> wal
