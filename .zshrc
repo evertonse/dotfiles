@@ -6,6 +6,8 @@ autoload -U colors && colors	# Load colors
 
 setopt autocd		# Automatically cd into typed directory.
 setopt interactive_comments
+setopt MENU_COMPLETE
+unsetopt flow_control
 
 source ~/.config/zsh
 source ~/.config/sh/aliases.sh
@@ -118,6 +120,7 @@ RPROMPT="$(git_branch_name)%T"
 
 bindkey -s '^s' 'tm ^M'
 bindkey -s '^q' 'exit ^M'
+bindkey -s '^Q' 'exit ^M'
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
 bindkey -s ^n "nvim .\n"
@@ -126,6 +129,5 @@ bindkey "^L" forward-word
 bindkey "^H" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-setopt MENU_COMPLETE
 
 [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && exec startx &> /dev/null
