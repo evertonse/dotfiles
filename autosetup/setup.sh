@@ -144,12 +144,16 @@ fi
 read -p "Do you want install tui (bluetuith, nmtui, torque)? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   go install github.com/darkhz/bluetuith@latest
-  yay --noconfirm bluetuith
+  yay --noconfirm -S bluez
+  yay --noconfirm -S bluez bluez-utils
+  yay --noconfirm -S bluetuith
   installpkg transmission-cli
 fi
 
 read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer
 if [ "$answer" = "y" ]; then
+  yay --noconfirm -S go
+  yay --noconfirm -S clang
   yay --noconfirm -S pocl 
   yay --noconfirm -S rusticl
 fi

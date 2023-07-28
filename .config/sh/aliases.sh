@@ -15,8 +15,10 @@ alias touch='touch2'
 
 alias py='python3'
 alias pip='pipx'
-alias yt='youtube-dl --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
-alias yta='youtube-dl --add-metadata -xic' # Audio Only
+# alias yt='youtube-dl --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
+# alias yta='youtube-dl --add-metadata -xic' # Audio Only
+alias yt='yt-dlp --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
+alias yta='yt-dlp --add-metadata -xic' # Audio Only
 alias YT='youtube-viewer'
 
 # Use neovim for vim if present.
