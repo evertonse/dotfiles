@@ -11,6 +11,7 @@ source ~/.config/zsh
 source ~/.config/sh/aliases.sh
 source ~/.config/sh/vars.sh
 
+[[ $- != *i* ]] && return
 
 # History in cache directory:
 HISTSIZE=10000000
@@ -125,3 +126,5 @@ bindkey "^H" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 setopt MENU_COMPLETE
+
+[[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && exec startx &> /dev/null

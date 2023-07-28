@@ -3,6 +3,10 @@
 
 [[ -z "$FUNCNEST" ]] && export FUNCNEST=100          # limits recursive functions, see 'man bash'
 
+source ~/.config/zsh
+source ~/.config/sh/aliases.sh
+source ~/.config/sh/vars.sh
+
 ## Use the up and down arrow keys for finding a command in history
 ## (you can write some initial letters of the command first).
 bind '"\e[A":history-search-backward'
