@@ -1,3 +1,4 @@
+#!/bin/bash
 pacman -Syyuu
 autoyes="$1"
 
@@ -78,9 +79,15 @@ if [ "$answer" = "y" ]; then
    cd $dir && ./install
 fi
 
-read -p "Do you want install drivers not installed already ? (xf86-video)  [y/n]: " answer
+read -p "Do you want install drivers not installed already ? (xf86-video, rtl87)  [y/n]: " answer
 if [ "$answer" = "y" ]; then
   yay --noconfirm xf86-video
+  lsusb
+  lspci -k
+  read -p "Take a look at lspci and lsusb to see if you need any of rtl87*  (you might need broadcom)  [y/n]: " answer
+  [ "$answer" = "y" ] && yay --noconfirm rtl87
+  iw dev wlan0 set power_save off
+  echo "if Problems wifi diconnecting, disable pci-express management in the bios or iw dev wlan0 set power_save off"
 fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer

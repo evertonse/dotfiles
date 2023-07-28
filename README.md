@@ -82,3 +82,4 @@ git config --global --unset credential.helper
 - nmtui also
 - lspci -k 
 - lsusb
+- lspci -vnn 
