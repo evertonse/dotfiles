@@ -66,7 +66,9 @@ fi
 read -p "Do you want install X11 stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm xcb-proto xcb-util xcb-util-wm xcb-util-cursor xcb-util-keysyms
-  sudo pacman -S --noconfirm xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight
+  sudo pacman -S --noconfirm xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight 
+  sudo pacman -S --noconfirm libxinerama  
+  
 fi
 
 read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
@@ -94,25 +96,25 @@ if [ "$answer" = "y" ]; then
   # python-pywal -> wal
   sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug 
   sudo pacman -S --noconfirm fd ripgrep flameshot grim sysstat wget  netctl networkmanager 
-  yay --noconfirm vivid 
-  yay --noconfirm Imlib2
-  yay --noconfirm nsxiv
-  yay --noconfirm feh
-  yay --noconfirm gummy
+  yay --noconfirm -S vivid 
+  yay --noconfirm -S Imlib2
+  yay --noconfirm -S nsxiv
+  yay --noconfirm -S feh
+  yay --noconfirm -S gummy
   # @important(tdrop) https://www.youtube.com/watch?v=TbbsjyoK0J4 https://github.com/noctuid/tdrop
-  yay --noconfirm tdrop
+  yay --noconfirm -S tdrop
   # @important(sxhkd) https://github.com/baskerville/sxhkd
-  yay --noconfirm sxhkd 
-  yay --noconfirm ytfzf 
-  yay --noconfirm yt-dlp
-  yay --noconfirm yt-watch 
-  yay --noconfirm cwitch
-  yay --noconfirm rofi 
+  yay --noconfirm -S sxhkd 
+  yay --noconfirm -S ytfzf 
+  yay --noconfirm -S yt-dlp
+  yay --noconfirm -S yt-watch 
+  yay --noconfirm -S cwitch
+  yay --noconfirm -S rofi 
   sudo pacman -Sy --needed rust gtk4 base-devel
-  cargo install ripgrag
-  yay --noconfirm obs
-  yay --noconfirm brightness-controller
-  yay --noconfirm picom-jonaburg-git # rounded corners with https://github.com/jonaburg/picom
+  cargo install ripdrag
+  yay --noconfirm -S obs
+  yay --noconfirm -S brightness-controller
+  yay --noconfirm -S picom-jonaburg-git # rounded corners with https://github.com/jonaburg/picom
   # @important(simple key daemon) https://github.com/baskerville/sxhkd
   git clone https://github.com/vinceliuice/Lavanda-gtk-theme $HOME/code/git/gtk-lavanda/ && cd  $HOME/code/git/gtk-lavanda/ && ./install.sh -d $HOME/.config/themes/lavanda
   sudo pacman -S --noconfirm gnome-themes-extra adwaita-qt5 adwaita-qt6 
@@ -125,16 +127,16 @@ if [ "$answer" = "y" ]; then
   # look https://github.com/GeorgeFilipkin/pulsemixer
   #curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x ./pulsemixer
   # look https://github.com/fulhax/ncpamixer
-  yay --noconfirm ncpamixer
-  yay --noconfirm pulsemixer 
-  yay --noconfirm ncmpcpp 
+  yay --noconfirm -S ncpamixer
+  yay --noconfirm -S pulsemixer 
+  yay --noconfirm -S ncmpcpp 
 fi
 
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-jetbrains-mono
-  yay --noconfirm nerd-fonts-complete-mono-glyphs 
+  # yay --noconfirm nerd-fonts-complete-mono-glyphs  # these one is very slow
   yay --noconfirm ttf-jetbrains-mono-nerd
   yay --noconfirm noto-fonts-emoji
 fi
