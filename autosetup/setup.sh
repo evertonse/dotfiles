@@ -11,7 +11,7 @@ installpkg() {
 echo " This script assumes every git clone will be placed under $HOME/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
-for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd fzf libxft go usbutils; do
+for x in networkmanager make cmake curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd fzf libxft go usbutils ddcutil; do
 	installpkg "$x"
 done
 
@@ -31,7 +31,7 @@ fi
 
 read -p "Do you want install linux-header, base-devel and linux firmware stuff ? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  sudo pacman -S base-devel linux linux-headers linux-api-headers linux-firmware linux-docs --noconfirm
+  sudo pacman -S base-devel  linux-zen linux linux-headers linux-api-headers linux-firmware linux-docs --noconfirm
 else
   echo "No action needed was done about linux stuff."
 fi
@@ -68,7 +68,7 @@ read -p "Do you want install X11 stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm xcb-proto xcb-util xcb-util-wm xcb-util-cursor xcb-util-keysyms
   sudo pacman -S --noconfirm xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight 
-  sudo pacman -S --noconfirm libxinerama  
+  sudo pacman -S --noconfirm libxinerama autorandr
   
 fi
 
