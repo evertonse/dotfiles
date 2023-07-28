@@ -1,3 +1,2 @@
-# xmodmap -pke to see all mappings
 clear lock
 keycode 66 = Escape Caps_Lock NoSymbol NoSymbol
