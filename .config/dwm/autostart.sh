@@ -20,10 +20,11 @@ start sxhkd
 #start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
 
 # xmodmap -e "clear lock" 
-xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 pkill picom &
 pkill pipewire &
 xwallpaper --zoom ~/Pictures/681587.png &
 exec dwmblocks &
+xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+xmodmap -e "keycode 66 = Escape Caps_Lock NoSymbol NoSymbol"
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
