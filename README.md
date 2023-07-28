@@ -75,3 +75,10 @@ git config --global --unset credential.helper
 # Vim tips
 - :g/<!-- [A-Z]\+[0-9]\+/norm $da<0P
 - :read !ls *pdf
+
+# USB / WIFI
+- rfkill, to see if is blocked on a hardware level
+- iwctl to connect to wifi
+- nmtui also
+- lspci -k 
+- lsusb
