@@ -131,4 +131,3 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && exec startx &> /dev/null
-[[ $DISPLAY ]] && xmodmap ~/.config/X11/xmodmap
