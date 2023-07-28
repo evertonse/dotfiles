@@ -47,7 +47,7 @@ fi
 # @yay
 read -p "Do you want install yay? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  sudo pacman -S --needed git Base-devel
+  sudo pacman -S --needed git base-devel
   dir="$HOME/code/yay"
   [ ! -d $dir ] && git clone https://aur.archlinux.org/yay.git $dir
   cd $dir && makepkg -si
