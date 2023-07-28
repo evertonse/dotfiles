@@ -78,6 +78,11 @@ if [ "$answer" = "y" ]; then
    cd $dir && ./install
 fi
 
+read -p "Do you want install drivers not installed already ? (xf86-video)  [y/n]: " answer
+if [ "$answer" = "y" ]; then
+  yay --noconfirm xf86-video
+fi
+
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm libnotify
