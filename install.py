@@ -74,6 +74,7 @@ def dotfiles():
             continue
         if f == "./grub":
             cmd(f"sudo cp {Path(f)} {Path('/etc', 'default', 'grub')}")
+            print(" to ensure the grub config is set use 'sudo grub-mkconfig -o /boot/grub/grub.cfg'")
             continue
 
         f = Path(f)
