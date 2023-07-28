@@ -63,13 +63,17 @@ def dotfiles():
     files = [
         *glob('./.*'),
         "./pacman.conf",
+        "./grub",
         './.gitconfig',
     ]
 
 
     for f in files:
         if f == "./pacman.conf":
-            cmd(f"sudo cp {Path('./pacman.conf')} {Path('/etc', 'pacman.conf')}")
+            cmd(f"sudo cp {Path(f)} {Path('/etc', 'pacman.conf')}")
+            continue
+        if f == "./grub":
+            cmd(f"sudo cp {Path(f)} {Path('/etc', 'default', 'grub')}")
             continue
 
         f = Path(f)
