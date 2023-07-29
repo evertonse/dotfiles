@@ -22,8 +22,6 @@ start sxhkd
 pkill picom &
 pkill pipewire &
 xwallpaper --zoom ~/Pictures/681587.png &
-setxkbmap -option ''
-setxkbmap -option caps:escape
 echo "works" > dwm.works
 exec dwmblocks &
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
