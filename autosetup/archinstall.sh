@@ -4,7 +4,7 @@ lsblk
 cfdisk /dev/sda # label: choose DOS, unless drive has > 2TB then choose GPT
 # rezise2fs /dev/sda2 # in case need to expand to fit the rest of free mem on partition 
 # pacman -Ss xf86-video, search anbd donwload one, serach about this on the wiki
-
+#@grub problems https://askubuntu.com/questions/883992/stuck-at-grub-command-line
 # Make the boot patition 128M as primary, if using grub, 512M is enough for everyone
 # press B to set the boot flag, meaning this partition is bootable
 # Give whatever else to the rest probably on /dev/sda2
