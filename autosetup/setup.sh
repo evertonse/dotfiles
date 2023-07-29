@@ -134,10 +134,9 @@ if [ "$answer" = "y" ]; then
   sudo pacman -S --noconfirm gnome-themes-extra adwaita-qt5 adwaita-qt6 
 fi
 
-read -p "Do you want install the pipewire pulseaudio-apps (not pulseaudio itself) and tui-related to audio stuff? [y/n]: " answer
+read -p "Do you want install the pulseaudio-apps (not pulseaudio itself) and tui-related to audio stuff? [y/n]: " answer
 if [ "$answer" = "y" ]; then
-  sudo pacman -S --noconfirm  pulseaudio-equalizer pavucontrol pamixer  
-  sudo pacman -S --noconfirm  pipewire pipewire-alsa pipewire-jack pipewire-pulse libpulse
+  # sudo pacman -S --noconfirm  pipewire pipewire-alsa pipewire-jack pipewire-pulse libpulse
   # look https://github.com/GeorgeFilipkin/pulsemixer
   #curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x ./pulsemixer
   # look https://github.com/fulhax/ncpamixer
@@ -146,6 +145,16 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm -S ncmpcpp 
 fi
 
+read -p "Do you want install the 1:pipewire or 2:pulseaudio [1/2]: " answer
+if [ "$answer" = "1" ]; then
+  for x in pipewire pipewire-roc pipewire-alsa pipewire-jack pipewire-pulse wireplumber libwireplumber libpipewire; do
+    installpkg "$x"
+  done
+elif [ "$answer" = "2" ]; then 
+  for x in pulseaudio pulseaudio-rtp pulseaudio-lirc pulseaudio-alsa pulseaudio-jack pulseaudio-bluetooth pulseaudio-zeroconf pulse-autoconf pasystray-git libpulseaudio; do
+    installpkg "$x"
+  done
+fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
 if [ "$answer" = "y" ]; then
