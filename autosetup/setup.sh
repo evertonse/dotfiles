@@ -151,7 +151,7 @@ if [ "$answer" = "1" ]; then
     installpkg "$x"
   done
 elif [ "$answer" = "2" ]; then 
-  for x in pulseaudio pulseaudio-rtp pulseaudio-lirc pulseaudio-alsa pulseaudio-jack pulseaudio-bluetooth pulseaudio-zeroconf pulse-autoconf pasystray-git libpulseaudio; do
+  for x in pulseaudio pulseaudio-rtp pulseaudio-lirc pulseaudio-alsa pulseaudio-jack pulseaudio-bluetooth pulseaudio-zeroconf pulse-autoconf pasystray-git libpulse; do
     installpkg "$x"
   done
 fi
