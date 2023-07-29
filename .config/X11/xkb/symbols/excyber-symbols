@@ -1,0 +1,5 @@
+partial modifier_keys
+xkb_symbols "caps_to_esc" {
+    replace key <CAPS> { [  Escape ] };
+    modifier_map Lock   { Escape };
+};
