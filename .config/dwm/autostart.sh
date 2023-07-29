@@ -1,13 +1,12 @@
 #!/bin/sh
 
-autostart="mpd xcompmgr dunst unclutter remapd " # pipewire instead of pulseaudio ? also, picom add picom
+autostart="mpd dunst unclutter blueman-applet" # pipewire instead of pulseaudio ? also, picom add picom
 start() {
   pidof -sx "$1" > /dev/null 2> /dev/null || "$@" &
 }
 
 /home/excyber/.config/sh/vars.sh &
 
-start blueman-applet
 for program in $autostart; do
 	start "$program"
 done >/dev/null 2>&1
@@ -23,6 +22,7 @@ pkill picom &
 pkill pipewire &
 xwallpaper --zoom ~/Pictures/681587.png &
 echo "works" > dwm.works
+xkbcomp $HOME/.config/X11/xkb/keymap/excyber-keymap $DISPLAY
 exec dwmblocks &
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
