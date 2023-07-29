@@ -83,3 +83,9 @@ git config --global --unset credential.helper
 - lspci -k 
 - lsusb
 - lspci -vnn 
+
+# xkb
+- read https://unix.stackexchange.com/questions/65507/use-setxkbmap-to-swap-the-left-shift-and-left-control/65600#65600
+- https://unix.stackexchange.com/questions/75473/how-to-prevent-the-caps-lock-toggle-effect-without-remapping-or-disabling-it
+- https://unix.stackexchange.com/questions/65507/use-setxkbmap-to-swap-the-left-shift-and-left-control/65600#65600 
+- https://web.archive.org/web/20170825051821/http://madduck.net/docs/extending-xkb/
