@@ -148,7 +148,7 @@ fi
 read -p "Do you want install the 1:pipewire or 2:pulseaudio [1/2]: " answer
 if [ "$answer" = "1" ]; then
   echo "wireplumber libwireplumber might be prefered than pipewire-media-session (currently being install), on older hardware wireplumber seems to consumed 100% of cpu and memory :S"
-  for x in pipewire pipewire-roc pipewire-alsa pipewire-jack pipewire-pulse pipewire-media-session  libpipewire; do
+  for x in pipewire pipewire-roc pipewire-alsa pipewire-jack pipewire-pulse libpipewire pipewire-media-session; do
     installpkg "$x"
   done
 elif [ "$answer" = "2" ]; then 
