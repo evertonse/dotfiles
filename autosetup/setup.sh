@@ -116,6 +116,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm -S feh
   yay --noconfirm -S gummy
 
+  # just htop with vim motions
   yay --noconfirm -S htim  || yay --noconfirm -S htop-vim 
 
   # @important(tdrop) https://www.youtube.com/watch?v=TbbsjyoK0J4 https://github.com/noctuid/tdrop
