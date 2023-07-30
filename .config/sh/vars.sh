@@ -79,7 +79,7 @@ else
      export LS_COLORS="$(vivid generate catppuccin-frappe)"
 fi 
 
-PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:~/.local/share/go/bin/
+PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:~/.local/share/go/bin/:$XDG_DATA_HOME/cargo/bin
 github='https://github.com'
 
 onedrive='/mnt/c/users/excyber/onedrive/'
