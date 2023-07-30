@@ -102,7 +102,7 @@ fi
 
 
 # @user pkg
-read -p "Do you want install the user stuff (tmux, lf , zathura)? [y/n]: " answer
+read -p "Do you want install the user stuff (tmux, lf , zathura, htop)? [y/n]: " answer
 if [ "$answer" = "y" ]; then
   timedatectl set-timezone America/Maceio
   sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux mupdf
@@ -115,6 +115,7 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm -S nsxiv
   yay --noconfirm -S feh
   yay --noconfirm -S gummy
+  yay --noconfirm -S htop-vim
   # @important(tdrop) https://www.youtube.com/watch?v=TbbsjyoK0J4 https://github.com/noctuid/tdrop
   yay --noconfirm -S tdrop
   # @important(sxhkd) https://github.com/baskerville/sxhkd
@@ -151,7 +152,7 @@ if [ "$answer" = "1" ]; then
   echo "if you get stuck with wireplumber try pacman -Rdd wireplumber && pacman -S pipewire-media-session"
   for x in pipewire pipewire-roc pipewire-alsa pipewire-jack pipewire-pulse libpipewire pipewire-media-session; do
     installpkg "$x"
-  done
+  "done\n"
 elif [ "$answer" = "2" ]; then 
   for x in pulseaudio pulseaudio-rtp pulseaudio-lirc pulseaudio-alsa pulseaudio-jack pulseaudio-bluetooth pulseaudio-zeroconf pulse-autoconf pasystray-git libpulse; do
     installpkg "$x"
