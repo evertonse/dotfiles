@@ -115,7 +115,9 @@ if [ "$answer" = "y" ]; then
   yay --noconfirm -S nsxiv
   yay --noconfirm -S feh
   yay --noconfirm -S gummy
-  yay --noconfirm -S htop-vim
+
+  yay --noconfirm -S htim  || yay --noconfirm -S htop-vim 
+
   # @important(tdrop) https://www.youtube.com/watch?v=TbbsjyoK0J4 https://github.com/noctuid/tdrop
   yay --noconfirm -S tdrop
   # @important(sxhkd) https://github.com/baskerville/sxhkd
