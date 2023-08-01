@@ -89,3 +89,8 @@ git config --global --unset credential.helper
 - https://unix.stackexchange.com/questions/75473/how-to-prevent-the-caps-lock-toggle-effect-without-remapping-or-disabling-it
 - https://unix.stackexchange.com/questions/65507/use-setxkbmap-to-swap-the-left-shift-and-left-control/65600#65600 
 - https://web.archive.org/web/20170825051821/http://madduck.net/docs/extending-xkb/
+
+# Wayland:
+- setup dwl https://www.youtube.com/watch?v=yjVVVAdK4-Y&list=TLPQMDEwODIwMjOjLrpVZxBuaQ&index=3   https://www.youtube.com/watch?v=Tk0BWygZEgM&list=TLPQMDEwODIwMjOjLrpVZxBuaQ&index=1&pp=gAQBiAQB 
+- really good setup with win10 virtualized https://www.youtube.com/watch?v=wNL6eIoksd8 guide https://christitus.com/my-new-desktop-hyprland/
+- comparing 'compositors' make any window a scratcpad (<- that's cool) https://www.youtube.com/watch?v=NfDPP67ZqhQ&t=1s
