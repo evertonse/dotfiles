@@ -24,7 +24,7 @@ export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 # export GTK_THEME="Adwaita:dark"
 # export QT_STYLE_OVERRIDE=adwaita-dark.
 # export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
-export GTK2_RC_FILES=~/.local/share/themes/dark/gtk-2.0/gtkrc
+export GTK2_RC_FILES="$XDG_DATA_HOME/themes/dark/gtk-2.0/gtkrc"
 export GTK_THEME="Adwaita:dark"
 export QT_STYLE_OVERRIDE=adwaita-dark
 export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
@@ -46,6 +46,7 @@ export HISTFILE="$XDG_DATA_HOME/history"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export PYTHONUSERBASE="$XDG_DATA_HOME/python/modules/"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 
 # Other program settings:
