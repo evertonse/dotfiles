@@ -90,6 +90,9 @@ git config --global --unset credential.helper
 - https://unix.stackexchange.com/questions/65507/use-setxkbmap-to-swap-the-left-shift-and-left-control/65600#65600 
 - https://web.archive.org/web/20170825051821/http://madduck.net/docs/extending-xkb/
 
+# X11:
+## BWSP
+- https://github.com/rxyhn/tokyo
 # Wayland:
 - setup dwl https://www.youtube.com/watch?v=yjVVVAdK4-Y&list=TLPQMDEwODIwMjOjLrpVZxBuaQ&index=3   https://www.youtube.com/watch?v=Tk0BWygZEgM&list=TLPQMDEwODIwMjOjLrpVZxBuaQ&index=1&pp=gAQBiAQB 
 - really good setup with win10 virtualized https://www.youtube.com/watch?v=wNL6eIoksd8 guide https://christitus.com/my-new-desktop-hyprland/
@@ -97,3 +100,8 @@ git config --global --unset credential.helper
 - dots from video above https://github.com/Babkock/Dotfiles
 ## Hyperland
 - https://lib.rs/crates/hyprscratch
+- https://github.com/SolDoesTech/hyprland
+- get waybard config https://github.com/BrodieRobertson/dotfiles
+- vertical bar https://github.com/elkowar/eww  https://github.com/rxyhn/tokyo
+- https://github.com/adi1090x/polybar-themes
+
