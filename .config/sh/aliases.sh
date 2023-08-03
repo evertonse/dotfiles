@@ -14,7 +14,6 @@ touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
 alias touch='touch2'
 
 alias py='python3'
-alias pip='pipx'
 # alias yt='youtube-dl --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
 # alias yta='youtube-dl --add-metadata -xic' # Audio Only
 alias yt='yt-dlp --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
