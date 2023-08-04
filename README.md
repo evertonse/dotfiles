@@ -108,3 +108,5 @@ git config --global --unset credential.helper
 - vertical bar https://github.com/elkowar/eww  https://github.com/rxyhn/tokyo
 - https://github.com/adi1090x/polybar-themes
 
+# XDG
+- https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
