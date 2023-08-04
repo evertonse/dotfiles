@@ -75,6 +75,7 @@ git config --global --unset credential.helper
 # Vim tips
 - :g/<!-- [A-Z]\+[0-9]\+/norm $da<0P
 - :read !ls *pdf
+- https://duckduckgo.com/?q=vim+go+to+end+of+single+row+wrap&atb=v387-7rc&ia=web
 
 # USB / WIFI
 - rfkill, to see if is blocked on a hardware level
@@ -98,6 +99,8 @@ git config --global --unset credential.helper
 - really good setup with win10 virtualized https://www.youtube.com/watch?v=wNL6eIoksd8 guide https://christitus.com/my-new-desktop-hyprland/
 - comparing 'compositors' make any window a scratcpad (<- that's cool) https://www.youtube.com/watch?v=NfDPP67ZqhQ&t=1s
 - dots from video above https://github.com/Babkock/Dotfiles
+- look at them bars https://wiki.hyprland.org/Useful-Utilities/Status-Bars/
+
 ## Hyperland
 - https://lib.rs/crates/hyprscratch
 - https://github.com/SolDoesTech/hyprland
