@@ -3,10 +3,6 @@
 #include <stdio.h>  
 #include <assert.h>  
 
-#include <string>  
-#include <iostream>  
-#include <sstream>  
-#include <cmath>
 #include <math.h>
 
 // I saw this typing in rust and casey's stream, i really like it
@@ -73,6 +69,11 @@ typedef int8_t   i8;
 
 //------------------------------------------------------------------------------------------------//
 #ifdef __cplusplus
+
+#include <string>  
+#include <iostream>  
+#include <sstream>  
+#include <cmath>
 
   // https://www.reddit.com/r/ProgrammerTIL/comments/58c6dx/til_how_to_defer_in_c/
   template <typename F>
