@@ -1,11 +1,8 @@
 
 PROJECT := evertonsantos_202100011379_opencl
 
-$(PROJECT).bin: $(PROJECT).cpp
-	g++ -Wall -O3 -std=c++0x -o $(PROJECT).bin $(PROJECT).cpp -lOpenCL
-
-run: $(PROJECT).bin
-	./$(PROJECT).bin ./opencl.input ./opencl.output &> $(PROJECT).log
+install: $(shell find  ./.config/  -type f)
+	python3 ./install -y
 
 clean:
 	rm -rf *.bin
