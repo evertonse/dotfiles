@@ -9,6 +9,7 @@
 typedef float	 f32;
 typedef double   f64;
 
+typedef __uint128_t u128;
 typedef uint64_t u64;
 typedef uint32_t u32;
 typedef uint16_t u16;
