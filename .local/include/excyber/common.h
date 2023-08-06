@@ -167,7 +167,6 @@ typedef int8_t   i8;
   //   _AIX            Defined on AIX
   //   _WIN32          Defined on Windows
 
-extern "C" {
 inline const char*
 arch_build() { //Get current architecture, detectx nearly every architecture. Coded by Freak
   #if defined(__x86_64__) || defined(_M_X64)
@@ -213,7 +212,7 @@ arch_build() { //Get current architecture, detectx nearly every architecture. Co
   #else
   return "UNKNOWN";
   #endif
-} }
+}
 
 #ifndef U8_MIN
 #define U8_MIN 0u
