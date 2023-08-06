@@ -58,8 +58,12 @@ typedef int8_t   i8;
     #define force_inline inline __attribute__((always_inline))
     #define force_noinline  __attribute__((noinline))
 #elif defined(_MSC_VER)
-    #define force_inline  __forceinline
-    #define force_noinline  __declspec(noinline)
+		#if _MSC_VER < 1300
+      #define force_inline
+    #else
+      #define force_inline  __forceinline
+      #define force_noinline  __declspec(noinline)
+    #endif
 #endif
 
 #if defined(__GNUC__) || defined(__GNUG__)
@@ -116,15 +120,6 @@ typedef int8_t   i8;
 #endif
 
 #if !defined(force_inline)
-	#if defined(_MSC_VER)
-		#if _MSC_VER < 1300
-		#define force_inline
-		#else
-		#define force_inline __forceinline
-		#endif
-	#else
-		#define force_inline __attribute__ ((__always_inline__))
-	#endif
 #endif
 
 #if !defined(no_inline)
