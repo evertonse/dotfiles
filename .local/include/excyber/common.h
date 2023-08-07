@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include <stddef.h>
 #include <stdio.h>  
 #include <assert.h>  
 
@@ -21,6 +22,8 @@ typedef int64_t  i64;
 typedef int32_t  i32;
 typedef int16_t  i16;
 typedef int8_t   i8;
+typedef size_t usize;
+typedef ptrdiff_t isize;
 
 
 #define HEADER 	"\033[95m"
