@@ -79,7 +79,7 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     polkit-gnome python-requests starship \
     swappy grim slurp pamixer brightnessctl gvfs \
     bluez bluez-utils lxappearance xfce4-settings \
-    dracula-gtk-theme dracula-icons-git xdg-desktop-portal-hyprland
+    dracula-gtk-theme dracula-icons-git xdg-desktop-portal-hyprland wdisplays
 
     # Start the bluetooth service
     echo -e "Starting the Bluetooth Service...\n"
