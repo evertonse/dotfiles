@@ -227,8 +227,8 @@ fi
 
 read -p "Do you want install tui (bluetuith, nmtui, torque)? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+  yay --noconfirm -S network-manager-applet
   go install github.com/darkhz/bluetuith@latest
-  yay --noconfirm -S bluez
   yay --noconfirm -S bluez bluez-utils
   yay --noconfirm -S bluetuith
   installpkg transmission-cli
