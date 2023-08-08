@@ -66,14 +66,14 @@ fi
 
 read -p "Do you want install X11? [y/n]: " answer
 if [ "$answer" = "y" || "$answer" = "Y" ]; then
-  sudo pacman -S --noconfirm xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight 
+  sudo pacman -S --noconfirm xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight yabar  
   sudo pacman -S --noconfirm xcb-proto xcb-util xcb-util-wm xcb-util-cursor xcb-util-keysyms
   sudo pacman -S --noconfirm libxinerama autorandr
 fi
 
 read -n1 -rep "Do you want install Wayland stuff? [y/n]: " answer
 if [ "$answer" = "y" || "$answer" = "Y" ]; then
-    yay -S --noconfirm hyprland kitty waybar \
+    yay -S --noconfirm hyprland kitty waybar yambar \
     swaybg swaylock-effects wofi wlogout mako thunar \
     ttf-jetbrains-mono-nerd noto-fonts-emoji \
     polkit-gnome python-requests starship \
@@ -238,10 +238,8 @@ fi
 
 read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer
 if [ "$answer" = "y" || "$answer" = "Y" ]; then
-  yay --noconfirm -S go
-  yay --noconfirm -S clang
-  yay --noconfirm -S pocl 
-  yay --noconfirm -S rusticl
+  yay --noconfirm -S go clang pocl rusticl npm pipx
+  
 fi
 
 chsh -s /usr/bin/zsh
