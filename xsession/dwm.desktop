@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=dwm
-Comment=suckles WM
-Exec=dwm
-TryExec=dwm
-Type=Application
-X-LightDM-DesktopName=dwm
-DesktopNames=dwm
-Keywords=tiling;wm;windowmanager;window;manager;
