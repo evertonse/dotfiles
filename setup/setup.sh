@@ -236,7 +236,7 @@ fi
 
 read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  yay --noconfirm -Syu go clang pocl opencl-rusticl-mesa npm python-pipx gitui
+  yay --noconfirm -Syu go clang pocl opencl-rusticl-mesa npm python-pipx gitui prettier deno
   
 fi
 
