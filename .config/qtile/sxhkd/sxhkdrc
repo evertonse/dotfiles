@@ -1,0 +1,97 @@
+super + Escape
+    pkill -USR1 -x sxhkd
+
+super + shift + Return
+   krusader
+
+#Rofi & dmenu
+
+super + d
+    rofi -show drun 
+
+super + p
+    rofi -show power-menu -modi power-menu:rofi-power-menu
+
+alt + z; {a,s}
+   {viddesc, poddesc}
+
+super + g; {g,k,a,o} 
+  {flatpak run org.gimp.GIMP,flatpak run org.kde.kdenlive,audacity,flatpak run com.obsproject.Studio}
+
+super + e
+  rofi -show emoji -modi emoji
+
+alt + r
+   ranwal.sh
+
+super + shift + b
+    rmovie.sh
+
+super + x
+    clipmenu
+
+
+alt + g
+    rofi-mpc
+
+alt + p
+ rofi -show
+
+# Application Keybindings
+
+super + w
+  vivaldi-stable
+
+super + shift + w
+    vivaldi-stable --private-window
+
+ctrl + w
+    qutebrowser
+
+alt + s
+ flatpak run com.todoist.Todoist
+
+alt + n 
+    flatpak run com.discordapp.Discord
+
+ctrl + alt + s
+    flameshot gui
+
+#Audio Keybindings
+
+alt + d
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+alt + a
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+XF86AudioRaiseVolume
+        amixer -c 1 -- sset Master 2db+
+
+XF86AudioLowerVolume
+        amixer -c 1 -- sset Master 2db-
+
+XF86AudioPlay
+    playerctl play-pause
+
+ctrl + alt + p
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+ctrl + shift + period
+    playerctl next
+
+ctrl + shift + comma
+    playerctl previous
+
+XF86AudioStop
+    playerctl stop
+
+alt + {h,j,k,l}
+   mpc {prev,next,play,pause}
+

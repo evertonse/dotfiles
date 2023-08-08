@@ -1,0 +1,28 @@
+{
+  "pyprland": {
+    "plugins": [
+      "scratchpads",
+      "workspaces_follow_focus"
+    ]
+  },
+  "scratchpads": {
+    "term": {
+      "command": "alacritty --class alacritty-dropterm",
+      "animation": "fromTop",
+      "unfocus": "hide"
+    },
+    "volume": {
+      "command": "alacritty --class vol -e pulsemixer",
+      "unfocus": "hide",
+      "animation": "fromRight"
+    }
+  },
+  "monitors": {
+    "placement": {
+      "BenQ PJ": {
+        "topOf": "eDP-1"
+      }
+    }
+    "unknown": "wlrlui"
+  }
+}
