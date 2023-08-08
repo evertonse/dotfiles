@@ -17,7 +17,7 @@ done
 
 # @firmware
 read -p "Do you want install firmware and update it with fwupd? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   sudo pacman -Syu --noconfirm fwupd
   sudo fwupdmgr get-devices
   sudo fwupdmgr refresh --force
@@ -30,7 +30,7 @@ fi
 # linux idk you'll need
 
 read -p "Do you want install linux-header, base-devel and linux firmware stuff ? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   sudo pacman -S base-devel  linux-zen linux linux-headers linux-api-headers linux-firmware linux-docs --noconfirm
 else
   echo "No action needed was done about linux stuff."
@@ -39,7 +39,7 @@ fi
 # @radare
 
 read -p "Do you want install radare ? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   git clone https://github.com/radare/radare2 $HOME/code/radare 
   cd $HOME/code/radare 
   sh sys/install.sh
@@ -47,7 +47,7 @@ fi
 
 # @yay
 read -p "Do you want install yay? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   sudo pacman -S --needed git base-devel
   dir="$HOME/code/yay"
   [ ! -d $dir ] && git clone https://aur.archlinux.org/yay.git $dir
@@ -56,7 +56,7 @@ fi
 
 # @neovim
 read -p "Do you want install neovim? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   dir="$HOME/code/neovim"
   [ ! -d $dir ] && git clone https://github.com/neovim/neovim.git $dir
   cd $HOME/code/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
@@ -65,14 +65,14 @@ fi
 # @x11 stuff
 
 read -p "Do you want install X11? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   sudo pacman -S --noconfirm xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight yabar  
   sudo pacman -S --noconfirm xcb-proto xcb-util xcb-util-wm xcb-util-cursor xcb-util-keysyms
   sudo pacman -S --noconfirm libxinerama autorandr
 fi
 
 read -n1 -rep "Do you want install Wayland stuff? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
     yay -S --noconfirm hyprland kitty waybar yambar \
     swaybg swaylock-effects wofi wlogout mako thunar \
     ttf-jetbrains-mono-nerd noto-fonts-emoji \
@@ -106,7 +106,7 @@ fi
 
 ### Install software for Asus ROG laptops ###
 read -n1 -rep 'Would you like to install Asus ROG software support? (y,n)'answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then 
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then 
     echo -e "Adding Keys... \n"
     sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
     sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
@@ -130,19 +130,19 @@ if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
 fi
 
 read -p "Do you want install suckless and rocks stuff? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   dir="$HOME/code/rocks"
   [ ! -d $dir ] && git clone https://github.com/evertonse/rocks.git $dir
    cd $dir && ./install
 fi
 
 read -p "Do you want install drivers not installed already ? (xf86-video, rtl87)  [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   yay --noconfirm xf86-video
   lsusb
   lspci -k
   read -p "Take a look at lspci and lsusb to see if you need any of rtl87*  (you might need broadcom)  [y/n]: " answer
-  [ "$answer" = "y" ] && yay --noconfirm rtl87
+  [ "$answer" = "y" ] ] && yay --noconfirm rtl87
   sudo iw dev wlan0 set power_save off
   echo "might wanna check journalctl -xb"
   echo "if Problems wifi diconnecting, disable pci-express management in the bios or iw dev wlan0 set power_save off"
@@ -150,7 +150,7 @@ if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
 fi
 
 read -p "Do you want install the notification daemon 'dunst' stuff? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   sudo pacman -S --noconfirm libnotify
   dir="$HOME/code/dunst"
   [ ! -d $dir ] && git clone https://github.com/dunst-project/dunst.git $dir 
@@ -160,7 +160,7 @@ fi
 
 # @user pkg
 read -p "Do you want install the user stuff (tmux, lf , zathura, htop)? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   timedatectl set-timezone America/Maceio
   sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux mupdf
   #sudo pacman -S neovim --noconfirm
@@ -196,7 +196,7 @@ if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
 fi
 
 read -p "Do you want install the pulseaudio-apps (not pulseaudio itself) and tui-related to audio stuff? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   # sudo pacman -S --noconfirm  pipewire pipewire-alsa pipewire-jack pipewire-pulse libpulse
   # look https://github.com/GeorgeFilipkin/pulsemixer
   #curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x ./pulsemixer
@@ -207,20 +207,20 @@ if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
 fi
 
 read -p "Do you want install the 1:pipewire or 2:pulseaudio [1/2]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   echo "wireplumber libwireplumber might be prefered than pipewire-media-session (currently being install), on older hardware wireplumber seems to consumed 100% of cpu and memory :S"
   echo "if you get stuck with wireplumber try pacman -Rdd wireplumber && pacman -S pipewire-media-session"
   for x in pipewire pipewire-roc pipewire-alsa pipewire-jack pipewire-pulse libpipewire pipewire-media-session; do
     installpkg "$x"
   done
-elif [ "$answer" = "y" || [ "$answer" = "Y" ]; then 
+elif [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then 
   for x in pulseaudio pulseaudio-rtp pulseaudio-lirc pulseaudio-alsa pulseaudio-jack pulseaudio-bluetooth pulseaudio-zeroconf pulse-autoconf pasystray-git libpulse; do
     installpkg "$x"
   done
 fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   sudo pacman -S --noconfirm gnu-free-fonts noto-fonts ttf-jetbrains-mono
   yay --noconfirm -S nerd-fonts-complete-mono-glyphs  # these one is very slow
   yay --noconfirm -S ttf-jetbrains-mono-nerd
@@ -228,7 +228,7 @@ if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
 fi
 
 read -p "Do you want install tui (bluetuith, nmtui, torque)? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   go install github.com/darkhz/bluetuith@latest
   yay --noconfirm -S bluez
   yay --noconfirm -S bluez bluez-utils
@@ -237,7 +237,7 @@ if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
 fi
 
 read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer
-if [ "$answer" = "y" || [ "$answer" = "Y" ]; then
+if [ "$answer" = "y" ] || [ "$answer" = "y" ] ]; then
   yay --noconfirm -S go clang pocl rusticl npm pipx
   
 fi
