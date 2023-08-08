@@ -1,2 +1,0 @@
-/home/brodie/models/cork.blend
-/home/brodie/models/donut.blend

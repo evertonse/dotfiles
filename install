@@ -11,6 +11,7 @@ cpdir = partial(copytree, dirs_exist_ok=True)
 home = Path.home()
 installs = ["dotfiles", 'dotdirs', 'dotrepos']
 cmd = lambda x: print(x) or os.system(x) 
+
 def dotdirs():
 
     dirs = [
@@ -20,26 +21,28 @@ def dotdirs():
         './.local/share',
     ]
     
-    for dir in dirs:
-        dir = Path(dir)
-        assert dir.is_dir()
+    for file in dirs:
+        file = Path(file)
         if (
             autoyes
             or input(
-                f"About to copy and overwrite src={dir} into dest={Path(home,dir)} [y/n]?"
+                f"About to copy and overwrite src={file} into dest={Path(home,file)} [y/n]?"
             ).lower()
             == "y"
         ):
-            cpdir(dir, Path(home, dir))
+            if file.is_dir():
+                cpdir(file, Path(home, file))
+            else:
+                cp(file, Path(home, file))
     
     cmd('sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/')
-    cmd('sudo ln -s ~/.local/include/* /usr/include')
+    cmd('sudo ln -sf ~/.local/include/* /usr/include')
     # cmd('sudo ln -s ~/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber')
     # cmd('setxkbmap -model br-abnt2-excyber -layout br-excyber -option ""')
     cmd('xkbcomp -w0 -I$HOME/.config/X11/xkb/ ~/.config/X11/xkb/keymap/excyber-keymap $DISPLAY')
     cmd("chmod +x ./.local/bin/*") 
     cmd("chmod +x ~/.local/bin/*") 
-    cmd("ln -s ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
+    cmd("ln -sf ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
 
     
 def dotrepos():
