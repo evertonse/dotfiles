@@ -7,17 +7,29 @@ export TERMINAL_PROG="st"
 export EXPLORER="st -e lf"
 export GREP_OPTIONS='--color=auto' GREP_COLORS='mt=1;32'
 export CLICOLOR=1
-export BROWSER="librewolf"
+export READER="zathura"
+export VISUAL="nvim"
+export CODEEDITOR="nvim"
+export BROWSER="firefox"
+export COLORTERM="truecolor"
+export PAGER="less"
+# export WM="bspwm"
+# export WM="dwm"
+export WM="dk"
 
 export WORK_DIRS="$HOME/code/"
 export PROJECT_DIRS="$HOME/code/"
 
-# ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DESKTOP_DIR="$HOME/desktop"
+# export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+# export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+# export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 # export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 
