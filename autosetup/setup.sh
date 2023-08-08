@@ -215,8 +215,6 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   done
 elif [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then 
   for x in pulseaudio pulseaudio-rtp pulseaudio-lirc pulseaudio-alsa pulseaudio-jack pulseaudio-bluetooth pulseaudio-zeroconf pulse-autoconf pasystray-git libpulse; do
-    installpkg "$x"
-  done
 fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
@@ -238,7 +236,7 @@ fi
 
 read -p "Do you want install developer stuff (pocl, rusticl, go, clang, etc... )? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  yay --noconfirm -S go clang pocl rusticl npm pipx
+  yay --noconfirm -Syu go clang pocl opencl-rusticl-mesa npm python-pipx gitui
   
 fi
 
