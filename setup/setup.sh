@@ -251,14 +251,16 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
 fi
 
 read -p "Do you want install the 1:pipewire or 2:pulseaudio [1/2]: " answer
-if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+if [ "$answer" = "1" ] || [ "$answer" = "y" ]; then
   echo "wireplumber libwireplumber might be prefered than pipewire-media-session (currently being install), on older hardware wireplumber seems to consumed 100% of cpu and memory :S"
   echo "if you get stuck with wireplumber try pacman -Rdd wireplumber && pacman -S pipewire-media-session"
   for x in pipewire pipewire-roc pipewire-alsa pipewire-jack pipewire-pulse libpipewire pipewire-media-session; do
     installpkg "$x"
   done
-elif [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then 
+elif [ "$answer" = "2" ] || [ "$answer" = "bangkok" ]; then 
   for x in pulseaudio pulseaudio-rtp pulseaudio-lirc pulseaudio-alsa pulseaudio-jack pulseaudio-bluetooth pulseaudio-zeroconf pulse-autoconf pasystray-git libpulse; do
+    installpkg "$x"
+  done
 fi
 
 read -p "Do you want install nerdfonts? [y/n]: " answer
