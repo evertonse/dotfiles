@@ -42,6 +42,9 @@ ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 exit
 cd / && umount -R /mnt/
 reboot
+pacman-key --init && pacman-key --populate archlinux
+pacman -Syy
+pacman -Sy archlinux-keyring && pacman -Su
 useradd -mG wheel excyber
 passwd excyber
 vim /etc/sudoers
