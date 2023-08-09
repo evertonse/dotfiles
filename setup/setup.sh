@@ -73,6 +73,7 @@ fi
 
 read -n1 -rep "Do you want install Wayland stuff? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+
     yay -S --noconfirm hyprland kitty waybar yambar \
     swaybg swaylock-effects wofi wlogout mako thunar \
     ttf-jetbrains-mono-nerd noto-fonts-emoji \
@@ -81,6 +82,49 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     bluez bluez-utils lxappearance xfce4-settings \
     dracula-gtk-theme dracula-icons-git xdg-desktop-portal-hyprland wdisplays
 
+    yay -R --noconfirm swaylock waybar
+    yay -S --noconfirm hyprland-bin polkit-gnome ffmpeg neovim viewnior       \
+    rofi pavucontrol thunar starship wl-clipboard wf-recorder     \
+    swaybg grimblast-git ffmpegthumbnailer tumbler playerctl      \
+    noise-suppression-for-voice thunar-archive-plugin kitty       \
+    waybar-hyprland wlogout swaylock-effects sddm-git pamixer     \
+    nwg-look-bin nordic-theme papirus-icon-theme dunst otf-sora   \
+    ttf-nerd-fonts-symbols-common otf-firamono-nerd inter-font    \
+    ttf-fantasque-nerd noto-fonts noto-fonts-emoji ttf-comfortaa  \
+    ttf-jetbrains-mono-nerd ttf-icomoon-feather ttf-iosevka-nerd  \
+    adobe-source-code-pro-fonts
+
+    xdg-user-dirs-update
+    echo " All necessary packages installed successfully."
+    # Set some files as exacutable 
+    chmod +x ~/.config/hypr/xdg-portal-hyprland
+    chmod +x ~/.config/waybar/scripts/waybar-wttr.py
+
+    ### Add Fonts for Waybar ###
+    mkdir -p $HOME/Downloads/nerdfonts/
+    cd $HOME/Downloads/
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.1/CascadiaCode.zip
+    unzip '*.zip' -d $HOME/Downloads/nerdfonts/
+    rm -rf *.zip
+    sudo cp -R $HOME/Downloads/nerdfonts/ /usr/share/fonts/
+
+    fc-cache -rv  
+
+    ### Enable SDDM Autologin ###
+    read -n1 -rep 'Would you like to enable SDDM autologin? (y,n)' SDDM
+    if [[ $SDDM == "Y" || $SDDM == "y" ]]; then
+      LOC="/etc/sddm.conf"
+      echo -e "The following has been added to $LOC.\n"
+      echo -e "[Autologin]\nUser = $(whoami)\nSession=hyprland" | sudo tee -a $LOC
+      echo -e "\n"
+      echo -e "Enabling SDDM service...\n"
+      sudo systemctl enable sddm
+      sleep 3
+    fi
+
+
+    
+    yay -S --noconfirm bluez bluez-utils blueman
     # Start the bluetooth service
     echo -e "Starting the Bluetooth Service...\n"
     sudo systemctl enable --now bluetooth.service
