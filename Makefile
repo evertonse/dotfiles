@@ -1,7 +1,7 @@
 
 PROJECT := evertonsantos_202100011379_opencl
 
-install: $(shell find  ./.config/ type -d)
+install: $(shell ls ./.config/)
 	python3 ./install -y
 
 clean:

@@ -20,6 +20,8 @@ mkfs.ext4 /dev/sda2 # the rest
 pacstrap /mnt base base-devel linux linux-firmware vim git networkmanager dialog iwd 
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
+timedatectl list-timezones
+timedatectl set-timezone Europe/Paris
 pacman -S grub networkmanager efibootmgr
 ls /sys/firmware/efi # if found than UEFI is enabled
 systemctl enable NetworkManager
@@ -32,7 +34,7 @@ vim /etc/locale.gen
 locale-gen
 
 vim /etc/locale.conf
-# LANG=en-US.UTF8
+echo LANG=en-US.UTF8 > /etc/locale.conf
 # LANG=pt-BR.UTF8
 vim /etc/hostname
 # Choose one of the below
@@ -42,6 +44,7 @@ ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 exit
 cd / && umount -R /mnt/
 reboot
+sudo rmmod pcspkr
 pacman-key --init && pacman-key --populate archlinux
 pacman -Syy
 pacman -Sy archlinux-keyring && pacman -Su

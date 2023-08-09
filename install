@@ -15,7 +15,7 @@ cmd = lambda x: print(x) or os.system(x)
 def dotdirs():
 
     dirs = [
-        *glob('.config/*/'),
+        *glob('./.config/*'),
         './.local/bin',
         './.local/include',
         './.local/share',
@@ -35,6 +35,11 @@ def dotdirs():
             else:
                 cp(file, Path(home, file))
     
+    # cmd(f'sudo cp -rf ./.config {Path(home)}')
+
+    cmd('sudo ln -sf ~/.local/include/* /usr/include')
+
+
     cmd('sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/')
     cmd('sudo ln -sf ~/.local/include/* /usr/include')
     # cmd('sudo ln -s ~/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber')
