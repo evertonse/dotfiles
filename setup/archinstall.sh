@@ -1,3 +1,9 @@
+iwctl
+station w<tab> connect <tab> <enter>
+exit
+ping archlinux.org
+
+# Console fonts are located in /usr/share/kbd/consolefonts/setfont ter-132b
 localectl set-keymap br-abnt2
 timedatectl set-ntp true
 lsblk
@@ -14,10 +20,11 @@ mkfs.ext4 /dev/sda2 # the rest
 pacstrap /mnt base base-devel linux linux-firmware vim git networkmanager dialog iwd 
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
-pacman -S grub networkmanager 
+pacman -S grub networkmanager efibootmgr
 ls /sys/firmware/efi # if found than UEFI is enabled
 systemctl enable NetworkManager
 grub-install /dev/sda
+grub-install --target=x87_64-efi --efi-directory=/boot --bootloader-id=grub /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 passwd
 vim /etc/locale.gen
@@ -32,7 +39,8 @@ vim /etc/hostname
 ln -sf /usr/share/zoneinfo/Brazil/East /etc/localtime
 ln -sf /usr/share/zoneinfo/America/Maceio /etc/localtime
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-umount -R /mnt/
+exit
+cd / && umount -R /mnt/
 reboot
 useradd -mG wheel excyber
 passwd excyber
