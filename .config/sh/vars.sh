@@ -15,7 +15,8 @@ export COLORTERM="truecolor"
 export PAGER="less"
 # export WM="bspwm"
 # export WM="dwm"
-export WM="dk"
+# export WM="dk"
+export WM="Hyprland"
 
 export WORK_DIRS="$HOME/code/"
 export PROJECT_DIRS="$HOME/code/"
@@ -23,6 +24,7 @@ export PROJECT_DIRS="$HOME/code/"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_RUNTIME_DIR="$HOME/.cache/runtime/"
 export XDG_DESKTOP_DIR="$HOME/desktop"
 # export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 # export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
