@@ -1,5 +1,5 @@
 #!/bin/bash
-pacman -Syyuu
+sudo pacman -Syyuu
 autoyes="$1"
 
 installpkg() {
