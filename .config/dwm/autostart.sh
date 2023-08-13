@@ -23,6 +23,7 @@ pkill pipewire &
 xwallpaper --zoom ~/Pictures/681587.png &
 echo "works" > dwm.works
 xkbcomp $HOME/.config/X11/xkb/keymap/excyber-keymap $DISPLAY
+pulseaudio &
 exec dwmblocks &
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
