@@ -1,4 +1,6 @@
-echo "" | dmenu -c -p "enter your password" | sudo -S backlight 12
-exec st -e brightness-controller &
+#!/bin/sh
+# echo "" | dmenu -c -p "enter your password" | sudo -S backlight 12
+backlight 12
+exec mpv "$HOME/Downloads/10 Hours Just Rain, No Thunder.mp4" &
 exec st -e pulsemixer &
-exec mpv "$HOME/Downloads/10 Hours Just Rain, No Thunder.mp4"
+exec st -e brightness-controller &
