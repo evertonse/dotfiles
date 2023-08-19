@@ -283,7 +283,7 @@ fi
 
 read -p "Do you want install developer stuff (pocl, gitui, rusticl, go, clang, etc... )? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  yay --noconfirm -Syu gdb rlwrap go clang pocl opencl-rusticl-mesa npm python-pipx gitui prettier deno qutebrowser
+  yay --noconfirm -Syu gdb rlwrap go clang pocl opencl-rusticl-mesa npm python-pipx gitui prettier deno qutebrowser libvirt
   git clone https://github.com/nakst/gf.git ~/code/gf/ && cd ~/code/gf && ./build.sh && sudo ln -sf ~/code/gf/gf2 /usr/bin/gf
   git clone https://github.com/longld/peda.git ~/code/peda
   echo "source ~/code/peda/peda.py" >> ~/.gdbinit
