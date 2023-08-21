@@ -272,13 +272,14 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   yay --noconfirm -S noto-fonts-emoji
 fi
 
-read -p "Do you want install tui (bluetuith, nmtui, torque)? [y/n]: " answer
+read -p "Do you want install tui (bluetuith, nmtui, torque, stig)? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   yay --noconfirm -S network-manager-applet
   go install github.com/darkhz/bluetuith@latest
   yay --noconfirm -S bluez bluez-utils
   yay --noconfirm -S bluetuith
   installpkg transmission-cli
+  yay --noconfirm -S  transmission-gtk transmission-cli stig tremc
 fi
 
 read -p "Do you want install developer stuff (pocl, gitui, rusticl, go, clang, etc... )? [y/n]: " answer
