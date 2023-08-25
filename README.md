@@ -110,3 +110,8 @@ git config --global --unset credential.helper
 
 # XDG
 - https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+
+# Debuggers
+- https://github.com/epasveer/seer/wiki/Building-Seer---Qt6
+- https://www.gnu.org/software/ddd/
+- https://github.com/longld/peda
