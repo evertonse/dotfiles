@@ -1,3 +1,4 @@
+
 // Place your key bindings in this file to override the defaultsauto[]
 [
     //>> ** MODIFIED BY ME **
@@ -34,7 +35,8 @@
   },
   {
     "key": "space e",
-    "command": "workbench.view.explorer",
+    "command": "workbench.action.toggleSidebarVisibility",
+    //"command": "workbench.view.explorer",
     "when": "!searchEnabled &&!findInFiles &&!editorTextFocus && !terminalFocus && !extensionSearchHasTextaa"
   },
   {
