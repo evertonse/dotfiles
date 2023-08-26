@@ -1,4 +1,3 @@
-
 // Place your key bindings in this file to override the defaultsauto[]
 [
     //>> ** MODIFIED BY ME **
@@ -59,6 +58,11 @@
   // >> FILE EXPLORER
   {
     "key": "d",
+    "command": "cutFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus && !terminalFocus"
+  },
+  {
+    "key": "D",
     "command": "deleteFile",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus && !terminalFocus"
   },
@@ -73,7 +77,7 @@
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus && !terminalFocus"
   },
   {
-    "key": "c",
+    "key": "y",
     "command": "filesExplorer.copy",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus && !terminalFocus"
     //"when": "explorerViewletVisible && filesExplorerFocus && !terminalFocus && !explorerResourceMoveableToTrash && !explorerResourceReadonly && !inputFocus"
@@ -382,3 +386,4 @@
     //"when": "listFocus && !inputFocus"
   //},
 ]
+
