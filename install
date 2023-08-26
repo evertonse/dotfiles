@@ -3,24 +3,24 @@
 import sys
 import os
 from pathlib import Path
-from shutil import copytree, rmtree as rmdir, copy as cp, move as mv 
+from shutil import copytree, rmtree as rmdir, copy as cp, move as mv
 from glob import glob
 from functools import partial
 
 cpdir = partial(copytree, dirs_exist_ok=True)
 home = Path.home()
-installs = ["dotfiles", 'dotdirs', 'dotrepos']
-cmd = lambda x: print(x) or os.system(x) 
+installs = ["dotfiles", "dotdirs", "dotrepos"]
+cmd = lambda x: print(x) or os.system(x)
+
 
 def dotdirs():
-
     dirs = [
-        *glob('./.config/*'),
-        './.local/bin',
-        './.local/include',
-        './.local/share',
+        *glob("./.config/*"),
+        "./.local/bin",
+        "./.local/include",
+        "./.local/share",
     ]
-    
+
     for file in dirs:
         file = Path(file)
         if (
@@ -34,31 +34,39 @@ def dotdirs():
                 cpdir(file, Path(home, file))
             else:
                 cp(file, Path(home, file))
-    
+
     # cmd(f'sudo cp -rf ./.config {Path(home)}')
 
-    cmd('sudo ln -sf ~/.local/include/* /usr/include')
+    cmd("sudo ln -sf ~/.local/include/* /usr/include")
 
-
-    cmd('sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/')
-    cmd('sudo ln -sf ~/.local/include/* /usr/include')
+    cmd("sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
+    cmd("sudo ln -sf ~/.local/include/* /usr/include")
     # cmd('sudo ln -s ~/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber')
     # cmd('setxkbmap -model br-abnt2-excyber -layout br-excyber -option ""')
-    cmd('xkbcomp -w0 -I$HOME/.config/X11/xkb/ ~/.config/X11/xkb/keymap/excyber-keymap $DISPLAY')
-    cmd("chmod +x ./.local/bin/*") 
-    cmd("chmod +x ~/.local/bin/*") 
-    cmd("ln -sf ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf") 
+    cmd(
+        "xkbcomp -w0 -I$HOME/.config/X11/xkb/ ~/.config/X11/xkb/keymap/excyber-keymap $DISPLAY"
+    )
+    cmd("chmod +x ./.local/bin/*")
+    cmd("chmod +x ~/.local/bin/*")
+    cmd("ln -sf ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf")
 
-    
+
 def dotrepos():
     home = Path.home()
     cmd(f"rm -rf {Path(home,'.config','nvim').resolve()}")
     cmd(f"rm -rf {Path(home,'.local','share','nvim').resolve()}")
 
-    cmd(f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1")
-    cmd(f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}")
-    rocks = Path(home,'code','rocks')
-    cmd(f"git clone https://github.com/evertonse/rocks {rocks} && cd {rocks} && ./install.sh")
+    cmd(
+        f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1"
+    )
+    cmd(
+        f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}"
+    )
+    rocks = Path(home, "code", "rocks")
+    cmd(
+        f"git clone https://github.com/evertonse/rocks {rocks} && cd {rocks} && ./install.sh"
+    )
+
 
 # def neovim():
 #     neovim_path = Path(home,'code','neovim')
@@ -69,14 +77,13 @@ def dotrepos():
 #     cmd(f"cd {neovim_path}")
 #     cmd(f"make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install")
 
-    
+
 def dotfiles():
     files = [
-        *glob('./.*'),
+        *glob("./.*"),
         "./pacman.conf",
-        './.gitconfig',
+        "./.gitconfig",
     ]
-
 
     for f in files:
         if f == "./pacman.conf":
@@ -84,7 +91,9 @@ def dotfiles():
             continue
         if f == "./grub":
             cmd(f"sudo cp {Path(f)} {Path('/etc', 'default', 'grub')}")
-            print(" to ensure the grub config is set use 'sudo grub-mkconfig -o /boot/grub/grub.cfg'")
+            print(
+                " to ensure the grub config is set use 'sudo grub-mkconfig -o /boot/grub/grub.cfg'"
+            )
             continue
 
         f = Path(f)
@@ -95,16 +104,17 @@ def dotfiles():
             autoyes
             or input(
                 # f'for sure this is not a dir isit : {f.is_dir()}'
-                # + 
+                # +
                 f"About to copy and overwrite src={f} into dest={Path(home,f)} [y/n]?"
             ).lower()
             == "y"
         ):
-            
             cp(f, Path(home, f))
 
 
 autoyes = False
+
+
 def main():
     global autoyes
     argc = len(sys.argv)
@@ -119,7 +129,7 @@ def main():
     print("Which one do you wish to install ? ")
     for key, value in enumerate(installs):
         print(f"{key+1} : {value}")
-    which = installs[int(input())-1]
+    which = installs[int(input()) - 1]
 
     if which == "dotdirs":
         dotdirs()
@@ -128,6 +138,6 @@ def main():
     elif which == "dotrepos":
         dotrepos()
 
+
 if __name__ == "__main__":
     main()
-
