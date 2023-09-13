@@ -92,16 +92,15 @@ function tmux_last_session(){
    tmux attach -t $LAST_TMUX_SESSION
 }
 
-function git_branch_name()
-{
-  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-  if [[ $branch == "" ]];
-  then
-    :
-  else
-    echo '('$branch') '
-  fi
+function git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    if [[ $branch == "" ]]; then
+        :
+    else
+        echo ' (' $branch ') '
+    fi
 }
+
 setopt prompt_subst
 
 autoload -U colors && colors
@@ -115,7 +114,7 @@ function change_color() {
 
 NEWLINE=$'\n'
 PROMPT="[%n @ %B%~%b] ${NEWLINE}$ "
-RPROMPT="$(git_branch_name)%T"
+RPROMPT="$(git_branch)%T"
 
 bindkey -s '^s' 'tm ^M'
 bindkey -s '^Q' 'exit ^M'
