@@ -112,9 +112,12 @@ function change_color() {
   fi
 }
 
+# add setopt PROMPT_SUBST to your .zshrc. This "allows for functions in the prompt"
+# use single quotes when defining your PS1 / PROMPT. If you use double quotes, then the whole string will be evaluated once when the terminal starts, and then that evaluated value is "re-executed" every time the command changes. But you want the functions to be re-evaluated, not the output of the function at the time when the terminal is created.
+# Easiest example I used to confirm I had it working:
 NEWLINE=$'\n'
-PROMPT="[%n @ %B%~%b] ${NEWLINE}$ "
-RPROMPT="$(git_branch)%T"
+PROMPT='[%n @ %B%~%b] ${NEWLINE}$ '
+RPROMPT='$(git_branch)%T'
 
 bindkey -s '^s' 'tm ^M'
 bindkey -s '^Q' 'exit ^M'
