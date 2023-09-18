@@ -9,10 +9,6 @@ alias ll='ls -AlF --color=always --group-directories-first'
 alias l='ls -CF'
 alias gdb='gdb -tui -iex "set disassembly-flavor intel"'
 alias objdump='objdump -M intel'
-
-touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
-alias touch='touch2'
-
 alias py='python3'
 # alias yt='youtube-dl --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
 # alias yta='youtube-dl --add-metadata -xic' # Audio Only
@@ -28,8 +24,9 @@ alias YT='youtube-viewer'
 
 [ -f "$MBSYNCRC" ] && alias mbsync="mbsync -c $MBSYNCRC"
 
-# sudo not required for some system commands
-for command in backlight mount umount sv pacman updatedb su shutdown poweroff reboot ; do
+#: sudo not required for some system commands
+alias shutdown=killall chrome --wait;sudo shutdown;
+for command in backlight mount umount sv pacman updatedb su poweroff reboot ; do
 	alias $command="sudo $command"
 done; unset command
 
