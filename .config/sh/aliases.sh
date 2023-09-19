@@ -25,7 +25,7 @@ alias YT='youtube-viewer'
 [ -f "$MBSYNCRC" ] && alias mbsync="mbsync -c $MBSYNCRC"
 
 #: sudo not required for some system commands
-alias shutdown="killall chrome --wait;sudo shutdown --now;"
+alias shutdown="killall chrome --wait;sudo shutdown --poweroff;"
 for command in backlight mount umount sv pacman updatedb su poweroff reboot ; do
 	alias $command="sudo $command"
 done; unset command
