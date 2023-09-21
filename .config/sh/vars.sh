@@ -96,7 +96,7 @@ else
      export LS_COLORS="$(vivid generate catppuccin-frappe)"
 fi 
 
-PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:$XDG_DATA_HOME/go/bin/:$XDG_DATA_HOME/cargo/bin:$XDG_DATA_HOME/flutter/bin
+PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:$XDG_DATA_HOME/go/bin/:$XDG_DATA_HOME/cargo/bin:$XDG_DATA_HOME/flutter/bin:$XDG_DATA_HOME/android-studio/bin
 github='https://github.com'
 
 onedrive='/mnt/c/users/excyber/onedrive/'
