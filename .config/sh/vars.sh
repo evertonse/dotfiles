@@ -54,6 +54,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
+export FLUTTERPATH="$XDG_DATA_HOME/flutter"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
 export UNISON="$XDG_DATA_HOME/unison"
@@ -95,7 +96,7 @@ else
      export LS_COLORS="$(vivid generate catppuccin-frappe)"
 fi 
 
-PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:~/.local/share/go/bin/:$XDG_DATA_HOME/cargo/bin
+PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:$XDG_DATA_HOME/go/bin/:$XDG_DATA_HOME/cargo/bin:$XDG_DATA_HOME/flutter/bin
 github='https://github.com'
 
 onedrive='/mnt/c/users/excyber/onedrive/'
