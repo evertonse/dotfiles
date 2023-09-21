@@ -9,3 +9,5 @@
 	rebase = true
 [push]
 	autoSetupRemote = true
+[safe]
+	directory = /opt/flutter
