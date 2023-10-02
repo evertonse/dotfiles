@@ -25,6 +25,6 @@ xkbcomp $HOME/.config/X11/xkb/keymap/excyber-keymap $DISPLAY
 pulseaudio &
 google-chrome-stable &
 exec dwmblocks &
-mode-sleep &
+# mode-sleep &
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
