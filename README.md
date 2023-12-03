@@ -1,4 +1,5 @@
 # lifetime-config-files
+ExecStart=-/sbin/agetty -o '-f -p -- \\u' --noclear -a USERNAME %I $TERM
 dotfiles and +
 - .linuxtips for frequently questioins I have
 # github
