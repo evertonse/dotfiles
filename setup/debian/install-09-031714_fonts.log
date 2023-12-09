@@ -1,0 +1,320 @@
+[33m[NOTE](B[m Installing fonts-firacode ...
+Reading package lists...Reading package lists...
+
+Building dependency tree...Building dependency tree...
+Reading state information...
+Reading state information...
+
+The following packages were automatically installed and are no longer required:
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+The following packages were automatically installed and are no longer required:
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  p11-kit-modules samba-libs
+Use 'sudo apt autoremove' to remove them.
+  p11-kit-modules samba-libs
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+The following NEW packages will be installed:
+  fonts-firacode
+  fonts-firacode
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 1,486 kB of archives.
+After this operation, 3,013 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 fonts-firacode all 6.2-2 [1,486 kB]
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 1,486 kB of archives.
+After this operation, 3,013 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 fonts-firacode all 6.2-2 [1,486 kB]
+Fetched 1,486 kB in 1s (1,737 kB/s)
+Fetched 1,486 kB in 1s (1,737 kB/s)
+Selecting previously unselected package fonts-firacode.
+(Reading database ... Selecting previously unselected package fonts-firacode.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 65%(Reading database ... 70%(Reading database ... 70%(Reading database ... 75%(Reading database ... 75%(Reading database ... 80%(Reading database ... 80%(Reading database ... 85%(Reading database ... 85%(Reading database ... 90%(Reading database ... 90%(Reading database ... 95%(Reading database ... 95%(Reading database ... 100%(Reading database ... 148526 files and directories currently installed.)
+(Reading database ... 100%(Reading database ... 148526 files and directories currently installed.)
+Preparing to unpack .../fonts-firacode_6.2-2_all.deb ...
+Preparing to unpack .../fonts-firacode_6.2-2_all.deb ...
+Unpacking fonts-firacode (6.2-2) ...
+Unpacking fonts-firacode (6.2-2) ...
+Setting up fonts-firacode (6.2-2) ...
+Setting up fonts-firacode (6.2-2) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+[1A[K[32m[OK](B[m fonts-firacode was installed.
+[33m[NOTE](B[m Installing fonts-font-awesome ...
+Reading package lists...Reading package lists...
+
+Building dependency tree...Building dependency tree...
+Reading state information...
+Reading state information...
+
+The following packages were automatically installed and are no longer required:
+The following packages were automatically installed and are no longer required:
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  p11-kit-modules samba-libs
+  p11-kit-modules samba-libs
+Use 'sudo apt autoremove' to remove them.
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+The following NEW packages will be installed:
+  fonts-font-awesome
+  fonts-font-awesome
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 517 kB of archives.
+After this operation, 1,402 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 fonts-font-awesome all 5.0.10+really4.7.0~dfsg-4.1 [517 kB]
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 517 kB of archives.
+After this operation, 1,402 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 fonts-font-awesome all 5.0.10+really4.7.0~dfsg-4.1 [517 kB]
+Fetched 517 kB in 1s (715 kB/s)
+Fetched 517 kB in 1s (715 kB/s)
+Selecting previously unselected package fonts-font-awesome.
+(Reading database ... Selecting previously unselected package fonts-font-awesome.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 45%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 60%(Reading database ... 65%(Reading database ... 65%(Reading database ... 70%(Reading database ... 70%(Reading database ... 75%(Reading database ... 75%(Reading database ... 80%(Reading database ... 80%(Reading database ... 85%(Reading database ... 85%(Reading database ... 90%(Reading database ... 90%(Reading database ... 95%(Reading database ... 95%(Reading database ... 100%(Reading database ... 148553 files and directories currently installed.)
+(Reading database ... 100%(Reading database ... 148553 files and directories currently installed.)
+Preparing to unpack .../fonts-font-awesome_5.0.10+really4.7.0~dfsg-4.1_all.deb ...
+Preparing to unpack .../fonts-font-awesome_5.0.10+really4.7.0~dfsg-4.1_all.deb ...
+Unpacking fonts-font-awesome (5.0.10+really4.7.0~dfsg-4.1) ...
+Unpacking fonts-font-awesome (5.0.10+really4.7.0~dfsg-4.1) ...
+Setting up fonts-font-awesome (5.0.10+really4.7.0~dfsg-4.1) ...
+Setting up fonts-font-awesome (5.0.10+really4.7.0~dfsg-4.1) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+[1A[K[32m[OK](B[m fonts-font-awesome was installed.
+[32m[OK](B[m fonts-noto is already installed. Skipping...
+[33m[NOTE](B[m Installing fonts-noto-cjk ...
+Reading package lists...Reading package lists...
+
+Building dependency tree...Building dependency tree...
+Reading state information...
+Reading state information...
+
+The following packages were automatically installed and are no longer required:
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+The following packages were automatically installed and are no longer required:
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  p11-kit-modules samba-libs
+Use 'sudo apt autoremove' to remove them.
+  p11-kit-modules samba-libs
+Use 'sudo apt autoremove' to remove them.
+Suggested packages:
+  fonts-noto-cjk-extra
+Suggested packages:
+  fonts-noto-cjk-extra
+The following NEW packages will be installed:
+The following NEW packages will be installed:
+  fonts-noto-cjk
+  fonts-noto-cjk
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 56.6 MB of archives.
+After this operation, 93.2 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 fonts-noto-cjk all 1:20230817+repack1-3 [56.6 MB]
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 56.6 MB of archives.
+After this operation, 93.2 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 fonts-noto-cjk all 1:20230817+repack1-3 [56.6 MB]
+Fetched 56.6 MB in 4s (13.3 MB/s)
+Fetched 56.6 MB in 4s (13.3 MB/s)
+Selecting previously unselected package fonts-noto-cjk.
+(Reading database ... Selecting previously unselected package fonts-noto-cjk.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 35%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 40%(Reading database ... 45%(Reading database ... 35%(Reading database ... 50%(Reading database ... 40%(Reading database ... 45%(Reading database ... 55%(Reading database ... 60%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 65%(Reading database ... 70%(Reading database ... 70%(Reading database ... 75%(Reading database ... 75%(Reading database ... 80%(Reading database ... 80%(Reading database ... 85%(Reading database ... 85%(Reading database ... 90%(Reading database ... 90%(Reading database ... 95%(Reading database ... 95%(Reading database ... 100%(Reading database ... 148612 files and directories currently installed.)
+(Reading database ... 100%(Reading database ... 148612 files and directories currently installed.)
+Preparing to unpack .../fonts-noto-cjk_1%3a20230817+repack1-3_all.deb ...
+Preparing to unpack .../fonts-noto-cjk_1%3a20230817+repack1-3_all.deb ...
+Unpacking fonts-noto-cjk (1:20230817+repack1-3) ...
+Unpacking fonts-noto-cjk (1:20230817+repack1-3) ...
+Setting up fonts-noto-cjk (1:20230817+repack1-3) ...
+Setting up fonts-noto-cjk (1:20230817+repack1-3) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+[1A[K[32m[OK](B[m fonts-noto-cjk was installed.
+[33m[NOTE](B[m Installing fonts-noto-color-emoji ...
+Reading package lists...Reading package lists...
+
+Building dependency tree...Building dependency tree...
+Reading state information...
+Reading state information...
+
+The following packages were automatically installed and are no longer required:
+The following packages were automatically installed and are no longer required:
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+  gnome-keyring gnome-keyring-pkcs11 libabsl20220623 libavahi-glib1 libgav1-1
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgdata-common libgdata22 libgoa-1.0-0b libgoa-1.0-common libgphoto2-l10n
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libgphoto2-port12 libldb2 libmtp-common libmtp-runtime libmtp9 libnfs14
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libpam-gnome-keyring libsmbclient libsoup2.4-1 libsoup2.4-common
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  libswresample-dev libtalloc2 libtevent0 libwbclient0 libyuv0 p11-kit
+  p11-kit-modules samba-libs
+Use 'sudo apt autoremove' to remove them.
+  p11-kit-modules samba-libs
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+The following NEW packages will be installed:
+  fonts-noto-color-emoji
+  fonts-noto-color-emoji
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 9,627 kB of archives.
+After this operation, 10.7 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 fonts-noto-color-emoji all 2.042-1 [9,627 kB]
+0 upgraded, 1 newly installed, 0 to remove and 758 not upgraded.
+Need to get 9,627 kB of archives.
+After this operation, 10.7 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main amd64 fonts-noto-color-emoji all 2.042-1 [9,627 kB]
+Fetched 9,627 kB in 2s (5,033 kB/s)
+Fetched 9,627 kB in 2s (5,033 kB/s)
+Selecting previously unselected package fonts-noto-color-emoji.
+(Reading database ... Selecting previously unselected package fonts-noto-color-emoji.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 65%(Reading database ... 70%(Reading database ... 70%(Reading database ... 75%(Reading database ... 75%(Reading database ... 80%(Reading database ... 80%(Reading database ... 85%(Reading database ... 85%(Reading database ... 90%(Reading database ... 90%(Reading database ... 95%(Reading database ... 95%(Reading database ... 100%(Reading database ... 148627 files and directories currently installed.)
+(Reading database ... 100%(Reading database ... 148627 files and directories currently installed.)
+Preparing to unpack .../fonts-noto-color-emoji_2.042-1_all.deb ...
+Preparing to unpack .../fonts-noto-color-emoji_2.042-1_all.deb ...
+Unpacking fonts-noto-color-emoji (2.042-1) ...
+Unpacking fonts-noto-color-emoji (2.042-1) ...
+Setting up fonts-noto-color-emoji (2.042-1) ...
+Setting up fonts-noto-color-emoji (2.042-1) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+Processing triggers for fontconfig (2.14.1-4) ...
+[1A[K[32m[OK](B[m fonts-noto-color-emoji was installed.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0100 3561k  100 3561k    0     0  1472k      0  0:00:02  0:00:02 --:--:-- 4839k
+Font directories:
+	/home/excyber/.local/share/fonts
+	/usr/local/share/fonts
+	/usr/share/fonts
+	/home/excyber/.fonts
+	/home/excyber/.local/share/fonts/JetBrainsMono
+	/home/excyber/.local/share/fonts/JetBrainsMonoNerd
+	/home/excyber/.local/share/fonts/MesloLGS NF
+	/usr/share/fonts/X11
+	/usr/share/fonts/cMap
+	/usr/share/fonts/cmap
+	/usr/share/fonts/opentype
+	/usr/share/fonts/truetype
+	/usr/share/fonts/type1
+	/usr/share/fonts/X11/100dpi
+	/usr/share/fonts/X11/75dpi
+	/usr/share/fonts/X11/Type1
+	/usr/share/fonts/X11/encodings
+	/usr/share/fonts/X11/misc
+	/usr/share/fonts/X11/util
+	/usr/share/fonts/cmap/adobe-cns1
+	/usr/share/fonts/cmap/adobe-gb1
+	/usr/share/fonts/cmap/adobe-japan1
+	/usr/share/fonts/cmap/adobe-japan2
+	/usr/share/fonts/cmap/adobe-korea1
+	/usr/share/fonts/opentype/font-awesome
+	/usr/share/fonts/opentype/noto
+	/usr/share/fonts/opentype/urw-base35
+	/usr/share/fonts/truetype/dejavu
+	/usr/share/fonts/truetype/droid
+	/usr/share/fonts/truetype/firacode
+	/usr/share/fonts/truetype/font-awesome
+	/usr/share/fonts/truetype/liberation
+	/usr/share/fonts/truetype/noto
+	/usr/share/fonts/truetype/vlgothic
+	/usr/share/fonts/type1/urw-base35
+	/usr/share/fonts/X11/encodings/large
+/home/excyber/.local/share/fonts: skipping, existing cache is valid: 0 fonts, 3 dirs
+/home/excyber/.local/share/fonts/JetBrainsMono: skipping, existing cache is valid: 96 fonts, 0 dirs
+/home/excyber/.local/share/fonts/JetBrainsMonoNerd: skipping, existing cache is valid: 96 fonts, 0 dirs
+/home/excyber/.local/share/fonts/MesloLGS NF: skipping, existing cache is valid: 4 fonts, 0 dirs
+/usr/local/share/fonts: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts: skipping, existing cache is valid: 0 fonts, 6 dirs
+/usr/share/fonts/X11: skipping, existing cache is valid: 0 fonts, 6 dirs
+/usr/share/fonts/X11/100dpi: skipping, existing cache is valid: 358 fonts, 0 dirs
+/usr/share/fonts/X11/75dpi: skipping, existing cache is valid: 358 fonts, 0 dirs
+/usr/share/fonts/X11/Type1: skipping, existing cache is valid: 43 fonts, 0 dirs
+/usr/share/fonts/X11/encodings: skipping, existing cache is valid: 0 fonts, 1 dirs
+/usr/share/fonts/X11/encodings/large: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/X11/misc: skipping, existing cache is valid: 89 fonts, 0 dirs
+/usr/share/fonts/X11/util: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cMap: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap: skipping, existing cache is valid: 0 fonts, 5 dirs
+/usr/share/fonts/cmap/adobe-cns1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-gb1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-japan1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-japan2: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/cmap/adobe-korea1: skipping, existing cache is valid: 0 fonts, 0 dirs
+/usr/share/fonts/opentype: skipping, existing cache is valid: 0 fonts, 3 dirs
+/usr/share/fonts/opentype/font-awesome: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/opentype/noto: skipping, existing cache is valid: 30 fonts, 0 dirs
+/usr/share/fonts/opentype/urw-base35: skipping, existing cache is valid: 35 fonts, 0 dirs
+/usr/share/fonts/truetype: skipping, existing cache is valid: 1 fonts, 7 dirs
+/usr/share/fonts/truetype/dejavu: skipping, existing cache is valid: 22 fonts, 0 dirs
+/usr/share/fonts/truetype/droid: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/firacode: skipping, existing cache is valid: 6 fonts, 0 dirs
+/usr/share/fonts/truetype/font-awesome: skipping, existing cache is valid: 1 fonts, 0 dirs
+/usr/share/fonts/truetype/liberation: skipping, existing cache is valid: 16 fonts, 0 dirs
+/usr/share/fonts/truetype/noto: skipping, existing cache is valid: 4 fonts, 0 dirs
+/usr/share/fonts/truetype/vlgothic: skipping, existing cache is valid: 2 fonts, 0 dirs
+/usr/share/fonts/type1: skipping, existing cache is valid: 0 fonts, 1 dirs
+/usr/share/fonts/type1/urw-base35: skipping, existing cache is valid: 35 fonts, 0 dirs
+/home/excyber/.fonts: skipping, no such directory
+/home/excyber/.local/share/fonts/JetBrainsMono: skipping, looped directory detected
+/home/excyber/.local/share/fonts/JetBrainsMonoNerd: skipping, looped directory detected
+/home/excyber/.local/share/fonts/MesloLGS NF: skipping, looped directory detected
+/usr/share/fonts/X11: skipping, looped directory detected
+/usr/share/fonts/cMap: skipping, looped directory detected
+/usr/share/fonts/cmap: skipping, looped directory detected
+/usr/share/fonts/opentype: skipping, looped directory detected
+/usr/share/fonts/truetype: skipping, looped directory detected
+/usr/share/fonts/type1: skipping, looped directory detected
+/usr/share/fonts/X11/100dpi: skipping, looped directory detected
+/usr/share/fonts/X11/75dpi: skipping, looped directory detected
+/usr/share/fonts/X11/Type1: skipping, looped directory detected
+/usr/share/fonts/X11/encodings: skipping, looped directory detected
+/usr/share/fonts/X11/misc: skipping, looped directory detected
+/usr/share/fonts/X11/util: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-cns1: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-gb1: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-japan1: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-japan2: skipping, looped directory detected
+/usr/share/fonts/cmap/adobe-korea1: skipping, looped directory detected
+/usr/share/fonts/opentype/font-awesome: skipping, looped directory detected
+/usr/share/fonts/opentype/noto: skipping, looped directory detected
+/usr/share/fonts/opentype/urw-base35: skipping, looped directory detected
+/usr/share/fonts/truetype/dejavu: skipping, looped directory detected
+/usr/share/fonts/truetype/droid: skipping, looped directory detected
+/usr/share/fonts/truetype/firacode: skipping, looped directory detected
+/usr/share/fonts/truetype/font-awesome: skipping, looped directory detected
+/usr/share/fonts/truetype/liberation: skipping, looped directory detected
+/usr/share/fonts/truetype/noto: skipping, looped directory detected
+/usr/share/fonts/truetype/vlgothic: skipping, looped directory detected
+/usr/share/fonts/type1/urw-base35: skipping, looped directory detected
+/usr/share/fonts/X11/encodings/large: skipping, looped directory detected
+/var/cache/fontconfig: not cleaning unwritable cache directory
+/home/excyber/.cache/fontconfig: cleaning cache directory
+/home/excyber/.cache/fontconfig: invalid cache file: 3830d5c3ddfd5cd38a049b759396e72e-le64.cache-8
+/home/excyber/.fontconfig: not cleaning non-existent cache directory
+fc-cache: succeeded

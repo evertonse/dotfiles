@@ -13,6 +13,7 @@ installs = ["dotfiles", "dotdirs", "dotrepos"]
 cmd = lambda x: print(x) or os.system(x)
 
 
+
 def dotdirs():
     dirs = [
         *glob("./.config/*"),
@@ -20,6 +21,13 @@ def dotdirs():
         "./.local/include",
         "./.local/share",
     ]
+
+    links = {
+        # every path is relative to ~/.config
+        ("kitty.0/", "kitty/"),
+        ("waybar.0/", "waybar/"),
+        ("/zsh/.zshrc", ".zshrc")
+    }
 
     for file in dirs:
         file = Path(file)
@@ -38,7 +46,9 @@ def dotdirs():
 
     # cmd(f'sudo cp -rf ./.config {Path(home)}')
 
-    cmd("sudo ln -sf ~/.config/zsh/.zshrc ~/.config/.zshrc")
+    for src, dst in links:
+        cmd(f"sudo ln -sf ~/.config/{src} ~/.config/{dst}")
+
     cmd("sudo ln -sf ~/.local/include/* /usr/include")
 
     cmd("sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
