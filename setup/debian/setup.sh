@@ -142,6 +142,8 @@ for x in "${dependencies[@]}"; do
 	installpkg "$x"
 done
 
+ln -s $(which fdfind) ~/.local/bin/fd
+
 # @firmware
 read -p "Hyprland [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
