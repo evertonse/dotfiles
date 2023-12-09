@@ -8,13 +8,12 @@ client.focused #0d0d0d #171717 #ffffff #0d0d0d #0d0d0d
 client.unfocused #0d0d0d #363636 #888888 #292d2e #0d0d0d
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+#floating_modifier $mod
 
-# kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+c kill
 
-# start dmenu (a program launcher)
-bindsym $mod+p exec rofi -show window
+# start rofi (a program launcher)
+bindsym $mod+p exec rofi -show run
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+h focus left
@@ -31,15 +30,6 @@ bindsym $mod+Shift+l move right
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# Here for testing
-#bindsym $mod+Shift+s layout stacking
-#bindsym $mod+Shift+t layout tabbed
-#bindsym $mod+Shift+i layout toggle split
-#bindsym $mod+Shift+space floating toggle
-#bindsym $mod+space focus mode_toggle
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -107,124 +97,23 @@ bindsym $mod+Shift+Control+k move container to output up
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym $mod+Shift+w resize shrink width 10 px or 5 ppt
-        bindsym $mod+Shift+h resize shrink height 10 px or 5 ppt
-        bindsym $mod+w resize grow width 10 px or 5 ppt
-        bindsym $mod+h resize grow height 10 px or 5 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-bindsym $mod+r mode "resize"
-
-###---Start external scripts---###
-# Status Bar
-bar {
-    tray_output HDMI-1
-    tray_output primary
-    output HDMI-1
-    output primary
-
-    position bottom
-    status_command i3status
-}
-# BitTorrent daemon
-exec --no-startup-id transmission-daemon
-# Torrent RSS
-exec --no-startup-id transmission-rss -f
-#Wifi Applet
-exec --no-startup-id nm-applet
-# Load Xresources
-exec --no-startup-id xrdb ~/.Xresources
-# Set wallpaper
-exec --no-startup-id feh --bg-scale --no-fehbg ~/.config/wall.png
-# Compositor
-exec --no-startup-id picom -b
+#exec --no-startup-id picom -b
 
 ###---Cursor speed---###
 exec --no-startup-id xinput set-prop 11 295 1.9
 
-###---Audio controls---###
-bindsym $mod+p exec volctrl Headphone 2%+
-bindsym $mod+shift+p exec volctrl Headphone 2%-
-bindsym $mod+Up exec volctrl Master 2%+
-bindsym $mod+Down exec volctrl Master 2%-
-bindsym $mod+m exec volctrl All mute
-
-###---Mount and unmount android---###
-bindsym $mod+a exec mntandroid
-
-###---Toggle External Display---###
-bindsym $mod+x exec multimonitor
-
-###---Bookmarks/Search---####
-bindsym $mod+s exec sch "firefox"
-bindsym $mod+b exec bm "firefox"
-
-###---Brightness---###
-bindsym $mod+Right exec light -A 5 && pkill -SIGRTMIN+4 i3block
-bindsym $mod+Left exec light -U 5 && pkill -SIGRTMIN+4 i3block
-
-###---System Control---###
 bindsym $mod+shift+z exec prompt "Are you sure you would like to reboot?" "sudo reboot"
 bindsym $mod+shift+x exec prompt "Are you sure you would like to shutdown?" "sudo shutdown"
 bindsym $mod+Shift+b exec betterlockscreen -l
 
-###---Update Packages---###
-bindsym $mod+u exec updatepackages
-
-###---PyShell - Calculators are a meme---###
-bindsym $mod+y exec pyshell
-
-###---List Torrents in Notification
-bindsym $mod+t exec notifytorrents
-
-###---Opens Dev Environment---###
-bindsym $mod+w exec devenv
-
-###---Import Camera Content---###
-bindsym $mod+i exec importandroid
-
-###---Timer(Clock)---###
-bindsym $mod+o exec timer
-
-###---Go To Location Open Terminal---###
-bindsym $mod+g exec openterminalin
-
-###---Screenshot---###
-bindsym $mod+Print exec scrnshot full
-bindsym $mod+shift+Print exec scrnshot select
-bindsym $mod+control+Print exec scrnshot fulltime
-bindsym $mod+control+shift+Print exec scrnshot selecttime
-
-###---Open Youtube Studio In Brave---###
-# The reason I even have this program installed
-bindsym $mod+c exec brave https://studio.youtube.com
-
-###---Toggle touchpad---###
-bindsym F7 exec toggleTouch
 
 ###---Launch programs---###
 bindsym $mod+Mod1+a exec st -e alsamixer
 bindsym $mod+Mod1+s exec snap run spotify
 bindsym $mod+Mod1+d exec apulse discord
-bindsym $mod+Mod1+l exec snap run slack
 bindsym $mod+Mod1+k exec kdenlive
+bindsym $mod+Mod1+l exec snap run slack
 bindsym $mod+Mod1+o exec obs
 bindsym $mod+Mod1+g exec gimp
 bindsym $mod+Mod1+b exec firefox
