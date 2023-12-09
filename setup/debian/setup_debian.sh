@@ -1,36 +1,177 @@
 #!/bin/bash
-sudo apt install nala -y
+sudo apt update && sudo apt upgrade -y && sudo apt -y
+sudo apt install git vim nala -y
 
 installpkg() {
-  echo "installing package $1"
-	sudo nala install -y "$2"; 
+  echo "installing package $1 $2"
+	sudo nala install -y "$1"; 
 }
+
+
+nonfree=(
+  "deb http://deb.debian.org/debian/ buster main contrib non-free"
+  "deb-src http://deb.debian.org/debian/ buster main contrib non-free"
+
+  "deb http://security.debian.org/debian-security buster/updates main contrib non-free"
+  "deb-src http://security.debian.org/debian-security buster/updates main contrib non-free"
+
+  "deb http://deb.debian.org/debian/ buster-updates main contrib non-free"
+  "deb-src http://deb.debian.org/debian/ buster-updates main contrib non-free"
+  "deb http://deb.debian.org/debian/ bullseye main contrib non-free"
+)
+
+read -p "nonfree ? [y/n]: " answer
+if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+  for x in "${nonfree[@]}"; do
+    sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+    echo "$x"| sudo tee -a /etc/apt/sources.list
+  done
+fi
+
+
+read -p "nvidia ? [y/n]: " answer
+if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+  sudo apt install -y linux-headers-$(uname -r) build-essential gcc-multilib dkms
+  sudo apt install -y nvidia-driver nvidia-kernel-dkms
+  installpkg nvidia-detect
+fi
+
+
+# >> VsCode
+deb= 
+wget -P /tmp/vscode.deb https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x65
+sudo nala install /tmp/vscode.deb/
+# <<
+
+# >> Google Chrome
+wget -P /tmp/google.deb https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x65
+# <<
+
+
+dependencies=(
+    meson
+    wget
+    ninja-build gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd libxcb-dri3-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev xdg-desktop-portal-wlr libtomlplusplus3
+    make cmake python3 curl ca-certificates git ntp zsh unzip npm ripgrep
+    fd-find fzf libxft go usbutils ddcutil
+    build-essential
+    cmake
+    cmake-extras
+    curl
+    gettext
+    gir1.2-graphene-1.0
+    git
+    glslang-tools
+    gobject-introspection
+    golang
+    hwdata
+    jq
+    libavcodec-dev
+    libavformat-dev
+    libavutil-dev
+    libcairo2-dev
+    libdeflate-dev
+    libdisplay-info-dev
+    libdrm-dev
+    libegl1-mesa-dev
+    libgbm-dev
+    libgdk-pixbuf-2.0-dev
+    libgdk-pixbuf2.0-bin
+    libgirepository1.0-dev
+    libgl1-mesa-dev
+    libgraphene-1.0-0
+    libgraphene-1.0-dev
+    libgtk-3-dev
+    libgulkan-0.15-0
+    libgulkan-dev
+    libinih-dev
+    libinput-dev
+    libjbig-dev
+    libjpeg-dev
+    libjpeg62-turbo-dev
+    liblerc-dev
+    libliftoff-dev
+    liblzma-dev
+    libnotify-bin
+    libpam0g-dev
+    libpango1.0-dev
+    libpipewire-0.3-dev
+    libqt6svg6
+    libseat-dev
+    libstartup-notification0-dev
+    libswresample-dev
+    libsystemd-dev
+    libtiff-dev
+    libtiffxx6
+    libudev-dev
+    libvkfft-dev
+    libvulkan-dev
+    libvulkan-volk-dev
+    libwayland-dev
+    libwebp-dev
+    libxcb-composite0-dev
+    libxcb-cursor-dev
+    libxcb-dri3-dev
+    libxcb-ewmh-dev
+    libxcb-icccm4-dev
+    libxcb-present-dev
+    libxcb-render-util0-dev
+    libxcb-res0-dev
+    libxcb-util-dev
+    libxcb-xinerama0-dev
+    libxcb-xinput-dev
+    libxcb-xkb-dev
+    libxkbcommon-dev
+    libxkbcommon-x11-dev
+    libxkbregistry-dev
+    libxml2-dev
+    libxxhash-dev
+    openssl
+    psmisc
+    python3-mako
+    python3-markdown
+    python3-markupsafe
+    python3-yaml
+    qt6-base-dev
+    scdoc
+    seatd
+    spirv-tools
+    vulkan-validationlayers
+    vulkan-validationlayers-dev
+    wayland-protocols
+    xdg-desktop-portal
+    xwayland
+)
+
 
 echo " This script assumes every git clone will be placed under $HOME/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
-for x in make cmake python3 curl wget ca-certificates git ntp zsh unzip npm ripgrep fd fzf libxft go usbutils ddcutil; do
+for x in "${dependencies[@]}"; do
+  echo "$x"
 	installpkg "$x"
 done
 
 # @firmware
-read -p "Do you want install firmware and update it with fwupd? [y/n]: " answer
+read -p "Hyprland [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  installpkg fwupd
-  sudo fwupdmgr get-devices
-  sudo fwupdmgr refresh --force
-  sudo fwupdmgr get-updates -y
-  sudo fwupdmgr update -y
+  git clone --recursive https://github.com/hyprwm/Hyprland -b v0.24.1 code/hyprland
+  cd code/hyprland
+  cd subprojects
+  git clone https://gitlab.freedesktop.org/emersion/libdisplay-info
+  git clone https://github.com/emersion/libliftoff
+  cd ..
+  meson build
+  ninja -C build
+  sudo ninja -C build install
 else
     echo "No action needed was done about firmware ."
 fi
 
-# linux idk you'll need
-
 
 read -p "Do you want install linux-header, base-devel and linux firmware stuff ? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-	for x in base-devel  linux-zen linux linux-headers linux-api-headers linux-firmware linux-docs; do
+	for x in base-devel linux-zen linux linux-headers linux-api-headers linux-firmware linux-docs; do
 		installpkg "$x"
 	done
 else
@@ -38,12 +179,22 @@ else
 fi
 
 # @radare
-
-read -p "Do you want install radare ? [y/n]: " answer
+read -p "Do you want install go lang? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  git clone https://github.com/radare/radare2 $HOME/code/radare 
-  cd $HOME/code/radare 
-  sh sys/install.sh
+    wget -P /tmp/go https://go.dev/dl/go3.22.5.linux-amd64.tar.gz /tmp/go
+    sudo tar -C /usr/local -xzf go3.22.5.linux-amd64.tar.gz
+fi
+
+
+read -p "Do you want install vscode? [y/n]: " answer
+if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+    wget -P /tmp/go https://go.dev/dl/go3.22.5.linux-amd64.tar.gz /tmp/go
+    sudo tar -C /usr/local -xzf go3.22.5.linux-amd64.tar.gz
+fi
+
+read -p "Do you want install rust lang? [y/n]: " answer
+if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
 # @neovim
@@ -54,14 +205,6 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   cd $HOME/code/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
 fi
 
-# @x11 stuff
-
-read -p "Do you want install X11? [y/n]: " answer
-if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  sudo nala install -y xorg xorg-server xorg-xinit xorg-xsetroot xorg-xbacklight yabar  
-  sudo nala install -y xcb-proto xcb-util xcb-util-wm xcb-util-cursor xcb-util-keysyms
-  sudo nala install -y libxinerama autorandr
-fi
 
 read -n1 -rep "Do you want install Wayland stuff? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
@@ -227,7 +370,7 @@ elif [ "$answer" = "2" ] || [ "$answer" = "bangkok" ]; then
 
   read -p "Do you want install nerdfonts? [y/n]: " answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    sudo nala install -y  --noconfirm gnu-free-fonts noto-fonts ttf-jetbrains-mono
+    sudo nala install -y  gnu-free-fonts noto-fonts ttf-jetbrains-mono
     sudo nala install -y  nerd-fonts-complete-mono-glyphs  # these one is very slow
     sudo nala install -y  ttf-jetbrains-mono-nerd
     sudo nala install -y  noto-fonts-emoji
