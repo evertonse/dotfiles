@@ -156,7 +156,7 @@ done
 read -p "Hyprland [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   source ./setup/debian/installs/hypr-pkgs.sh
-  git clone --recursive https://github.com/hyprwm/Hyprland -b v0.24.1 code/hyprland
+  git clone --recursive https://github.com/hyprwm/Hyprland -b v0.24.1 ~/code/hyprland
   cd code/hyprland
   cd subprojects
   git clone https://gitlab.freedesktop.org/emersion/libdisplay-info
@@ -165,6 +165,13 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   meson build
   ninja -C build
   sudo ninja -C build install
+
+  git clone --recursive https://aur.archlinux.org/hyprland-hidpi-xprop-git.git  ~/code/hyprland-hidpi
+  cd ~/code/hyprland-hidpi 
+  make
+  sudo make install
+     
+
 else
     echo "No action needed was done about firmware ."
 fi
@@ -348,6 +355,7 @@ fi
 read -p "Do you want install the pulseaudio-apps (not pulseaudio itself) and tui-related to audio stuff? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   # sudo nala install -y  --noconfirm  pipewire pipewire-alsa pipewire-jack pipewire-pulse libpulse
+  sudo nala install -y pipewire, pipewire-pulse, pipewire-media-session 
   # look https://github.com/GeorgeFilipkin/pulsemixer
   #curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x ./pulsemixer
   # look https://github.com/fulhax/ncpamixer
