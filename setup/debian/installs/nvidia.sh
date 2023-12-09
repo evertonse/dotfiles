@@ -8,6 +8,7 @@ nvidia_pkg=(
   linux-headers-$(uname -r)
   libva-wayland2
   nvidia-vaapi-driver
+  build-essential gcc-multilib dkms
 )
 
 # for ubuntu-nvidia owners! just delete #

@@ -45,7 +45,6 @@ def dotdirs():
 
 
     # cmd(f'sudo cp -rf ./.config {Path(home)}')
-
     for src, dst in links:
         cmd(f"sudo ln -sf ~/.config/{src} ~/.config/{dst}")
 

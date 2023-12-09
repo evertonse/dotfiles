@@ -7,6 +7,7 @@ installpkg() {
 	sudo nala install -y "$1"; 
 }
 
+
 nonfree=(
   "deb http://deb.debian.org/debian/ buster main contrib non-free"
   "deb-src http://deb.debian.org/debian/ buster main contrib non-free"
@@ -22,6 +23,7 @@ nonfree=(
 read -p "nonfree ? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   for x in "${nonfree[@]}"; do
+    awk '!seen[$0]++' /etc/apt/sources.list | sudo tee /etc/apt/sources.list
     sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
     echo "$x"| sudo tee -a /etc/apt/sources.list
   done
@@ -30,8 +32,6 @@ fi
 
 read -p "nvidia ? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  sudo apt install -y linux-headers-$(uname -r) build-essential gcc-multilib dkms
-  sudo apt install -y nvidia-driver nvidia-kernel-dkms
   source ./setup/debian/installs/nvidia.sh
 fi
 
@@ -155,6 +155,7 @@ done
 # @firmware
 read -p "Hyprland [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+  source ./setup/debian/installs/hypr-pkgs.sh
   git clone --recursive https://github.com/hyprwm/Hyprland -b v0.24.1 code/hyprland
   cd code/hyprland
   cd subprojects
