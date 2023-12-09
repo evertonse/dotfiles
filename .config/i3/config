@@ -14,7 +14,7 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+p exec rofi -show window
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+h focus left
@@ -228,7 +228,7 @@ bindsym $mod+Mod1+k exec kdenlive
 bindsym $mod+Mod1+o exec obs
 bindsym $mod+Mod1+g exec gimp
 bindsym $mod+Mod1+b exec firefox
-bindsym $mod+Mod1+e exec brave
+bindsym $mod+Mod1+e exec thunar
 bindsym $mod+Mod1+f exec dolphin
 bindsym $mod+Mod1+r exec st -e lf
 bindsym $mod+Mod1+c exec vscodium
