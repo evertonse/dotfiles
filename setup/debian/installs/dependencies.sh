@@ -6,6 +6,7 @@
 
 # packages neeeded
 dependencies=(
+    xserver-xorg-video-amdgpu
     build-essential
     cmake
     cmake-extras

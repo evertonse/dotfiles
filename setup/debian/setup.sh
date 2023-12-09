@@ -36,16 +36,6 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
 fi
 
 
-# >> VsCode
-deb= 
-wget -P /tmp/vscode.deb https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x65
-sudo nala install /tmp/vscode.deb/
-# <<
-
-# >> Google Chrome
-wget -P /tmp/google.deb https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x65
-# <<
-
 
 dependencies=(
   pulsemixer
@@ -157,7 +147,7 @@ read -p "Hyprland [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   source ./setup/debian/installs/hypr-pkgs.sh
   git clone --recursive https://github.com/hyprwm/Hyprland -b v0.24.1 ~/code/hyprland
-  cd code/hyprland
+  cd ~/code/hyprland
   cd subprojects
   git clone https://gitlab.freedesktop.org/emersion/libdisplay-info
   git clone https://github.com/emersion/libliftoff
@@ -165,15 +155,8 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   meson build
   ninja -C build
   sudo ninja -C build install
-
-  git clone --recursive https://aur.archlinux.org/hyprland-hidpi-xprop-git.git  ~/code/hyprland-hidpi
-  cd ~/code/hyprland-hidpi 
-  make
-  sudo make install
-     
-
 else
-    echo "No action needed was done about firmware ."
+  echo "No action needed was done about firmware ."
 fi
 
 
