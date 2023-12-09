@@ -1,6 +1,3 @@
-
-PROJECT := evertonsantos_202100011379_opencl
-
 install: $(shell ls ./.config/)
 	python3 ./install -y
 
