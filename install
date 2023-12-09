@@ -35,8 +35,10 @@ def dotdirs():
             else:
                 cp(file, Path(home, file))
 
+
     # cmd(f'sudo cp -rf ./.config {Path(home)}')
 
+    cmd("sudo ln -sf ~/.config/zsh/.zshrc ~/.config/.zshrc")
     cmd("sudo ln -sf ~/.local/include/* /usr/include")
 
     cmd("sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
