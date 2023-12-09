@@ -38,6 +38,7 @@ fi
 
 
 dependencies=(
+	network-manager network-manager-gnome
   pulsemixer
   easyeffects
   meson
