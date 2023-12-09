@@ -230,7 +230,6 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     echo " All necessary packages installed successfully."
     # Set some files as exacutable 
     chmod +x ~/.config/hypr/xdg-portal-hyprland
-    chmod +x ~/.config/waybar/scripts/waybar-wttr.py
 
     ### Add Fonts for Waybar ###
     mkdir -p $HOME/Downloads/nerdfonts/
