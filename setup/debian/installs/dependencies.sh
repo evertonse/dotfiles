@@ -154,11 +154,10 @@ for PKG1 in "${dependencies[@]}"; do
 done
 
 # Install dependencies for wlroots
-sudo apt build-dep wlroots
 export PATH=$PATH:/usr/local/go/bin
 
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-source $HOME/.cargo/env
+
 
 clear
