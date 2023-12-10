@@ -25,7 +25,7 @@ def dotdirs():
     links = {
         # every path is relative to ~/.config
         ("kitty.0/", "kitty"),
-        ("waybar.titus/", "waybar"),
+        ("waybar.linuxcast/", "waybar"),
         ("/zsh/.zshrc", ".zshrc")
     }
 
