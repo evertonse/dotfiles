@@ -30,7 +30,7 @@ if [ -d "swww" ]; then
   rm -rf "swww" 2>&1 | tee -a "$LOG"
 fi
 
-if git clone https://github.com/Horus645/swww.git 2>&1 | tee -a "$LOG"; then
+if git clone https://github.com/Horus645/swww.git ~/code/swww 2>&1 | tee -a "$LOG"; then
   cd swww || exit 1
   source "$HOME/.cargo/env"
   cargo build --release 2>&1 | tee -a "$LOG"
