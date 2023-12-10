@@ -88,22 +88,22 @@ export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm
 ############################################
 ######## WAYLAND WITH NVIDIA THINGS ########
 ############################################
-export WLR_RENDERER="vulkan"
+# export WLR_RENDERER="vulkan"
 export WLR_NO_HARDWARE_CURSORS=1
-export XWAYLAND_NO_GLAMOR=1
-
-export LIBVA_DRIVER_NAME="nvidia"
-export GBM_BACKEND="nvidia-drm"
-export __GLX_VENDOR_LIBRARY_NAME="nvidia"
-# toolkit-specific scale
-export GDK_SCALE=1.35
-export XCURSOR_SIZE=26
-export MOZ_ENABLE_WAYLAND=1
-export XDG_SESSION_TYPE=wayland
-export GDK_BACKEND="wayland"
-export QT_QPA_PLATFORM="wayland"
-export SDL_VIDEODRIVER="wayland"
-export CLUTTER_BACKEND="wayland"
+# export XWAYLAND_NO_GLAMOR=1
+#
+# export LIBVA_DRIVER_NAME="nvidia"
+# export GBM_BACKEND="nvidia-drm"
+# export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+# # toolkit-specific scale
+# export GDK_SCALE=1.35
+# export XCURSOR_SIZE=26
+# export MOZ_ENABLE_WAYLAND=1
+# export XDG_SESSION_TYPE=wayland
+# export GDK_BACKEND="wayland"
+# export QT_QPA_PLATFORM="wayland"
+# export SDL_VIDEODRIVER="wayland"
+# export CLUTTER_BACKEND="wayland"
 ############################################
 ############################################
 ############################################
