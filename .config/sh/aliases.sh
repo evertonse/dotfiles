@@ -30,6 +30,6 @@ for command in backlight mount umount sv pacman updatedb su poweroff; do
 	alias $command="sudo $command"
 done; unset command
 
-alias reboot='pkill -2 chrome; sudo reboot'
+alias reboot="pkill -2 chrome; sudo reboot"
  
 

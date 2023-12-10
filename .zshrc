@@ -1,1 +1,0 @@
-/home/excyber/.config/~/.config/.zshrc

@@ -26,6 +26,7 @@ def dotdirs():
         # every path is relative to ~/.config
         ("kitty.0/", "kitty"),
         ("waybar.linuxcast/", "waybar"),
+        ("rofi.JaKooLit/", "rofi"),
         ("/zsh/.zshrc", ".zshrc")
     }
 
