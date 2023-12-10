@@ -38,6 +38,9 @@ fi
 
 
 dependencies=(
+  xserver-xorg-video-amdgpu
+  xserver-xorg-video-nvidia
+  firmware-iwlwifi
 	network-manager network-manager-gnome
   pulsemixer
   easyeffects
@@ -139,9 +142,11 @@ dependencies=(
   wtype
   wev
   flameshot
+  bison
 )
 
 
+sudo apt build-dep wlroots
 echo " This script assumes every git clone will be placed under $HOME/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
@@ -196,6 +201,7 @@ fi
 read -p "Do you want install rust lang? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source $HOME/.cargo/env
 fi
 
 # @neovim
