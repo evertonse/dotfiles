@@ -38,7 +38,9 @@ fi
 
 
 dependencies=(
+  libxcb1-dev libxcb-util0-dev
   xserver-xorg-video-amdgpu
+  libtomlplusplus-dev
   xserver-xorg-video-nvidia
   firmware-iwlwifi
 	network-manager network-manager-gnome
@@ -161,8 +163,12 @@ ln -s $(which fdfind) ~/.local/bin/fd
 read -p "Hyprland [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   source ./setup/debian/installs/hypr-pkgs.sh
-  git clone --recursive https://github.com/hyprwm/Hyprland -b v0.24.1 ~/code/hyprland
-  cd ~/code/hyprland
+  # version="v0.24.1"
+  VERSION="v0.33.1"
+  PATH="~/code/Hyprland-$VERSION"
+
+  git clone --recursive https://github.com/hyprwm/Hyprland -b $VERSION "$PATH"
+  cd "$PATH"
   cd subprojects
   git clone https://gitlab.freedesktop.org/emersion/libdisplay-info
   git clone https://github.com/emersion/libliftoff
@@ -173,7 +179,6 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
 else
   echo "No action needed was done about firmware ."
 fi
-
 
 read -p "Do you want install linux-header, base-devel and linux firmware stuff ? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then

@@ -26,7 +26,10 @@ alias YT='youtube-viewer'
 
 #: sudo not required for some system commands
 alias shutdown="killall chrome --wait;sudo poweroff;"
-for command in backlight mount umount sv pacman updatedb su poweroff reboot ; do
+for command in backlight mount umount sv pacman updatedb su poweroff; do
 	alias $command="sudo $command"
 done; unset command
+
+alias reboot='pkill -2 chrome; sudo reboot'
+ 
 
