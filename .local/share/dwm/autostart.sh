@@ -14,7 +14,7 @@ done >/dev/null 2>&1
 # start xsettingsd
 # start sxhkd
 # Ensure that xrdb has finished running before moving on to start the WM/DE.
-# [ -n "$xrdbpid" ] && wait "$xrdbpid"
+# [ -n "$xrdbhyprctl dispatch fullscreen 1"pid" ] && wait "$xrdbpid"
 
 #start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
 
