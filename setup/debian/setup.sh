@@ -38,6 +38,7 @@ fi
 
 
 dependencies=(
+  copyq cliphist
   libxcb1-dev libxcb-util0-dev
   xserver-xorg-video-amdgpu
   libtomlplusplus-dev
