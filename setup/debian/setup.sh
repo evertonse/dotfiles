@@ -137,6 +137,7 @@ dependencies=(
   xdg-desktop-portal
   xwayland
   wtype
+  wev
   flameshot
 )
 
