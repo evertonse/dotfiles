@@ -1,4 +1,4 @@
-install: $(shell ls ./.config/)
+install:
 	python3 ./install -y
 
 clean:
@@ -10,4 +10,4 @@ push:
 pull:
 	git pull
 
-.PHONY: push pull clean
+.PHONY: push pull clean install
