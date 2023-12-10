@@ -7,4 +7,6 @@ configuration {
   display-window: "﩯 ";
   display-combi: "  ";
 }
-@theme "themes/sidetab-nord.rasi"
+// @theme "themes/sidetab-nord.rasi"
+// @theme "themes/catppuccin-mocha.rasi"
+@theme "themes/dark.rasi"
