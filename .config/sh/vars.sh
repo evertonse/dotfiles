@@ -88,9 +88,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm
 ############################################
 ######## WAYLAND WITH NVIDIA THINGS ########
 ############################################
-# export WLR_RENDERER="vulkan"
+export WLR_RENDERER="vulkan"
 export WLR_NO_HARDWARE_CURSORS=1
-export XWAYLAND_NO_GLAMOR=1
+export XWAYLAND_NO_GLAMOR=0
 #
 # export LIBVA_DRIVER_NAME="nvidia"
 # export GBM_BACKEND="nvidia-drm"
