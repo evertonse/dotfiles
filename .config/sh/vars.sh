@@ -85,6 +85,29 @@ export MOZ_USE_XINPUT2="1" # Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm
 
+############################################
+######## WAYLAND WITH NVIDIA THINGS ########
+############################################
+export WLR_RENDERER="vulkan"
+export WLR_NO_HARDWARE_CURSORS=1
+export XWAYLAND_NO_GLAMOR=1
+
+export LIBVA_DRIVER_NAME="nvidia"
+export GBM_BACKEND="nvidia-drm"
+export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+# toolkit-specific scale
+export GDK_SCALE=1.35
+export XCURSOR_SIZE=26
+export MOZ_ENABLE_WAYLAND=1
+export XDG_SESSION_TYPE=wayland
+export GDK_BACKEND="wayland"
+export QT_QPA_PLATFORM="wayland"
+export SDL_VIDEODRIVER="wayland"
+export CLUTTER_BACKEND="wayland"
+############################################
+############################################
+############################################
+
 # # Start graphical server on user's current tty if not already running.
 # [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
 
