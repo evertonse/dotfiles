@@ -12,6 +12,7 @@ unsetopt flow_control
 source ~/.config/zsh
 source ~/.config/sh/aliases.sh
 source ~/.config/sh/vars.sh
+source ~/.config/sh/startup.sh
 
 [[ $- != *i* ]] && return
 
