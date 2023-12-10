@@ -136,6 +136,8 @@ dependencies=(
   wayland-protocols
   xdg-desktop-portal
   xwayland
+  wtype
+  flameshot
 )
 
 
