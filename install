@@ -24,8 +24,8 @@ def dotdirs():
 
     links = {
         # every path is relative to ~/.config
-        ("kitty.0/", "kitty/"),
-        ("waybar.0/", "waybar/"),
+        ("kitty.0/", "kitty"),
+        ("waybar.titus/", "waybar"),
         ("/zsh/.zshrc", ".zshrc")
     }
 
@@ -46,10 +46,14 @@ def dotdirs():
 
     # cmd(f'sudo cp -rf ./.config {Path(home)}')
     for src, dst in links:
-        cmd(f"sudo ln -sf ~/.config/{src} ~/.config/{dst}")
+        dst = Path(f'~/.config/{dst}')
+        src = Path(f'~/.config/{src}')
+        cmd(f"rm -rf {dst} || rm -f {dst}")
+
+        cmd(f"sudo ln -sf {src} {dst}")
+
 
     cmd("sudo ln -sf ~/.local/include/* /usr/include")
-
     cmd("sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
     cmd("sudo ln -sf ~/.local/include/* /usr/include")
     # cmd('sudo ln -s ~/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber')
