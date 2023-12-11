@@ -38,6 +38,7 @@ fi
 
 
 dependencies=(
+  libncurses-dev
   xdg-user-dirs
   copyq cliphist
   libxcb1-dev libxcb-util0-dev

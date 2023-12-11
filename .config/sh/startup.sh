@@ -21,3 +21,4 @@ systemctl disable --user  pipewire
 systemctl disable --user  pipewire-pulse
 systemctl enable  --user  pulseaudio
 pulseaudio &
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita
