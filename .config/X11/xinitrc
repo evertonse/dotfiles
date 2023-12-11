@@ -69,4 +69,4 @@ xset s off -dpms
 # exec dwmblocks &
 # mode-sleep
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
-exec qtile
+exec dwm
