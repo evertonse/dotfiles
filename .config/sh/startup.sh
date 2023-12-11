@@ -7,6 +7,10 @@ systemctl disable --global pipewire-pulse
 systemctl disable --global pipewire.socket
 systemctl disable --global pipewire-pulse.socket
 
+systemctl stop pipewire.service
+systemctl disable pipewire.service
+systemctl mask pipewire.service
+
 systemctl enable  --global pulseaudio
 
 systemctl --global disable pipewire.socket
