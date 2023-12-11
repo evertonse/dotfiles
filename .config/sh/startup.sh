@@ -10,7 +10,9 @@ systemctl disable --global pipewire-pulse.socket
 systemctl enable  --global pulseaudio
 
 systemctl --global disable pipewire.socket
-systemctl --user stop pipewire.socket
+######## Only one that Works ###########
+systemctl --user stop pipewire.socket ##
+########################################
 systemctl disable --user  pipewire
 systemctl disable --user  pipewire-pulse
 systemctl enable  --user  pulseaudio
