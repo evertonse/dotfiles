@@ -79,13 +79,14 @@ if [ -d "rofi" ]; then
   rm -rf "rofi" 2>&1 | tee -a "$LOG"
 fi
 
-if git clone https://github.com/lbonn/rofi.git 2>&1 | tee -a "$LOG"; then
-  cd "rofi" || exit 1
+if git clone https://github.com/lbonn/rofi.git ~/code/rofi 2>&1 | tee -a "$LOG"; then
+  pushd
+  cd ~/code/rofi || exit 1
   if meson setup build && ninja -C build; then
     if sudo ninja -C build install 2>&1 | tee -a "$LOG"; then
       printf "${OK} rofi-wayland installed successfully.\n"
       # Return to the previous directory
-      cd ..
+      popd
     else
       echo -e "${ERROR} Installation failed for rofi-wayland."
     fi
