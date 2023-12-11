@@ -39,6 +39,7 @@ fi
 
 dependencies=(
   libncurses-dev
+  pulseaudio
   xdg-user-dirs
   copyq cliphist
   libxcb1-dev libxcb-util0-dev
