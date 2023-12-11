@@ -1,4 +1,6 @@
+
 # lifetime-config-files
+nano /etc/systemd/system/getty@tty1.service.d/autologin.conf
 ExecStart=-/sbin/agetty -o '-f -p -- \\u' --noclear -a USERNAME %I $TERM
 dotfiles and +
 - .linuxtips for frequently questioins I have
