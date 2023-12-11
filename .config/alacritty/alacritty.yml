@@ -22,8 +22,8 @@ env:
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
 
-  #TERM: alacritty
-  TERM: xterm-256color
+  TERM: alacritty
+  # TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -35,8 +35,8 @@ window:
   #dimensions:
   #  columns: 0
   #  lines: 0
-  dynamic_padding: false
-  # dynamic_padding: true
+  # dynamic_padding: false
+  dynamic_padding: true
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
