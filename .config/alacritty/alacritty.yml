@@ -167,7 +167,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 13.0
+  size: 13.2
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -392,7 +392,8 @@ cursor:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Block
+    # shape: Block
+    shape: Beam
 
     # Cursor blinking state
     #
