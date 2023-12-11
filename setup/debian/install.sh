@@ -38,6 +38,7 @@ fi
 
 
 dependencies=(
+  libyajl-dev
   libncurses-dev
   pulseaudio
   xdg-user-dirs
