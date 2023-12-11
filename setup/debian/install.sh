@@ -38,6 +38,7 @@ fi
 
 
 dependencies=(
+  xdg-user-dirs
   copyq cliphist
   libxcb1-dev libxcb-util0-dev
   xserver-xorg-video-amdgpu
@@ -158,14 +159,14 @@ for x in "${dependencies[@]}"; do
 	installpkg "$x"
 done
 
-ln -s $(which fdfind) ~/.local/bin/fd
+sudo ln -sf $(which fdfind) ~/.local/bin/fd
 
 # @firmware
 read -p "Hyprland [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   source ./setup/debian/installs/hypr-pkgs.sh
-  # version="v0.24.1"
-  VERSION="v0.33.1"
+  # version="v0.24.1" # This version works
+  VERSION="v0.33.0"
   PATH="~/code/Hyprland-$VERSION"
 
   git clone --recursive https://github.com/hyprwm/Hyprland -b $VERSION "$PATH"
@@ -183,20 +184,19 @@ fi
 
 read -p "Do you want install linux-header, base-devel and linux firmware stuff ? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-	for x in base-devel linux-zen linux linux-headers linux-api-headers linux-firmware linux-docs; do
-		installpkg "$x"
+	for x in build-essential autoconf automake gdb git libffi-dev zlib1g-dev libssl-dev linux-zen linux linux-headers linux-api-headers linux-firmware linux-docs; do
+	    installpkg "$x"
 	done
 else
   echo "No action needed was done about linux stuff."
 fi
 
-# @radare
+
 read -p "Do you want install go lang? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     wget -P /tmp/go https://go.dev/dl/go3.22.5.linux-amd64.tar.gz /tmp/go
     sudo tar -C /usr/local -xzf go3.22.5.linux-amd64.tar.gz
 fi
-
 
 read -p "Do you want install vscode? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
@@ -257,20 +257,7 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
 
     fc-cache -rv  
 
-    ### Enable SDDM Autologin ###
-    read -n1 -rep 'Would you like to enable SDDM autologin? (y,n)' SDDM
-    if [[ $SDDM == "Y" || $SDDM == "y" ]]; then
-      LOC="/etc/sddm.conf"
-      echo -e "The following has been added to $LOC.\n"
-      echo -e "[Autologin]\nUser = $(whoami)\nSession=hyprland" | sudo tee -a $LOC
-      echo -e "\n"
-      echo -e "Enabling SDDM service...\n"
-      sudo systemctl enable sddm
-      sleep 3
-    fi
 
-
-    
     sudo nala install -y bluez bluez-utils blueman
     # Start the bluetooth service
     echo -e "Starting the Bluetooth Service...\n"
