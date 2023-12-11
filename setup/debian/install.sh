@@ -257,7 +257,7 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
 
     fc-cache -rv  
 
-
+    
     sudo nala install -y bluez bluez-utils blueman
     # Start the bluetooth service
     echo -e "Starting the Bluetooth Service...\n"
