@@ -35,7 +35,8 @@ window:
   #dimensions:
   #  columns: 0
   #  lines: 0
-  dynamic_padding: true
+  dynamic_padding: false
+  # dynamic_padding: true
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
