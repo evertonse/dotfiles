@@ -10,8 +10,8 @@ setopt MENU_COMPLETE
 unsetopt flow_control
 
 source ~/.config/zsh
-source ~/.config/sh/aliases.sh
-source ~/.config/sh/vars.sh
+source ~/.config/shell/aliases.sh
+source ~/.config/shell/vars.sh
 
 [[ $- != *i* ]] && return
 

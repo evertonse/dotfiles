@@ -9,15 +9,19 @@ from functools import partial
 
 cpdir = partial(copytree, dirs_exist_ok=True)
 
+
 def cp(src, dst):
+    print(f"src={Path(src)} dst={Path(dst)}")
     if src.is_dir():
         cpdir(Path(src), Path(dst))
     else:
         cpfile(Path(src), Path(dst))
 
+
 home = Path.home()
 installs = ["dotfiles", "dotdirs", "dotrepos"]
 cmd = lambda x: print(x) or os.system(x)
+
 
 def dotdirs():
     dirs = [
@@ -26,15 +30,22 @@ def dotdirs():
     ]
 
     links = {
-        # every path is relative to {home}.config
-        ("kitty.0/", "kitty"),
-        ("waybar.linuxcast/", "waybar"),
-        ("rofi.titus/", "rofi"),
-        ("/zsh/.zshrc", ".zshrc"),
+        # NOTE: Every path is relative to $HOME/.config
+        (f"{home}/.config/kitty.0/", f"{home}/.config/kitty"),
+        (f"{home}/.config/waybar.linuxcast/", f"{home}/.config/waybar"),
+        (f"{home}/.config/rofi.titus/", f"{home}/.config/rofi"),
+        (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
+        (f"{home}/.config/zsh/zshrc", f"{home}/.config/.zshrc"),
+    }
+
+    copies = {
+        (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
+        (f"{home}/.config/zsh/zshrc", f"{home}/.config/.zshrc"),
     }
 
     for file in dirs:
-        file = Path(file)
+        src = Path(file)
+        dst = Path(home, f".{src}")
         if (
             autoyes
             or input(
@@ -42,19 +53,27 @@ def dotdirs():
             ).lower()
             == "y"
         ):
-            cp(file, Path(home, file))
-            # print(file, Path(home, file))
-            if "sh" in str(file):
-                print(file, Path(home, file))
+            # We put a dot '.' in front because we preserver the name config
+            # but programs expect .config, got it?
+            cp(src, dst)
 
-    exit(98)
-    # cmd(f'sudo cp -rf ./.config {Path(home)}')
+    # cmd(f'sudo cp -rf ./config {Path(home, '.config')}')
+
+    print(f">>--------Links--------\n")
     for src, dst in links:
-        dst = Path(f"{home}/config/{dst}")
-        src = Path(f"{home}/.config/{src}")
-        cmd(f"rm -rf {dst} || rm -f {dst}")
+        src = Path(src)
+        dst = Path(dst)
+        cmd(f"sudo rm -rf {dst} || rm -f {dst}")
+        cmd(f"sudo ln -sFf {src} {dst}")
+    print(f"<<--------Links--------\n")
 
-        cmd(f"sudo ln -sf {src} {dst}")
+    print(f">>--------Copies--------\n")
+    for src, dst in copies:
+        src = Path(src)
+        dst = Path(dst)
+        cmd(f"sudo rm -rf {dst} || rm -f {dst}")
+        cp(src, dst)
+    print(f"<<--------Copies--------\n")
 
     cmd(f"sudo ln -sf {home}/.local/include/* /usr/include")
     cmd(f"sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
