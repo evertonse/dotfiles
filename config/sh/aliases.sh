@@ -1,6 +1,7 @@
 alias tm='/bin/tmux -2 a  || /bin/tmux -2'
 alias fgrep='fgrep --color=auto'
 alias grep='grep -i --color=auto'
+alias gg='grep -rnH --color=auto'
 alias egrep='egrep --color=auto'
 alias pacman='pacman --color=auto'
 alias yay='yay --color=auto'

@@ -3,31 +3,34 @@
 import sys
 import os
 from pathlib import Path
-from shutil import copytree, rmtree as rmdir, copy as cp, move as mv
+from shutil import copytree, rmtree as rmdir, copy as cpfile, move as mv
 from glob import glob
 from functools import partial
 
 cpdir = partial(copytree, dirs_exist_ok=True)
+
+def cp(src, dst):
+    if src.is_dir():
+        cpdir(Path(src), Path(dst))
+    else:
+        cpfile(Path(src), Path(dst))
+
 home = Path.home()
 installs = ["dotfiles", "dotdirs", "dotrepos"]
 cmd = lambda x: print(x) or os.system(x)
 
-
-
 def dotdirs():
     dirs = [
-        *glob("./.config/*"),
-        "./.local/bin",
-        "./.local/include",
-        "./.local/share",
+        *glob("./config/*"),
+        *glob("./local/*"),
     ]
 
     links = {
-        # every path is relative to ~/.config
+        # every path is relative to {home}.config
         ("kitty.0/", "kitty"),
         ("waybar.linuxcast/", "waybar"),
         ("rofi.titus/", "rofi"),
-        ("/zsh/.zshrc", ".zshrc")
+        ("/zsh/.zshrc", ".zshrc"),
     }
 
     for file in dirs:
@@ -39,32 +42,35 @@ def dotdirs():
             ).lower()
             == "y"
         ):
-            if file.is_dir():
-                cpdir(file, Path(home, file))
-            else:
-                cp(file, Path(home, file))
+            cp(file, Path(home, file))
+            # print(file, Path(home, file))
+            if "sh" in str(file):
+                print(file, Path(home, file))
 
-
+    exit(98)
     # cmd(f'sudo cp -rf ./.config {Path(home)}')
     for src, dst in links:
-        dst = Path(f'~/.config/{dst}')
-        src = Path(f'~/.config/{src}')
+        dst = Path(f"{home}/config/{dst}")
+        src = Path(f"{home}/.config/{src}")
         cmd(f"rm -rf {dst} || rm -f {dst}")
 
         cmd(f"sudo ln -sf {src} {dst}")
 
-
-    cmd("sudo ln -sf ~/.local/include/* /usr/include")
-    cmd("sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
-    cmd("sudo ln -sf ~/.local/include/* /usr/include")
-    # cmd('sudo ln -s ~/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber')
-    # cmd('setxkbmap -model br-abnt2-excyber -layout br-excyber -option ""')
+    cmd(f"sudo ln -sf {home}/.local/include/* /usr/include")
+    cmd(f"sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
+    cmd(f"sudo ln -sf {home}/.local/include/* /usr/include")
     cmd(
-        "xkbcomp -w0 -I$HOME/.config/X11/xkb/ ~/.config/X11/xkb/keymap/excyber-keymap $DISPLAY"
+        f"sudo ln -s  {home}/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber"
     )
-    cmd("chmod +x ./.local/bin/*")
-    cmd("chmod +x ~/.local/bin/*")
-    cmd("ln -sf ~/.config/picom/picom.jonaburg.conf ~/.config/picom/picom.conf")
+    # cmd(f'setxkbmap -model br-abnt2 -layout br -option ""')
+    # cmd('setxkbmap -model br-abnt2-excyber -layout br-excyber -option ""')
+    # cmd(
+    #     f"xkbcomp -w0 -I$HOME/.config/X11/xkb/ {home}/.config/X11/xkb/keymap/excyber-keymap $DISPLAY"
+    # )
+    cmd(f"chmod +x {home}/.local/bin/*")
+    cmd(
+        f"ln -sf {home}/.config/picom/picom.jonaburg.conf {home}/.config/picom/picom.conf"
+    )
 
 
 def dotrepos():
