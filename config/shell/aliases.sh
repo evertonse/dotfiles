@@ -6,7 +6,6 @@ gg() {
 
 alias fgrep='fgrep --color=auto'
 alias grep='grep -i --color=auto'
-alias gg='grep -rnH --color=auto'
 
 
 alias egrep='egrep --color=auto'
