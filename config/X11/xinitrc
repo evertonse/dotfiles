@@ -60,13 +60,15 @@ xset s off -dpms
 #
 # #start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
 #
-# pkill picom &
-# pkill pipewire &
+pkill picom &
+pkill pipewire &
 # xwallpaper --zoom ~/Pictures/681587.png &
 # xkbcomp $HOME/.config/X11/xkb/keymap/excyber-keymap $DISPLAY
-# pulseaudio &
+pkill pulseaudio
+pulseaudio --start
 # google-chrome-stable &
 # exec dwmblocks &
 # mode-sleep
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
+
 exec dwm
