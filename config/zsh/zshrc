@@ -124,7 +124,9 @@ bindkey -s '^Q' 'exit ^M'
 bindkey -s '^E' 'lf .^M'
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
-bindkey -s ^n "nvim .\n"
+# bindkey -s ^n "nvim .\n"
+bindkey -s ^n "nvim +\"Telescope find_files\"\n"
+
 bindkey '^[[Z' reverse-menu-complete
 bindkey "^L" forward-word
 bindkey "^H" backward-word
