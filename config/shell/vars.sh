@@ -103,12 +103,12 @@ export XCURSOR_THEME=whiteglass xclock
 # export XDG_SESSION_TYPE=wayland
 # export GDK_BACKEND="wayland"
 # export QT_QPA_PLATFORM="wayland"
-export SDL_VIDEODRIVER="wayland"
+# export SDL_VIDEODRIVER="wayland"
 # export CLUTTER_BACKEND="wayland"
 ############################################
 ############################################
 ############################################
-
+export ODIN_ROOT="$HOME/code/odin-lang/"
 # # Start graphical server on user's current tty if not already running.
 # [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
 
