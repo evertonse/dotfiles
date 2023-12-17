@@ -3,16 +3,15 @@ sudo apt install nala -y
 
 installpkg() {
   echo "installing package $1"
-	sudo nala -y "$1"; 
+  sudo pacman -S --noconfirm "$1"; 
 }
 
 echo " This script assumes every git clone will be placed under $HOME/code folder"
 echo " if this folder already has a certain repo, no action will be taken"
 # @basic
-for x in networkmanager make cmake python3 curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd fzf libxft go usbutils ddcutil; do
+for x in tmux networkmanager make cmake python3 curl wget ca-certificates base-devel git ntp zsh unzip npm ripgrep fd fzf libxft go usbutils ddcutil; do
 	installpkg "$x"
 done
-exit
 
 # @firmware
 read -p "Do you want install firmware and update it with fwupd? [y/n]: " answer
@@ -36,7 +35,6 @@ else
 fi
 
 # @radare
-
 read -p "Do you want install radare ? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   git clone https://github.com/radare/radare2 $HOME/code/radare 
@@ -45,7 +43,7 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
 fi
 
 # @yay
-read -p "Do you want install yay? [y/n]: " answer
+read -n1 -rep "Do you want install yay? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   sudo pacman -S --needed git base-devel
   dir="$HOME/code/yay"
@@ -54,7 +52,7 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
 fi
 
 # @neovim
-read -p "Do you want install neovim? [y/n]: " answer
+read -n1 -rep 'Do you want install neovim? ' answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   dir="$HOME/code/neovim"
   [ ! -d $dir ] && git clone https://github.com/neovim/neovim.git $dir
