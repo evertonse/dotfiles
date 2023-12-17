@@ -35,12 +35,11 @@ def dotdirs():
         (f"{home}/.config/waybar.linuxcast/", f"{home}/.config/waybar"),
         (f"{home}/.config/rofi.titus/", f"{home}/.config/rofi"),
         (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
-        (f"{home}/.config/zsh/zshrc", f"{home}/.config/.zshrc"),
+        (f"{home}/.config/zsh/zshrc", f"{home}/.config/zsh/.zshrc"),
     }
 
     copies = {
-        (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
-        (f"{home}/.config/zsh/zshrc", f"{home}/.config/.zshrc"),
+        # (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
     }
 
     for file in dirs:
@@ -64,7 +63,7 @@ def dotdirs():
         src = Path(src)
         dst = Path(dst)
         cmd(f"sudo rm -rf {dst} || rm -f {dst}")
-        cmd(f"sudo ln -sFf {src} {dst}")
+        cmd(f"ln -sf {src} {dst}")
     print(f"<<--------Links--------\n")
 
     print(f">>--------Copies--------\n")

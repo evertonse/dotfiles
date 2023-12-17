@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# https://github.com/JaKooLit/Arch-Hyprland
 nvidia_pkg=(
   nvidia-dkms
   nvidia-settings
