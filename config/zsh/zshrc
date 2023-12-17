@@ -9,23 +9,22 @@ setopt interactive_comments
 setopt MENU_COMPLETE
 unsetopt flow_control
 
-source ~/.config/zsh
 source ~/.config/shell/aliases.sh
 source ~/.config/shell/vars.sh
 
 [[ $- != *i* ]] && return
 
 # History in cache directory:
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=100000000
+SAVEHIST=100000000
 setopt HIST_EXPIRE_DUPS_FIRST
 
 # Load aliases and shortcuts if existent.
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/sh/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/sh/shortcutrc"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/sh/aliases.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/sh/aliases.sh"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -134,6 +133,6 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 
-[[ -z $DISPLAY ]] && source ~/.config/sh/startup.sh
+[[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &
 [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] &&  exec $WM_EXEC &> /dev/null
 
