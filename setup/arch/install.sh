@@ -203,11 +203,10 @@ fi
 read -p "Do you want install the user stuff (tmux, lf , zathura, htop)? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   timedatectl set-timezone America/Maceio
-  sudo pacman -S --noconfirm zathura glow lf mpv zsh tmux mupdf
-  #sudo pacman -S neovim --noconfirm
-  # python-pywal -> wal
-  sudo pacman -S --noconfirm xwallpaper picom python-pywal ueberzug 
-  sudo pacman -S --noconfirm fd ripgrep flameshot grim sysstat wget  netctl networkmanager 
+  sudo pacman -S --noconfirm lf mpv zsh tmux mupdf
+  sudo pacman -S --noconfirm fd ripgrep flameshot grim sysstat wget netctl networkmanager 
+
+  sudo pacman -S --noconfirm google-chrome 
   yay --noconfirm -S vivid 
   yay --noconfirm -S Imlib2
   yay --noconfirm -S nsxiv
