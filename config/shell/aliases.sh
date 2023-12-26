@@ -1,7 +1,7 @@
 alias tm='/bin/tmux -2 a  || /bin/tmux -2'
 
 gg() {
-  grep -RrEinIH --color=auto "$1" $(pwd)"$2"
+  grep -RrEinIH --color=auto "$1" $(pwd)"/$2"
 }
 
 alias fgrep='fgrep --color=auto'
