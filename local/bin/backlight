@@ -11,7 +11,7 @@ if [ $# -eq "0" ]; then
 fi
 
 
-[ "$chosen_brightness" -lt "10" ] && echo "you shant choose less than 10 brightness" && exit 1
+[ "$chosen_brightness" -lt "1" ] && echo "you shant choose less than 1 brightness" && exit 1
 [ "$chosen_brightness" -gt "$max_brightness" ] && echo "you shant choose more than $max_brightness brightness" && exit 1
 echo "About to change to $chosen_brightness"
 echo $chosen_brightness > $brightness_file 
