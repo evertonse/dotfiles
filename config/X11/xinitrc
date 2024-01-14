@@ -62,14 +62,14 @@ setxkbmap -option caps:escape
 #
 # xwallpaper --zoom ~/Pictures/681587.png &
 # xkbcomp $HOME/.config/X11/xkb/keymap/excyber-keymap $DISPLAY
-# pkill picom &
-# pkill pipewire &
-# pkill pipewire-pulse &
-# pkill pulseaudio
-# pulseaudio --start
+pkill picom &
+pkill pipewire &
+pkill pipewire-pulse &
+pkill pulseaudio
+pulseaudio --start
 # google-chrome-stable &
 exec dwmblocks &
-# mode-sleep
+mode-sleep
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
 exec dwm
