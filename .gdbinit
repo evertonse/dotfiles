@@ -1,6 +1,6 @@
 set breakpoint pending on
 set disassembly-flavor intel
-
+set debuginfod enabled off
 define hook-next
   refresh
 end
