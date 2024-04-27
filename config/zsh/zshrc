@@ -71,11 +71,13 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+# Check if we're in wsl
 if [[ $(grep -i Microsoft /proc/version) ]]; then
   code='~/code/' 
   export GDK_BACKEND=x11
   export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
-  #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+  # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+  export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
   LIBGL_ALWAYS_INDIRECT=1
   code='/mnt/d/code' 
   alias explorer='explorer.exe'
