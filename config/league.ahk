@@ -1,3 +1,4 @@
+; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 #HotIf WinActive("League of Legends (TM) Client")
 Shift::'
 Esc::Esc
