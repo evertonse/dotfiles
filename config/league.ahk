@@ -6,7 +6,7 @@ CapsLock::j
 ':: Shift
 $s::
 {
-    if (not GetKeyState("Shift", "P"))  ; Check if Shift key is pressed
+    if (not GetKeyState("Shift", "P") and not GetKeyState("RButton", "P"))  ; Check if Shift key is pressed
     {
         Send "{k down}{s}{k up}"
     } else  
@@ -15,8 +15,27 @@ $s::
     }
 
 }
+A_HotkeyInterval := 5  ; This is the default value (milliseconds).
+A_MaxHotkeysPerInterval := 2000
 
-;RButton::Send "{k down}{u}{k up}"
+ShouldModRButton := False
+
+
+$RButton:: 
+{
+	if (GetKeyState("s", "P")) {
+		Send "{k down}{u}"
+		KeyWait "s", "L"
+	} else if (not GetKeyState("Shift", "P") and not GetKeyState("s", "P")) {
+            Send "{k down}{u}"
+	    KeyWait "RButton"
+	    Send "{k up}"
+	
+        } else {
+	    Send "{RButton}"
+        }
+}
+
 SetCapsLockState "AlwaysOff"
 #HotIf ; Only active during league
 
@@ -26,4 +45,6 @@ SetCapsLockState "AlwaysOff"
 
 Esc::Esc
 CapsLock::Esc
+
+
 
