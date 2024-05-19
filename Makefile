@@ -10,8 +10,12 @@ push:
 pull:
 	git pull
 
+SOURCE = ./config/league.ahk
+DEST = /mnt/c/league.ahk
+
 ahk:
-	rm /mnt/c/league.ahk;
-	cp ./config/league.ahk /mnt/c/league.ahk
+	@rm -f $(DEST)
+	@cp $(SOURCE) $(DEST)
+	open $(DEST) 
 
 .PHONY: push pull clean install
