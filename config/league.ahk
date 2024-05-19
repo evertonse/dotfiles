@@ -6,36 +6,67 @@ ShouldModRButton := False
 
 
 #HotIf WinActive("League of Legends (TM) Client")
-Shift::k
+
+Shift:: {
+    if (not GetKeyState("k", "P") and not GetKeyState("s", "P"))  {
+      if(GetKeyState("RButton", "P")) {
+        Send "{k down}"
+      } else {
+        Send "{k down}"
+      }
+    } else  {
+    }
+}
+
+Shift Up:: {
+    if (not GetKeyState("k", "P") and not GetKeyState("s", "P"))  {
+      if(GetKeyState("RButton", "P")) {
+        Send "{k up}"
+      } else {
+        Send "{k up}"
+      }
+    } else  {
+    }
+}
+
 Esc::Esc
 CapsLock::j
 ':: Shift
 \::Shift
 
-$s:: {
+s:: {
     ;Check if Shift key is pressed
-    if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P") and not GetKeyState("RButton", "P"))  {
+    if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P") and not GetKeyState("RButton", "P"))  {
         Send "{k down}{s}"
     } else  {
         Send "{s}"
     }
 }
 
-$s UP:: {
+s UP:: {
     ;Check if Shift key is pressed
-    if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("RButton", "P"))  {
+    if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P") and not GetKeyState("RButton", "P"))  {
         Send "{s}{k up}"
     } else  {
         Send "{s}"
     }
 }
 
-$*RButton:: {
+RButton:: {
     ;Check if uhift key iu preuued
     if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
-        Send "{k down}{u}{k up}"
+        Send "{k down}{u down}{k up}"
     } else  {
-        Send "{u}"
+        Send "{u down}"
+    }
+}
+
+RButton Up:: {
+    ;Check if uhift key iu preuued
+    if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
+        Send "{k down}{u up}{k up}"
+    } else  {
+        Send "{u up}"
     }
 }
 
