@@ -1,6 +1,6 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 
-A_HotkeyInterval := 5  ; This is the default value (milliseconds).
+A_HotkeyInterval := 1  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 1000
 ShouldModRButton := False
 
@@ -10,6 +10,7 @@ Shift::'
 Esc::Esc
 CapsLock::j
 ':: Shift
+
 $s:: {
     ;Check if Shift key is pressed
     if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("RButton", "P"))  {
