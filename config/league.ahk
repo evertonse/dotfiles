@@ -10,7 +10,7 @@ Shift::'
 Esc::Esc
 CapsLock::j
 ':: Shift
-$s:: {
+s:: {
     ;Check if Shift key is pressed
     if (not GetKeyState("Shift", "P"))  {
         Send "{k down}{s}{k up}"
@@ -19,19 +19,25 @@ $s:: {
     }
 }
 
-RButton:: u
-; $RButton:: {
-;     if (GetKeyState("s", "P")) {
-;     	Send "{k down}{u}"
-;     	KeyWait "s", "L"
-;     } else if (not GetKeyState("Shift", "P") and not GetKeyState("s", "P")) {
-;        Send "{k down}{u}"
-;        KeyWait "RButton"
-;        Send "{k up}"
-;     } else {
-;       Send "{u}"
-;     }
-; }
+u:: {
+    ;Check if uhift key iu preuued
+    if (not GetKeyState("Shift", "P"))  {
+        Send "{k down}{u}{k up}"
+    } else  {
+        Send "{u}"
+    }
+}
+; Remap left mouse button to send "A" key
+
+RButton:: {
+    ;Check if uhift key iu preuued
+    if (not GetKeyState("Shift", "P"))  {
+        Send "{k down}{u}{k up}"
+    } else  {
+        Send "{u}"
+    }
+}
+
 
 SetCapsLockState "AlwaysOff"
 #HotIf ; Only active during league

@@ -11,6 +11,7 @@ pull:
 	git pull
 
 ahk:
+	rm /mnt/c/league.ahk;
 	cp ./config/league.ahk /mnt/c/league.ahk
 
 .PHONY: push pull clean install
