@@ -12,7 +12,7 @@ CapsLock::j
 ':: Shift
 $s:: {
     ;Check if Shift key is pressed
-    if (not GetKeyState("Shift", "P") and not GetKeyState("RButton", "P"))   {
+    if (not GetKeyState("Shift", "P"))  {
         Send "{k down}{s}{k up}"
     } else  {
         Send "{s}"
