@@ -10,4 +10,7 @@ push:
 pull:
 	git pull
 
+ahk:
+	cp ./config/league.ahk /mnt/c/league.ahk
+
 .PHONY: push pull clean install
