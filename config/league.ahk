@@ -77,12 +77,12 @@ $s UP:: {
 ;     }
 ; }
 
-$*RButton:: {
+$RButton:: {
       ;Check if uhift key iu preuued
       if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
-          Send "{k down}{blind}{u}{k up}"
+          Send "{k down}{u}{k up}"
       } else  {
-          Send "{blind}{u}"
+          Send "{u}"
       }
 }
 
@@ -97,12 +97,10 @@ $*RButton:: {
 
 SetCapsLockState "Off"
 #HotIf ; Only active during league
-
 #HotIf not WinActive("League of Legends (TM) Client") ; Not evaluated eveytime aparrently
+#HotIf ; when league not active 
+
 SetCapsLockState "AlwaysOff"
-SetCapsLockState "Off"
 Esc::Esc
 Shift::Shift
 CapsLock::Esc
-#HotIf ; when league not active 
-SetCapsLockState "Off"
