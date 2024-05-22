@@ -18,6 +18,8 @@ CapsLock Up::{
 ':: Shift
 \::Shift
 
+Shift::k
+
 
 Shift:: {
     if (not GetKeyState("k", "P") and not GetKeyState("s", "P"))  {
@@ -41,6 +43,7 @@ Shift Up:: {
 }
 
 
+s::s
 $s:: {
     if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
       if(GetKeyState("RButton", "P")) {
@@ -82,7 +85,8 @@ $s UP:: {
 ;     }
 ; }
 
-*RButton:: {
+RButton:: u
+RButton:: {
       ;Check if uhift key iu preuued
       if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
           Send "{k down}{u}{k up}"
