@@ -1,4 +1,7 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
+; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
+;     - Shift -> k
+;     - CapsLock -> Esc
 
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
@@ -31,7 +34,7 @@ Shift Up:: {
     }
 }
 
-s:: {
+$s:: {
     if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
       if(GetKeyState("RButton", "P")) {
           Send "{k down}{s}"
@@ -42,15 +45,16 @@ s:: {
         Send "{s}"
     }
 }
-s UP:: {
+$s UP:: {
     ;Check if Shift key is pressed
     if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
-      if (not GetKeyState("RButton", "P")) {
+      if (GetKeyState("RButton", "P")) {
         Send "{s}{k up}"
       } else {
         Send "{s}{k up}"
       }
     } else  {
+        Send "{s}"
     }
 }
 
