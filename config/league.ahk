@@ -78,6 +78,7 @@ RButton:: {
       if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
           Send "{k down}{u}{k up}"
       } else  {
+          Send "{u}"
       }
 }
 
