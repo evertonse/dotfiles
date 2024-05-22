@@ -1,7 +1,7 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 
-A_HotkeyInterval := 2  ; This is the default value (milliseconds).
-A_MaxHotkeysPerInterval := 2000
+A_HotkeyInterval := 0  ; This is the default value (milliseconds).
+A_MaxHotkeysPerInterval := 20000
 
 
 #HotIf WinActive("League of Legends (TM) Client")
@@ -19,7 +19,7 @@ CapsLock Up::{
 \::Shift
 
 
-$Shift:: {
+Shift:: {
     if (not GetKeyState("k", "P") and not GetKeyState("s", "P"))  {
       if(GetKeyState("RButton", "P")) {
         Send "{k down}"
@@ -29,7 +29,7 @@ $Shift:: {
     } else  {
     }
 }
-$Shift Up:: {
+Shift Up:: {
     if (not GetKeyState("k", "P") and not GetKeyState("s", "P"))  {
       if(GetKeyState("RButton", "P")) {
         Send "{k up}"
@@ -42,7 +42,6 @@ $Shift Up:: {
 
 
 $s:: {
-    ;Check if Shift key is pressed
     if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
       if(GetKeyState("RButton", "P")) {
           Send "{k down}{s}"
@@ -62,7 +61,6 @@ $s UP:: {
         Send "{s}{k up}"
       }
     } else  {
-        Send ""
     }
 }
 
@@ -84,7 +82,7 @@ $s UP:: {
 ;     }
 ; }
 
-$RButton:: {
+*RButton:: {
       ;Check if uhift key iu preuued
       if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
           Send "{k down}{u}{k up}"
@@ -102,7 +100,6 @@ $RButton:: {
 ;       }
 ; }
 
-SetCapsLockState "Off"
 #HotIf ; Only active during league
 #HotIf not WinActive("League of Legends (TM) Client") ; Not evaluated eveytime aparrently
 #HotIf ; when league not active 
