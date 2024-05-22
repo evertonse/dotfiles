@@ -7,7 +7,14 @@ A_MaxHotkeysPerInterval := 2000
 #HotIf WinActive("League of Legends (TM) Client")
 
 Esc::Esc
-CapsLock::j
+CapsLock::{
+  Send "{j down}"
+}
+
+CapsLock Up::{
+  Send "{j up}"
+}
+
 ':: Shift
 \::Shift
 
