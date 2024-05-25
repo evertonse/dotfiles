@@ -17,10 +17,10 @@ CapsLock::j
 
 Shift:: k
 Shift:: {
-    if (not GetKeyState("k") and not GetKeyState("s", "P"))  {
-        Send "{k down}"
+    if (GetKeyState("s", "P")) {
+      ; do nothing
     } else  {
-        ; do nothing
+      Send "{k down}"
     }
 }
 Shift Up:: {
@@ -31,40 +31,40 @@ Shift Up:: {
     }
 }
 
+' & s:: Send "{Shift down}{s}"
+' & s up:: Send "{Shift up}"
+s:: k
 s:: {
-    if (GetKeyState("Shift", "P") or GetKeyState("k"))  {
+    if (GetKeyState("Shift", "P")) {
         Send "{s}"
     } else  {
         Send "{k down}{s}"
     }
 }
 s UP:: {
-    if (GetKeyState("Shift", "P"))  {
+    if (GetKeyState("Shift", "P")) {
       Send "{s}"
     } else  {
-      if (GetKeyState("RButton", "P")) {
-          Send "{k up}"
-      }
       Send "{s}{k up}"
     }
 }
 
 RButton:: {
-    if (GetKeyState("k") or GetKeyState("s") or GetKeyState("Shift")) {
+    if (GetKeyState("k") or GetKeyState("s", "P") or GetKeyState("Shift", "P")) {
         Send "{u}"
     } else {
         Send "{k down}{u}{k up}"
     }
 }
 
-; $RButton Up:: {
-;       ;Check if uhift key iu preuued
-;       if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
-;           Send "{u up}"
-;       } else  {
-;           Send "{u up}"
-;       }
-; }
+RButton UP::  {
+    if (GetKeyState("s", "P") or GetKeyState("Shift", "P")) {
+        ; do nothing
+    } else {
+        Send "{k up}"
+    }
+}
+
 
 #HotIf ; Only active during league
 #HotIf not WinActive("League of Legends (TM) Client") ; Not evaluated eveytime aparrently
