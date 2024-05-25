@@ -33,7 +33,7 @@ Shift Up:: {
 
 ; ' & s:: Send "{Shift down}{s}"
 ; ' & s up:: Send "{Shift up}"
-s:: k
+; s:: k
 s:: {
     if (GetKeyState("Shift", "P")) {
         Send "{s}"
