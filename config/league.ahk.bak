@@ -1,26 +1,21 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
+; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
+;     - Shift -> k
+;     - CapsLock -> Esc
 
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
 
 
 #HotIf WinActive("League of Legends (TM) Client")
-
-Esc::Esc
-CapsLock::{
-  Send "{j down}"
+Esc:: {
+  Send "{Esc}{y}"
 }
 
-CapsLock Up::{
-  Send "{j up}"
-}
-
+CapsLock::j
 ':: Shift
-\::Shift
 
-Shift::k
-
-
+Shift:: k
 Shift:: {
     if (not GetKeyState("k", "P") and not GetKeyState("s", "P"))  {
       if(GetKeyState("RButton", "P")) {
@@ -42,9 +37,8 @@ Shift Up:: {
     }
 }
 
-
-s::s
-$s:: {
+s:: s
+s:: {
     if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
       if(GetKeyState("RButton", "P")) {
           Send "{k down}{s}"
@@ -55,44 +49,29 @@ $s:: {
         Send "{s}"
     }
 }
-$s UP:: {
+s UP:: {
     ;Check if Shift key is pressed
-    if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
-      if (not GetKeyState("RButton", "P")) {
+    if (not GetKeyState("Shift", "P") and not GetKeyState("k"))  {
+      if (GetKeyState("RButton", "P")) {
         Send "{s}{k up}"
       } else {
         Send "{s}{k up}"
       }
     } else  {
+        Send "{s}"
+        if(GetKeyState("RButton")) {
+            Send "{k up}"
+        }
     }
 }
 
-; RButton:: {
-;     ;Check if uhift key iu preuued
-;     if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
-;         Send "{k down}{u down}"
-;     } else  {
-;         Send "{u down}"
-;     }
-; }
-;
-; RButton Up:: {
-;     ;Check if uhift key iu preuued
-;     if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
-;         Send "{u up}{k up}"
-;     } else  {
-;         Send "{u up}"
-;     }
-; }
-
 RButton:: u
 RButton:: {
-      ;Check if uhift key iu preuued
-      if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
-          Send "{k down}{u}{k up}"
-      } else  {
-          Send "{u}"
-      }
+    if (GetKeyState("k")) {
+        Send "{u}"
+    } else {
+        Send "{k down}{u}{k up}"
+    }
 }
 
 ; $RButton Up:: {

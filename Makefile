@@ -16,6 +16,6 @@ DEST = /mnt/c/league.ahk
 ahk:
 	@rm -f $(DEST)
 	@cp $(SOURCE) $(DEST)
-	open $(DEST) 
+	wsl-open $(DEST) 
 
 .PHONY: push pull clean install
