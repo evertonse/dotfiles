@@ -34,7 +34,7 @@ Shift Up:: {
     }
 }
 
-$s:: {
+s:: {
     if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
       if(GetKeyState("RButton", "P")) {
           Send "{k down}{s}"
@@ -45,7 +45,7 @@ $s:: {
         Send "{s}"
     }
 }
-$s UP:: {
+s UP:: {
     ;Check if Shift key is pressed
     if (not GetKeyState("Shift", "P") and not GetKeyState("k", "P"))  {
       if (GetKeyState("RButton", "P")) {
@@ -76,13 +76,21 @@ $s UP:: {
 ;     }
 ; }
 
-RButton:: u
+; RButton:: u
 RButton:: {
       ;Check if uhift key iu preuued
       if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
           Send "{k down}{u}{k up}"
       } else  {
           Send "{u}"
+      }
+}
+
+RButton Up:: {
+      ;Check if uhift key iu preuued
+      if (not GetKeyState("'", "P") and not GetKeyState("Shift", "P") and not GetKeyState("k", "P")  and not GetKeyState("s", "P"))  {
+          Send "{k up}"
+      } else  {
       }
 }
 
