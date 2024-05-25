@@ -31,17 +31,16 @@ Shift Up:: {
     }
 }
 
-s:: s
 s:: {
     if (GetKeyState("Shift", "P") or GetKeyState("k"))  {
-        ; Send "{s}"
+        Send "{s}"
     } else  {
         Send "{k down}{s}"
     }
 }
 s UP:: {
     if (GetKeyState("Shift", "P"))  {
-      ; Send "{s}"
+      Send "{s}"
     } else  {
       if (GetKeyState("RButton", "P")) {
           Send "{k up}"
@@ -50,9 +49,8 @@ s UP:: {
     }
 }
 
-RButton:: u
 RButton:: {
-    if (GetKeyState("k")) {
+    if (GetKeyState("k") or GetKeyState("s") or GetKeyState("Shift")) {
         Send "{u}"
     } else {
         Send "{k down}{u}{k up}"
