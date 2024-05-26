@@ -6,8 +6,18 @@
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
 
+; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite 's' being up
 
 #HotIf WinActive("League of Legends (TM) Client")
+
+active_pid := WinGetPID("League of Legends (TM) Client")
+prio := "High"
+if ProcessSetPriority(prio, active_pid) {
+    MsgBox "Success: Its priority was changed to " prio 
+} else {
+    MsgBox "Error: Its priority could not be changed to " prio
+}
+
 Esc:: {
   SendInput "{Esc}{y}"
 }
