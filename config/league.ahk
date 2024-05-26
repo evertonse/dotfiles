@@ -1,13 +1,12 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
-;     - Shift -> k
+;     - Shift -> s
 ;     - CapsLock -> Esc
 
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
 
 ; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite 's' being up
-
 LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
 #HotIf WinActive(LEAGUE_PROCESS_NAME)
 
@@ -49,7 +48,7 @@ $s up:: {
 }
 
 
-$Shift:: {
+Shift:: {
   SetKeyDelay -1
   s_down :=  GetKeyState("s", "P")
   if (not s_down) {
@@ -57,7 +56,7 @@ $Shift:: {
   }
 }
 
-$Shift Up:: {
+Shift Up:: {
   SetKeyDelay -1
   s_down :=  GetKeyState("s", "P")
   if (not s_down) {
@@ -94,10 +93,10 @@ $RButton:: {
 
 #HotIf ; Only active during league
 
-#HotIf not WinActive("League of Legends (TM) Client") ; Not evaluated eveytime aparrently
-#HotIf ; Only when league not active 
-
+#HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
 SetCapsLockState "AlwaysOff"
 Esc::Esc
 Shift::Shift
 CapsLock::Esc
+#HotIf ; Only when league not active 
+
