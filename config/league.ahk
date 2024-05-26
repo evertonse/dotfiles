@@ -71,6 +71,7 @@ $Shift Up:: {
 
 $RButton:: {
     SetKeyDelay -1
+    SetMouseDelay -1
     if (GetKeyState("s")) {
         SendInput "{u}"
     } else {
