@@ -9,66 +9,79 @@ A_MaxHotkeysPerInterval := 20000
 
 #HotIf WinActive("League of Legends (TM) Client")
 Esc:: {
-  Send "{Esc}{y}"
+  SendInput "{Esc}{y}"
 }
 
 CapsLock::j
+
+$s:: {
+    SetKeyDelay -1
+    shift_down :=  GetKeyState("Shift", "P")
+    rbutton_down :=  GetKeyState("RButton", "P")
+    if (shift_down or rbutton_down) {
+        Send "{c}"
+    }
+    send "{s down}{c}"
+}
+
+$s up:: {
+    SetKeyDelay -1
+    shift_down :=  GetKeyState("Shift", "P")
+    rbutton_down :=  GetKeyState("RButton", "P")
+    if (shift_down or rbutton_down) {
+        Send "{c}"
+    } else {
+        Send "{c}{s up}"
+    }
+}
+
+
+$Shift:: {
+  SetKeyDelay -1
+  s_down :=  GetKeyState("s", "P")
+  if (not s_down) {
+      send "{s down}"
+  }
+}
+
+$Shift Up:: {
+  SetKeyDelay -1
+  s_down :=  GetKeyState("s", "P")
+  if (not s_down) {
+
+    Send "{s up}"
+  }
+}
+
 ':: Shift
 
-Shift:: k
-Shift:: {
-    if (GetKeyState("s", "P")) {
-      ; do nothing
-    } else  {
-      Send "{k down}"
-    }
-}
-Shift Up:: {
-    if (not GetKeyState("s", "P"))  {
-        Send "{k up}"
-    } else  {
-       ; do nothing
-    }
-}
+; *s up:: SendInput "{blind up}"
+; *s:: SendInput "{blind down}{s}"
 
-; ' & s:: Send "{Shift down}{s}"
-; ' & s up:: Send "{Shift up}"
-; s:: k
-s:: {
-    if (GetKeyState("Shift", "P")) {
-        Send "{s}"
-    } else  {
-        Send "{k down}{s}"
-    }
-}
-s UP:: {
-    if (GetKeyState("Shift", "P")) {
-      Send "{s}"
-    } else  {
-      Send "{s}{k up}"
-    }
-}
 
-RButton:: {
-    if (GetKeyState("k") or GetKeyState("s", "P") or GetKeyState("Shift", "P")) {
-        Send "{u}"
+; s & RButton:: {
+;     SendInput "{u}"
+;     if (GetKeyState("Shift", "P")) {
+;         SendInput "{u}"
+;     } else {
+;     }
+; }
+
+
+
+$RButton:: {
+    SetKeyDelay -1
+    if (GetKeyState("s")) {
+        SendInput "{u}"
     } else {
-        Send "{k down}{u}{k up}"
+        SendInput "{s down}{u}{s up}"
     }
 }
-
-RButton UP::  {
-    if (GetKeyState("s", "P") or GetKeyState("Shift", "P")) {
-        ; do nothing
-    } else {
-        Send "{k up}"
-    }
-}
-
 
 #HotIf ; Only active during league
+
 #HotIf not WinActive("League of Legends (TM) Client") ; Not evaluated eveytime aparrently
-#HotIf ; when league not active 
+#HotIf ; Only when league not active 
 
 SetCapsLockState "AlwaysOff"
 Esc::Esc
