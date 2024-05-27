@@ -5,6 +5,7 @@
 
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
+A_HotkeyModifierTimeout := 0
 
 ; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite 's' being up
 LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
@@ -15,7 +16,7 @@ WinWaitActive LEAGUE_PROCESS_NAME
 active_pid := WinGetPID(LEAGUE_PROCESS_NAME)
 prio := "High"
 if ProcessSetPriority(prio, active_pid) {
-    MsgBox "Success: Its priority was changed to " prio 
+    ; MsgBox "Success: Its priority was changed to " prio 
 } else {
     MsgBox "Error: Its priority could not be changed to " prio
 }
@@ -26,43 +27,48 @@ Esc:: {
 
 CapsLock::j
 
-$s:: {
+s:: {
     SetKeyDelay -1
-    shift_down :=  GetKeyState("Shift", "P")
-    rbutton_down :=  GetKeyState("RButton", "P")
-    if (shift_down or rbutton_down) {
-        Send "{c}"
-    }
-    send "{s down}{c}"
+    Send "{s down}{c}"
+    ; shift_down   :=  GetKeyState("Shift", "P")
+    ; rbutton_down :=  GetKeyState("RButton", "P")
+    ; if (shift_down) {
+    ;     Send "{c}"
+    ; } else {
+    ;     Send "{s down}{c}"
+    ; }
 }
 
-$s up:: {
-    SetKeyDelay -1
-    shift_down :=  GetKeyState("Shift", "P")
-    rbutton_down :=  GetKeyState("RButton", "P")
-    if (shift_down or rbutton_down) {
-        Send "{c}"
-    } else {
-        Send "{c}{s up}"
-    }
+s Up:: {
+  KeyWait "Shift"
+  Send "{c}{s up}"
+    ; shift_down :=  GetKeyState("Shift", "P")
+    ; rbutton_down :=  GetKeyState("RButton", "P")
+    ; if (shift_down) {
+    ;     Send "{c}"
+    ; } else {
+    ;     Send "{c}{s up}"
+    ; }
 }
 
+; +s::{
+;   Send "{s down}"
+; }
+;
+; +s Up::{
+;   Send "{s up}"
+;   ; KeyWait "Shift"
+;   ; Send "{s up}"
+; }
 
-Shift:: {
+$Shift:: {
   SetKeyDelay -1
-  s_down :=  GetKeyState("s", "P")
-  if (not s_down) {
-      send "{s down}"
-  }
+  Send "{s down}"
 }
 
-Shift Up:: {
-  SetKeyDelay -1
-  s_down :=  GetKeyState("s", "P")
-  if (not s_down) {
-
-    Send "{s up}"
-  }
+$Shift Up:: {
+  KeyWait "s"
+  Send "{s up}"
 }
 
 ':: Shift
@@ -81,7 +87,7 @@ Shift Up:: {
 
 
 
-$RButton:: {
+RButton:: {
     SetKeyDelay -1
     SetMouseDelay -1
     if (GetKeyState("s")) {
@@ -89,6 +95,11 @@ $RButton:: {
     } else {
         SendInput "{s down}{u}{s up}"
     }
+}
+
+RButton Up:: {
+    SetKeyDelay -1
+    SetMouseDelay -1
 }
 
 #HotIf ; Only active during league
