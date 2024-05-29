@@ -103,9 +103,10 @@ RButton Up:: {
 }
 
 #HotIf ; Only active during league
-
+SetCapsLockState "AlwaysOff"
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
 SetCapsLockState "AlwaysOff"
+SetCapsLockState "Off"
 Esc::Esc
 Shift::Shift
 CapsLock::Esc
