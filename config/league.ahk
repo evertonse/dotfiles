@@ -14,9 +14,9 @@ LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
 WinWaitActive LEAGUE_PROCESS_NAME
 
 active_pid := WinGetPID(LEAGUE_PROCESS_NAME)
-prio := "High"
+prio := "Realtime"
 if ProcessSetPriority(prio, active_pid) {
-    ; MsgBox "Success: Its priority was changed to " prio 
+    MsgBox "Success: Its priority was changed to " prio 
 } else {
     MsgBox "Error: Its priority could not be changed to " prio
 }
@@ -27,8 +27,8 @@ Esc:: {
 
 CapsLock::j
 
+s:: s
 s:: {
-    SetKeyDelay -1
     Send "{s down}{c}"
     ; shift_down   :=  GetKeyState("Shift", "P")
     ; rbutton_down :=  GetKeyState("RButton", "P")
@@ -51,22 +51,11 @@ s Up:: {
     ; }
 }
 
-; +s::{
-;   Send "{s down}"
-; }
-;
-; +s Up::{
-;   Send "{s up}"
-;   ; KeyWait "Shift"
-;   ; Send "{s up}"
-; }
-
-$Shift:: {
-  SetKeyDelay -1
-  Send "{s down}"
+Shift:: {
+    Send "{s down}"
 }
 
-$Shift Up:: {
+Shift Up:: {
   KeyWait "s"
   Send "{s up}"
 }
@@ -87,28 +76,24 @@ $Shift Up:: {
 
 
 
-RButton:: {
+RButton:: u
+$RButton:: {
     SetKeyDelay -1
     SetMouseDelay -1
-    if (GetKeyState("s")) {
-        SendInput "{u}"
-    } else {
-        SendInput "{s down}{u}{s up}"
+    SendInput "{s down}{u}"
+    if (not GetKeyState("s", "P") and not GetKeyState("Shift", "P")) {
+        SendInput "{s up}"
     }
-}
-
-RButton Up:: {
-    SetKeyDelay -1
-    SetMouseDelay -1
 }
 
 #HotIf ; Only active during league
 SetCapsLockState "AlwaysOff"
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
 SetCapsLockState "AlwaysOff"
-SetCapsLockState "Off"
 Esc::Esc
 Shift::Shift
 CapsLock::Esc
+s::s
+
 #HotIf ; Only when league not active 
 
