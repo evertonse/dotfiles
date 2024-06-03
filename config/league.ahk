@@ -5,7 +5,9 @@
 
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
-A_HotkeyModifierTimeout := 0
+A_HotkeyModifierTimeout := -1
+
+SendMode "Input"
 
 ; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite 's' being up
 LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
@@ -27,38 +29,23 @@ Esc:: {
 
 CapsLock::j
 
-s:: s
-s:: {
-    Send "{s down}{c}"
-    ; shift_down   :=  GetKeyState("Shift", "P")
-    ; rbutton_down :=  GetKeyState("RButton", "P")
-    ; if (shift_down) {
-    ;     Send "{c}"
-    ; } else {
-    ;     Send "{s down}{c}"
-    ; }
+; ^s::^s 
+; $s:: {
+;     Send "{s down}{c}"
+; }
+ 
+
+s::s
+
+$s::{
+    if (GetKeyState("s")) {
+        SendInput "{c}"
+    } else {
+        SendInput "{s down}{c}{s up}"
+    }
 }
 
-s Up:: {
-  KeyWait "Shift"
-  Send "{c}{s up}"
-    ; shift_down :=  GetKeyState("Shift", "P")
-    ; rbutton_down :=  GetKeyState("RButton", "P")
-    ; if (shift_down) {
-    ;     Send "{c}"
-    ; } else {
-    ;     Send "{c}{s up}"
-    ; }
-}
-
-Shift:: {
-    Send "{s down}"
-}
-
-Shift Up:: {
-  KeyWait "s"
-  Send "{s up}"
-}
+Shift::s
 
 ':: Shift
 
@@ -77,13 +64,18 @@ Shift Up:: {
 
 
 RButton:: u
-$RButton:: {
-    SetKeyDelay -1
-    SetMouseDelay -1
-    SendInput "{s down}{u}"
-    if (not GetKeyState("s", "P") and not GetKeyState("Shift", "P")) {
-        SendInput "{s up}"
+RButton:: {
+    if (GetKeyState("s")) {
+        SendInput "{u}"
+    } else {
+        SendInput "{s down}{u}{s up}"
     }
+}
+
+RButton Up:: {
+    KeyWait "s"
+    KeyWait "Shift"
+    SendInput "{s up}"
 }
 
 #HotIf ; Only active during league
@@ -96,4 +88,5 @@ CapsLock::Esc
 s::s
 
 #HotIf ; Only when league not active 
+
 
