@@ -35,15 +35,16 @@ CapsLock::j
 ; }
  
 
-s::s
 
 $s::{
     if (GetKeyState("s")) {
-        SendInput "{c}"
+        Send "{c}"
     } else {
-        SendInput "{s down}{c}{s up}"
+        Send "{s down}{c}{s up}"
     }
 }
+
+
 
 Shift::s
 
