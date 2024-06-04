@@ -96,7 +96,8 @@ SetCapsLockState "AlwaysOff"
 }
 
 SetCapsLockState("AlwaysOff")
-Esc::Esc
+Esc::CapsLock
+;Esc::Esc
 Shift::Shift
 CapsLock::Esc
 s::s
