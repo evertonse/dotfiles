@@ -23,11 +23,7 @@ if ProcessSetPriority(prio, active_pid) {
     MsgBox "Error: Its priority could not be changed to " prio
 }
 
-Esc:: {
-  SendInput "{Esc}{y}"
-}
-
-CapsLock::j
+CapsLock::y
 
 ; ^s::^s 
 ; $s:: {
@@ -36,23 +32,25 @@ CapsLock::j
  
 
 
-$s::{
-    if (GetKeyState("s")) {
-        Send "{c}"
+s::s
+s::{
+    if (GetKeyState("'")) {
+        Send "{s}"
     } else {
-        Send "{s down}{c}{s up}"
+        Send "{' down}{s}{' up}"
     }
 }
 
+; $Shift & RButton::{
+;     Send "{u}"
+; }
 
-
-Shift::s
-
+Shift::'
 ':: Shift
+
 
 ; *s up:: SendInput "{blind up}"
 ; *s:: SendInput "{blind down}{s}"
-
 
 ; s & RButton:: {
 ;     SendInput "{u}"
@@ -66,19 +64,14 @@ Shift::s
 
 RButton:: u
 RButton:: {
-    if (GetKeyState("s")) {
+    if (GetKeyState("'")) {
         SendInput "{u}"
     } else {
-        SendInput "{s down}{u}{s up}"
+        SendInput "{' down}{u}{' up}"
     }
 }
 
-RButton Up:: {
-    KeyWait "s"
-    KeyWait "Shift"
-    SendInput "{s up}"
-}
-
+SetCapsLockState "AlwaysOff"
 #HotIf ; Only active during league
 SetCapsLockState "AlwaysOff"
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
@@ -87,6 +80,7 @@ Esc::Esc
 Shift::Shift
 CapsLock::Esc
 s::s
+'::'
 
 #HotIf ; Only when league not active 
 
