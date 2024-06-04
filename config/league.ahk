@@ -1,7 +1,7 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
-;     - Shift -> s
-;     - CapsLock -> Esc
+;     - Shift -> '
+;     - CapsLock -> y
 
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
@@ -75,7 +75,27 @@ SetCapsLockState "AlwaysOff"
 #HotIf ; Only active during league
 SetCapsLockState "AlwaysOff"
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
-SetCapsLockState "AlwaysOff"
+
+; Define the hotkey (Ctrl+Shift+D in this example)
+#n:: {
+
+    ; Get the current date
+    current_date := FormatTime(,"yyyy-MM-dd")
+
+    notes_file_path := "C:\Users\Administrator\OneDrive\Personal\docs\ObsidianVaults\ExCyber\Habits\Journal\" current_date  ".txt"
+    ; Create the file and write the current date into it
+
+    ; Check if the file already exists
+    if !FileExist(notes_file_path) {
+        ; If the file doesn't exist, create it and write the current date into it
+        FileAppend current_date, notes_file_path
+    }
+
+    ; Open the file in Notepad
+    Run notes_file_path
+}
+
+SetCapsLockState("AlwaysOff")
 Esc::Esc
 Shift::Shift
 CapsLock::Esc
