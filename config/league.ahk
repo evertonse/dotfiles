@@ -1,28 +1,41 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
-;     - Shift -> '
+;     - Shift -> k
 ;     - CapsLock -> y
 
 A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 20000
 A_HotkeyModifierTimeout := -1
 
+SetKeyDelay -1
+SetMouseDelay -1
 SendMode "Input"
 
-; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite 's' being up
+; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite ksk being up
 LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
 #HotIf WinActive(LEAGUE_PROCESS_NAME)
-
 WinWaitActive LEAGUE_PROCESS_NAME
-
+Send "{c down}"
 active_pid := WinGetPID(LEAGUE_PROCESS_NAME)
 prio := "Realtime"
 if ProcessSetPriority(prio, active_pid) {
-    MsgBox "Success: Its priority was changed to " prio 
+    ; MsgBox "Success: Its priority was changed to " prio 
 } else {
     MsgBox "Error: Its priority could not be changed to " prio
 }
 
+c_down := False
+^c:: {
+    global c_down
+    c_down :=  not c_down
+    if (c_down) {
+        Send "{c up}"
+    } else {
+        Send "{c down}"
+    }
+
+
+}
 CapsLock::y
 
 ; ^s::^s 
@@ -33,11 +46,13 @@ CapsLock::y
 
 
 s::s
-s::{
-    if (GetKeyState("'")) {
+$s::{
+    SetKeyDelay -1
+    SetMouseDelay -1
+    if (GetKeyState("k")) {
         Send "{s}"
     } else {
-        Send "{' down}{s}{' up}"
+        Send "{k down}{s}{k up}"
     }
 }
 
@@ -45,7 +60,7 @@ s::{
 ;     Send "{u}"
 ; }
 
-Shift::'
+$Shift::k
 ':: Shift
 
 
@@ -63,11 +78,11 @@ Shift::'
 
 
 RButton:: u
-RButton:: {
-    if (GetKeyState("'")) {
+$RButton:: {
+    if (GetKeyState("k")) {
         SendInput "{u}"
     } else {
-        SendInput "{' down}{u}{' up}"
+        SendInput "{k down}{u}{k up}"
     }
 }
 
@@ -87,7 +102,7 @@ SetCapsLockState "AlwaysOff"
 
     ; Check if the file already exists
     if !FileExist(notes_file_path) {
-        ; If the file doesn't exist, create it and write the current date into it
+        ; If the file doesnkt exist, create it and write the current date into it
         FileAppend current_date, notes_file_path
     }
 
@@ -101,6 +116,7 @@ Esc::CapsLock
 Shift::Shift
 CapsLock::Esc
 s::s
+k::k
 '::'
 
 #HotIf ; Only when league not active 
