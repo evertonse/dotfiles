@@ -15,7 +15,6 @@ SendMode "Input"
 LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
 #HotIf WinActive(LEAGUE_PROCESS_NAME)
 WinWaitActive LEAGUE_PROCESS_NAME
-Send "{c down}"
 active_pid := WinGetPID(LEAGUE_PROCESS_NAME)
 prio := "Realtime"
 if ProcessSetPriority(prio, active_pid) {
@@ -24,17 +23,15 @@ if ProcessSetPriority(prio, active_pid) {
     MsgBox "Error: Its priority could not be changed to " prio
 }
 
-c_down := False
-^c:: {
-    global c_down
-    c_down :=  not c_down
-    if (c_down) {
-        Send "{c up}"
+l_down := False
+$^s:: {
+    global l_down
+    if (l_down) {
+        Send "{l up}"
     } else {
-        Send "{c down}"
+        Send "{l down}"
     }
-
-
+    l_down :=  not l_down
 }
 CapsLock::y
 
@@ -79,10 +76,10 @@ $Shift::k
 
 RButton:: u
 $RButton:: {
-    if (GetKeyState("k")) {
-        SendInput "{u}"
-    } else {
-        SendInput "{k down}{u}{k up}"
+    SetMouseDelay -1
+    SendInput "{k down}{u}"
+    if (not GetKeyState("Shift", "P")) {
+        SendInput "{k up}"
     }
 }
 
