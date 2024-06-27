@@ -1,9 +1,14 @@
 
-# lifetime-config-files
+
+## Cleaning
+    on arch https://averagelinuxuser.com/clean-arch-linux/
+
+## lifetime-config-files
 nano /etc/systemd/system/getty@tty1.service.d/autologin.conf
 ExecStart=-/sbin/agetty -o '-f -p -- \\u' --noclear -a USERNAME %I $TERM
 dotfiles and +
 - .linuxtips for frequently questioins I have
+
 # Debian 
 ## Wayland
 
