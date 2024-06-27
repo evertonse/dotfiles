@@ -22,6 +22,7 @@ alias py='python3'
 alias yt='yt-dlp --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
 alias yta='yt-dlp --add-metadata -xic' # Audio Only
 alias YT='youtube-viewer'
+alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 
 # Use neovim for vim if present.
 # [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
