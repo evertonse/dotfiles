@@ -20,9 +20,18 @@ def cp(src, dst):
 
 home = Path.home()
 installs = ["dotfiles", "dotdirs", "dotrepos"]
-cmd = lambda x: print(x) or os.system(x)
+cmd = lambda x: input(f'Wanna run this [y/n]?\n{x}', ).lower() == 'y' or os.system(x)
 
 
+
+def remove_neovim():
+    cmd(f'rm -rf {home}/.config/nvim')
+    cmd(f'rm -rf {home}/.local/state/nvim')
+    cmd(f'rm -rf {home}/.local/share/nvim')
+
+def install_neovim():
+    cmd(f'git clone https://github.com/evertonse/kickstart.nvim.git {home}/.config/nvim')
+    
 def dotdirs():
     dirs = [
         *glob("./config/*"),
@@ -93,16 +102,9 @@ def dotdirs():
 
 
 def dotrepos():
-    home = Path.home()
-    cmd(f"rm -rf {Path(home,'.config','nvim').resolve()}")
-    cmd(f"rm -rf {Path(home,'.local','share','nvim').resolve()}")
+    remove_neovim()
+    install_neovim()
 
-    cmd(
-        f"git clone https://github.com/NvChad/NvChad {Path(home,'.config','nvim')} --depth 1"
-    )
-    cmd(
-        f"git clone https://github.com/evertonse/nvchad-custom {Path(home,'.config','nvim', 'lua','custom')}"
-    )
     rocks = Path(home, "code", "rocks")
     cmd(
         f"git clone https://github.com/evertonse/rocks {rocks} && cd {rocks} && ./install.sh"
