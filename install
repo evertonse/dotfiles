@@ -7,6 +7,18 @@ from shutil import copytree, rmtree as rmdir, copy as cpfile, move as mv
 from glob import glob
 from functools import partial
 
+def getch(x):
+    import termios, sys , tty
+    print(x)
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        ch = sys.stdin.read(1)     #This number represents the length
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
+
 cpdir = partial(copytree, dirs_exist_ok=True)
 
 
@@ -20,7 +32,7 @@ def cp(src, dst):
 
 home = Path.home()
 installs = ["dotfiles", "dotdirs", "dotrepos"]
-cmd = lambda x: input(f'Wanna run this [y/n]?\n{x}', ).lower() == 'y' or os.system(x)
+cmd = lambda x: getch(f'{x} [y/n]?').lower() == 'y' and os.system(x)
 
 
 
