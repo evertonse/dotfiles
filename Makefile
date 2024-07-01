@@ -1,5 +1,5 @@
 install:
-	python3 ./install -y
+	python3 ./installer.py -y
 
 clean:
 	rm -rf *.bin

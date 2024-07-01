@@ -1,4 +1,4 @@
-#!/usr/bin/python4
+#!/usr/bin/python3
 
 import sys
 import os
@@ -6,15 +6,43 @@ from pathlib import Path
 from shutil import copytree, rmtree as rmdir, copy as cpfile, move as mv
 from glob import glob
 from functools import partial
+import subprocess
 
-def getch(x):
-    import termios, sys , tty
-    print(x)
+def cmd_std_out(command):
+    """Run a shell command and return the output."""
+    if getch(f'{command} [y/n]?').lower() == 'y':
+        result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+
+def win_path_exits(path):
+    response = cmd_std_out(f'powershell.exe Test-Path {path}') 
+    if response == "True":
+        return True
+    elif response == "False":
+        return False
+    else:
+        print(f'Test-Path returned unkown response `{response}`, exiting...')
+        exit(0)
+
+       
+
+def windows_username():
+    """Get the Windows username from within WSL."""
+    return cmd_std_out('cmd.exe /c "echo %USERNAME%"')
+
+def getch(x=None):
+    import termios, sys, tty
+
+    if x is not None:
+        print(x)
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
         tty.setraw(fd)
-        ch = sys.stdin.read(1)     #This number represents the length
+        ch = sys.stdin.read(1)  # This number represents the length
+        if ch == '\x03':  # ASCII value for Ctrl+C
+            print("Ctrl+C detected, exiting...")
+            exit(0)
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
@@ -30,19 +58,54 @@ def cp(src, dst):
         cpfile(Path(src), Path(dst))
 
 
+def yes_or_no(x) -> bool:
+    phrase = f'{x} [y/n]?'
+    c = getch(phrase).lower()
+    while c not in {'y', 'n', 'yes', 'no'}:
+        c = getch(phrase).lower()
+    return c.startswith('y')
+    
+        
 home = Path.home()
-installs = ["dotfiles", "dotdirs", "dotrepos"]
-cmd = lambda x: getch(f'{x} [y/n]?').lower() == 'y' and os.system(x)
+def cmd(x):
+    if yes_or_no(x):
+        ok = os.system(x)
+        if ok != 0: 
+            print(f"Previous command has failed with error code {ok}. Exiting now.")
+            exit(0)
 
 
 
 def remove_neovim():
     cmd(f'rm -rf {home}/.config/nvim')
-    cmd(f'rm -rf {home}/.local/state/nvim')
     cmd(f'rm -rf {home}/.local/share/nvim')
+    cmd(f'rm -rf {home}/.local/state/nvim')
+
+win_user_name = windows_username()
+
+# This looks funny because we have a double scape situation,
+# this is run from the zsh shell instead of 9P protocol from wsl to /mnt/c (if we were to use shutil)
+# Below is a var that could be used with shutil instead of shell:
+#     win_home = f'/mnt/c/user/{win_user_name}/AppData/Local'
+win_home = f'C:\\\\Users\\\\{win_user_name}\\\\AppData\\\\Local'
 
 def install_neovim():
     cmd(f'git clone https://github.com/evertonse/kickstart.nvim.git {home}/.config/nvim')
+
+
+def install_neovim_on_windows_from_wsl():
+    def remove_neovim_windows11():
+        if win_path_exits(f'{win_home}\\\\nvim'):
+            cmd(f'powershell.exe rm -Recurse -Force {win_home}\\\\nvim')
+        if win_path_exits(f'{win_home}\\\\nvim-data'):
+            cmd(f'powershell.exe rm -Recurse -Force {win_home}\\\\nvim-data')
+
+    def install_neovim_windows11():
+        cmd(f'powershell.exe git clone https://github.com/evertonse/kickstart.nvim.git {win_home}\\\\nvim')
+      
+    remove_neovim_windows11()
+    install_neovim_windows11()
+    
     
 def dotdirs():
     dirs = [
@@ -96,11 +159,11 @@ def dotdirs():
         cp(src, dst)
     print(f"<<--------Copies--------\n")
 
-    cmd(f"sudo ln -sf {home}/.local/include/* /usr/include")
+    cmd(f"sudo ln -sf /{home}/.local/include/* /usr/include")
     cmd(f"sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
-    cmd(f"sudo ln -sf {home}/.local/include/* /usr/include")
+    cmd(f"sudo ln -sf /{home}/.local/include/* /usr/include")
     cmd(
-        f"sudo ln -s  {home}/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber"
+        f"sudo ln -s  /{home}/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber"
     )
     # cmd(f'setxkbmap -model br-abnt2 -layout br -option ""')
     # cmd('setxkbmap -model br-abnt2-excyber -layout br-excyber -option ""')
@@ -171,31 +234,42 @@ def dotfiles():
             cp(f, Path(home, f))
 
 
+install_commands = [
+    install_neovim_on_windows_from_wsl,
+    dotdirs,
+    dotfiles,
+    dotrepos,
+]
+
 autoyes = False
 
 
 def main():
     global autoyes
+    # Sort the commands by their function name
+    install_commands.sort(key=lambda x: x.__name__)
+    assert(len(install_commands) < 10)
+
     argc = len(sys.argv)
     if argc > 1 and sys.argv[1].lower() == "-y":
         print("Chose -y, will not prompt and will override config ")
         autoyes = True
 
     if os.name == "nt":
-        print("Windows not supported for automatically install")
+        print("Windows not supported for automatic installation")
         exit(69)
 
-    print("Which one do you wish to install ? ")
-    for key, value in enumerate(installs):
-        print(f"{key+1} : {value}")
-    which = installs[int(input()) - 1]
+    print("Which one do you wish to install?")
+    for idx, cmd in enumerate(install_commands):
+        print(f"{idx + 1} : {cmd.__name__.replace('_',' ')}")
 
-    if which == "dotdirs":
-        dotdirs()
-    elif which == "dotfiles":
-        dotfiles()
-    elif which == "dotrepos":
-        dotrepos()
+    choice = int(getch()) - 1
+    if choice < 0 or choice >= len(install_commands):
+        print("Invalid choice. Exiting.")
+        exit(1)
+
+    selected_command = install_commands[choice]
+    selected_command()
 
 
 if __name__ == "__main__":
