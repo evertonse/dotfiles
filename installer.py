@@ -24,8 +24,6 @@ def win_path_exits(path):
         print(f'Test-Path returned unkown response `{response}`, exiting...')
         exit(0)
 
-       
-
 def windows_username():
     """Get the Windows username from within WSL."""
     return cmd_std_out('cmd.exe /c "echo %USERNAME%"')
@@ -81,19 +79,19 @@ def remove_neovim():
     cmd(f'rm -rf {home}/.local/share/nvim')
     cmd(f'rm -rf {home}/.local/state/nvim')
 
-win_user_name = windows_username()
-
-# This looks funny because we have a double scape situation,
-# this is run from the zsh shell instead of 9P protocol from wsl to /mnt/c (if we were to use shutil)
-# Below is a var that could be used with shutil instead of shell:
-#     win_home = f'/mnt/c/user/{win_user_name}/AppData/Local'
-win_home = f'C:\\\\Users\\\\{win_user_name}\\\\AppData\\\\Local'
 
 def install_neovim():
     cmd(f'git clone https://github.com/evertonse/kickstart.nvim.git {home}/.config/nvim')
 
 
 def install_neovim_on_windows_from_wsl():
+    win_user_name = windows_username()
+
+    # This looks funny because we have a double scape situation,
+    # this is run from the zsh shell instead of 9P protocol from wsl to /mnt/c (if we were to use shutil)
+    # Below is a var that could be used with shutil instead of shell:
+    #     win_home = f'/mnt/c/user/{win_user_name}/AppData/Local'
+    win_home = f'C:\\\\Users\\\\{win_user_name}\\\\AppData\\\\Local'
     def remove_neovim_windows11():
         if win_path_exits(f'{win_home}\\\\nvim'):
             cmd(f'powershell.exe rm -Recurse -Force {win_home}\\\\nvim')

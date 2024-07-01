@@ -1,7 +1,14 @@
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
 unsetopt PROMPT_SP
 export EDITOR=nvim
-export TERM=xterm-256color
+if [ -n "$TMUX" ]; then
+  # export TERM="screen-256color"
+  # export TERM="tmux-256color"
+  export TERM="xterm-256color"
+else
+  export TERM="xterm-256color"
+fi
+
 export TERMINAL="st"
 export TERMINAL_PROG="st"
 export EXPLORER="st -e lf"
