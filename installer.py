@@ -8,14 +8,17 @@ from glob import glob
 from functools import partial
 import subprocess
 
+
 def cmd_std_out(command):
     """Run a shell command and return the output."""
     if getch(f'{command} [y/n]?').lower() == 'y':
-        result = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+        result = subprocess.run(command, shell=True,
+                                capture_output=True, text=True, check=True)
         return result.stdout.strip()
 
+
 def win_path_exits(path):
-    response = cmd_std_out(f'powershell.exe Test-Path {path}') 
+    response = cmd_std_out(f'powershell.exe Test-Path {path}')
     if response == "True":
         return True
     elif response == "False":
@@ -24,12 +27,16 @@ def win_path_exits(path):
         print(f'Test-Path returned unkown response `{response}`, exiting...')
         exit(0)
 
+
 def windows_username():
     """Get the Windows username from within WSL."""
     return cmd_std_out('cmd.exe /c "echo %USERNAME%"')
 
+
 def getch(x=None):
-    import termios, sys, tty
+    import termios
+    import sys
+    import tty
 
     if x is not None:
         print(x)
@@ -44,6 +51,7 @@ def getch(x=None):
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
+
 
 cpdir = partial(copytree, dirs_exist_ok=True)
 
@@ -62,16 +70,18 @@ def yes_or_no(x) -> bool:
     while c not in {'y', 'n', 'yes', 'no'}:
         c = getch(phrase).lower()
     return c.startswith('y')
-    
-        
+
+
 home = Path.home()
+
+
 def cmd(x):
     if yes_or_no(x):
         ok = os.system(x)
-        if ok != 0: 
-            print(f"Previous command has failed with error code {ok}. Exiting now.")
+        if ok != 0:
+            print(
+                f"Previous command has failed with error code {ok}. Exiting now.")
             exit(0)
-
 
 
 def remove_neovim():
@@ -81,7 +91,8 @@ def remove_neovim():
 
 
 def install_neovim():
-    cmd(f'git clone https://github.com/evertonse/kickstart.nvim.git {home}/.config/nvim')
+    cmd(
+        f'git clone https://github.com/evertonse/kickstart.nvim.git {home}/.config/nvim')
 
 
 def install_neovim_on_windows_from_wsl():
@@ -92,6 +103,7 @@ def install_neovim_on_windows_from_wsl():
     # Below is a var that could be used with shutil instead of shell:
     #     win_home = f'/mnt/c/user/{win_user_name}/AppData/Local'
     win_home = f'C:\\\\Users\\\\{win_user_name}\\\\AppData\\\\Local'
+
     def remove_neovim_windows11():
         if win_path_exits(f'{win_home}\\\\nvim'):
             cmd(f'powershell.exe rm -Recurse -Force {win_home}\\\\nvim')
@@ -99,12 +111,13 @@ def install_neovim_on_windows_from_wsl():
             cmd(f'powershell.exe rm -Recurse -Force {win_home}\\\\nvim-data')
 
     def install_neovim_windows11():
-        cmd(f'powershell.exe git clone https://github.com/evertonse/kickstart.nvim.git {win_home}\\\\nvim')
-      
+        cmd(
+            f'powershell.exe git clone https://github.com/evertonse/kickstart.nvim.git {win_home}\\\\nvim')
+
     remove_neovim_windows11()
     install_neovim_windows11()
-    
-    
+
+
 def dotdirs():
     dirs = [
         *glob("./config/*"),
@@ -246,7 +259,7 @@ def main():
     global autoyes
     # Sort the commands by their function name
     install_commands.sort(key=lambda x: x.__name__)
-    assert(len(install_commands) < 10)
+    assert (len(install_commands) < 10)
 
     argc = len(sys.argv)
     if argc > 1 and sys.argv[1].lower() == "-y":
