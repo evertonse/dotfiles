@@ -12,6 +12,6 @@
 [safe]
 	directory = /opt/flutter
 [branch]
-    autoSetupMerge='simple'
+    autoSetupMerge= simple
 [core]
-        longpaths = true
+    longpaths = true
