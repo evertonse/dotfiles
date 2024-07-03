@@ -13,30 +13,36 @@
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+shift+y"
-        },
-        {
-            "command": 
-            {
                 "action": "splitPane",
                 "split": "right"
-            },
-            "keys": "ctrl+shift+v"
+            }
         },
         {
             "command": 
             {
                 "action": "moveFocus",
                 "direction": "down"
+            }
+        },
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
             },
-            "keys": "ctrl+shift+j"
+            "keys": "ctrl+shift+y"
         },
         {
             "command": "paste",
             "keys": "ctrl+shift+p"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            }
         },
         {
             "command": 
@@ -46,13 +52,7 @@
             "keys": "ctrl+shift+d"
         },
         {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
+            "command": "find"
         },
         {
             "command": 
@@ -61,10 +61,6 @@
                 "direction": "left"
             },
             "keys": "ctrl+shift+comma"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -158,19 +154,73 @@
             "keys": "ctrl+shift+c"
         },
         {
+            "command": "unbound",
+            "keys": "enter"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+insert"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+shift+d"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+n"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+\\"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+p"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+j"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+h"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+l"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+k"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+m"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+v"
+        },
+        {
             "command": 
             {
                 "action": "moveFocus",
                 "direction": "right"
-            },
-            "keys": "ctrl+shift+l"
+            }
         },
         {
             "command": 
             {
                 "action": "addMark"
-            },
-            "keys": "ctrl+shift+\\"
+            }
         },
         {
             "command": 
@@ -194,8 +244,7 @@
             {
                 "action": "moveFocus",
                 "direction": "left"
-            },
-            "keys": "ctrl+shift+h"
+            }
         },
         {
             "command": 
@@ -224,8 +273,7 @@
             {
                 "action": "findMatch",
                 "direction": "next"
-            },
-            "keys": "ctrl+alt+n"
+            }
         },
         {
             "command": "tabSearch",
@@ -236,16 +284,14 @@
             {
                 "action": "moveFocus",
                 "direction": "up"
-            },
-            "keys": "ctrl+shift+k"
+            }
         },
         {
             "command": 
             {
                 "action": "findMatch",
                 "direction": "prev"
-            },
-            "keys": "ctrl+alt+p"
+            }
         },
         {
             "command": 
@@ -278,7 +324,7 @@
     "experimental.rendering.software": false,
     "firstWindowPreference": "persistedWindowLayout",
     "language": "en-US",
-    "launchMode": "fullscreen",
+    "launchMode": "maximized",
     "newTabMenu": 
     [
         {
@@ -296,7 +342,9 @@
             "cursorShape": "filledBox",
             "font": 
             {
+                "cellHeight": "1.15",
                 "face": "JetBrainsMonoNL Nerd Font Mono",
+                "size": 13.5,
                 "weight": "semi-light"
             },
             "intenseTextStyle": "bright",
@@ -320,28 +368,29 @@
                 "name": "Command Prompt"
             },
             {
-      		"name": "UCRT64 / MSYS2",
-      		"commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -ucrt64",
-      		"startingDirectory": "C:/msys64/home/%USERNAME%",
-      		"icon": "C:/msys64/ucrt64.ico",
+                "commandline": "C:\\msys64\\ucrt64.exe",
                 "font": 
                 {
                     "face": "JetBrainsMono Nerd Font Propo"
                 },
-		"guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
+                "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
                 "hidden": false,
-                "name": "Command Prompt"
+                "icon": "C:/msys64/ucrt64.ico",
+                "name": "Command Prompt",
+                "startingDirectory": "C:/msys64/home/%USERNAME%"
             },
             {
+                "adjustIndistinguishableColors": "never",
                 "cursorShape": "filledBox",
                 "font": 
                 {
-                    "face": "JetBrainsMono Nerd Font Mono",
+                    "cellHeight": "1.15",
+                    "face": "JetBrainsMonoNL Nerd Font Mono",
                     "weight": "semi-light"
                 },
                 "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
                 "hidden": false,
-                "intenseTextStyle": "all",
+                "intenseTextStyle": "none",
                 "name": "Arch",
                 "opacity": 93,
                 "padding": "0",
@@ -635,10 +684,11 @@
             "yellow": "#808000"
         }
     ],
-    "showTabsInTitlebar": false,
-    "showTerminalTitleInTitlebar": false,
+    "showTabsInTitlebar": true,
+    "showTerminalTitleInTitlebar": true,
     "startOnUserLogin": true,
     "tabSwitcherMode": "disabled",
     "themes": [],
-    "useAcrylicInTabRow": false
+    "useAcrylicInTabRow": false,
+    "windowingBehavior": "useExisting"
 }
