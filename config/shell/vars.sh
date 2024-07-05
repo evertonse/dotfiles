@@ -1,6 +1,5 @@
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
 unsetopt PROMPT_SP
-export COLORTERM = 'truecolor'
 export EDITOR=nvim
 if [ -n "$TMUX" ]; then
   # export TERM="screen-256color"
@@ -12,6 +11,7 @@ else
   export TERM="xterm-256color"
 fi
 
+export COLORTERM="truecolor"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
 export EXPLORER="st -e lf"
