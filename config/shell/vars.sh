@@ -1,5 +1,6 @@
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
 unsetopt PROMPT_SP
+export COLORTERM = 'truecolor'
 export EDITOR=nvim
 if [ -n "$TMUX" ]; then
   # export TERM="screen-256color"
@@ -20,7 +21,6 @@ export READER="zathura"
 export VISUAL="nvim"
 export CODEEDITOR="nvim"
 export BROWSER="google-chrome-stable"
-export COLORTERM="truecolor"
 export PAGER="less"
 # export MANPAGER="nvim +Man!"
 # export WM="bspwm"
