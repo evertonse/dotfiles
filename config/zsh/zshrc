@@ -125,19 +125,20 @@ bindkey -s '^s' 'tm ^M'
 bindkey -s '^Q' 'exit ^M'
 bindkey -s '^E' 'lf .^M'
 # Where should I put you?
+
 # Define a custom widget to clear the line and open nvim
 function clear_and_nvim {
   # Clear the current line
   zle kill-whole-line
   # Insert the command
-  LBUFFER="nvim ."
+  LBUFFER="nvim"
   # Simulate pressing Enter
   zle accept-line
 }
 
 # Bind the custom widget to Ctrl+n
 zle -N clear_and_nvim
-bindkey -s '^n' clear_and_nvim
+bindkey '^n' clear_and_nvim
 
 bindkey -s ^f "tmux-sessionizer\n"
 # bindkey -s ^n "nvim .\n"
