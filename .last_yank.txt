@@ -1,1 +1,1 @@
-$(tmux list-windows | wc -l)
+tmux 
