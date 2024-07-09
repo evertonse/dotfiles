@@ -124,7 +124,7 @@ unbind %
 unbind '"'
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.config/tmux/tmux.conf; display '~/.config/tmux/tmux.conf reloaded' 
+bind r source-file ~/.config/tmux/tmux.conf; display 'OK: ~/.config/tmux/tmux.conf reloaded' 
 # forget the find window.  That is for chumps
 # switch panes using Alt-arrow without prefix
 
@@ -175,7 +175,11 @@ bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection
 
 
 bind n new-window -c "#{pane_current_path}"
-bind w kill-window
+# Define a script within tmux.conf to check window count and prompt for confirmation
+bind-key w if-shell '[[ $(tmux list-windows | wc -l) -eq 1 ]]' \
+  'confirm-before -p "This is the last window. Are you sure you want to close it? (y/n)" "tmux kill-window"' \
+  'tmux kill-window'
+
 unbind -n C-j
 unbind -n C-k
 bind -n C-M-j next-window
