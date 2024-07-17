@@ -165,6 +165,7 @@ live_config_reload = true
 
 [window]
 startup_mode = "Maximized" # "Windowed" | "Maximized" | "Fullscreen" | ""
+padding = { x = 0, y = 0 }
 title = "Alacritty"
 dynamic_title = true 
 decorations_theme_variant = "None"
@@ -232,7 +233,7 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 
 offset = { x = 0, y = -3 }
 
-size = 16
+size = 15
 builtin_box_drawing = true 
 
 # COLORS
@@ -244,7 +245,7 @@ builtin_box_drawing = true
 
 [colors]
 #foreground = "#d8d8d8"
-#background = "#181818"
+background = "#"
 #dim_foreground = "#828482"
 #bright_foreground = "None"
 #cursor = { text = "CellBackground", cursor = "CellForeground" }
@@ -875,15 +876,12 @@ hide_when_typing = false
     # Default: See alacritty-bindings(5)
 
 
-#
 
-# Example:
-
-# [keyboard]
-# bindings = [
-# { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-# { key = "L", mods = "Control|Shift", chars = "l" },
-# ]
+[keyboard]
+bindings = [
+  { key = "P", mods = "Control|Shift", action = "Copy" },
+  { key = "V", mods = "Control|Shift",  action = "Paste"},
+]
 
 #[keyboard]
 
