@@ -51,9 +51,9 @@ live_config_reload = true
 
 # Example:
 
-# [shell]
-# program = "/bin/zsh"
-# args = ["-l"]
+[shell]
+program = "wsl.exe"
+args = [""]
 
 # ENV
 # All key-value pairs in the [env] section will be added as environment variables for any process spawned by Alacritty, including its shell. Some entries may override variables set by alacritty itself.
@@ -166,6 +166,7 @@ live_config_reload = true
 [window]
 startup_mode = "Maximized" # "Windowed" | "Maximized" | "Fullscreen" | ""
 padding = { x = 0, y = 0 }
+dynamic_padding = false
 title = "Alacritty"
 dynamic_title = true 
 decorations_theme_variant = "None"
@@ -233,7 +234,7 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 
 offset = { x = 0, y = -3 }
 
-size = 15
+size = 14
 builtin_box_drawing = true 
 
 # COLORS
@@ -243,9 +244,9 @@ builtin_box_drawing = true
 # colors primary
 # This section documents the [colors.primary] table of the configuration file.
 
-[colors]
-#foreground = "#d8d8d8"
-background = "#"
+[colors.primary]
+foreground = "#d8d8d8"
+background = "#222222"
 #dim_foreground = "#828482"
 #bright_foreground = "None"
 #cursor = { text = "CellBackground", cursor = "CellForeground" }
@@ -338,7 +339,7 @@ end = { foreground = "#181818", background = "#ac4242" }
 # Defaults from Alacritty.org used.
 
 [colors.normal]
-black = "#181818"
+black = "#232323"
 red = "#ac4242"
 green = "#90a959"
 yellow = "#f4bf75"
@@ -469,7 +470,8 @@ thickness = 0.15
 # Controls the ability to write to the system clipboard with the OSC 52 escape sequence. While this escape sequence is useful to copy contents from the remote server, allowing any application to read from the clipboard can be easily abused while not providing significant benefits over explicitly pasting text.
 # Default: "OnlyCopy"
 
-#[terminal]
+[terminal]
+osc52 = "CopyPaste"
 
 
 # MOUSE
@@ -497,6 +499,9 @@ thickness = 0.15
 
 [mouse]
 hide_when_typing = false
+bindings = [
+{ mouse = "Right", mods = "Control", action = "Paste" },
+]
 
 
 # HINTS
@@ -877,10 +882,12 @@ hide_when_typing = false
 
 
 
+
 [keyboard]
 bindings = [
-  { key = "P", mods = "Control|Shift", action = "Copy" },
-  { key = "V", mods = "Control|Shift",  action = "Paste"},
+# { key = "V", mods = "Control|Shift",  action = "Paste"},
+{ key = "p", mods = "Control|Shift", action = "Paste" },
+{ key = "y", mods = "Control|Shift", action = "Copy" },
 ]
 
 #[keyboard]
