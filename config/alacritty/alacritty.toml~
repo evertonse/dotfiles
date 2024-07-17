@@ -232,9 +232,9 @@ multiplier = 3
 # normal = { family = "JetBrainsMono Nerd Font" }
 normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 
-offset = { x = 0, y = -3 }
+offset = { x = 0, y = -4 }
 
-size = 14
+size = 16
 builtin_box_drawing = true 
 
 # COLORS
@@ -246,7 +246,8 @@ builtin_box_drawing = true
 
 [colors.primary]
 foreground = "#d8d8d8"
-background = "#222222"
+# background = "#222222"
+background = "#232323"
 #dim_foreground = "#828482"
 #bright_foreground = "None"
 #cursor = { text = "CellBackground", cursor = "CellForeground" }
@@ -885,7 +886,6 @@ bindings = [
 
 [keyboard]
 bindings = [
-# { key = "V", mods = "Control|Shift",  action = "Paste"},
 { key = "p", mods = "Control|Shift", action = "Paste" },
 { key = "y", mods = "Control|Shift", action = "Copy" },
 ]
