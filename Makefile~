@@ -17,10 +17,5 @@ ahk:
 	@rm -f $(DEST)
 	@cp $(SOURCE) $(DEST)
 	wsl-open $(DEST) 
-	
-ahk:
-	@rm -f $(DEST)
-	@cp $(SOURCE) $(DEST)
-	wsl-open $(DEST) 
 
 .PHONY: push pull clean install
