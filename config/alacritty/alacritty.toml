@@ -232,7 +232,7 @@ multiplier = 3
 # normal = { family = "JetBrainsMono Nerd Font" }
 normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 
-offset = { x = 0, y = -4 }
+offset = { x = 0, y = -5 }
 
 size = 16
 builtin_box_drawing = true 
