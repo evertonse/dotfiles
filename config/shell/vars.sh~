@@ -15,6 +15,7 @@ fi
 export COLORTERM="truecolor"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
+export EXPLORER = "yazi"
 export EXPLORER="st -e lf"
 export GREP_OPTIONS='--color=auto' GREP_COLORS='mt=1;32'
 export CLICOLOR=1
@@ -127,7 +128,7 @@ if ! command -v vivid > /dev/null; then
      echo "vivid could not be found, install it on arch \$ yay vivid"
 else
      export LS_COLORS="$(vivid generate gruvbox-dark)"
-fi 
+fi
 
 PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:$XDG_DATA_HOME/go/bin/:$XDG_DATA_HOME/cargo/bin:$XDG_DATA_HOME/flutter/bin:$XDG_DATA_HOME/android-studio/bin
 github='https://github.com'
