@@ -230,7 +230,10 @@ multiplier = 3
 [font]
 # normal = { family = "Fisa Code", style = "Italic" }
 # normal = { family = "JetBrainsMono Nerd Font" }
-normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
+# normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
+# These two below This one has more icons
+normal = { family = "JetBrainsMonoNL Nerd Font" }
+#normal = { family = "JetBrainsMono Nerd Font Mono" } # This one has more icons
 
 offset = { x = 0, y = -5 }
 
