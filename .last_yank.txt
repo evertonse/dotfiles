@@ -1,1 +1,1 @@
-  zle 
+set -g status-left "#[default,bold] #[fg=#f4bf75,bold,bg=#222222] #S #[default] "
