@@ -8,7 +8,7 @@
   "clipboard": true,
   "start_menu_mode": false,
   "shell_gui": "cmd",
-  "acrylic_enabled": false
+  "acrylic_enabled": false 
  },
  "graphics": {
   "window_mode": "dwm",

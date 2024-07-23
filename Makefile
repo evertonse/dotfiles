@@ -17,6 +17,11 @@ ahk:
 	@rm -f $(DEST)
 	@cp $(SOURCE) $(DEST)
 	wsl-open $(DEST)
+
+alacritty:
+	@rm -rf /mnt/c/Users/Administrator/AppData/Roaming/alacritty/
+	@cp -r ./config/alacritty/ /mnt/c/Users/Administrator/AppData/Roaming/alacritty/
+
 	
 
 .PHONY: push pull clean install

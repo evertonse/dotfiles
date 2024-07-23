@@ -233,12 +233,14 @@ multiplier = 3
 # normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 # These two below This one has more icons
 normal = { family = "JetBrainsMonoNL Nerd Font" }
+normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
+
 #normal = { family = "JetBrainsMono Nerd Font Mono" } # This one has more icons
 
 offset = { x = 0, y = -5 }
 
 size = 16
-builtin_box_drawing = true 
+builtin_box_drawing = true
 
 # COLORS
 # This section documents the [colors] table of the configuration file.

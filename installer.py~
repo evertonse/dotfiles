@@ -251,6 +251,7 @@ def dotfiles():
 
 install_commands = [
     install_neovim_on_windows_from_wsl,
+    dotdirs,
     dotfiles,
     dotrepos,
 ]
