@@ -52,6 +52,7 @@ bindkey -v '^?' backward-delete-char
 
 bindkey '^Y' autosuggest-accept
 bindkey '^L' autosuggest-accept
+bindkey '^H' backward-delete-cha
 bindkey '^K' up-line-or-history
 bindkey '^J' down-line-or-history
 
