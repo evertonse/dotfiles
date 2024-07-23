@@ -223,32 +223,14 @@ bind r source-file ~/.config/tmux/tmux.conf; display 'OK: ~/.config/tmux/tmux.co
 # Esc	clear selection
 # y	copy section
 
-# set vi mode for copy mode
-setw -g mode-keys vi
-# copy mode using 'Esc'
-unbind [
-bind Escape copy-mode
-# in copy-mode use 'v' to start selecting like vim visual mode
-bind-key -T copy-mode-vi 'v' send -X begin-selection
-# no jump to end when select
-unbind -T copy-mode-vi MouseDragEnd1Pane
-bind-key -T copy-mode-vi y send-keys -X copy-selection
 
 # start selection with 'space' and copy using 'y'
 # paste using 'p'
 unbind p
 bind p paste-buffer
-unbind -T copy-mode-vi Space; #Default for begin-selection
-unbind -T copy-mode-vi Enter; #Default for copy-selection
-bind -T copy-mode-vi v send-keys -X begin-selection
 bind-key    -T copy-mode    C-c               send-keys -X cancel
 bind-key    -T copy-mode    Escape            send-keys -X cancel
 bind-key    -T copy-mode    q                 send-keys -X cancel
-bind-key    -T copy-mode-vi Escape            send-keys -X cancel
-bind-key    -T copy-mode-vi C-c               send-keys -X cancel
-bind-key    -T copy-mode-vi q                 send-keys -X cancel
-# bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel --clipboard"
-bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"`
 
 #set -g message-attr reverse
 # Centering windows
@@ -359,3 +341,32 @@ set -g @continuum-restore 'on'
 
 #Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
+
+#--------------------------------------------------------------#
+#----------------------COPY-VI---------------------------------#
+#--------------------------------------------------------------#
+# ```
+# https://www.reddit.com/r/tmux/comments/v73005/how_to_prevent_tmux_from_exiting_copy_mode_after/:
+# So I was having trouble too and got it to work by adding the command after my run tpm command: run '~/.tmux/plugins/tpm/tpm'
+# Seems like one of the plugins was causing the bind-key command to get overwritten.
+# ```
+
+# set vi mode for copy mode
+set -g mode-keys vi
+unbind -T copy-mode-vi Space; #Default for begin-selection
+unbind -T copy-mode-vi Enter; #Default for copy-selection
+# copy mode using 'Esc'
+unbind [
+
+bind Escape copy-mode
+# in copy-mode use 'v' to start selecting like vim visual mode
+bind -T copy-mode-vi y                 send-keys -X   copy-selection -x
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X   copy-selection -x
+bind -T copy-mode-vi Escape            send-keys -X   cancel
+bind -T copy-mode-vi C-c               send-keys -X   cancel
+bind -T copy-mode-vi q                 send-keys -X   cancel
+bind -T copy-mode-vi v                 send-keys -X   begin-selection
+# bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel --clipboard"
+# bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"`
+#--------------------------------------------------------------#
+#--------------------------------------------------------------#
