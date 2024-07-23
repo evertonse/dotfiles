@@ -54,6 +54,13 @@ bindkey '^Y' autosuggest-accept
 bindkey '^L' autosuggest-accept
 bindkey '^K' up-line-or-history
 bindkey '^J' down-line-or-history
+
+bindkey '^[[Z' reverse-menu-complete
+bindkey "^W" forward-word
+bindkey "^B" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
     case $KEYMAP in
@@ -180,11 +187,6 @@ bindkey -s ^f "tmux-sessionizer\n"
 # bindkey -s ^n "nvim .\n"
 # bindkey -s ^n "nvim +\"Telescope find_files initial_mode=insert\"\n"
 
-bindkey '^[[Z' reverse-menu-complete
-bindkey "^L" forward-word
-bindkey "^H" backward-word
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
 
 
 [[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &
