@@ -56,10 +56,13 @@ bindkey '^K' up-line-or-history
 bindkey '^J' down-line-or-history
 
 bindkey '^[[Z' reverse-menu-complete
-bindkey "^W" forward-word
+bindkey "^E" forward-word
 bindkey "^B" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey -s '^s' 'tm ^M'
+bindkey -s '^Q' 'exit ^M'
+bindkey -s '^G' '$EXPLORER .^M'
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
@@ -163,9 +166,6 @@ NEWLINE=$'\n'
 PROMPT='[%n @ %B%~%b] ${NEWLINE}$ '
 RPROMPT='$(git_branch)%T'
 
-bindkey -s '^s' 'tm ^M'
-bindkey -s '^Q' 'exit ^M'
-bindkey -s '^E' '$EXPLORER .^M'
 bindkey '^Y' autosuggest-accept
 # Where should I put you?
 
