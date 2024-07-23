@@ -172,7 +172,7 @@ dynamic_title = true
 decorations_theme_variant = "None"
 decorations = "None" # decorations = "Full" | "None" | "Transparent" | "Buttonless"
 opacity = 0.9
-blur = true 
+blur = true
 
 
 # SCROLLING
@@ -232,7 +232,7 @@ multiplier = 3
 # normal = { family = "JetBrainsMono Nerd Font" }
 # normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 # These two below This one has more icons
-normal = { family = "JetBrainsMonoNL Nerd Font" }
+# normal = { family = "JetBrainsMonoNL Nerd Font" }
 normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 
 #normal = { family = "JetBrainsMono Nerd Font Mono" } # This one has more icons
