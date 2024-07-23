@@ -13,7 +13,7 @@ if "test ! -d ~/.tmux/plugins/tpm" \
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # fix esc+h accidents
-set -s escape-time 0
+set -s escape-time 1
 
 # Window names
 set-option -g automatic-rename on
@@ -84,7 +84,7 @@ set -g status-justify left # center align window list
 # Rightwards White Arrow	⇨	⇨	&#x21e8;
 # Left Angle Quotation Mark	«	«	&#xab;
 # Right Angle Quotation Mark	»	»	&#xbb;
-set -g status-left "#[default,bold] #[fg=#f4bf75,bold,bg=default]⇨ #S #[default]"
+set -g status-left "#[default,bold] #[fg=#f4bf75,bold,bg=default]↳ #S #[default]"
 
 
 # set -g status-right '#H  #[fg=blue,bright]Up #(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=black] #[fg=cyan,bright]#(cut -d " " -f 1-4 /proc/loadavg) #[fg=blue] %d-%m-%Y %H:%M '

@@ -50,11 +50,31 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-bindkey '^Y' autosuggest-accept
+
+
+
+function accept-line-and-run() {
+  # Simulate pressing Ctrl + L to accept the autosuggestion
+  # zle complete-word
+  zle autosuggest-accept
+  # # Provide a visual feedback delay (adjust the sleep duration as needed)
+  sleep 0.1
+  zle redisplay
+  # # Simulate pressing Enter to accept and execute the command
+  zle accept-line
+}
+
+
+zle -N accept-line-and-run
+# Reason for line below is explained by by: https://unix.stackexchange.com/questions/740102/end-of-line-widget-not-working-in-functions-zsh-autosuggestions
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(accept-line-and-run)
+
+bindkey '^Y' accept-line-and-run
 bindkey '^L' autosuggest-accept
-bindkey '^H' backward-delete-cha
+bindkey '^H' backward-delete-char
 bindkey '^K' up-line-or-history
 bindkey '^J' down-line-or-history
+bindkey '\t' expand-or-complete
 
 bindkey '^[[Z' reverse-menu-complete
 bindkey "^E" forward-word
@@ -94,13 +114,13 @@ lfcd () {
 
 # WSL: Check if we're in wsl
 if [[ $(grep -i Microsoft /proc/version) ]]; then
-    code='~/code/' 
+    code='~/code/'
     export GDK_BACKEND=x11
     export LIBGL_ALWAYS_INDIRECT=1
     # export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
     # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
     export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-    code='/mnt/d/code' 
+    code='/mnt/d/code'
     alias explorer='explorer.exe'
     if ! command -v wsl-open > /dev/null; then
       echo 'your using wsl, but does not have wsl-open, which is a pretty good utility to open win10+ apps from wsl'
@@ -110,17 +130,17 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
     function exe {
         target=$(wslpath "$(awk -F$'\r' 'NR == 1 {printf "%s", $1}' <<< $(/mnt/c/Windows/System32/cmd.exe /c where $1 2>/dev/null))")
         if [[ "$target" == "." ]]; then
-          echo "Command '$1' not found."
+            echo "Command '$1' not found."
         else
             $target ${@:2}
         fi
     }
-    
+
     # Hash holding paths that shouldn't be grepped (globbed) – blacklist for slow disks, mounts, etc.:
-    typeset -gA FAST_BLIST_PATTERNS 
+    typeset -gA FAST_BLIST_PATTERNS
     FAST_BLIST_PATTERNS[/mnt/*/**]=1
     ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
-    
+
     disable_windows_path='false'
 
     # Function to filter out Windows paths from PATH
@@ -167,7 +187,6 @@ NEWLINE=$'\n'
 PROMPT='[%n @ %B%~%b] ${NEWLINE}$ '
 RPROMPT='$(git_branch)%T'
 
-bindkey '^Y' autosuggest-accept
 # Where should I put you?
 
 # Define a custom widget to clear the line and open nvim
