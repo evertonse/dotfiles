@@ -1,3 +1,4 @@
+# tips : /usr/bin/tmux list-keys | grep "prefix\s*<key-you-want-here>"
 # Automatic install of TPM
 if "test ! -d ~/.tmux/plugins/tpm" \
    "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
@@ -26,7 +27,6 @@ set -g visual-bell off
 set -g visual-silence off
 set -g monitor-activity on
 # highlight window when it has new activity
-setw -g monitor-activity on
 set -g bell-action none
 
 set-option -g focus-events on
@@ -43,28 +43,38 @@ set-option -g default-command zsh
 # Set the status bar to be at the bottom
 # enable UTF-8 support in status bar
 set -gq status-utf8 on
-set -g status-fg white
 set-option -g status-position bottom
 set -gq allow-passthrough on
 set-option -g status-left-length 0
 set-option -g status-right-length 0
-set -g status-style 'bg=#333333 fg=#646695'
 
 
 set -g status-interval 5
 set -g status-justify left # center align window list
 
 # set -g status-left "#[fg=#e9e9e9,bold] > #S #[default]"
-set -g status-left "#[default,bold]> #[fg=#f4bf75,bold]#S #[default]"
+set -g status-left "#[default,bold] #[fg=#f4bf75,bold,bg=#222222]#S #[default]"
 
 # set -g status-right '#H  #[fg=blue,bright]Up #(uptime | cut -f 4-5 -d " " | cut -f 1 -d ",") #[fg=black] #[fg=cyan,bright]#(cut -d " " -f 1-4 /proc/loadavg) #[fg=blue] %d-%m-%Y %H:%M '
-set -g status-right " #[fg=#f4bf75,bg=#363636] %a, %d %b %H:%M #[fg=brightwhite,bg=brightblack] #(whoami)@#h "
+set -g status-right " #[fg=#f4bf75,bg=default] %a, %d %b %H:%M #[fg=default,bg=default] #(whoami)"
 
-# default window title colors
-setw -g window-status-format         "#[fg=black]#[bg=white] #I #[bg=default]#[fg=#565656] #W #[default]"
-setw -g window-status-current-format "#[fg=#ffffff]#[bg=#343665] #I #[bg=#e9e9e9]#[fg=#343665] #W #[default]"
-setw -g window-status-current-style "fg=bold"
 
+set -g status-style 'bg=terminal,fg=#454545'
+
+setw -g window-status-activity-style "fg=#787878,bg=default"
+setw -g window-status-last-style     "bold,italics"
+
+# NOTE: matching with regex onto the window_flags, checking for '-' which means last window
+# see : https://github.com/tmux/tmux/wiki/Formats
+setw -g window-status-format "#{?#{m:*-*,#{window_flags}},#[fg=#343665]#[bg=#e9e9e9],#[fg=#222222]#[bg=#e1e1e1]} #I #[nobold,fg=default,bg=default] #W "
+
+set -g window-status-current-format "#[fg=#ffffff,bold]#[bg=#343665] #I #[bg=#e9e9e9]#[fg=#343665,bold] #W #{?#{==:#{window_flags},-},*,#F}"
+
+
+
+set -g window-status-separator " "
+
+# https://www.man7.org/linux/man-pages/man1/tmux.1.html#STYLES
 # ------------------- STATUS ------------------- #
 #set-option -g default-command bash
 
@@ -115,6 +125,13 @@ unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
 bind-key f resize-pane -Z
+
+bind -r ( switch-client -p
+bind -r ) switch-client -n
+bind Tab switch-client -l
+
+# Rotate panes
+bind @ rotate-window
 
 bind r source-file ~/.tmux.conf
 # bind c kill-pane
@@ -199,6 +216,9 @@ bind-key    -T copy-mode-vi q                 send-keys -X cancel
 # bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel --clipboard"
 bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"`
 
+#set -g message-attr reverse
+# Centering windows
+
 
 bind n new-window -c "#{pane_current_path}"
 # Define a script within tmux.conf to check window count and prompt for confirmation
@@ -211,7 +231,6 @@ unbind -n C-k
 bind -n C-M-j next-window
 bind -n C-M-k previous-window
 unbind Space
-bind Tab switch-client -l
 
 # vim-like pane switching
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/tmux/.tmux.conf
@@ -257,31 +276,52 @@ bind-key -T root  l if -F "#{==:#{pane_mode},tree-mode}" "send Enter" "send l"
 ## DESIGN CHANGES  ##
 #####################
 
-#------------------PLUGINS----------------------#
+#>>------------------PLUGINS----------------------#
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'jaclu/tmux-menus'
+# set -g @plugin 'jaclu/tmux-menus'
 
 # C-r for restor and C-s to save
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 
 set -g @plugin 'tmux-plugins/tmux-continuum'
-# tips : /usr/bin/tmux list-keys | grep "prefix\s*<key-you-want-here>"
-# ---------------------------------------------#
+#<<---------------------------------------------#
 
-#--------------PLUGINS CONFIG------------------#
+
+####################################################
+## Yank
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+set -g @yank_line 'Y'
+
+set -g @yank_pane_pwd 'y'
+set -g @copy_mode_yank 'y'
+set -g @copy_mode_put 'p'
+set -g @copy_mode_yank_put 'P'
+set -g @copy_mode_yank_wo_newline 'M-y'
+set -g @shell_mode 'vi'
+####################################################
+
+####################################################
+## Current Pane Hostname
+set -g @plugin 'townk/tmux-current-pane-hostname'
+####################################################
+
+#>>--------------PLUGINS CONFIG------------------#
 # Restore all programs (be careful with this!):
-# set -g @resurrect-processes ':all:' 
+# set -g @resurrect-processes ':all:'  # Had problems with this in the past
 # set -g @resurrect-processes '~Vim -> vim'
 # Restore Vim sessions
 # set -g @resurrect-strategy-vim 'session'
 # Restore Neovim sessions
-set -g @resurrect-strategy-nvim 'session'
+# set -g @resurrect-strategy-nvim 'session'
 
 # Restore Panes
 set -g @resurrect-capture-pane-contents 'on'
 # Restore last saved environment (automatically)
 set -g @continuum-restore 'on'
 
-run '~/.tmux/plugins/tpm/tpm'
+#<<--------------PLUGINS CONFIG------------------#
+
 #Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
