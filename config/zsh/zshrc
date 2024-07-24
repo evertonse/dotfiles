@@ -82,7 +82,6 @@ bindkey "^B" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey -s '^s' 'tm ^M'
-bindkey -s '^Q' 'exit ^M'
 bindkey -s '^G' '$EXPLORER .^M'
 
 # Change cursor shape for different vi modes.
@@ -199,9 +198,20 @@ function clear_and_nvim {
   zle accept-line
 }
 
+function clear_and_exit {
+  # Clear the current line
+  zle kill-whole-line
+  # Insert the command
+  LBUFFER="exit"
+  # Simulate pressing Enter
+  zle accept-line
+}
+
 # Bind the custom widget to Ctrl+n
 zle -N clear_and_nvim
+zle -N clear_and_exit 
 bindkey '^n' clear_and_nvim
+bindkey '^q' clear_and_exit
 
 bindkey -s ^f "tmux-sessionizer\n"
 # bindkey -s ^n "nvim .\n"
