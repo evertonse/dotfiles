@@ -193,6 +193,11 @@ def dotrepos():
     remove_neovim()
     install_neovim()
 
+    nvimpager = Path(home, "code", "rocks")
+    cmd(
+        f"git clone https://github.com/lucc/nvimpager {nvimpager} && cd {nvimpager} &&  make PREFIX=$HOME/.local install-no-man"
+    )
+
     rocks = Path(home, "code", "rocks")
     cmd(
         f"git clone https://github.com/evertonse/rocks {rocks} && cd {rocks} && ./install.sh"
@@ -251,7 +256,6 @@ def dotfiles():
 
 install_commands = [
     install_neovim_on_windows_from_wsl,
-    dotdirs,
     dotfiles,
     dotrepos,
 ]
