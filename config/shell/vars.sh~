@@ -22,8 +22,11 @@ export READER="zathura"
 export VISUAL="nvim"
 export CODEEDITOR="nvim"
 export BROWSER="google-chrome-stable"
-# export PAGER="less"
+
+export PAGER="less"
 export PAGER="vim -"
+export PAGER="nvimpager"
+
 # export MANPAGER="nvim +Man!"
 # export WM="bspwm"
 # export WM="dwm"

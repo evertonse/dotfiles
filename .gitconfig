@@ -18,7 +18,7 @@
 [core]
     longpaths = true
 	editor = nvim
-[diff]
+[dif]
 	algorithm = patience
 	compactionHeuristic = true
 	tool = nvimdiff
