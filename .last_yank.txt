@@ -1,2 +1,1 @@
-unbind -T copy-mode-vi Space; #Default for begin-selection
-unbind -T copy-mode-vi Enter; #Default for copy-selection
+sudo pacman -Syu
