@@ -6,8 +6,10 @@
 [init]
 	defaultBranch = main
 [pull]
+	default = simple
 	rebase = true
 [push]
+	default = simple
 	autoSetupRemote = true
 [safe]
 	directory = /opt/flutter
