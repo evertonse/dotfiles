@@ -1,4 +1,5 @@
 
+![](assets/webdev_vs_c_enJOYer.png)
 
 ## Cleaning
     on arch https://averagelinuxuser.com/clean-arch-linux/
