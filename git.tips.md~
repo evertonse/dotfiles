@@ -3,6 +3,9 @@
  ``$ rebase``
 
 # Rebase
+
+  git rebase -i --rebase-merges --rerere-autoupdate HEAD~10
+
 - ``$ git checkout -b local_feature ``
 - ``$ git commit -a -m "features"``
 
@@ -12,7 +15,6 @@
 - push your new straight branch ``$ git push``
 
 # Ricing (https://wiki.installgentoo.com/index.php/GNU/Linux_ricing)
-
 
 - Distro: Arch (but sometimes Gentoo/Funtoo, Void Linux, Debian GNU/Linux, FreeBSD, or even OpenBSD);
 - Window Manager: i3, Sway, Awesome, or dwm;

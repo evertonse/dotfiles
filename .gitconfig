@@ -25,6 +25,9 @@
 	
 [difftool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd L\"
+
+[rerere]
+	enabled = true
 	
 [merge]
 	tool = nvimdiff4
@@ -32,3 +35,4 @@
 [mergetool "nvimdiff4"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J' -c 'set diffopt&' -c 'set diffopt+=algorithm:patience'
 	keepBackup = false
+

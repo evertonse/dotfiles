@@ -3,6 +3,9 @@
  ``$ rebase``
 
 # Rebase
+
+  `git rebase -i --rebase-merges --rerere-autoupdate HEAD~10`
+
 - ``$ git checkout -b local_feature ``
 - ``$ git commit -a -m "features"``
 

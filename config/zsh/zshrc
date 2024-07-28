@@ -69,7 +69,7 @@ zle -N accept-line-and-run
 # Reason for line below is explained by by: https://unix.stackexchange.com/questions/740102/end-of-line-widget-not-working-in-functions-zsh-autosuggestions
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(accept-line-and-run)
 
-bindkey '^Y' accept-line-and-run
+bindkey '^S' accept-line-and-run
 bindkey '^L' autosuggest-accept
 bindkey '^H' backward-delete-char
 bindkey '^K' up-line-or-history
@@ -81,7 +81,6 @@ bindkey "^E" forward-word
 bindkey "^B" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey -s '^s' 'tm ^M'
 bindkey -s '^G' '$EXPLORER .^M'
 
 # Change cursor shape for different vi modes.
@@ -207,9 +206,17 @@ function clear_and_exit {
   zle accept-line
 }
 
+function clear_and_tmux {
+  zle kill-whole-line
+  LBUFFER="tmux -2 a  || tmux -2"
+  zle accept-line
+}
+
 # Bind the custom widget to Ctrl+n
 zle -N clear_and_nvim
-zle -N clear_and_exit 
+zle -N clear_and_exit
+zle -N clear_and_tmux
+bindkey '^t'  clear_and_tmux
 bindkey '^n' clear_and_nvim
 bindkey '^q' clear_and_exit
 
