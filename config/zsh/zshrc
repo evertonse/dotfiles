@@ -69,7 +69,8 @@ zle -N accept-line-and-run
 # Reason for line below is explained by by: https://unix.stackexchange.com/questions/740102/end-of-line-widget-not-working-in-functions-zsh-autosuggestions
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(accept-line-and-run)
 
-bindkey '^S' accept-line-and-run
+bindkey '^S' accept-line-and-run # TODO: crtl+s is too useful to be wasted, make a use of it
+bindkey '^y' accept-line-and-run
 bindkey '^L' autosuggest-accept
 bindkey '^H' backward-delete-char
 bindkey '^K' up-line-or-history
