@@ -1,1 +1,1 @@
-{ key = "I", mods = "Control|Shift", chars = "\u001b[15;6u" },
+\u001b[43;5u
