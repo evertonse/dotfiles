@@ -239,7 +239,7 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 
 offset = { x = 0, y = -5 }
 
-size = 16
+size = 17
 builtin_box_drawing = true
 
 # COLORS
@@ -901,17 +901,18 @@ bindings = [
     # https://man.archlinux.org/man/extra/alacritty/alacritty-bindings.5.en
     # https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
     { key = "p",      mods = "Control|Shift", action = "Paste"         },
+    # { key = "p",      mods = "Control|Shift", chars  = "\u001b[80;6u"  }, # crtl + shift + p
     { key = "y",      mods = "Control|Shift", action = "Copy"          },
     { key = "Space",  mods = "Control",       chars  = "\u001b\u0000"  },
     { key = "Plus",   mods = "Control",       action = "IncreaseFontSize"  },
-    { key = "Plus",   mods = "Control|Shift", chars  = "\u001b[43;5u"  },
+    # { key = "Plus",   mods = "Control|Shift", chars  = "\u001b[43;5u"  },
+    # { key = "Equals", mods = "Control",       chars  = "\u001b[61;5u"  }, Conflict with crtl + plus
     { key = "O",      mods = "Control|Shift", chars  = "\u001b[15;6u"  },
-    
     # { key = "I",      mods = "Control|Shift", chars  = "\u001b[43;5u"  }, # crlt + shift +p, works in tmux
+    
     # { key = "I",      mods = "Control|Shift", chars  = "\u001b[73;5u"  }, # WORKS but not in tmux
     # { key = "I",      mods = "Control|Shift", chars  = "\u001b[9;5u"  }, DOESNT WORK
     { key = "I",      mods = "Control|Shift", chars  = "\u001b[43;5u"  },
-
     # { key = "I",      mods = "Control|Shift", chars  = "\u001b[73;6u"  },
     # { key = "L",      mods = "Control|Shift", chars  = "\u001b[73;6u"  }, # Key that I found out about crtl + shift + i
 
@@ -920,9 +921,7 @@ bindings = [
     { key = "F5",     mods = "Control",       chars  = "\u001b[>15;5~" },
     { key = "F5",     mods = "Shift",         chars  = "\u001b[15;4~"  },
     { key = "F5",     mods = "Alt",           chars  = "\u001b[15;6~"  },
-    { key = "Equals", mods = "Control",       chars  = "\u001b[61;5u"  },
     { key = "Period", mods = "Control",       chars  = "\u001b[46;5u"  },
-    # { key = "P",      mods = "Control|Shift", chars  = "\u001b[80;6u"  }, # crtl + shift + p
 ]
 
 #[keyboard]
