@@ -898,12 +898,20 @@ bindings = [
 
 [keyboard]
 bindings = [
-{ key = "p", mods = "Control|Shift", action = "Paste" },
-{ key = "y", mods = "Control|Shift", action = "Copy" },
-{ key = "Space", mods = "Control", chars = "\u0000" },
-{ key = "I", mods = "Control|Shift", chars = "\u001b[43;5u" }, # crtl + shift + .
-{ key = "O", mods = "Control|Shift", chars = "\u001b[15;6u" },
-{ key = "B", mods = "Control|Shift", chars = "\u001b[66;5u"},
+    { key = "p",      mods = "Control|Shift", action = "Paste"         },
+    { key = "y",      mods = "Control|Shift", action = "Copy"          },
+    { key = "Space",  mods = "Control",       chars  = "\u0000"        },
+    { key = "I",      mods = "Control|Shift", chars  = "\u001b[43;5u"  }, # crtl + shift + .
+    { key = "O",      mods = "Control|Shift", chars  = "\u001b[15;6u"  },
+    { key = "B",      mods = "Control|Shift", chars  = "\u001b[66;5u"  },
+    { key = "F5",     mods = "Control|Shift", chars  = "\u001b[15;6;5~"},
+    { key = "F5",     mods = "Control",       chars  = "\u001b[>15;5~" },
+    { key = "F5",     mods = "Shift",         chars  = "\u001b[15;4~"  },
+    { key = "F5",     mods = "Alt",           chars  = "\u001b[15;6~"  },
+    { key = "B",      mods = "Control|Shift", chars  = "\u001b[66;5u"  },
+    { key = "Plus",   mods = "Control|Shift", chars  = "\u001b[43;5u"  },
+    { key = "Equals", mods = "Control",       chars  = "\u001b[61;5u"  },
+    { key = "Period", mods = "Control",       chars  = "\u001b[46;5u"  },
 ]
 
 #[keyboard]
