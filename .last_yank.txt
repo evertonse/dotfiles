@@ -1,3 +1,1 @@
-bind-key c if-shell '[[ $(tmux list-panes | wc -l) -eq 1 ]]' \
-  'confirm-before -p "This is the last pane. Are you sure you want to close it? (y/n)" "kill-pane"' \
-  'kill-pane'
+{ key = "I", mods = "Control|Shift", chars = "\u001b[15;6u" },

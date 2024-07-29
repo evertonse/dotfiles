@@ -900,6 +900,10 @@ bindings = [
 bindings = [
 { key = "p", mods = "Control|Shift", action = "Paste" },
 { key = "y", mods = "Control|Shift", action = "Copy" },
+{ key = "Space", mods = "Control", chars = "\u0000" },
+{ key = "I", mods = "Control|Shift", chars = "\u001b[43;5u" }, # crtl + shift + .
+{ key = "O", mods = "Control|Shift", chars = "\u001b[15;6u" },
+{ key = "B", mods = "Control|Shift", chars = "\u001b[66;5u"},
 ]
 
 #[keyboard]
