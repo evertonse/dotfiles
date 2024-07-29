@@ -898,10 +898,12 @@ bindings = [
 
 [keyboard]
 bindings = [
+    # https://man.archlinux.org/man/extra/alacritty/alacritty-bindings.5.en
     # https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
     { key = "p",      mods = "Control|Shift", action = "Paste"         },
     { key = "y",      mods = "Control|Shift", action = "Copy"          },
     { key = "Space",  mods = "Control",       chars  = "\u001b\u0000"  },
+    { key = "Plus",   mods = "Control",       action = "IncreaseFontSize"  },
     { key = "Plus",   mods = "Control|Shift", chars  = "\u001b[43;5u"  },
     { key = "O",      mods = "Control|Shift", chars  = "\u001b[15;6u"  },
     
