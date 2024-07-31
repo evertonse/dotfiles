@@ -1,15 +1,32 @@
 alias tm='/bin/tmux -2 a  || /bin/tmux -2'
 
-gg() {
-  grep -RrEinIH --color=auto "$1" $(pwd)"/$2"
+# grep rn full path
+grnf() {
+  # Check if rg (ripgrep) is installed
+  if command -v rg > /dev/null 2>&1; then
+    # If rg is available, use it
+    rg --vimgrep --color=auto "$1" "$(pwd)/$2"
+  else
+    grep -RrEinIH --color=auto "$1" "$(pwd)/$2"
+  fi
 }
 
-alias fgrep='fgrep --color=auto'
+# grep -rn relative path
+grn() {
+  # Check if rg (ripgrep) is installed
+  if command -v rg > /dev/null 2>&1; then
+    # If rg is available, use it
+    rg --vimgrep --color=auto "$1" "$2"
+  else
+    grep -RrEinIH --color=auto "$1" "$2"
+  fi
+}
+
+
 alias grep='grep -i --color=auto'
 
-
 alias egrep='egrep --color=auto'
-alias pacman='pacman --color=auto'
+alias pacman='sudo pacman --color=auto'
 alias yay='yay --color=auto'
 alias ls='ls -AF --color=always --group-directories-first'
 alias ll='ls -AlhF --color=always --group-directories-first'
@@ -35,7 +52,7 @@ alias nvim-chad='NVIM_APPNAME="nvim-chad" nvim'
 
 #: sudo not required for some system commands
 alias shutdown="killall chrome --wait;sudo poweroff;"
-for command in backlight mount umount sv pacman updatedb su poweroff; do
+for command in backlight mount umount sv updatedb su poweroff; do
 	alias $command="sudo $command"
 done; unset command
 

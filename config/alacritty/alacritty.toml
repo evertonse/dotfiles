@@ -903,7 +903,8 @@ bindings = [
     { key = "p",      mods = "Control|Shift", action = "Paste"         },
     # { key = "p",      mods = "Control|Shift", chars  = "\u001b[80;6u"  }, # crtl + shift + p
     { key = "y",      mods = "Control|Shift", action = "Copy"          },
-    { key = "Space",  mods = "Control",       chars  = "\u001b\u0000"  },
+    # { key = "Space",  mods = "Control",       chars  = "\u001b\u0000"  },
+    { key = "Space",  mods = "Control",       chars  = "\u0000"  },
     { key = "Plus",   mods = "Control",       action = "IncreaseFontSize"  },
     # { key = "Plus",   mods = "Control|Shift", chars  = "\u001b[43;5u"  },
     # { key = "Equals", mods = "Control",       chars  = "\u001b[61;5u"  }, Conflict with crtl + plus
@@ -917,7 +918,7 @@ bindings = [
     # { key = "L",      mods = "Control|Shift", chars  = "\u001b[73;6u"  }, # Key that I found out about crtl + shift + i
 
     { key = "B",      mods = "Control|Shift", chars  = "\u001b[66;5u"  },
-    { key = "F5",     mods = "Control|Shift", chars  = "\u001b[15;6;5~"},
+    { key = "F5",     mods = "Control|Shift", chars  = "\u003b[15;6;5~"},
     { key = "F5",     mods = "Control",       chars  = "\u001b[>15;5~" },
     { key = "F5",     mods = "Shift",         chars  = "\u001b[15;4~"  },
     { key = "F5",     mods = "Alt",           chars  = "\u001b[15;6~"  },
