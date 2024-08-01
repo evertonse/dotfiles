@@ -13,9 +13,7 @@ grnf() {
 
 # grep -rn relative path
 grn() {
-  # Check if rg (ripgrep) is installed
   if command -v rg > /dev/null 2>&1; then
-    # If rg is available, use it
     rg --vimgrep --color=auto $1 $2
   else
     grep -RrEinIH --color=auto $1 $2

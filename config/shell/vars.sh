@@ -3,7 +3,7 @@ unsetopt PROMPT_SP
 export EDITOR=nvim
 if [ -n "$TMUX" ]; then
   # export TERM="screen-256color"
-  export TERM="tmux-256color"
+  # export TERM="tmux-256color" # Either this or alacritty works on alacritty
   # export TERM="xterm-256color"
   # export TERM=alacritty
   # export TERM=rxvt-256color
