@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Find all .h and .hpp files in the current directory and its subdirectories
+header_files=$(find . -type f \( -name "*.h" -o -name "*.hpp" \))
+
+# Create or overwrite the .clangd file
+echo "Creating .clangd configuration file..."
+
+# Start with an empty .clangd file
+echo "" > .clangd
+
+# Add entries for each header file
+for file in $header_files;
+do
+
+    # Strip leading ./ from file paths
+    cleaned_file=${file#./}
+
+    echo "HeaderSearch: { \"path\": \"$cleaned_file\" }" >> .clangd
+done
+
+echo ".clangd configuration file created successfully."
+

@@ -38,7 +38,7 @@ fi
 read -p "Do you want install radare ? [y/n]: " answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   git clone https://github.com/radare/radare2 $HOME/code/radare 
-  cd $HOME/code/radare 
+  cd $HOME/code/radare
   sh sys/install.sh
 fi
 
