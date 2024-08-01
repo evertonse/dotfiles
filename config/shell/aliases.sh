@@ -5,9 +5,9 @@ grnf() {
   # Check if rg (ripgrep) is installed
   if command -v rg > /dev/null 2>&1; then
     # If rg is available, use it
-    rg --vimgrep --color=auto "$1" "$(pwd)/$2"
+    rg --vimgrep --color=auto $1 "$(pwd)/$2"
   else
-    grep -RrEinIH --color=auto "$1" "$(pwd)/$2"
+    grep -RrEinIH --color=auto $1 "$(pwd)/$2"
   fi
 }
 
@@ -16,9 +16,9 @@ grn() {
   # Check if rg (ripgrep) is installed
   if command -v rg > /dev/null 2>&1; then
     # If rg is available, use it
-    rg --vimgrep --color=auto "$1" "$2"
+    rg --vimgrep --color=auto $1 $2
   else
-    grep -RrEinIH --color=auto "$1" "$2"
+    grep -RrEinIH --color=auto $1 $2
   fi
 }
 
