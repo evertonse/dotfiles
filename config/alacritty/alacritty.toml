@@ -259,7 +259,7 @@ draw_bold_text_with_bright_colors = true
 foreground = "#d8d8d8"
 # background = "#222222"
 # background = "#232323"
-background = "#202020"
+background = "#191919"
 
 [colors.cursor]
 # text = "#212121"
