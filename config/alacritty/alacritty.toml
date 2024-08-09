@@ -244,7 +244,7 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
 offset = { x = 0, y = -5 }
 
 # size = 17
-size = 19.5
+size = 20
 builtin_box_drawing = true
 
 # COLORS
