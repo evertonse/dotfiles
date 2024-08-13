@@ -10,7 +10,7 @@ define hook-step
   refresh
 end
 
-define c 
+define c
   continue
   refresh
 end

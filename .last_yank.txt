@@ -1,2 +1,38 @@
 # set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 background = "#232323"
+C-down
+C-k
+# Bind Ctrl+J to navigate down the command history
+bind -n C-j send-keys C-down
+
+# Bind Ctrl+K to navigate up the command history
+bind -n C-k send-keys C-up
+
+
+
+n
+p
+-
+d
+a
+d
+C-j
+bind -n C-j send-keys down
+
+# Bind Ctrl+K to navigate up the command history
+bind -n C-k send-keys up
+
+# Bind Ctrl+J to navigate down the command history
+bind -n C-j send-keys Down
+
+# Bind Ctrl+K to navigate up the command history
+bind -n C-k send-keys Up
+
+-T
+bind-key -T command_mode C-j command-prompt -p ':' "send-keys Up"
+bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
+
+
+
+
+

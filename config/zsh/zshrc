@@ -227,6 +227,6 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 
 
-[[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &
+[[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh > ~/.local/share/log/startup.log 2>&1 &
 [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] &&  exec $WM_EXEC &> /dev/null
 
