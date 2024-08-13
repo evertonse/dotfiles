@@ -24,15 +24,9 @@ bind -n C-k send-keys Up
 bind-key -T command_mode C-j command-prompt -p ':' "send-keys Up"
 bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
 [[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &
-
 [[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &
 [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] &&  exec $WM_EXEC &> /dev/null
-
 &> /dev/null
 [[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &> ~/startup.log
-
 [[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &> ~/startup.log
-
 ~/.local/share
-
-
