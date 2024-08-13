@@ -227,6 +227,6 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 
 
-[[ -z $DISPLAY ]] && { mkdir -p "$HOME/.local/state" && source ~/.config/shell/startup.sh > "$HOME/.local/state/startup.log" 2>&1; } &
+[[ -z $DISPLAY ]] && { mkdir -p "$HOME/.local/state" && source ~/.config/shell/startup.sh > "$HOME/.local/state/startup.log" 2>&1; } &>/dev/null &
 [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] &&  exec $WM_EXEC &> /dev/null
 
