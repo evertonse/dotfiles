@@ -122,3 +122,20 @@ switch-client -p
 tmux a >> ~/tmux/tmux.log
 tmux a >> ~/tmux/tmux.log
 tmux
+off
+off
+on
+on
+off
+off
+on
+on
+off
+off
+on
+on
+set-hook -g session-closed 'run-shell "tmux a &>  /dev/null"'
+
+# set-hook -g session-closed "switch-client -n"
+
+t
