@@ -30,3 +30,66 @@ bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
 [[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &> ~/startup.log
 [[ -z $DISPLAY ]] && source ~/.config/shell/startup.sh &> ~/startup.log
 ~/.local/share
+function
+function
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+set -g @yank_line 'Y'
+
+set -g @yank_pane_pwd 'y'
+set -g @copy_mode_yank 'y'
+set -g @copy_mode_put 'p'
+set -g @copy_mode_yank_put 'P'
+set -g @copy_mode_yank_wo_newline 'M-y'
+set -g @shell_mode 'vi'
+
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+
+
+####################################################
+## Yank
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+set -g @yank_line 'Y'
+set -g @yank_pane_pwd 'y'
+set -g @copy_mode_yank 'y'
+set -g @copy_mode_put 'p'
+set -g @copy_mode_yank_put 'P'
+set -g @copy_mode_yank_wo_newline 'M-y'
+set -g @shell_mode 'vi'
+####################################################
+
+#<<--------------PLUGINS CONFIG------------------#
+
+#--------------------------------------------------------------#
+#----------------------COPY-VI---------------------------------#
+#--------------------------------------------------------------#
+# ```
+# https://www.reddit.com/r/tmux/comments/v73005/how_to_prevent_tmux_from_exiting_copy_mode_after/:
+# So I was having trouble too and got it to work by adding the command after my run tpm command: run '~/.tmux/plugins/tpm/tpm'
+# Seems like one of the plugins was causing the bind-key command to get overwritten.
+# ```
+
+# set vi mode for copy mode
+set -g mode-keys vi
+unbind -T copy-mode-vi Space; #Default for begin-selection
+unbind -T copy-mode-vi Enter; #Default for copy-selection
+# copy mode using 'Esc'
+unbind [
+
+bind Escape copy-mode
+# in copy-mode use 'v' to start selecting like vim visual mode
+bind -T copy-mode-vi y                 send-keys -X   copy-selection -x
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X   copy-selection -x
+bind -T copy-mode-vi Escape            send-keys -X   cancel
+bind -T copy-mode-vi C-c               send-keys -X   cancel
+bind -T copy-mode-vi q                 send-keys -X   cancel
+bind -T copy-mode-vi v                 send-keys -X   begin-selection
+# bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel --clipboard"
+# bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"`
+#--------------------------------------------------------------#
+#--------------------------------------------------------------#
+
+set -g @copy_mode_yank 'y'
+
