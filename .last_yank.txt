@@ -33,24 +33,17 @@ bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
 function
 function
 set -g @plugin 'tmux-plugins/tmux-yank'
-
 set -g @yank_line 'Y'
-
 set -g @yank_pane_pwd 'y'
 set -g @copy_mode_yank 'y'
 set -g @copy_mode_put 'p'
 set -g @copy_mode_yank_put 'P'
 set -g @copy_mode_yank_wo_newline 'M-y'
 set -g @shell_mode 'vi'
-
 set -g @plugin 'tmux-plugins/tmux-yank'
-
-
-
 ####################################################
 ## Yank
 set -g @plugin 'tmux-plugins/tmux-yank'
-
 set -g @yank_line 'Y'
 set -g @yank_pane_pwd 'y'
 set -g @copy_mode_yank 'y'
@@ -59,9 +52,7 @@ set -g @copy_mode_yank_put 'P'
 set -g @copy_mode_yank_wo_newline 'M-y'
 set -g @shell_mode 'vi'
 ####################################################
-
 #<<--------------PLUGINS CONFIG------------------#
-
 #--------------------------------------------------------------#
 #----------------------COPY-VI---------------------------------#
 #--------------------------------------------------------------#
@@ -70,14 +61,12 @@ set -g @shell_mode 'vi'
 # So I was having trouble too and got it to work by adding the command after my run tpm command: run '~/.tmux/plugins/tpm/tpm'
 # Seems like one of the plugins was causing the bind-key command to get overwritten.
 # ```
-
 # set vi mode for copy mode
 set -g mode-keys vi
 unbind -T copy-mode-vi Space; #Default for begin-selection
 unbind -T copy-mode-vi Enter; #Default for copy-selection
 # copy mode using 'Esc'
 unbind [
-
 bind Escape copy-mode
 # in copy-mode use 'v' to start selecting like vim visual mode
 bind -T copy-mode-vi y                 send-keys -X   copy-selection -x
@@ -90,6 +79,46 @@ bind -T copy-mode-vi v                 send-keys -X   begin-selection
 # bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"`
 #--------------------------------------------------------------#
 #--------------------------------------------------------------#
-
 set -g @copy_mode_yank 'y'
-
+# set vi mode for copy mode
+set -g mode-keys vi
+unbind -T copy-mode-vi Space; #Default for begin-selection
+unbind -T copy-mode-vi Enter; #Default for copy-selection
+# copy mode using 'Esc'
+unbind [
+bind Escape copy-mode
+# in copy-mode use 'v' to start selecting like vim visual mode
+bind -T copy-mode-vi y                 send-keys -X   copy-selection -x
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X   copy-selection -x
+bind -T copy-mode-vi Escape            send-keys -X   cancel
+bind -T copy-mode-vi C-c               send-keys -X   cancel
+bind -T copy-mode-vi q                 send-keys -X   cancel
+bind -T copy-mode-vi v                 send-keys -X   begin-selection
+# set vi mode for copy mode
+set -g mode-keys vi
+unbind -T copy-mode-vi Space; #Default for begin-selection
+unbind -T copy-mode-vi Enter; #Default for copy-selection
+# copy mode using 'Esc'
+unbind [
+bind Escape copy-mode
+# in copy-mode use 'v' to start selecting like vim visual mode
+bind -T copy-mode-vi y                 send-keys -X   copy-selection -x
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X   copy-selection -x
+bind -T copy-mode-vi Escape            send-keys -X   cancel
+bind -T copy-mode-vi C-c               send-keys -X   cancel
+bind -T copy-mode-vi q                 send-keys -X   cancel
+bind -T copy-mode-vi v                 send-keys -X   begin-selection
+#<<--------------PLUGINS CONFIG------------------#
+#Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+run-shell "echo hahah#{pane-bg}
+set-hook -g session-closed "switch-client -l"
+run-shell "echo hahah#{pane-bg}
+switch-client
+switch-client -p
+switch-client -p
+&
+# set-hook -g pane-focus-in 'run-shell "echo hahah#{pane-bg}"'
+tmux a >> ~/tmux/tmux.log
+tmux a >> ~/tmux/tmux.log
+tmux
