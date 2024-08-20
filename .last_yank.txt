@@ -135,7 +135,5 @@ off
 on
 on
 set-hook -g session-closed 'run-shell "tmux a &>  /dev/null"'
-
 # set-hook -g session-closed "switch-client -n"
-
 t

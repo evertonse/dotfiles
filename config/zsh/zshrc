@@ -116,6 +116,10 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
     code='~/code/'
     export GDK_BACKEND=x11
     export LIBGL_ALWAYS_INDIRECT=1
+    export WIN_USER=$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
+    export WIN_DOWNLOADS="/mnt/c/Users/$WIN_USER/Downloads"
+
+
     # export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
     # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
     export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
