@@ -21,6 +21,9 @@ ahk:
 alacritty:
 	@rm -rf /mnt/c/Users/Administrator/AppData/Roaming/alacritty/
 	@cp -r ./config/alacritty/ /mnt/c/Users/Administrator/AppData/Roaming/alacritty/
+	
+wslconfig:
+	echo $$(WIN_USERPROFILE)
 
 	
 
