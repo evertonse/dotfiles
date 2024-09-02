@@ -171,7 +171,7 @@ title = "Alacritty"
 dynamic_title = true
 decorations_theme_variant = "None"
 decorations = "None" # decorations = "Full" | "None" | "Transparent" | "Buttonless"
-opacity = 0.92
+opacity = 0.93
 blur = true
 
 
@@ -257,11 +257,23 @@ builtin_box_drawing = true
 draw_bold_text_with_bright_colors = true
 
 [colors.primary]
-foreground = "#d8d8d8"
+# foreground = "#d8d8d8"
+# foreground = "#bea492"
+# foreground = "#a58e7e"
+# foreground = "#e3e0dd"
+foreground = "#c0b0a2"
+
+# >>> [hex(x) for x in [190,164,146]]
+# ['0xbe', '0xa4', '0x92']
+
+# ['0xa5', '0x8e', '0x7e']
 # background = "#222222"
 # background = "#232323"
 # background = "#191919"
-background = "#212019"
+# background = "#201817"
+background = "#181512"
+# ('0x18', '0x1f', '0x12')
+
 
 [colors.cursor]
 # text = "#212121"

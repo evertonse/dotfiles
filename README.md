@@ -145,3 +145,5 @@ git config --global --unset credential.helper
 - https://github.com/epasveer/seer/wiki/Building-Seer---Qt6
 - https://www.gnu.org/software/ddd/
 - https://github.com/longld/peda
+
+![](assets/alternatives.png)

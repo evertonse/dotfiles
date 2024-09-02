@@ -133,6 +133,82 @@ else
      export LS_COLORS="$(vivid generate gruvbox-dark)"
 fi
 
+uncompress() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: untar <file.tar.gz|file.tar.bz2|file.tar.xz|file.tar|file.zip>"
+        return 1
+    fi
+
+    for file in "$@"; do
+        if [[ ! -f "$file" ]]; then
+            echo "Error: File '$file' not found."
+            continue
+        fi
+
+        case "$file" in
+            *.tar.gz | *.tgz)
+                tar -xzvf "$file"
+                ;;
+            *.tar.bz2 | *.tbz | *.tbz2)
+                tar -xjvf "$file"
+                ;;
+            *.tar.xz | *.txz)
+                tar -xJvf "$file"
+                ;;
+            *.tar.zst | *.tzst)
+                tar --use-compress-program=unzstd -xvf "$file"
+                ;;
+            *.tar)
+                tar -xvf "$file"
+                ;;
+            *.zip)
+                unzip "$file"
+                ;;
+            *)
+                echo "Error: Unsupported file format for '$file'."
+                ;;
+        esac
+    done
+}
+
+compress() {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: compress <format> <file_or_directory>..."
+        echo "Formats: tar.gz, tar.bz2, tar.xz, tar.zst, zip"
+        return 1
+    fi
+
+    format=$1
+    shift  # Remove the format from arguments
+
+    # Check the provided format and compress accordingly
+    case "$format" in
+        tar.gz)
+            tar -czvf "${1%/}.tar.gz" "$@"
+            ;;
+        tar.bz2)
+            tar -cjvf "${1%/}.tar.bz2" "$@"
+
+            ;;
+        tar.xz)
+            tar -cJvf "${1%/}.tar.xz" "$@"
+            ;;
+        tar.zst)
+            tar --use-compress-program=zstd -cvf "${1%/}.tar.zst" "$@"
+            ;;
+        zip)
+            zip -r "${1%/}.zip" "$@"
+            ;;
+        *)
+            echo "Error: Unsupported format '$format'."
+            echo "Supported formats: tar.gz, tar.bz2, tar.xz, tar.zst, zip"
+            return 1
+            ;;
+    esac
+}
+
+
 PATH=/bin/:$PATH:~/.cargo/bin:~/.local/bin:~/.local/bin/statusbar/:$XDG_DATA_HOME/go/bin/:$XDG_DATA_HOME/cargo/bin:$XDG_DATA_HOME/flutter/bin:$XDG_DATA_HOME/android-studio/bin
 github='https://github.com'
 onedrive='/mnt/c/users/excyber/onedrive/'
+

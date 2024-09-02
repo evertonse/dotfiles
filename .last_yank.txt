@@ -140,52 +140,160 @@ t
  
 false
 false
-
-
 autoMemoryReclaim="gradual"
-
 # Automatically mount Windows drive when the distribution is launched
 [automount]
 # Set to true will automount fixed drives (C:/ or D:/) with DrvFs under the root directory set above. Set to false means drives won't be mounted automatically, but need to be mounted manually or with fstab.
 enabled = true
-
 [wsl2]
 memory=20GB
 processors=8
 guiApplications=true
 nestedVirtualization = true
-
 [boot]
 systemd=true
-
 # Set whether WSL supports interop processes like launching Windows apps and adding path variables. Setting these to false will block the launch of Windows processes and block adding $PATH environment variables.
 [interop]
 enabled = true
 appendWindowsPath = true
-
 [experimental]
 autoMemoryReclaim="gradual"
-
 appendWindowsPath = true
-
 [boot]
 systemd=true
-
 [automount]
 enabled = true
 options = "metadata"
 mountFsTab = true
-
 # Set whether WSL supports interop processes like launching Windows apps and adding path variables. Setting these to false will block the launch of Windows processes and block adding $PATH environment variables.
 [interop]
 enabled = true
 appendWindowsPath = true
-
     export WIN_USER=$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
-
 %UserProfile%
 WIN_USERPROFILE
 WIN_USERPROFILE
 %UserProfile%
 WIN_USERPROFILE
 WIN_USERPROFILE
+![](assets/alternatives.png)
+- 
+ntar
+    c
+f
+BIG_YES
+if
+BIG_YES
+BIG_YES
+        BIG_YES = BIG_YES
+    global
+BIG_YES
+BIG_YES = False
+def yes_or_no(x, BIG_YES=False) -> bool:
+def yes_or_no(x, BIG_YES=False) -> bool:
+    if BIG_YES == True:
+        return BIG_YES
+    phrase = f"{x} [y/n]?"
+    c = getch(phrase).lower()
+    while c not in {"y", "n", "yes", "no"}:
+        c = getch(phrase).lower()
+    BIG_YES = c.startswith("y")
+    return BIG_YES
+        return BIG_YES
+    phrase = f"{x} [y/n]?"
+    c = getch(phrase).lower()
+    while c not in {"y", "n", "yes", "no"}:
+        c = getch(phrase).lower()
+    BIG_YES = c.startswith("y")
+    return BIG_YES
+    if BIG_YES == True:
+BIG_YES=False
+BIG_YES
+def yes_or_no(x) -> bool:
+    BIG_YES = False
+    def internal_yes_or_no(x, BIG_YES=False) -> bool:
+        nonlocal BIG_YES
+        if BIG_YES == True:
+            return BIG_YES
+        phrase = f"{x} [y/n]?"
+        c = getch(phrase).lower()
+        while c not in {"y", "n", "yes", "no"}:
+            c = getch(phrase).lower()
+        BIG_YES = c.startswith("y")
+        return BIG_YES
+    return internal_yes_or_no(x)
+def yes_or_no(x) -> bool:
+    BIG_YES = False
+    def internal_yes_or_no(x, BIG_YES=False) -> bool:
+        nonlocal BIG_YES
+        if BIG_YES == True:
+            return BIG_YES
+        phrase = f"{x} [y/n]?"
+        c = getch(phrase).lower()
+        while c not in {"y", "n", "yes", "no"}:
+            c = getch(phrase).lower()
+        BIG_YES = c.startswith("y")
+        return BIG_YES
+    return internal_yes_or_no(x)
+def yes_or_no(x) -> bool:
+def yes_or_no(x) -> bool:
+def yes_or_no(x) -> bool:
+    BIG_YES = False
+    def internal_yes_or_no(x, BIG_YES=False) -> bool:
+        nonlocal BIG_YES
+        if BIG_YES == True:
+            return BIG_YES
+        phrase = f"{x} [y/n]?"
+        c = getch(phrase).lower()
+        while c not in {"y", "n", "yes", "no"}:
+            c = getch(phrase).lower()
+        BIG_YES = c.startswith("y")
+        return BIG_YES
+    return internal_yes_or_no(x)
+yes_or_no
+yes_or_no(True)
+yes_or_no(True)
+True
+yes_or_no(False)
+y
+y
+y
+)
+)
+'
+('0x18', '0x1f', '0x12')
+background = "#201817"
+f
+foreground = "#d8d8d8"
+0xa5
+foreground = "#a58e7e"
+7e
+foreground = "#a58e7e"
+#e3e0dd
+#a58e7e
+5
+foreground
+0
+9
+7
+6
+[automount]
+enabled = true
+mountFsTab = true
+options = "metadata"
+            cmd(f"sudo cp {Path(f)} {Path('/etc', 'pacman.conf')}")
+        cmd
+        
+f
+"
+"
+'wsl.conf'
+Bash
+Copy
+    alias explorer='explorer.exe'
+explorer.exe `wslpath -w "$PWD"`
+'explorer.exe'
+sudo echo 0 > /proc/sys/fs/binfmt_misc/WSLInterop
+    sudo echo 0 sudo > /proc/sys/fs/binfmt_misc/WSLInterop
+sudo 
+sudo

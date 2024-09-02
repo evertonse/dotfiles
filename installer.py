@@ -65,12 +65,22 @@ def cp(src, dst):
         cpfile(Path(src), Path(dst))
 
 
+BIG_YES = False
+
+
 def yes_or_no(x) -> bool:
-    phrase = f"{x} [y/n]?"
+    global BIG_YES
+
+    if BIG_YES == True:
+        return BIG_YES
+
+    phrase = f"{x} [(y)es/(n)o/(a)ll]?"
     c = getch(phrase).lower()
-    while c not in {"y", "n", "yes", "no"}:
+    while c not in {"y", "n", "yes", "no", "all", "a"}:
         c = getch(phrase).lower()
-    return c.startswith("y")
+    BIG_YES = c.startswith("a")
+
+    return BIG_YES or c.startswith("y")
 
 
 home = Path.home()
@@ -225,6 +235,7 @@ def dotfiles():
         "./.gitconfig",
     ]
 
+    cmd(f"sudo cp {Path('config','wsl.conf')} {Path('/etc', 'wsl.conf')}")
     for f in files:
         if f == "./pacman.conf":
             cmd(f"sudo cp {Path(f)} {Path('/etc', 'pacman.conf')}")
