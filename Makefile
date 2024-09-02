@@ -1,3 +1,4 @@
+
 install:
 	python3 ./installer.py -y
 
@@ -18,9 +19,13 @@ ahk:
 	@cp $(SOURCE) $(DEST)
 	wsl-open $(DEST)
 
+
+ROAMING := "/mnt/c/Users/$(WIN_USER)/AppData/Roaming/alacritty/"
+
 alacritty:
-	@rm -rf /mnt/c/Users/Administrator/AppData/Roaming/alacritty/
-	@cp -r ./config/alacritty/ /mnt/c/Users/Administrator/AppData/Roaming/alacritty/
+	@echo $(ROAMING)
+	@rm -rf $(ROAMING)
+	@cp -r ./config/alacritty/ $(ROAMING)
 	
 wslconfig:
 	echo $$(WIN_USERPROFILE)
