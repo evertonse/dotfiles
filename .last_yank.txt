@@ -297,3 +297,6 @@ sudo echo 0 > /proc/sys/fs/binfmt_misc/WSLInterop
     sudo echo 0 sudo > /proc/sys/fs/binfmt_misc/WSLInterop
 sudo 
 sudo
+set breakpoint pending on
+set disassembly-flavor intel
+

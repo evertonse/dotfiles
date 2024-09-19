@@ -1,7 +1,9 @@
 set breakpoint pending on
 set disassembly-flavor intel
+
 set debuginfod enabled off
 set follow-fork-mode child
+
 define hook-next
   refresh
 end

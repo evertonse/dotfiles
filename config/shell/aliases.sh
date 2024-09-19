@@ -59,6 +59,10 @@ alias reboot="pkill -2 chrome; sudo reboot"
 ani() {
   # Path to your mpv.exe on windows machine
   # https://github.com/pystardust/ani-cli
+  # Also try the py version
+  # pipx install anipy-cli
+  # for manga
+  # curl -sSL mangal.metafates.one/run | sh
   PATH=$PATH:$(wslpath "C:\tools\mpv-x86_64-20240910-git-f6d9313")
   ani-cli
 }
