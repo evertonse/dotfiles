@@ -4,7 +4,7 @@
 # An example configuration file for Alacritty preconfigured with default values.
 
 # SYNTAX
-# Alacritty's configuration file uses the TOML format. 
+# Alacritty's configuration file uses the TOML format.
 # The format's specification can be found at https://toml.io/en/v1.0.0.
 
 # GENERAL
@@ -233,7 +233,8 @@ multiplier = 3
 # normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 # These two below This one has more icons
 # normal = { family = "JetBrainsMonoNL Nerd Font" }
-normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
+normal = { family = "JetBrainsMonoNL Nerd Font Propo", style = "Medium" }
+# normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
 
 # bold = { family = "JetBrainsMono Nerd Font", style = "Heavy" }
 #
