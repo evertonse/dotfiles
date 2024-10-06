@@ -27,8 +27,10 @@ alacritty:
 	@rm -rf $(ROAMING)
 	@cp -r ./config/alacritty/ $(ROAMING)
 	
+
+WIN_USERPROFILE := "/mnt/c/Users/$(WIN_USER)"
 wslconfig:
-	echo $$(WIN_USERPROFILE)
+	cp ./setup/win/.wslconfig $(WIN_USERPROFILE)
 
 	
 

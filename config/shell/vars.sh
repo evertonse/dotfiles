@@ -135,7 +135,7 @@ fi
 
 uncompress() {
     if [[ $# -eq 0 ]]; then
-        echo "Usage: untar <file.tar.gz|file.tar.bz2|file.tar.xz|file.tar|file.zip>"
+        echo "Usage: uncompress <file.tar.gz|file.tar.bz2|file.tar.xz|file.tar|file.zip>"
         return 1
     fi
 
