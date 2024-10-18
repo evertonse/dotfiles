@@ -3,6 +3,40 @@
     "$schema": "https://aka.ms/terminal-profiles-schema-preview",
     "actions": 
     [
+        { "command": { "action": "sendInput", "input": "\u001b[15;6u" }, "keys": "ctrl+shift+o" },
+        { "command": { "action": "sendInput", "input": "\u001b[43;5u" }, "keys": "ctrl+shift+i" },
+
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[43;5u"
+            },
+            "id": "User.sendInput.AE44F3AD"
+        },
+        {
+            "command": 
+            {
+                "action": "moveFocus",
+                "direction": "left"
+            },
+            "id": "User.moveFocus.2A0DA8E0"
+        },
+        {
+            "command": 
+            {
+                "action": "prevTab"
+            },
+            "id": "User.prevTab.0"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[15;6u"
+            },
+            "id": "User.sendInput.708B4BBE"
+        },
         {
             "command": 
             {
@@ -27,16 +61,16 @@
             "id": "User.moveFocus.F747588A"
         },
         {
-            "command": "toggleFullscreen",
-            "id": "User.toggleFullscreen"
-        },
-        {
             "command": 
             {
                 "action": "resizePane",
                 "direction": "left"
             },
             "id": "User.resizePane.2A0DA8E0"
+        },
+        {
+            "command": "toggleFullscreen",
+            "id": "User.toggleFullscreen"
         },
         {
             "command": 
@@ -73,16 +107,20 @@
         {
             "command": 
             {
+                "action": "splitPane"
+            },
+            "id": "User.splitPane.91AB55B1"
+        },
+        {
+            "command": 
+            {
                 "action": "nextTab"
             },
             "id": "User.nextTab.0"
         },
         {
-            "command": 
-            {
-                "action": "splitPane"
-            },
-            "id": "User.splitPane.91AB55B1"
+            "command": "paste",
+            "id": "User.paste"
         },
         {
             "command": 
@@ -93,20 +131,16 @@
             "id": "User.findMatch.2A0DA8E0"
         },
         {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
             "command": 
             {
                 "action": "splitPane",
                 "split": "left"
             },
             "id": "User.splitPane.21DBB4A1"
+        },
+        {
+            "command": "find",
+            "id": "User.find"
         },
         {
             "command": 
@@ -130,36 +164,21 @@
         {
             "command": 
             {
+                "action": "scrollUp"
+            },
+            "id": "User.scrollUp.0"
+        },
+        {
+            "command": 
+            {
                 "action": "resizePane",
                 "direction": "right"
             },
             "id": "User.resizePane.87C324ED"
         },
         {
-            "command": 
-            {
-                "action": "scrollUp"
-            },
-            "id": "User.scrollUp.0"
-        },
-        {
             "command": "closePane",
             "id": "User.closePane"
-        },
-        {
-            "command": 
-            {
-                "action": "moveFocus",
-                "direction": "left"
-            },
-            "id": "User.moveFocus.2A0DA8E0"
-        },
-        {
-            "command": 
-            {
-                "action": "prevTab"
-            },
-            "id": "User.prevTab.0"
         },
         {
             "command": 
@@ -194,34 +213,54 @@
     "confirmCloseAllTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
+    "defaultProfile": "{661d827b-d80a-499e-b104-80643cb61ff2}",
     "disableAnimations": true,
     "firstWindowPreference": "persistedWindowLayout",
     "keybindings": 
     [
         {
-            "id": "User.commandPalette.D3F0B923",
-            "keys": "f1"
+            "id": null,
+            "keys": "ctrl+shift+v"
         },
         {
-            "id": "User.copy.644BA8F2",
-            "keys": "ctrl+shift+y"
+            "id": "User.sendInput.708B4BBE",
+            "keys": "ctrl+shift+o"
+        },
+        {
+            "id": "User.paste",
+            "keys": "ctrl+shift+p"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.sendInput.AE44F3AD",
+            "keys": "ctrl+shift+i"
+        },
+        {
+            "id": "User.commandPalette.D3F0B923",
+            "keys": "f1"
         },
         {
             "id": null,
             "keys": "shift+insert"
         },
         {
-            "id": null,
-            "keys": "ctrl+0"
+            "id": "User.copy.644BA8F2",
+            "keys": "ctrl+shift+y"
         },
         {
             "id": "User.resizePane.2A0DA8E0",
             "keys": "ctrl+shift+comma"
         },
         {
-            "id": "User.paste",
-            "keys": "ctrl+shift+p"
+            "id": null,
+            "keys": "ctrl+0"
+        },
+        {
+            "id": "User.scrollDown.0",
+            "keys": "ctrl+shift+d"
         },
         {
             "id": null,
@@ -232,12 +271,8 @@
             "keys": "ctrl+shift+k"
         },
         {
-            "id": "User.scrollDown.0",
-            "keys": "ctrl+shift+d"
-        },
-        {
             "id": null,
-            "keys": "ctrl+shift+f"
+            "keys": "ctrl+v"
         },
         {
             "id": null,
@@ -245,7 +280,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+v"
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+c"
         },
         {
             "id": "User.scrollUp.0",
@@ -253,15 +292,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+alt+c"
+            "keys": "ctrl+alt+v"
         },
         {
             "id": "User.toggleFullscreen",
             "keys": "win+f"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+alt+v"
         },
         {
             "id": null,
@@ -273,11 +308,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+shift+c"
+            "keys": "alt+shift+right"
         },
         {
             "id": null,
-            "keys": "alt+shift+right"
+            "keys": "ctrl+shift+c"
         },
         {
             "id": null,
@@ -288,20 +323,20 @@
             "keys": "alt+left"
         },
         {
+            "id": null,
+            "keys": "alt+down"
+        },
+        {
             "id": "User.nextTab.0",
             "keys": "ctrl+alt+l"
         },
         {
             "id": null,
-            "keys": "alt+down"
+            "keys": "alt+right"
         },
         {
             "id": null,
             "keys": "ctrl+alt+p"
-        },
-        {
-            "id": null,
-            "keys": "alt+right"
         },
         {
             "id": null,
@@ -320,12 +355,12 @@
             "keys": "alt+f4"
         },
         {
-            "id": "User.prevTab.0",
-            "keys": "ctrl+alt+h"
-        },
-        {
             "id": null,
             "keys": "alt+enter"
+        },
+        {
+            "id": "User.prevTab.0",
+            "keys": "ctrl+alt+h"
         },
         {
             "id": null,
@@ -345,15 +380,11 @@
         },
         {
             "id": null,
-            "keys": "alt+shift+d"
+            "keys": "ctrl+alt+n"
         },
         {
             "id": "User.tabSearch",
             "keys": "ctrl+alt+f"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+alt+n"
         },
         {
             "id": null,
@@ -381,10 +412,6 @@
         },
         {
             "id": null,
-            "keys": "ctrl+shift+v"
-        },
-        {
-            "id": null,
             "keys": "ctrl+shift+n"
         },
         {
@@ -409,14 +436,14 @@
             "bellStyle": "none",
             "colorScheme": "One Half Dark (modified)",
             "cursorShape": "bar",
-            "experimental.repositionCursorWithMouse": true,
+            "experimental.repositionCursorWithMouse": false,
             "font": 
             {
                 "builtinGlyphs": true,
                 "cellHeight": "1.15",
                 "colorGlyphs": true,
                 "face": "JetBrainsMonoNL Nerd Font Mono",
-                "size": 18,
+                "size": 17.8,
                 "weight": "semi-light"
             },
             "intenseTextStyle": "all",

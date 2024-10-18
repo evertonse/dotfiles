@@ -107,6 +107,7 @@ args = [""]
 # Background opacity (works on macOS & KDE Wayland only)
 # opacity = <float>
 # Background opacity as a floating point number from 0.0 to 1.0. The value 0.0 is completely transparent and 1.0 is opaque.
+
 # Default: 1.0
 
 # Request compositor to blur content behind transparent windows (works on macOS & KDE Wayland only).
