@@ -3,17 +3,6 @@
     "$schema": "https://aka.ms/terminal-profiles-schema-preview",
     "actions": 
     [
-        { "command": { "action": "sendInput", "input": "\u001b[15;6u" }, "keys": "ctrl+shift+o" },
-        { "command": { "action": "sendInput", "input": "\u001b[43;5u" }, "keys": "ctrl+shift+i" },
-
-        {
-            "command": 
-            {
-                "action": "sendInput",
-                "input": "\u001b[43;5u"
-            },
-            "id": "User.sendInput.AE44F3AD"
-        },
         {
             "command": 
             {
@@ -21,6 +10,14 @@
                 "direction": "left"
             },
             "id": "User.moveFocus.2A0DA8E0"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[15;6u"
+            },
+            "id": "User.sendInput.708B4BBE"
         },
         {
             "command": 
@@ -33,9 +30,9 @@
             "command": 
             {
                 "action": "sendInput",
-                "input": "\u001b[15;6u"
+                "input": "\u001b[43;5u"
             },
-            "id": "User.sendInput.708B4BBE"
+            "id": "User.sendInput.AE44F3AD"
         },
         {
             "command": 
@@ -219,24 +216,24 @@
     "keybindings": 
     [
         {
-            "id": null,
-            "keys": "ctrl+shift+v"
-        },
-        {
             "id": "User.sendInput.708B4BBE",
             "keys": "ctrl+shift+o"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+v"
         },
         {
             "id": "User.paste",
             "keys": "ctrl+shift+p"
         },
         {
-            "id": null,
-            "keys": "alt+shift+d"
-        },
-        {
             "id": "User.sendInput.AE44F3AD",
             "keys": "ctrl+shift+i"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+d"
         },
         {
             "id": "User.commandPalette.D3F0B923",
@@ -251,7 +248,7 @@
             "keys": "ctrl+shift+y"
         },
         {
-            "id": "User.resizePane.2A0DA8E0",
+            "id": null,
             "keys": "ctrl+shift+comma"
         },
         {
@@ -269,6 +266,10 @@
         {
             "id": null,
             "keys": "ctrl+shift+k"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+comma"
         },
         {
             "id": null,
