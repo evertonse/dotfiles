@@ -1,4 +1,8 @@
-alias tm='/bin/tmux -2 a  || /bin/tmux -2'
+alias tm='/usr/bin/tmux -2 a  || /bin/tmux -2'
+
+tmfzf() { 
+  /usr/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t
+}
 
 # grep rn full path
 grnf() {
