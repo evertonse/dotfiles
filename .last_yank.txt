@@ -23,9 +23,10 @@ bind -n C-k send-keys Up
 -T
 bind-key -T command_mode C-j command-prompt -p ':' "send-keys Up"
 bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
-j
-/bin/tmux
-/usr/bin/tmux
-/usr/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t
-/usr/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t
-alias 
+F
+T
+bind -n Escape command-prompt -I ''
+
+bind -n Escape send-keys C-c
+
+Esc
