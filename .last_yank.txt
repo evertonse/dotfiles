@@ -23,5 +23,29 @@ bind -n C-k send-keys Up
 -T
 bind-key -T command_mode C-j command-prompt -p ':' "send-keys Up"
 bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
-bind -n C-f display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+~
+bind r
+&> /tmp/tmux-open-in-nvim.log
+tmux-open-in-nvim
+open-in-vim.sh
+# Now replace the last colon with a pipe
+file=$(echo "$file" | rev | sed 's/:/'"|"'/' | rev)
+echo $file
+
+# Get file path, defaulting to ~/todo.md if no argument provided
+raw_path="${1:-$HOME/todo.md}"
+
+# Split on last colon and take everything before it
+# Using rev to handle the last colon reliably
+file=$(echo "$raw_path" | rev | cut -d':' -f2- | rev)
+
+# If there were no colons, the above might return empty - fallback to raw_path
+if [ -z "$file" ]; then
+    file="$raw_path"
+fi
+
+# Now replace the last colon with a pipe
+file=$(echo "$file" | rev | sed 's/:/'"|"'/' | rev)
+echo $file
+###########
 
