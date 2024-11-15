@@ -304,6 +304,7 @@ def main():
 
     selected_command = install_commands[choice]
     selected_command()
+    print_okay("Finished");
 
 
 
