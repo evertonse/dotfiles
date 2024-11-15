@@ -8,10 +8,16 @@ from glob import glob
 from functools import partial
 import subprocess
 
-print_err  = lambda *x: print("\x1b[1m\x1b[31m"+"error:"+"\033[0m", *x)
-print_info = lambda *x: print("\x1b[30;1m"     +"info:" +"\033[0m",  *x)
-print_okay = lambda *x: print("\033[0m"        +"okay:" +"\033[0m",  *x)
+print_err  = lambda *x: print("\x1b[1m\x1b[31m"+"error: "+"\033[0m", *x)
+print_info = lambda *x: print("\x1b[30;1m"     +"info:  "+"\033[0m",  *x)
+print_okay = lambda *x: print("\033[92m"       +"okay:  "+"\033[0m",  *x)
      
+def ordinal(n: int):
+    if 11 <= (n % 100) <= 13:
+        suffix = 'th'
+    else:
+        suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
+    return str(n) + suffix
 
 
 def cmd_std_out(command):
@@ -91,10 +97,15 @@ def yes_or_no(x) -> bool:
 home = Path.home()
 
 
+error_count = 0
+error_cmds  = list()
 def cmd(x):
+    global error_count
     if yes_or_no(x):
         ok = os.system(x)
         if ok != 0:
+            error_count += 1
+            error_cmds.append(x)
             print_err(f"Previous command has failed with error code {ok}.")
 
 
@@ -297,15 +308,23 @@ def main():
     for idx, cmd in enumerate(install_commands):
         print(f"{idx + 1} : {cmd.__name__.replace('_',' ')}")
 
-    choice = int(getch()) - 1
+    try:
+        choice = int(getch()) - 1
+    except:
+        choice = -1
+
     if choice < 0 or choice >= len(install_commands):
         print("Invalid choice. Exiting.")
         exit(1)
 
     selected_command = install_commands[choice]
     selected_command()
-    print_okay("Finished");
-
+    if error_count == 0:
+        print_okay("Finished")
+    else:
+        print_info(
+            f"Finished with {error_count} errors.\n\tThese are the failed commands:\n\t{'\n\t'.join(ordinal(i+1) + ": " + s for i,s in enumerate(error_cmds))}"
+        )
 
 
 if __name__ == "__main__":
