@@ -8,6 +8,11 @@ from glob import glob
 from functools import partial
 import subprocess
 
+print_err  = lambda *x: print("\x1b[1m\x1b[31m"+"error:"+"\033[0m", *x)
+print_info = lambda *x: print("\x1b[30;1m"     +"info:" +"\033[0m",  *x)
+print_okay = lambda *x: print("\033[0m"        +"okay:" +"\033[0m",  *x)
+     
+
 
 def cmd_std_out(command):
     """Run a shell command and return the output."""
@@ -58,7 +63,7 @@ cpdir = partial(copytree, dirs_exist_ok=True)
 
 
 def cp(src, dst):
-    print(f"src={Path(src)} dst={Path(dst)}")
+    print_info(f"src={Path(src)} -> dst={Path(dst)}")
     if src.is_dir():
         cpdir(Path(src), Path(dst))
     else:
@@ -90,8 +95,7 @@ def cmd(x):
     if yes_or_no(x):
         ok = os.system(x)
         if ok != 0:
-            print(f"Previous command has failed with error code {ok}. Exiting now.")
-            exit(0)
+            print_err(f"Previous command has failed with error code {ok}.")
 
 
 def remove_neovim():
@@ -300,6 +304,7 @@ def main():
 
     selected_command = install_commands[choice]
     selected_command()
+
 
 
 if __name__ == "__main__":
