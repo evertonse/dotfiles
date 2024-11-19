@@ -14,6 +14,9 @@ fi
 
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
+# avoid duplicates..
+export HISTCONTROL=ignoredups:erasedups
+# append history entries..
 export HISTFILE="$XDG_DATA_HOME/history"
 if [[ $TMUX_PANE ]]; then
     HISTFILE=$XDG_DATA_HOME/history/history_tmux_${TMUX_PANE:1}
