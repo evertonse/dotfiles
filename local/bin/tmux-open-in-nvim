@@ -36,6 +36,7 @@ if [ -n "$pane" ]; then
     tmux send-keys -t "$pane" Escape Escape     # Ensure we're in normal mode
     # tmux send-keys -t "$pane" ":wa" Enter       # Save any changes
     tmux send-keys -t "$pane" ":e $file" Enter  # Open the file
+    tmux send-keys -t "$pane" zz # Center it
     tmux select-pane -t "$pane" # Focus the pane
 else
     echo "No Vim/Neovim instance found in the current tmux window."

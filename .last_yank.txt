@@ -23,3 +23,14 @@ bind -n C-k send-keys Up
 -T
 bind-key -T command_mode C-j command-prompt -p ':' "send-keys Up"
 bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
+bind C-w display-popup -E "tmux list-windows -F '#I: #W' | grep -v \"^$(tmux display-message -p '#I'): \" | fzf --reverse | cut -d':' -f1 | xargs tmux select-window -t"
+
+"
+"'"
+    tmux send-keys -t "$pane" ":e $file" Enter "zz"  # Open the file
+
+"zz"
+:e $file
+ Enter   # Open the file
+    tmux send-keys -t "$pane" "zz" # Center it
+

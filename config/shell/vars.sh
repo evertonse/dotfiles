@@ -12,6 +12,13 @@ else
   export TERM="xterm-256color"
 fi
 
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+
+export HISTFILE="$XDG_DATA_HOME/history"
+if [[ $TMUX_PANE ]]; then
+    HISTFILE=$XDG_DATA_HOME/history/history_tmux_${TMUX_PANE:1}
+fi
+
 export COLORTERM="truecolor"
 export TERMINAL="st"
 export TERMINAL_PROG="st"
@@ -66,7 +73,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 #export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export KODI_DATA="$XDG_DATA_HOME/kodi"
-export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
@@ -74,7 +80,6 @@ export FLUTTERPATH="$XDG_DATA_HOME/flutter"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
 export UNISON="$XDG_DATA_HOME/unison"
-export HISTFILE="$XDG_DATA_HOME/history"
 export MBSYNCRC="$XDG_CONFIG_HOME/mbsync/config"
 export ELECTRUMDIR="$XDG_DATA_HOME/electrum"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
