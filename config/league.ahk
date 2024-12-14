@@ -1,17 +1,19 @@
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
 ;     - Shift -> k
-;     - CapsLock -> y
+;     - CapsLock -> y ; this one might be optional idk
 
 SetCapsLockState "Off"
 
-A_HotkeyInterval := 0  ; This is the default value (milliseconds).
-A_MaxHotkeysPerInterval := 20000
+; A_HotkeyInterval := 0  ; This is the default value (milliseconds).
+A_MaxHotkeysPerInterval := 2000000
 A_HotkeyModifierTimeout := -1
 
 SetKeyDelay -1
 SetMouseDelay -1
 SendMode "Input"
+; SetKeyDelay 0
+; SetMouseDelay 0
 
 ; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite ksk being up
 LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
@@ -35,9 +37,10 @@ $^s:: {
     }
     l_down :=  not l_down
 }
+
 CapsLock::y
 
-; ^s::^s 
+; ^s::^s
 ; $s:: {
 ;     Send "{s down}{c}"
 ; }
@@ -46,8 +49,8 @@ CapsLock::y
 
 s::s
 $s::{
-    SetKeyDelay -1
-    SetMouseDelay -1
+    ; SetKeyDelay -1
+    ; SetMouseDelay -1
     if (GetKeyState("k")) {
         Send "{s}"
     } else {
@@ -55,18 +58,30 @@ $s::{
     }
 }
 
+u::u
+$u::{
+    ; SetKeyDelay -1
+    ; SetMouseDelay -1
+    if (GetKeyState("k")) {
+        Send "{u}"
+    } else {
+        Send "{k down}{u}{k up}"
+    }
+}
+
+
 ; $Shift & RButton::{
 ;     Send "{u}"
 ; }
 
-$Shift::k
+; Shift::k
 ':: Shift
 
 
 ; *s up:: SendInput "{blind up}"
 ; *s:: SendInput "{blind down}{s}"
 
-; s & RButton:: {
+; RButton:: {
 ;     SendInput "{u}"
 ;     if (GetKeyState("Shift", "P")) {
 ;         SendInput "{u}"
@@ -78,19 +93,20 @@ $Shift::k
 
 RButton:: u
 $RButton:: {
-    SetMouseDelay -1
     SendInput "{k down}{u}"
     if (not GetKeyState("Shift", "P")) {
         SendInput "{k up}"
     }
 }
 
+
+
 SetCapsLockState "AlwaysOff"
 #HotIf ; Only active during league
 
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
-SetCapsLockState "Off"
-
+; SetCapsLockState "Off"
+; SetCapsLockState("AlwaysOff")
 ; Define the hotkey (Ctrl+Shift+D in this example)
 #n:: {
 
@@ -108,18 +124,13 @@ SetCapsLockState "Off"
 
     ; Open the file in Notepad
     Run notes_file_path
-}
 
-SetCapsLockState("AlwaysOff")
+}
 Esc::Esc
-;Esc::Esc
-Shift::Shift
 CapsLock::Esc
 NumpadDiv::CapsLock
-s::s
-k::k
-'::'
-
-#HotIf ; Only when league not active 
-
+Shift::Shift
+RButton::RButton
+; k::k
+#HotIf ; Only when league not active
 

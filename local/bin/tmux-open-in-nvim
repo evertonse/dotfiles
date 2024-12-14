@@ -7,8 +7,16 @@ raw_path="${1:-$HOME/todo.md}"
 # Using rev to handle the last colon reliably
 # file=$(echo "$raw_path" | rev | cut -d':' -f2- | rev)
 
-file=$(echo "$raw_path" | cut -d':' -f1)
-number=$(echo "$raw_path" | cut -d':' -f2)
+# NOTE: Won't work if a file has '('
+file=$(echo "$raw_path" | cut -d'(' -f1 )
+number=$(echo "$raw_path" | cut -d'(' -f2- | cut -d':' -f1 )
+# grep "\([./a-z]*\)(\([0-9]*:[0-9]*\))"
+
+if [ -z "$file" ]; then
+    file=$(echo "$raw_path" | cut -d':' -f1)
+    number=$(echo "$raw_path" | cut -d':' -f2)
+fi
+
 
 if [ -z "$file" ]; then
     file="$raw_path"

@@ -1,65 +1,56 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema-preview",
-    "actions": 
-    [
+    "actions": [
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "left"
             },
             "id": "User.moveFocus.2A0DA8E0"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "sendInput",
                 "input": "\u001b[15;6u"
             },
             "id": "User.sendInput.708B4BBE"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "prevTab"
             },
             "id": "User.prevTab.0"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "sendInput",
                 "input": "\u001b[43;5u"
             },
             "id": "User.sendInput.AE44F3AD"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "right"
             },
             "id": "User.splitPane.864CD510"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "commandPalette"
             },
             "id": "User.commandPalette.D3F0B923"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "down"
             },
             "id": "User.moveFocus.F747588A"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "resizePane",
                 "direction": "left"
             },
@@ -70,8 +61,7 @@
             "id": "User.toggleFullscreen"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -79,38 +69,33 @@
             "id": "User.splitPane.A6751878"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "right"
             },
             "id": "User.moveFocus.87C324ED"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             },
             "id": "User.copy.644BA8F2"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "addMark"
             },
             "id": "User.addMark.0"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane"
             },
             "id": "User.splitPane.91AB55B1"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "nextTab"
             },
             "id": "User.nextTab.0"
@@ -120,16 +105,14 @@
             "id": "User.paste"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "findMatch",
                 "direction": "next"
             },
             "id": "User.findMatch.2A0DA8E0"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "left"
             },
@@ -140,15 +123,13 @@
             "id": "User.find"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "scrollDown"
             },
             "id": "User.scrollDown.0"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "down"
             },
@@ -159,15 +140,13 @@
             "id": "User.closeWindow"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "scrollUp"
             },
             "id": "User.scrollUp.0"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "resizePane",
                 "direction": "right"
             },
@@ -178,8 +157,7 @@
             "id": "User.closePane"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "up"
             },
@@ -190,16 +168,14 @@
             "id": "User.tabSearch"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "nextInOrder"
             },
             "id": "User.moveFocus.D7681B66"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "findMatch",
                 "direction": "prev"
             },
@@ -213,8 +189,7 @@
     "defaultProfile": "{661d827b-d80a-499e-b104-80643cb61ff2}",
     "disableAnimations": true,
     "firstWindowPreference": "persistedWindowLayout",
-    "keybindings": 
-    [
+    "keybindings": [
         {
             "id": "User.sendInput.708B4BBE",
             "keys": "ctrl+shift+o"
@@ -422,24 +397,20 @@
     ],
     "language": "en-US",
     "launchMode": "maximizedFocus",
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "adjustIndistinguishableColors": "indexed",
             "antialiasingMode": "cleartype",
             "bellStyle": "none",
             "colorScheme": "One Half Dark (modified)",
             "cursorShape": "bar",
             "experimental.repositionCursorWithMouse": false,
-            "font": 
-            {
+            "font": {
                 "builtinGlyphs": true,
                 "cellHeight": "1.15",
                 "colorGlyphs": true,
@@ -455,12 +426,10 @@
             "suppressApplicationTitle": true,
             "useAcrylic": true
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
-                "font": 
-                {
+                "font": {
                     "face": "JetBrainsMono Nerd Font Propo"
                 },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
@@ -470,8 +439,7 @@
             },
             {
                 "commandline": "C:\\msys64\\ucrt64.exe",
-                "font": 
-                {
+                "font": {
                     "face": "JetBrainsMono Nerd Font Propo"
                 },
                 "guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
@@ -557,8 +525,7 @@
     },
     "rendering.disablePartialInvalidation": true,
     "rendering.graphicsAPI": "direct3d11",
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#181512",
             "black": "#000000",
