@@ -14,10 +14,12 @@
 [safe]
 	directory = /opt/flutter
 [branch]
-    autoSetupMerge= simple
+	autoSetupMerge= simple
 [core]
-    longpaths = true
+	longpaths = true
 	editor = nvim
+	excludesfile = ~/.gitignore
+
 [dif]
 	algorithm = patience
 	compactionHeuristic = true
@@ -35,4 +37,5 @@
 [mergetool "nvimdiff4"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J' -c 'set diffopt&' -c 'set diffopt+=algorithm:patience'
 	keepBackup = false
+
 
