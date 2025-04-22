@@ -15,9 +15,12 @@ source ~/.config/shell/vars.sh
 [[ $- != *i* ]] && return
 
 # History in cache directory:
-HISTSIZE=100000000
-SAVEHIST=100000000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt HIST_EXPIRE_DUPS_FIRST
+# Load tmux-resurrect pane history workaround
+
+[[ -f ~/.config/zsh/zsh-tmux-restore-history.zsh ]] && source ~/.config/zsh/zsh-tmux-restore-history.zsh
 
 # Load aliases and shortcuts if existent.
 

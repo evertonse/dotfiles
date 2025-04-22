@@ -111,9 +111,9 @@ git config --global --unset credential.helper
 - rfkill, to see if is blocked on a hardware level
 - iwctl to connect to wifi
 - nmtui also
-- lspci -k 
+- lspci -k
 - lsusb
-- lspci -vnn 
+- lspci -vnn
 
 # xkb
 - read https://unix.stackexchange.com/questions/65507/use-setxkbmap-to-swap-the-left-shift-and-left-control/65600#65600
