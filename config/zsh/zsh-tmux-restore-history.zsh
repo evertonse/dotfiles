@@ -1,28 +1,25 @@
-# ~/.zsh/tmux_resurrect_history.zsh
-
-# IMPORTANT: This file MUST be include after vars.sh
-
 pane_id_prefix="resurrect_"
-HISTS_DIR="$HOME/.zsh_history.d"
+# Create history directory if it doesn't exist
+HISTS_DIR=$HOME/.config/zsh/zsh-history
 mkdir -p "${HISTS_DIR}"
 
-if [[ -n "$TMUX_PANE" ]]; then
-  # Get current pane title
-  pane_id=$(tmux display -pt "$TMUX_PANE" "#{pane_title}")
+if [ -n "${TMUX_PANE}" ]; then
 
-  if [[ "$pane_id" != "$pane_id_prefix"* ]]; then
-    # Set random pane ID as title
+  # Check if we've already set this pane title
+  pane_id=$(tmux display -pt "${TMUX_PANE:?}" "#{pane_title}")
+  if [[ $pane_id != "$pane_id_prefix"* ]]; then
+
+    # if not, set it to a random ID
     random_id=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16)
-    print -n "\033]2;${pane_id_prefix}${random_id}\033\\"
-    pane_id=$(tmux display -pt "$TMUX_PANE" "#{pane_title}")
+    printf "\033]2;$pane_id_prefix$random_id\033\\"
+    pane_id=$(tmux display -pt "${TMUX_PANE:?}" "#{pane_title}")
   fi
 
-  export HISTFILE="${HISTS_DIR}/zsh_history_tmux_${pane_id}"
+  # use the pane's random ID for the HISTFILE
+  export HISTFILE="${HISTS_DIR}/history_tmux_${pane_id}"
 else
-  export HISTFILE="${HISTS_DIR}/zsh_history_no_tmux"
+  export HISTFILE="${HISTS_DIR}/history_no_tmux"
 fi
 
-# Save history after each command
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd history -a
-
+# Stash the new history each time a command runs.
+export PROMPT_COMMAND="$PROMPT_COMMAND;history -a"
