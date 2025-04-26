@@ -33,7 +33,7 @@ alias yay='yay --color=auto'
 alias ls='ls -AF --color=always --group-directories-first'
 alias ll='ls -AlhF --color=always --group-directories-first'
 alias l='ls -CF'
-alias gdb='gdb -tui -iex "set disassembly-flavor intel"'
+alias gdb='gdb --quiet -tui -iex "set disassembly-flavor intel"'
 alias objdump='objdump -M intel'
 alias py='python3'
 # alias yt='youtube-dl --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started

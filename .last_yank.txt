@@ -23,11 +23,3 @@ bind -n C-k send-keys Up
 -T
 bind-key -T command_mode C-j command-prompt -p ':' "send-keys Up"
 bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
-HISTS_DIR
-HISTFILE
-t
-config/zsh/zsh-tmux-restore-history.zsh
-config/zsh/zsh-tmux-restore-history.zsh
-~/.config/zsh/zsh-tmux-restore-history.zsh
-
-

@@ -1,37 +1,41 @@
 # Enable TUI mode silently if possible
-set confirm off
-tui enable
-set confirm on
+set auto-load safe-path /
 
-# Check if TUI mode is active by trying to enter TUI and suppressing any error
-python
-import gdb
-try:
-    gdb.execute("tui enable", to_string=True)
-    tui_enabled = True
-except:
-    tui_enabled = False
+# Stop yapping
+set startup-quietly on
+set confirm off
+
+tui enable
+
+define c
+  continue
+  refresh
 end
 
-if $tui_enabled
-    define hook-next
-      refresh
-    end
+define n
+  next
+  refresh
+end
 
-    define hook-step
-      refresh
-    end
+define ni
+  nexti
+  refresh
+end
 
-    define c
-      continue
-      refresh
-    end
+# Step over (avoid going into calls)
+define s
+  nexti
+  refresh
+end
+# Step into
+define si
+  stepi
+  refresh
+end
 
-    define n
-      next
-      refresh
-    end
-else
-    echo "TUI mode is not enabled. Skipping TUI hooks.\n"
+# Step out
+define so
+  finish
+  refresh
 end
 
