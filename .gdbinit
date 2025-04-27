@@ -2,17 +2,22 @@
 set auto-load safe-path /
 
 # Stop yapping
+set debuginfod enabled off
 set startup-quietly on
 set confirm off
 
+# The focus defaults to the source pane, which is why it gets the arrow keys.
+# By making the focus onto the Command we get back the arrow keys
 tui enable
+focus cmd
+
 
 define c
   continue
   refresh
 end
 
-define n
+define N
   next
   refresh
 end
