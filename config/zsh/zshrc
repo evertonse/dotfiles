@@ -122,7 +122,7 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
 
     # Lets add this this one path in case 'appendWindowsPath' isn't 'true'
     # Important for yanking with win32yank.exe
-    # TODO check if this makes it slow
+    # TODO check if this makes it slow and fix why is it being added twice
     PATH="$PATH:$WINDOWS_DRIVER_PATH/Windows/System32/"
 
     export WIN_USER=$(cmd /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
