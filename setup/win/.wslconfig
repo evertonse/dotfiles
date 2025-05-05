@@ -12,10 +12,11 @@ nestedVirtualization = true
 [boot]
 systemd=true
 
-# Set whether WSL supports interop processes like launching Windows apps and adding path variables. Setting these to false will block the launch of Windows processes and block adding $PATH environment variables.
+# Set whether WSL supports interop processes like launching Windows apps and adding path variables.
+# Setting these to false will block the launch of Windows processes and block adding $PATH environment variables.
 [interop]
 enabled = true
-appendWindowsPath = true
+appendWindowsPath = false
 
 [experimental]
 autoMemoryReclaim="gradual"

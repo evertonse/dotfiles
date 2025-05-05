@@ -23,3 +23,9 @@ bind -n C-k send-keys Up
 -T
 bind-key -T command_mode C-j command-prompt -p ':' "send-keys Up"
 bind-key -T command_mode C-k command-prompt -p ':' "send-keys Down"
+processes
+bind -T copy-mode-vi C-c               run-shell "tmux send-keys -X cursor-left \; send-keys -X cursor-right"
+
+#
+L
+Pugins
