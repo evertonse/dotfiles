@@ -57,14 +57,14 @@ bindkey -v '^?' backward-delete-char
 
 
 function accept-line-and-run() {
-  # Simulate pressing Ctrl + L to accept the autosuggestion
-  # zle complete-word
-  zle autosuggest-accept
-  # # Provide a visual feedback delay (adjust the sleep duration as needed)
-  sleep 0.1
-  zle redisplay
-  # # Simulate pressing Enter to accept and execute the command
-  zle accept-line
+    # Simulate pressing Ctrl + L to accept the autosuggestion
+    # zle complete-word
+    zle autosuggest-accept
+    # # Provide a visual feedback delay (adjust the sleep duration as needed)
+    sleep 0.1
+    zle redisplay
+    # # Simulate pressing Enter to accept and execute the command
+    zle accept-line
 }
 
 
@@ -116,16 +116,25 @@ lfcd () {
 
 # WSL: Check if we're in wsl
 if [[ $(grep -i Microsoft /proc/version) ]]; then
-    code='~/code/'
-    export GDK_BACKEND=x11
-    export WIN_USER=$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
+    WINDOWS_DRIVER_PATH="/mnt/c" # Assuming C:\
+    alias explorer="$WINDOWS_DRIVER_PATH/Windows/explorer.exe"
+    alias cmd="$WINDOWS_DRIVER_PATH/Windows/System32/cmd.exe"
+
+    # Lets add this this one path in case 'appendWindowsPath' isn't 'true'
+    # Important for yanking with win32yank.exe
+    # TODO check if this makes it slow
+    PATH="$PATH:$WINDOWS_DRIVER_PATH/Windows/System32/"
+
+    export WIN_USER=$(cmd /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
     export WIN_USERPROFILE="/mnt/c/Users/$WIN_USER/"
     export WIN_DOWNLOADS="/mnt/c/Users/$WIN_USER/Downloads"
+
+    export GDK_BACKEND=x11
 
 
     ## Tryin to squeeze performance
     # echo 0 > /proc/sys/fs/binfmt_misc/WSLInterop
-    unset WSL_INTEROP
+    # unset WSL_INTEROP
     # To re-enable Windows binaries, exit all WSL sessions and re-run bash.exe or run the following command as root:
     # echo 1 > /proc/sys/fs/binfmt_misc/WSLInterop
 
@@ -137,10 +146,6 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
     export LIBGL_ALWAYS_INDIRECT=1
     # IMPORTANT: RUN Xming and XLaunch/VcXsrv using the -ac flag.
 
-    code='/mnt/d/code'
-    alias explorer='explorer.exe'
-    # alias explorer=explorer.exe `wslpath -w "$PWD"`
-    
     if ! command -v wsl-open > /dev/null; then
       echo 'your using wsl, but does not have wsl-open, which is a pretty good utility to open win10+ apps from wsl'
     fi
@@ -160,9 +165,9 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
     FAST_BLIST_PATTERNS[/mnt/*/**]=1
     ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
 
-    disable_windows_path='false'
 
     # Function to filter out Windows paths from PATH
+    disable_windows_path='false'
     filter_windows_path() {
         PATH=$(echo $PATH | sed s/:/\\n/g | grep -v '/mnt/c' | sed ':a;N;$!ba;s/\n/:/g')
     }

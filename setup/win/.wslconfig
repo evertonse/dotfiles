@@ -1,23 +1,46 @@
-# Automatically mount Windows drive when the distribution is launched
-[automount]
-# Set to true will automount fixed drives (C:/ or D:/) with DrvFs under the root directory set above. Set to false means drives won't be mounted automatically, but need to be mounted manually or with fstab.
-enabled = true
+
+#
+# See: https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings
+#
 
 [wsl2]
-memory=20GB
-processors=8
+
+memory=8GB
+
+processors=6
+
 guiApplications=true
-nestedVirtualization = true
 
-[boot]
-systemd=true
+# Specify a custom Linux kernel to use with your installed distros. The default kernel used can be found at https://github.com/microsoft/WSL2-Linux-Kernel
+# kernel=C:\\temp\\myCustomKernel
 
-# Set whether WSL supports interop processes like launching Windows apps and adding path variables.
-# Setting these to false will block the launch of Windows processes and block adding $PATH environment variables.
-[interop]
-enabled = true
-appendWindowsPath = false
+# Specify the modules VHD for the custum Linux kernel to use with your installed distros.
+# kernelModules=C:\\temp\\modules.vhdx
 
+# Sets additional kernel parameters, in this case enabling older Linux base images such as Centos 6
+# kernelCommandLine = vsyscall=emulate
+
+# Sets amount of swap storage space to 8GB, default is 25% of available RAM
+swap=8GB
+
+# Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
+# edit: Gotta exist otherwise wsl will complain
+# swapfile=C:\\temp\\wsl-swap.vhdx
+
+# Disable page reporting so WSL retains all allocated memory claimed from Windows and releases none back when free
+# edit: To early to use this, wsl will complain
+# pageReporting=true
+
+# Turn on default connection to bind WSL 2 localhost to Windows localhost. Setting is ignored when networkingMode=mirrored
+localhostforwarding=true
+
+# Disables nested virtualization
+nestedVirtualization=true
+
+# Turns on output console showing contents of dmesg when opening a WSL 2 distro for debugging
+debugConsole=false
+
+# Enable experimental features
 [experimental]
+sparseVhd=true
 autoMemoryReclaim="gradual"
-

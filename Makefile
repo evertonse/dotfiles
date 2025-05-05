@@ -11,12 +11,23 @@ push:
 pull:
 	git pull
 
-SOURCE = ./config/league.ahk
-DEST = /mnt/c/league.ahk
-
+ahk: SOURCE = ./config/league.ahk
+ahk: DEST   = /mnt/c/league.ahk
 ahk:
 	@rm -f $(DEST)
 	@cp $(SOURCE) $(DEST)
+	wsl-open $(DEST)
+
+
+wsl-config: SOURCE = ./setup/win/.wslconfig
+wsl-config: DEST = "$$WIN_USERPROFILE/.wslconfig"
+wsl-config:
+	@echo "Configuring wsl on guest linux vm ..."
+	cp config/wsl.conf $(DEST)
+	@echo "Configuring wsl on windows host ..."
+	@rm -f $(DEST)
+	cp $(SOURCE) $(DEST)
+	@echo "Opening $$WIN_USERPROFILE/.wslconfig .."
 	wsl-open $(DEST)
 
 
@@ -28,10 +39,10 @@ alacritty:
 	@cp -r ./config/alacritty/ $(ROAMING)
 	
 
-WIN_USERPROFILE := "/mnt/c/Users/$(WIN_USER)"
-wslconfig:
-	cp ./setup/win/.wslconfig $(WIN_USERPROFILE)
+# WIN_USERPROFILE := "/mnt/c/Users/$(WIN_USER)"
+# wslconfig:
+# 	cp ./setup/win/.wslconfig $(WIN_USERPROFILE)
 
 	
 
-.PHONY: push pull clean install
+.PHONY: push pull clean install ahk wsl-config
