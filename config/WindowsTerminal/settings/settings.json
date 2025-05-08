@@ -4,6 +4,27 @@
     "actions": [
         {
             "command": {
+                "action": "sendInput",
+                "input": "\u0002"
+            },
+            "keys": "ctrl+b"
+        },
+        {
+            "command": {
+                "action": "sendInput",
+                "input": "\u001b[57;5u"
+            },
+            "keys": "ctrl+9"
+        },
+        {
+            "command": {
+                "action": "sendInput",
+                "input": "\u001b[48;5u"
+            },
+            "keys": "ctrl+0"
+        },
+        {
+            "command": {
                 "action": "moveFocus",
                 "direction": "left"
             },
