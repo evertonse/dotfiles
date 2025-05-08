@@ -11,6 +11,8 @@ push:
 pull:
 	git pull
 
+
+# TODO make ahk slow down mouse then in drawing software or my pressing a certain big combination of keys
 ahk: SOURCE = ./config/league.ahk
 ahk: DEST   = /mnt/c/league.ahk
 ahk:

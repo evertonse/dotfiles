@@ -36,25 +36,53 @@ setopt HIST_EXPIRE_DUPS_FIRST
 
 # Basic auto/tab complete:
 autoload -U compinit
+
 zstyle ':completion:*' menu select
 zmodload zsh/complist
+
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 setopt NO_BEEP
 
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
+# Change cursor shape for different vi modes.
+function zle-keymap-select () {
+    case $KEYMAP in
+        vicmd) echo -ne '\e[1 q';;      # block
+        viins|main) echo -ne '\e[5 q';; # beam
+    esac
+}
+zle -N zle-keymap-select
 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
 
+# Define a custom widget to clear the line and open nvim
+function clear_and_nvim {
+  # Clear the current line
+  zle kill-whole-line
+  # Insert the command
+  LBUFFER="nvim"
+  # Simulate pressing Enter
+  zle accept-line
+}
 
+function clear_and_exit {
+  # Clear the current line
+  zle kill-whole-line
+  # Insert the command
+  LBUFFER="exit"
+  # Simulate pressing Enter
+  zle accept-line
+}
 
+function clear_and_tmux {
+  zle kill-whole-line
+  LBUFFER="tmux -2 a  || tmux -2"
+  zle accept-line
+}
 
 function accept-line-and-run() {
     # Simulate pressing Ctrl + L to accept the autosuggestion
@@ -67,17 +95,43 @@ function accept-line-and-run() {
     zle accept-line
 }
 
-
 zle -N accept-line-and-run
 # Reason for line below is explained by by: https://unix.stackexchange.com/questions/740102/end-of-line-widget-not-working-in-functions-zsh-autosuggestions
 ZSH_AUTOSUGGEST_ACCEPT_WIDGETS+=(accept-line-and-run)
+
+# Bind the custom widget to Ctrl+n
+zle -N clear_and_nvim
+zle -N clear_and_exit
+zle -N clear_and_tmux
+bindkey '^t'  clear_and_tmux
+# ^[ is basically Alt
+bindkey '^[n' clear_and_nvim
+bindkey '^q' clear_and_exit
+
+bindkey -s ^f "tmux-sessionizer\n"
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
 
 bindkey '^S' accept-line-and-run # TODO: crtl+s is too useful to be wasted, make a use of it
 bindkey '^y' accept-line-and-run
 bindkey '^L' autosuggest-accept
 bindkey '^H' backward-delete-char
-bindkey '^K' up-line-or-history
-bindkey '^J' down-line-or-history
+
+bindkey '^P' up-line-or-history
+bindkey '^N' down-line-or-history
+bindkey '^K' kill-line
+# bindkey -M viins '^K' kill-line  # for vi insert mode
+
+
 bindkey '\t' expand-or-complete
 
 bindkey '^[[Z' reverse-menu-complete
@@ -85,22 +139,9 @@ bindkey "^E" forward-word
 bindkey "^B" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey -s '^G' '$EXPLORER .^M'
+bindkey -s '^G' '^u$EXPLORER .^M'
 
-# Change cursor shape for different vi modes.
-function zle-keymap-select () {
-    case $KEYMAP in
-        vicmd) echo -ne '\e[1 q';;      # block
-        viins|main) echo -ne '\e[5 q';; # beam
-    esac
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
+# echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Use lf to switch directories and bind it to ctrl-o
@@ -211,44 +252,6 @@ NEWLINE=$'\n'
 PROMPT='[%n @ %B%~%b] ${NEWLINE}$ '
 RPROMPT='$(git_branch)%T'
 
-# Where should I put you?
-
-# Define a custom widget to clear the line and open nvim
-function clear_and_nvim {
-  # Clear the current line
-  zle kill-whole-line
-  # Insert the command
-  LBUFFER="nvim"
-  # Simulate pressing Enter
-  zle accept-line
-}
-
-function clear_and_exit {
-  # Clear the current line
-  zle kill-whole-line
-  # Insert the command
-  LBUFFER="exit"
-  # Simulate pressing Enter
-  zle accept-line
-}
-
-function clear_and_tmux {
-  zle kill-whole-line
-  LBUFFER="tmux -2 a  || tmux -2"
-  zle accept-line
-}
-
-# Bind the custom widget to Ctrl+n
-zle -N clear_and_nvim
-zle -N clear_and_exit
-zle -N clear_and_tmux
-bindkey '^t'  clear_and_tmux
-bindkey '^n' clear_and_nvim
-bindkey '^q' clear_and_exit
-
-bindkey -s ^f "tmux-sessionizer\n"
-# bindkey -s ^n "nvim .\n"
-# bindkey -s ^n "nvim +\"Telescope find_files initial_mode=insert\"\n"
 
 
 
