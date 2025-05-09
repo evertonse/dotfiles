@@ -41,11 +41,11 @@ pane=$(tmux list-panes -F '#{pane_id} #{pane_current_command}' | grep -E 'n?vim'
 
 if [ -n "$pane" ]; then
     # Send a sequence of commands to ensure we get to normal mode and open the file
-    tmux send-keys -t "$pane" Escape Escape     # Ensure we're in normal mode
-    # tmux send-keys -t "$pane" ":wa" Enter       # Save any changes
+    # tmux send-keys -t "$pane" Escape Escape C-x       # Ensure we're in normal mode
+    tmux send-keys -t "$pane" Escape Escape ^\\ ^n
     # tmux send-keys -t "$pane" ":e $file" Enter  # Open the file
-    tmux send-keys -t "$pane" ":lua GotoFileFromLine [[$file]]" Enter  # Open the file
-    # tmux send-keys -t "$pane" zz # Center it
+    tmux send-keys -t "$pane" ":lua GotoFileFromLine [[$file]]" Enter  # Open the file and let neovim handled it, expected GotoFileFromLine global function
+    # tmux send-keys -t "$pane" zz # Center it OBS.: GotoFileFromLine already centers it
     tmux select-pane -t "$pane" # Focus the pane
 else
     echo "No Vim/Neovim instance found in the current tmux window."

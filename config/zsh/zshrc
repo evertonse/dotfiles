@@ -1,26 +1,40 @@
-stty stop undef		# Disable ctrl-s to freeze terminal.
+stty stop undef # Disable ctrl-s to freeze terminal.
 stty -ixon
-# Enable colors and change prompt:
-autoload -U colors && colors	# Load colors
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-setopt autocd		# Automatically cd into typed directory.
+# Enable colors and change prompt:
+autoload -U colors && colors    # Load colors
+# autoload -Uz zle
+
+# When using bash you could have this
+# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
+setopt autocd   # Automatically cd into typed directory.
 setopt interactive_comments
 setopt MENU_COMPLETE
 unsetopt flow_control
 
-source ~/.config/shell/aliases.sh
-source ~/.config/shell/vars.sh
-
 [[ $- != *i* ]] && return
+
+# The .profile should take case of this, but it doesn't get sourced every in WSL only /etc/profile.
+# .zprofile on the other hand gets sourced once and login (from a login shell they call it)
+# .zprofile should just source aliases and exports, variables and so on, things that aren't interactive
+# See: https://apple.stackexchange.com/questions/388622/zsh-zprofile-zshrc-zlogin-what-goes-where
+ZPROFILE_PATH="$HOME/.zprofile"
+if [ ! -f "$ZPROFILE_PATH" ]; then
+  echo ".zprofile haven't been zetup correctly"
+  [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
+  [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/variables.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/variables.sh"
+  [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/wsl.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/wsl.sh"
+fi
+
 
 # History in cache directory:
 HISTSIZE=100000
 SAVEHIST=100000
 setopt HIST_EXPIRE_DUPS_FIRST
-# Load tmux-resurrect pane history workaround
 
-[[ -f ~/.config/zsh/zsh-tmux-restore-history.zsh ]] && source ~/.config/zsh/zsh-tmux-restore-history.zsh
+# Load tmux-resurrect pane history workaround
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-tmux-restore-history.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-tmux-restore-history.zsh"
 
 # Load aliases and shortcuts if existent.
 
@@ -31,17 +45,13 @@ setopt HIST_EXPIRE_DUPS_FIRST
 
 
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
 
 # Basic auto/tab complete:
 autoload -U compinit
-
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-
 compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots)        # Include hidden files.
 setopt NO_BEEP
 
 # Change cursor shape for different vi modes.
@@ -141,111 +151,123 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey -s '^G' '^u$EXPLORER .^M'
 
-# echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# Create a custom "g-prefix" widget for vicmd
+vi_g_prefix_widget() {
+  local key
+  read -k key  # Read the next key after 'g'
 
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-    tmp="$(mktemp -uq)"
-    trap 'rm -f $tmp >/dev/null 2>&1 && trap - HUP INT QUIT TERM PWR EXIT' HUP INT QUIT TERM PWR EXIT
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+  case "$key" in
+    l)
+      zle end-of-line
+      ;;
+    h)
+      zle beginning-of-line
+      ;;
+    *)
+      # Put the keys back into the buffer for default handling
+      zle send-break
+      zle -U "g$key"
+      ;;
+  esac
+}
+
+zle -N vi_g_prefix_widget
+
+# Bind 'gh' to move to beginning of line
+# Bind 'g' in vicmd to our custom prefix widget
+# Bind 'gl' to move to end of line
+bindkey -M vicmd 'g' vi_g_prefix_widget
+
+
+
+###########################################################################################################################
+# Prompt
+###########################################################################################################################
+# Enables prompt command substitution — functions and variables inside the prompt are re-evaluated each time the prompt is drawn.
+setopt PROMPT_SUBST
+
+# Function to get the current Git branch name, if any
+git_branch() {
+    local branch
+    branch=$(git symbolic-ref --short HEAD 2> /dev/null)
+    if [[ -n $branch ]]; then
+        echo " ($branch)"
     fi
 }
 
-# WSL: Check if we're in wsl
-if [[ $(grep -i Microsoft /proc/version) ]]; then
-    WINDOWS_DRIVER_PATH="/mnt/c" # Assuming C:\
-    alias explorer="$WINDOWS_DRIVER_PATH/Windows/explorer.exe"
-    alias cmd="$WINDOWS_DRIVER_PATH/Windows/System32/cmd.exe"
-
-    # Lets add this this one path in case 'appendWindowsPath' isn't 'true'
-    # Important for yanking with win32yank.exe
-    # TODO check if this makes it slow and fix why is it being added twice
-    PATH="$PATH:$WINDOWS_DRIVER_PATH/Windows/System32/"
-
-    export WIN_USER=$(cmd /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
-    export WIN_USERPROFILE="/mnt/c/Users/$WIN_USER/"
-    export WIN_DOWNLOADS="/mnt/c/Users/$WIN_USER/Downloads"
-
-    export GDK_BACKEND=x11
-
-
-    ## Tryin to squeeze performance
-    # echo 0 > /proc/sys/fs/binfmt_misc/WSLInterop
-    # unset WSL_INTEROP
-    # To re-enable Windows binaries, exit all WSL sessions and re-run bash.exe or run the following command as root:
-    # echo 1 > /proc/sys/fs/binfmt_misc/WSLInterop
-
-
-    # export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
-    # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-    # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-    export DISPLAY=$(ip route list default | awk '{print $3}'):0 # Only one that worked
-    export LIBGL_ALWAYS_INDIRECT=1
-    # IMPORTANT: RUN Xming and XLaunch/VcXsrv using the -ac flag.
-
-    if ! command -v wsl-open > /dev/null; then
-      echo 'your using wsl, but does not have wsl-open, which is a pretty good utility to open win10+ apps from wsl'
-    fi
-    alias open='wsl-open'
-    # facilitate windows executable interop
-    function exe {
-        target=$(wslpath "$(awk -F$'\r' 'NR == 1 {printf "%s", $1}' <<< $(/mnt/c/Windows/System32/cmd.exe /c where $1 2>/dev/null))")
-        if [[ "$target" == "." ]]; then
-            echo "Command '$1' not found."
-        else
-            $target ${@:2}
-        fi
-    }
-
-    # Hash holding paths that shouldn't be grepped (globbed) – blacklist for slow disks, mounts, etc.:
-    typeset -gA FAST_BLIST_PATTERNS
-    FAST_BLIST_PATTERNS[/mnt/*/**]=1
-    ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
-
-
-    # Function to filter out Windows paths from PATH
-    disable_windows_path='false'
-    filter_windows_path() {
-        PATH=$(echo $PATH | sed s/:/\\n/g | grep -v '/mnt/c' | sed ':a;N;$!ba;s/\n/:/g')
-    }
-
-    # Check if disable_windows_path is true
-    if [[ $disable_windows_path == 'true' ]]; then
-        export PATH=$(filter_windows_path)
-    fi
-fi
-
-
-function tmux_last_session(){
-   LAST_TMUX_SESSION=$(tmux list-sessions | awk -F ":" '{print$1}' | tail -n1);
-   tmux attach -t $LAST_TMUX_SESSION
+#3k
+get_terminal_width() {
+    tput cols
 }
 
-function git_branch() {
-    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-    if [[ $branch == "" ]]; then
-        :
+visible_length() {
+    local text="$1"
+    # Strip % escapes and control characters
+    echo -n "$text" | sed -E 's/%\{[^}]*\}//g; s/%[[:alpha:]]//g' | wc -c
+}
+
+ZSH_FIRST_PROMPT=1
+function exit_code_indicator() {
+    local code=$?
+    if [[ $ZSH_FIRST_PROMPT -eq 123123 ]]; then
+        echo "[%F{green}0%f]"
+    elif [[ $code -eq 0 ]]; then
+        echo "[%F{green}$code%f]"
+    elif [[ $code -eq 130 ]]; then
+        echo "[%F{yellow}$code%f]"
     else
-        echo ' (' $branch ') '
+        echo "[%F{red}$code%f]"
     fi
 }
 
-setopt prompt_subst
 
-autoload -U colors && colors
+git_branch() {
+    local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+    [[ -n "$branch" ]] && echo "($branch)"
+}
 
-# add setopt PROMPT_SUBST to your .zshrc. This "allows for functions in the prompt"
-# use single quotes when defining your PS1 / PROMPT. If you use double quotes, then the whole string will be evaluated once when the terminal starts, and then that evaluated value is "re-executed" every time the command changes. But you want the functions to be re-evaluated, not the output of the function at the time when the terminal is created.
-# Easiest example I used to confirm I had it working:
+current_time() {
+    date +%T
+}
+
+# This is run before each prompt, in the main shell (not a subshell)
+# precmd() {
+#     ZSH_FIRST_PROMPT=0
+# }
+
+space_filler() {
+    local username="$USER"
+    local cwd="${PWD/#$HOME/~}"
+    local left="[$username @ $cwd]"
+
+    local exitcode=$(exit_code_indicator)
+    local gitinfo=$(git_branch)
+    local timeinfo=$(current_time)
+
+    local total_width=$(get_terminal_width)
+    local left_len=$(visible_length "$left")
+    local right_text="$exitcode $gitinfo $timeinfo"
+    local right_len=$(visible_length "$right_text")
+
+    local filler_len=$(( total_width - left_len - right_len - 2 ))
+    [[ $filler_len -lt 0 ]] && filler_len=0
+
+    printf '%*s' "$filler_len" '' | tr ' ' ' '
+}
+# Use single quotes for PROMPT and RPROMPT so that embedded functions/variables are evaluated at prompt time (not once when the shell starts)
+# %n = username, %~ = current directory, %T = time, %B/%b = bold on/off
 NEWLINE=$'\n'
-PROMPT='[%n @ %B%~%b] ${NEWLINE}$ '
-RPROMPT='$(git_branch)%T'
+PROMPT='[%n @ %B%~%b]${NEWLINE}$ '
+# PROMPT='${NEWLINE}$ '
+RPROMPT='$(exit_code_indicator) $(git_branch) %T'
+###########################################################################################################################
 
+
+###########################################################################################################################
+# For when in Graphical env
+###########################################################################################################################
 # [[ -z $DISPLAY ]] && { mkdir -p "$HOME/.local/state" && source ~/.config/shell/startup.sh > "$HOME/.local/state/startup.log" &>/dev/null; } &>/dev/null &
-[[ -z $DISPLAY ]] && setsid bash -c '({ mkdir -p "$HOME/.local/state" && source ~/.config/shell/startup.sh &> "$HOME/.local/state/startup.log" &>/dev/null; } &>/dev/null)' &> /dev/null
-[[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] &&  exec $WM_EXEC &> /dev/null
+# [[ -z $DISPLAY ]] && setsid bash -c '({ mkdir -p "$HOME/.local/state" && source ~/.config/shell/startup.sh &> "$HOME/.local/state/startup.log" &>/dev/null; } &>/dev/null)' &> /dev/null
+# [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] &&  exec $WM_EXEC &> /dev/null
+###########################################################################################################################
 

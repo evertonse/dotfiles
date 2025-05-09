@@ -5,9 +5,9 @@
 
 [wsl2]
 
-memory=8GB
+memory=12GB
 
-processors=6
+processors=8
 
 guiApplications=true
 

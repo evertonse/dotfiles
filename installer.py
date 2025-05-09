@@ -154,6 +154,9 @@ def dotdirs():
     links = {
         # NOTE: Every path is relative to $HOME/.config
         (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
+        (f"{home}/.config/shell/profile", f"{home}/.profile"),
+        (f"{home}/.config/shell/profile", f"{home}/.zprofile"),
+
         (f"{home}/.config/zsh/zshrc", f"{home}/.config/zsh/.zshrc"),
         (f"{home}/.config/kitty.0/", f"{home}/.config/kitty"),
         (f"{home}/.config/eww.XX/", f"{home}/.config/eww"),

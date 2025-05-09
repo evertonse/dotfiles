@@ -4,6 +4,13 @@ tmfzf() {
   /usr/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t
 }
 
+
+function tmux_last_session(){
+   LAST_TMUX_SESSION=$(tmux list-sessions | awk -F ":" '{print$1}' | tail -n1);
+   tmux attach -t $LAST_TMUX_SESSION
+}
+
+
 # grep rn full path
 grnf() {
   # Check if rg (ripgrep) is installed
@@ -41,8 +48,11 @@ alias py='python3'
 alias yt='yt-dlp --add-metadata -ic' # i ignore errors -c continue after a break, pickup where it started
 alias yta='yt-dlp --add-metadata -xic' # Audio Only
 alias YT='youtube-viewer'
+
+
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 alias nvim-chad='NVIM_APPNAME="nvim-chad" nvim'
+alias nvim-11='NVIM_APPNAME="nvim-11" nvim'
 
 # Use neovim for vim if present.
 # [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
@@ -69,5 +79,79 @@ ani() {
   # curl -sSL mangal.metafates.one/run | sh
   PATH=$PATH:$(wslpath "C:\tools\mpv-x86_64-20240910-git-f6d9313")
   ani-cli
+}
+
+uncompress() {
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: uncompress <file.tar.gz|file.tar.bz2|file.tar.xz|file.tar|file.zip>"
+        return 1
+    fi
+
+    for file in "$@"; do
+        if [[ ! -f "$file" ]]; then
+            echo "Error: File '$file' not found."
+            continue
+        fi
+
+        case "$file" in
+            *.tar.gz | *.tgz)
+                tar -xzvf "$file"
+                ;;
+            *.tar.bz2 | *.tbz | *.tbz2)
+                tar -xjvf "$file"
+                ;;
+            *.tar.xz | *.txz)
+                tar -xJvf "$file"
+                ;;
+            *.tar.zst | *.tzst)
+                tar --use-compress-program=unzstd -xvf "$file"
+                ;;
+            *.tar)
+                tar -xvf "$file"
+                ;;
+            *.zip)
+                unzip "$file"
+                ;;
+            *)
+                echo "Error: Unsupported file format for '$file'."
+                ;;
+        esac
+    done
+}
+
+compress() {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: compress <format> <file_or_directory>..."
+        echo "Formats: tar.gz, tar.bz2, tar.xz, tar.zst, zip"
+        return 1
+    fi
+
+    format=$1
+    shift  # Remove the format from arguments
+
+    # Check the provided format and compress accordingly
+    case "$format" in
+        tar.gz)
+            tar -czvf "${1%/}.tar.gz" "$@"
+            ;;
+        tar.bz2)
+            tar -cjvf "${1%/}.tar.bz2" "$@"
+
+            ;;
+        tar.xz)
+            tar -cJvf "${1%/}.tar.xz" "$@"
+            ;;
+        tar.zst)
+            tar --use-compress-program=zstd -cvf "${1%/}.tar.zst" "$@"
+            ;;
+        zip)
+            zip -r "${1%/}.zip" "$@"
+            ;;
+        *)
+            echo "Error: Unsupported format '$format'."
+            echo "Supported formats: tar.gz, tar.bz2, tar.xz, tar.zst, zip"
+            return 1
+            ;;
+    esac
 }
 

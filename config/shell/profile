@@ -1,0 +1,4 @@
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/variables.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/variables.sh"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/wsl.sh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/wsl.sh"
+echo "zprofile is setup correctly" > /tmp/zprofile.txt
