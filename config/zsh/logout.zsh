@@ -1,1 +1,1 @@
-source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/loginout.sh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/logout.sh"
