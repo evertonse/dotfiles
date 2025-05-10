@@ -4,13 +4,23 @@
 ## Cleaning
     on arch https://averagelinuxuser.com/clean-arch-linux/
 
+
+# Tips
+
+Keyboard
+
+    https://isamert.net/2020/05/30/better-keyboard-experience-in-linux.html
+
+Posix Shell
+
+    https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18
+
 ## lifetime-config-files
 nano /etc/systemd/system/getty@tty1.service.d/autologin.conf
 ExecStart=-/sbin/agetty -o '-f -p -- \\u' --noclear -a USERNAME %I $TERM
 dotfiles and +
 - .linuxtips for frequently questioins I have
 
-# Debian 
 ## Wayland
 
 sudo apt-get install -y nala
