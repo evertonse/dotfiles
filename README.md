@@ -15,19 +15,31 @@ Posix Shell
 
     https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18
 
+Dash
+
+    https://www.baeldung.com/linux/test-posix-compliance-shell-scripts
+
+Login Shells
+
+    https://linuxhandbook.com/login-shell/
+
+    echo $0 # If starts with - then it's a login shell
+
 ## lifetime-config-files
-nano /etc/systemd/system/getty@tty1.service.d/autologin.conf
-ExecStart=-/sbin/agetty -o '-f -p -- \\u' --noclear -a USERNAME %I $TERM
-dotfiles and +
-- .linuxtips for frequently questioins I have
+
+    vim /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
 ## Wayland
 
+
+
+```bash
 sudo apt-get install -y nala
 sudo nala install -y meson wget build-essential ninja-build cmake-extras cmake gettext gettext-base fontconfig libfontconfig-dev libffi-dev libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd libxcb-dri3-dev libvulkan-dev libvulkan-volk-dev  vulkan-validationlayers-dev libvkfft-dev libgulkan-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libpango1.0-dev xdg-desktop-portal-wlr hwdata-dev
 
 mkdir HyprSource
 cd HyprSource
+```
 
 ## We get Source
 wget https://github.com/hyprwm/Hyprland/releases/download/v0.24.1/source-v0.24.1.tar.gz
