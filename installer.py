@@ -69,11 +69,15 @@ cpdir = partial(copytree, dirs_exist_ok=True)
 
 
 def cp(src, dst):
-    print_info(f"src={Path(src)} -> dst={Path(dst)}")
+    src, dst = Path(src), Path(dst)
+    print_info(f"src={src} -> dst={dst}")
     if src.is_dir():
-        cpdir(Path(src), Path(dst))
+        cpdir(src, dst)
+    elif src.exists():
+        cpfile(src, dst)
     else:
-        cpfile(Path(src), Path(dst))
+        print_info(f"Source file {src} doesn't exist")
+
 
 
 BIG_YES = False
@@ -153,11 +157,13 @@ def dotdirs():
 
     links = {
         # NOTE: Every path is relative to $HOME/.config
-        (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
-        (f"{home}/.config/shell/profile", f"{home}/.profile"),
-        (f"{home}/.config/shell/profile", f"{home}/.zprofile"),
+        (f"{home}/.config/zsh/interactive.zsh", f"{home}/.zshrc"),
+        (f"{home}/.config/zsh/interactive.zsh", f"{home}/.config/zsh/.zshrc"),
+        (f"{home}/.config/zsh/env.zsh",         f"{home}/.config/zsh/.zshenv"),
+        (f"{home}/.config/zsh/login.zsh",       f"{home}/.config/zsh/.zprofile"),
+        (f"{home}/.config/zsh/logout.zsh",      f"{home}/.config/zsh/.zlogout"),
 
-        (f"{home}/.config/zsh/zshrc", f"{home}/.config/zsh/.zshrc"),
+
         (f"{home}/.config/kitty.0/", f"{home}/.config/kitty"),
         (f"{home}/.config/eww.XX/", f"{home}/.config/eww"),
         (f"{home}/.config/waybar.Zanius/", f"{home}/.config/waybar"),

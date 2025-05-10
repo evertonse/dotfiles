@@ -1,0 +1,16 @@
+ytd-section-list-renderer[page-subtype='subscriptions'] ytd-item-section-renderer:has(ytd-expanded-shelf-contents-renderer #thumbnail[href^='/shorts/' i]), /** Shorts in subscriptions list view **/
+ytd-guide-renderer ytd-guide-section-renderer:nth-child(1) ytd-guide-entry-renderer:has(#endpoint[title='shorts' i], #endpoint[title='ショート']), /** Icon in sidebar **/
+ytd-mini-guide-renderer ytd-mini-guide-entry-renderer > a:not([href]), /** Icon in collapsed sidebar **/
+ytd-rich-grid-renderer[is-shorts-grid], /** Tab in channel inner grid **/
+ytd-search ytd-item-section-renderer ytd-shelf-renderer, /** Seach results 'popular today' **/
+ytd-reel-shelf-renderer, /** history **/
+ytd-browse[page-subtype='subscriptions'] ytd-grid-video-renderer:has(#thumbnail[href^='/shorts/' i]), /** Subsciption feed grid view **/
+ytd-watch-next-secondary-results-renderer ytd-item-section-renderer ytd-compact-video-renderer:has(#thumbnail[href^='/shorts/' i]), /** shorts in recommended videos right beside playing video **/
+ytd-search ytd-video-renderer:has(#thumbnail[href^='/shorts/' i]), /** search results **/
+ytd-rich-section-renderer:has(.ytd-rich-section-renderer[is-shorts]), ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]), /** home **/ 
+ytd-brand-video-shelf-renderer, /** Youtube promoting their own videos **/
+yt-tab-group-shape yt-tab-shape:is([tab-title='shorts' i], [tab-title='ショート']), /** Tab in channel **/ 
+ytd-reel-item-renderer /** "for you" in channel **/
+{
+  display: none !important;
+}

@@ -1,9 +1,16 @@
+
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/interactive.sh"
+
 stty stop undef # Disable ctrl-s to freeze terminal.
 stty -ixon
 
+# To check for scripts that should be posix compliant
+# Install checkbashisms.
+# checkbashisms ~/.config/shell/**.sh
+# ln -sfT dash /usr/bin/sh
+
 # Enable colors and change prompt:
 autoload -U colors && colors    # Load colors
-# autoload -Uz zle
 
 # When using bash you could have this
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
@@ -13,7 +20,11 @@ setopt interactive_comments
 setopt MENU_COMPLETE
 unsetopt flow_control
 
-[[ $- != *i* ]] && return
+# Hash holding paths that shouldn't be grepped (globbed) – blacklist for slow disks, mounts, etc.:
+typeset -gA FAST_BLIST_PATTERNS
+FAST_BLIST_PATTERNS[/mnt/*/**]=1
+ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
+
 
 # The .profile should take case of this, but it doesn't get sourced every in WSL only /etc/profile.
 # .zprofile on the other hand gets sourced once and login (from a login shell they call it)
@@ -34,7 +45,7 @@ SAVEHIST=100000
 setopt HIST_EXPIRE_DUPS_FIRST
 
 # Load tmux-resurrect pane history workaround
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-tmux-restore-history.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-tmux-restore-history.zsh"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/tmux-restore-history.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/tmux-restore-history.zsh"
 
 # Load aliases and shortcuts if existent.
 

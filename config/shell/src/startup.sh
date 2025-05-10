@@ -1,3 +1,5 @@
+#!/bin/sh
+
 PSSWD="22041298"
 mkdir /mnt/ntfs1
 echo $PSSWD | sudo -S mount -t ntfs /dev/nvme0n1p3 /mnt/ntfs1
