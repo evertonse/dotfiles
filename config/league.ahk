@@ -133,10 +133,8 @@ Shift::Shift
 RButton::RButton
 
 ´::[
-~::]
-
-[::´
-]::~
+[::]
+]::´
 
 ; k::k
 #HotIf ; Only when league not active
