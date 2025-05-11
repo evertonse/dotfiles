@@ -4,11 +4,13 @@ if ! command -v wsl-open > /dev/null 2>&1; then
 fi
 
 alias open='wsl-open'
+alias explorer="$WINDOWS_DRIVER_PATH/Windows/explorer.ex"
 
 exe() {
-    cmd_output=$(cmd.exe /c where "$1" 2>/dev/null)
-    first_line=$(echo "$cmd_output" | sed -e 's/\r$//' | head -n 1)
-    target=$(wslpath "$first_line")
+    cmd_output=$(wslpath $(cmd.exe /c where "$1" 2>/dev/null))
+    target=$(echo "$cmd_output" | sed -e 's/\r$//' | head -n 1)
+    # Echo for debug
+    # echo $target
     if [ "$target" = "." ]; then
         echo "Command '$1' not found."
     else
