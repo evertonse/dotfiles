@@ -4,7 +4,7 @@ if ! command -v wsl-open > /dev/null 2>&1; then
 fi
 
 alias open='wsl-open'
-alias explorer="$WINDOWS_DRIVER_PATH/Windows/explorer.ex"
+alias explorer="$WINDOWS_DRIVER_PATH/Windows/explorer.exe"
 
 exe() {
     cmd_output=$(wslpath $(cmd.exe /c where "$1" 2>/dev/null))
