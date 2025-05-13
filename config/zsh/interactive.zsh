@@ -57,6 +57,7 @@ if [ -n "$TMUX" ]; then
 fi
 
 [ -d "$XDG_DATA_HOME/history" ] || mkdir -p "$XDG_DATA_HOME/history" 2>/dev/null
+export HISTFILE="$XDG_DATA_HOME/history/history_${window_name}"
 
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
