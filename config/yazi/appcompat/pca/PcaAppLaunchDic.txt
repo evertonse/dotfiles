@@ -1,0 +1,157 @@
+C:\Riot Games\Riot Client\RiotClientServices.exe|2025-05-08 18:32:44.542
+C:\Users\Administrator\AppData\Local\Discord\Update.exe|2025-05-13 09:51:16.519
+C:\Users\Administrator\Downloads\ep_setup.exe|2025-01-08 18:57:43.802
+C:\Users\Administrator\Downloads\ep_setup (1).exe|2025-01-08 18:47:10.147
+C:\Program Files (x86)\Microsoft Paint\Program\mspaint.exe|2025-05-12 16:09:18.950
+C:\Users\Administrator\Desktop\NoBS Image Viewer.exe|2025-04-21 00:33:18.182
+C:\Program Files (x86)\IObit\Driver Booster\DriverBooster.exe|2025-04-12 17:41:57.399
+C:\Program Files (x86)\Sumatra\SumatraPDF-3.5.2-64.exe|2025-05-12 23:36:04.054
+C:\Program Files\PowerToys\PowerToys.exe|2025-01-08 20:26:13.709
+C:\Users\Administrator\Desktop\Microsoft.WindowsTerminalCanary_latest_x64\terminal-1.23.3032.0\WindowsTerminal.exe|2025-05-04 10:04:03.078
+C:\Users\Administrator\Desktop\dimscreen.exe|2025-05-09 21:32:41.299
+C:\Users\Administrator\AppData\Local\Programs\Opera\assistant\assistant_installer.exe|2025-04-16 12:08:05.265
+C:\Users\Administrator\AppData\Roaming\Telegram Desktop\Telegram.exe|2025-05-13 09:51:17.644
+C:\tools\mpv-x86_64-20240910-git-f6d9313\mpv.exe|2025-05-09 15:32:07.836
+\\wsl.localhost\Arch\home\excyber\code\anything\window_lister.exe|2025-01-11 18:37:49.373
+C:\Program Files\NVIDIA Corporation\NVIDIA app\CEF\NVIDIA app.exe|2025-02-15 18:56:43.124
+C:\tools\raddbg\raddbg.exe|2025-01-11 20:08:00.804
+C:\TURBOC3\Turbo C++\Turbo C++.exe|2025-01-11 20:14:48.740
+D:\Games\red\Red Dead Redemption 2\Launcher.exe|2025-01-30 11:39:16.719
+C:\Program Files\qBittorrent\qbittorrent.exe|2025-05-08 10:30:32.687
+C:\Users\Administrator\Downloads\4kvideodownloaderplus_1.10.5_x64_online.exe|2025-01-20 04:48:47.392
+C:\Users\Administrator\Downloads\CheatEngine75.exe|2025-01-21 03:14:01.192
+C:\Program Files\Cheat Engine 7.5\Cheat Engine.exe|2025-01-21 03:14:40.401
+C:\Users\Administrator\Downloads\evil-helix-amd64-windows\helix\hx.exe|2025-01-21 19:55:31.711
+C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\Code.exe|2025-05-11 18:39:56.620
+C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe|2025-04-24 13:46:58.773
+D:\Torrents\Red Dead Redemption [FitGirl Repack]\MD5\QuickSFV.EXE|2025-01-23 15:23:29.475
+C:\Users\Administrator\Desktop\hydralauncher-3.1.5-portable.exe|2025-04-28 01:13:59.800
+D:\Torrents\Red Dead Redemption [FitGirl Repack]\setup.exe|2025-01-24 13:18:13.674
+C:\msys64\ucrt64.exe|2025-05-07 11:26:07.517
+C:\Users\Administrator\AppData\Local\Obsidian\Obsidian.exe|2025-05-12 19:08:49.198
+C:\Program Files\4KDownload\4kvideodownloaderplus\4kvideodownloaderplus.exe|2025-05-08 10:29:41.578
+C:\Program Files\WSL\wslg.exe|2025-05-11 18:44:03.170
+D:\Games\red\Red Dead Redemption 2\unins000.exe|2025-01-30 15:07:15.571
+C:\Users\Administrator\Desktop\Alacritty-v0.14.0-portable.exe|2025-01-30 15:10:18.236
+D:\Games\Red Dead Redemption 1\RDR.exe|2025-02-07 12:58:32.719
+D:\Torrents\House Party [FitGirl Repack]\setup.exe|2025-01-31 00:39:04.929
+C:\Users\Administrator\Downloads\Telegram Desktop\cat-gameg\cat-gameg.exe|2025-02-02 19:08:56.303
+E:\Torrents\Persona 5 Royal [FitGirl Repack]\setup.exe|2025-02-04 15:30:01.972
+C:\Program Files\Mixxx\mixxx.exe|2025-05-10 00:29:34.299
+C:\Users\Administrator\Desktop\oculante.exe|2025-05-13 10:50:07.760
+D:\Games\Red Dead Redemption 1\unins000.exe|2025-02-07 13:54:24.365
+D:\Games\Persona 5 Royal\Launcher.exe|2025-02-10 20:51:42.603
+C:\Users\Administrator\Downloads\zen.installer.exe|2025-02-08 14:26:26.364
+C:\Program Files\Zen Browser\zen.exe|2025-05-11 10:09:07.916
+D:\Games\Persona 5 Royal\yuzu.exe|2025-02-10 20:34:18.491
+C:\Program Files (x86)\Common Files\Steam\steamservice.exe|2025-02-10 23:51:51.745
+C:\Program Files\Malwarebytes\Anti-Malware\Malwarebytes.exe|2025-02-11 00:22:45.610
+E:\Torrents\Outer Wilds [FitGirl Repack]\setup.exe|2025-02-23 18:43:08.922
+D:\Games\Outer Wilds\OuterWilds.exe|2025-03-19 12:25:13.205
+C:\Program Files\AutoHotkey\UX\AutoHotkeyUX.exe|2025-05-08 23:38:09.872
+C:\Windows\Temp\{55629A6C-5209-4686-B2E8-0F2F37777AF8}\.be\dotnet-sdk-8.0.309-win-x64.exe|2025-02-17 11:19:04.402
+C:\Windows\Temp\{EA82EB95-3F7D-41F3-8044-5BECC3B7D437}\.be\dotnet-runtime-8.0.13-win-x86.exe|2025-02-17 11:20:29.010
+C:\Program Files\WindowsApps\Microsoft.Windows.Photos_2024.11120.5010.0_x64__8wekyb3d8bbwe\Photos.exe|2025-02-17 14:37:15.022
+C:\Program Files\obs-studio\bin\64bit\obs64.exe|2025-05-06 16:19:47.184
+C:\Windows\System32\msiexec.exe|2025-04-01 17:42:46.872
+C:\PROGRA~1\OUTERW~1\OUTERW~1.EXE|2025-02-23 16:43:30.464
+C:\Users\Administrator\Downloads\Outer.Wilds.Mod.Manager_0.15.1_x64-setup.exe|2025-02-23 23:45:54.107
+C:\Program Files\Outer Wilds Mod Manager\Outer Wilds Mod Manager.exe|2025-03-28 14:15:49.266
+C:\Users\Administrator\Downloads\OuterWildsModManager-Portable\OuterWildsModManager.exe|2025-02-23 17:43:39.096
+C:\Program Files\Outer Wilds Mod Manager\uninstall.exe|2025-05-10 00:35:14.504
+D:\Games\Outer Wilds\Outer Wilds Mod Manager.exe|2025-02-23 18:15:50.615
+D:\Games\Outer Wilds Original\OuterWilds.exe|2025-02-23 20:09:53.950
+D:\Games\Outer.Wilds.v1.1.15.1018-0xdeadcode\OuterWilds.exe|2025-02-26 02:51:27.651
+D:\Torrents\TUNIC [FitGirl Repack]\setup.exe|2025-02-28 18:25:58.042
+D:\Torrents\INSIDE [FitGirl Repack]\setup.exe|2025-03-01 13:56:39.594
+D:\Torrents\The Witness [FitGirl Repack]\setup-multi14.exe|2025-03-02 14:57:45.865
+E:\Torrents\Firewatch [FitGirl Repack]\setup.exe|2025-03-02 01:44:29.368
+D:\Games\The Witness\witness64_d3d11.exe|2025-03-02 19:29:46.983
+D:\Games\The Witness\witness_d3d11.exe|2025-03-02 19:29:49.386
+C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe|2025-03-02 15:06:39.612
+C:\Users\Administrator\Downloads\TwitchDownloaderGUI-1.55.2-Windows-x64\TwitchDownloaderWPF.exe|2025-03-02 19:31:35.882
+D:\Torrents\Bully [DODI Repack]\Setup.exe|2025-03-05 22:02:34.848
+C:\Users\Administrator\Downloads\FPilot.exe|2025-03-06 16:59:30.784
+C:\Program Files (x86)\DODI-Repacks\Bully\Bully Scholarship Edition With Fixes Only\Bully.exe|2025-03-07 22:33:46.335
+C:\Program Files (x86)\DODI-Repacks\Bully\Bully Scholarship Edition With All Fixes and Mods\Bully.exe|2025-03-08 02:38:01.817
+C:\Users\Administrator\Downloads\BlueStacks10Installer_10.42.0.1016_native.exe|2025-03-08 18:44:13.317
+C:\Program Files (x86)\BlueStacks X\BlueStacks X.exe|2025-03-09 17:33:08.293
+C:\Program Files\BlueStacks_nxt\BlueStacksHelper.exe|2025-03-09 17:37:24.590
+C:\Program Files\WindowsApps\Clipchamp.Clipchamp_4.0.10820.0_x64__yxz26nhyzhsrt\Clipchamp\Clipchamp.exe|2025-03-20 17:48:11.769
+D:\Games\INSIDE\INSIDE.exe|2025-03-11 19:57:33.735
+C:\Users\Administrator\Downloads\ArcInstaller.exe|2025-03-12 12:58:42.591
+C:\Users\Administrator\Downloads\Vivaldi.7.1.3570.60.x64 (1).exe|2025-03-12 13:29:17.372
+C:\Users\Administrator\AppData\Local\Vivaldi\Application\vivaldi.exe|2025-03-12 14:30:29.396
+C:\Users\Administrator\Downloads\zen.installer(1).exe|2025-03-12 13:56:17.634
+C:\Users\Administrator\Downloads\floorp-win64.installer.exe|2025-03-12 14:09:27.851
+C:\Program Files\BraveSoftware\Brave-Browser-Beta\Application\brave.exe|2025-03-12 14:24:31.192
+C:\Program Files\Ablaze Floorp\floorp.exe|2025-05-12 16:38:26.587
+C:\Windows\Temp\{3011D681-730B-41BE-81A5-57029211F779}\.be\dotnet-sdk-8.0.310-win-x64.exe|2025-03-12 15:46:01.938
+C:\Windows\Temp\{A81DB80B-A914-4045-A408-987A13148DD0}\.be\dotnet-runtime-8.0.14-win-x86.exe|2025-03-12 15:47:29.488
+C:\Users\Administrator\Downloads\4kvideodownloaderplus_1.10.5_x64_online (1).exe|2025-03-15 12:58:13.554
+C:\Program Files (x86)\VideoLAN\VLC\vlc.exe|2025-04-21 16:49:11.870
+C:\Users\Administrator\AppData\Local\Temp\ec685b5a-2cc2-47be-870a-21a292b43775_pestudio-9.59.zip.pestudio-9.59.zip\pestudio\pestudio.exe|2025-04-01 17:38:58.849
+C:\Program Files\Neovide\neovide.exe|2025-04-19 16:12:31.270
+D:\Games\Outer Wilds\unins000.exe|2025-04-01 19:23:37.743
+D:\Games\Outer Wilds Original\unins000.exe|2025-04-01 19:23:59.377
+D:\Games\House Party\HouseParty.exe|2025-04-01 19:24:25.943
+C:\Users\Administrator\Downloads\fvim-win-x64-v0.3.548+g2e4087d-2-gee4316c\FVim.exe|2025-04-01 20:37:53.660
+C:\Program Files\Java\jre1.8.0_431\bin\javaw.exe|2025-04-06 01:45:59.694
+C:\Program Files (x86)\Microsoft\EdgeWebView\Application\134.0.3124.93\msedgewebview2.exe|2025-04-06 20:17:47.342
+C:\Windows\Temp\{C7AACB8C-B598-4320-984D-FC1E534A8104}\.be\dotnet-sdk-8.0.311-win-x64.exe|2025-04-09 14:57:16.036
+C:\Windows\Temp\{56C7D0C3-743B-4F8D-8360-7622BFCD33A0}\.be\dotnet-runtime-8.0.15-win-x86.exe|2025-04-09 14:58:51.259
+C:\Program Files\VcXsrv\xlaunch.exe|2025-04-09 16:16:14.853
+C:\Users\Administrator\Downloads\vcxsrv-64.1.20.14.0.installer.exe|2025-04-09 18:32:01.431
+C:\Program Files\VcXsrv\vcxsrv.exe|2025-04-09 18:38:59.880
+\\wsl.localhost\Arch\home\excyber\code\unamed-notepad-like\a.exe|2025-04-12 19:37:34.424
+C:\Users\Administrator\AppData\Local\Programs\LNV\Stremio-4\stremio.exe|2025-05-13 09:54:55.068
+C:\Users\Administrator\Downloads\Obsidian-1.8.9.exe|2025-04-15 21:15:55.550
+C:\Users\Administrator\Desktop\BRDF-Disney\brdf.exe|2025-04-17 11:28:59.322
+C:\msys64\mingw32.exe|2025-04-17 11:29:17.968
+C:\msys64.bak\mingw64\bin\brdf.exe|2025-04-17 19:06:38.705
+C:\Program Files\LibreOffice\program\swriter.exe|2025-04-18 01:58:38.430
+C:\ProgramData\NVIDIA Corporation\NVIDIA app\UpdateFramework\ota-artifacts\nvapp\post-processing\193a1bcf08752abd91f5317bd3e5393b\setup.exe|2025-04-18 16:46:58.986
+C:\Program Files\NVIDIA Corporation\NVIDIA app\CEF\NVIDIA App.exe|2025-04-18 16:47:26.680
+D:\Games\Firewatch\Firewatch.exe|2025-05-11 10:12:55.416
+C:\Users\Administrator\Desktop\focus.exe|2025-04-20 16:01:03.883
+C:\Program Files\WindowsApps\Microsoft.Windows.Photos_2025.11030.12002.0_x64__8wekyb3d8bbwe\Photos.exe|2025-05-08 18:29:45.788
+E:\Dev\msys64.bak\mingw64\bin\brdf.exe|2025-04-21 01:20:37.956
+C:\msys64.bak\home\Administrator\code\island\bin\app.exe|2025-04-21 11:04:35.410
+C:\msys64.bak\home\Administrator\code\refterm\splat.exe|2025-04-21 11:07:32.643
+C:\Users\Administrator\Downloads\focus.exe|2025-05-11 18:41:44.702
+C:\Dev\tools\WinNFSd.exe|2025-04-21 14:47:34.283
+C:\Program Files (x86)\Overwolf\OverwolfLauncher.exe|2025-04-21 18:27:46.061
+C:\Program Files\GIMP 2\bin\gimp-2.10.exe|2025-04-21 19:24:25.929
+C:\Users\Administrator\Downloads\Readarr.develop.0.4.15.2787.windows-core-x64-installer.exe|2025-04-23 12:28:56.079
+C:\ProgramData\Readarr\unins000.exe|2025-04-23 12:30:48.722
+C:\Program Files\WindowsApps\28644OpticosStudios.GWSL_1.4.6.0_x64__r3mwbcqrwk84r\GWSL\GWSL.exe|2025-05-11 13:46:56.037
+C:\Users\Administrator\Downloads\hydralauncher-3.4.5-setup.exe|2025-04-28 15:09:14.626
+C:\Users\Administrator\Downloads\Grayjay.Desktop-win-x64\Grayjay.Desktop-win-x64-v5\Grayjay.exe|2025-04-28 14:43:32.890
+C:\Program Files\Hydra\Hydra.exe|2025-04-28 16:25:27.605
+C:\Program Files (x86)\Roblox\Versions\version-b591875ddfbc4294\RobloxPlayerBeta.exe|2025-04-28 20:24:34.349
+\\wsl.localhost\Arch\home\excyber\code\anything\unamed-video\a.exe|2025-05-02 14:15:47.648
+C:\Users\Administrator\Downloads\Alacritty-v0.15.1-portable.exe|2025-05-12 11:05:52.854
+C:\Dev\programs\Microsoft.WindowsTerminalCanary_latest_x64\terminal-1.24.1221.0\WindowsTerminal.exe|2025-05-13 09:22:06.685
+C:\Program Files\Emacs\emacs-29.4\bin\runemacs.exe|2025-05-04 17:24:44.172
+\\wsl.localhost\Arch\home\excyber\code\unamed-video\a.exe|2025-05-07 10:53:20.935
+\\wsl.localhost\Arch\home\excyber\code\unamed-video\.build\mingw32\RGFW\bin\raylib_fxaa.exe|2025-05-07 10:53:43.190
+C:\Users\Administrator\Downloads\Mischief_2.1.6.exe|2025-05-08 12:55:56.844
+\\wsl.localhost\Arch\home\excyber\code\DimScreen\DimScreen\DimScreen\bin\Debug\DimScreen.exe|2025-05-08 23:34:09.464
+C:\Dev\programs\DimScreen\DimScreen.exe|2025-05-12 22:04:56.183
+C:\Users\Administrator\Desktop\a.exe|2025-05-09 10:57:25.217
+C:\Program Files (x86)\Mischief 2\Mischief.exe|2025-05-11 13:53:55.041
+C:\Program Files\Gaia Sky\gaiasky.exe|2025-05-10 00:29:12.750
+C:\Program Files\BraveSoftware\Brave-Browser-Beta\Application\136.1.79.97\Installer\setup.exe|2025-05-10 00:30:32.415
+C:\Program Files\Docker\Docker\Docker Desktop Installer.exe|2025-05-10 00:31:04.090
+C:\Program Files (x86)\Foxit Software\Foxit PDF Reader\unins000.exe|2025-05-10 00:31:48.216
+C:\Program Files\LLVM\Uninstall.exe|2025-05-10 00:32:33.664
+C:\Program Files\PostgreSQL\16\uninstall-postgresql.exe|2025-05-10 00:35:33.118
+D:\Games\The Witness\unins000.exe|2025-05-10 00:36:25.261
+C:\Users\Administrator\Downloads\unison-2.53.7-windows-x86_64\bin\unison.exe|2025-05-11 10:20:51.288
+C:\Users\Administrator\Downloads\unison-2.53.7-windows-x86_64\bin\unison-gui.exe|2025-05-11 10:20:53.650
+C:\Users\Administrator\Downloads\unison-2.53.7-windows-x86_64\bin\unison-text+gui.exe|2025-05-11 10:20:56.545
+C:\Users\Administrator\Downloads\unison-2.53.7-windows-x86_64\bin\unison-fsmonitor.exe|2025-05-11 10:20:57.608
+C:\Users\Administrator\Desktop\weylus.exe|2025-05-11 13:46:34.225
+C:\Users\Administrator\Downloads\xournalpp-1.2.7-windows-portable-x86_64\bin\gdbus.exe|2025-05-11 14:31:58.482
+C:\Users\Administrator\Downloads\xournalpp-1.2.7-windows-portable-x86_64\bin\xournalpp.exe|2025-05-11 14:32:13.369
+C:\Users\Administrator\Downloads\rio-portable-x86_64.exe|2025-05-13 10:05:39.865

@@ -40,14 +40,24 @@ fi
 
 
 # History in cache directory:
-HISTSIZE=100000
-SAVEHIST=100000
-setopt HIST_EXPIRE_DUPS_FIRST
+setopt inc_append_history      # Append to history file immediately
+setopt share_history           # Share history between terminals
+setopt extended_history        # Save timestamp with commands
+setopt hist_ignore_all_dups    # Remove older duplicates
+setopt HIST_EXPIRE_DUPS_FIRST  # Remove duplicates first when trimming
+setopt HIST_IGNORE_DUPS        # Don't store consecutive duplicates
+setopt SHARE_HISTORY           # Share history between terminals (duplicate)
+export HISTSIZE=10000          # Mem history size (POSIX compatible)
+export SAVEHIST=10000          # File history size (ZSH specific)
 
-# Load tmux-resurrect pane history workaround
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/tmux-restore-history.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/tmux-restore-history.zsh"
 
-# Load aliases and shortcuts if existent.
+if [ -n "$TMUX" ]; then
+  window_name=$(tmux display-message -p '#W' 2>/dev/null)
+  [ -z "$window_name" ] && window_name="zsh"
+fi
+
+[ -d "$XDG_DATA_HOME/history" ] || mkdir -p "$XDG_DATA_HOME/history" 2>/dev/null
+
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -135,6 +145,12 @@ bindkey -s ^f "tmux-sessionizer\n"
 bindkey -v
 export KEYTIMEOUT=1
 
+# Map Ctrl+S to history search in vi insert mode
+
+# bindkey '^S' accept-line-and-run # TODO: crtl+s is too useful to be wasted, make a use of it
+bindkey -M viins '^S' history-incremental-search-backward
+# bindkey '^S' history-incremental-search-backward
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -142,7 +158,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-bindkey '^S' accept-line-and-run # TODO: crtl+s is too useful to be wasted, make a use of it
 bindkey '^y' accept-line-and-run
 bindkey '^L' autosuggest-accept
 bindkey '^H' backward-delete-char

@@ -21,6 +21,8 @@ ahk:
 	wsl-open $(DEST)
 
 
+
+
 wsl-config: SOURCE = ./setup/win/.wslconfig
 wsl-config: DEST = "$$WIN_USERPROFILE/.wslconfig"
 wsl-config:
@@ -39,12 +41,20 @@ alacritty:
 	@echo $(ROAMING)
 	@rm -rf $(ROAMING)
 	@cp -r ./config/alacritty/ $(ROAMING)
-	
 
 # WIN_USERPROFILE := "/mnt/c/Users/$(WIN_USER)"
 # wslconfig:
 # 	cp ./setup/win/.wslconfig $(WIN_USERPROFILE)
 
-	
+file2clip: SOURCE = "setup/win/assets/file2clip.exe"
+file2clip: DEST = "$$WINDOWS_DRIVER_PATH/Windows/"
+file2clip:
+	cp -i $(SOURCE) $(DEST)
 
-.PHONY: push pull clean install ahk wsl-config
+
+win: ahk wsl-config alacritty file2clip
+
+	@cp -r ./config/alacritty/ $(ROAMING)
+
+
+.PHONY: push pull clean install ahk wsl-config win file2clip

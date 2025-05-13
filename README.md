@@ -17,6 +17,7 @@ Posix Shell
 
 Dash
 
+    ln -sfT dash /usr/bin/sh
     https://www.baeldung.com/linux/test-posix-compliance-shell-scripts
 
 Login Shells

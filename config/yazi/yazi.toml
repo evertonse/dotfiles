@@ -1,0 +1,28 @@
+sort_dir_first = true
+[opener]
+play = [
+	{ run = 'mpv "$@"', orphan = true, for = "unix" },
+    # Fix this path and can I use $Vars? is this run by /bin/sh?
+	# { run = '"C:\Program Files\mpv.exe" %*', orphan = true, for = "windows" }
+]
+edit = [
+	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+	{ run = "%EDITOR% %*",  block = true, for = "windows" },
+]
+open = [
+	# { run = 'xdg-open "$@"', desc = "Open" },
+	{ run = 'wsl-open "$@"', desc = "Open", for = "unix"},
+]
+
+[plugin.dds]
+enable = true
+persist = true
+
+
+[dds]
+enable = true
+# Set a shared socket path for all instances
+socket = "/tmp/yazi-shared.sock"
+
+# Increase buffer size if needed for larger files
+buffer = 4194304  # 4MB buffer size (default is 1MB)

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en" data-darkreader-mode="dynamic" data-darkreader-scheme="dark"><link rel="stylesheet" type="text/css" href="Yazi%20-%20Cheat%20Sheet%20-%20Rico%20Berger_files/no-youtube-shorts.css"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, img.Wirisformula, a[data-testid="headerMediumLogo"]>svg, .d2l-navigation-link-image-container, .d2l-iframe-loading-container {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}
+[data-darkreader-inline-stopcolor] {
+  stop-color: var(--darkreader-inline-stopcolor) !important;
+}
+[data-darkreader-inline-bg] {
+  background: var(--darkreader-inline-bg) !important;
+}
+[data-darkreader-inline-border-short] {
+  border: var(--darkreader-inline-border-short) !important;
+}
+[data-darkreader-inline-border-bottom-short] {
+  border-bottom: var(--darkreader-inline-border-bottom-short) !important;
+}
+[data-darkreader-inline-border-left-short] {
+  border-left: var(--darkreader-inline-border-left-short) !important;
+}
+[data-darkreader-inline-border-right-short] {
+  border-right: var(--darkreader-inline-border-right-short) !important;
+}
+[data-darkreader-inline-border-top-short] {
+  border-top: var(--darkreader-inline-border-top-short) !important;
+}
+[data-darkreader-inline-invert] {
+    filter: invert(100%) hue-rotate(180deg);
+}</style><style class="darkreader darkreader--variables" media="screen">:root {
+   --darkreader-neutral-background: var(--darkreader-background-ffffff, #181a1b);
+   --darkreader-neutral-text: var(--darkreader-text-000000, #e8e6e3);
+   --darkreader-selection-background: var(--darkreader-background-0060d4, #004daa);
+   --darkreader-selection-text: var(--darkreader-text-ffffff, #e8e6e3);
+}</style><style class="darkreader darkreader--root-vars" media="screen"></style><style class="darkreader darkreader--user-agent" media="screen">@layer {
+html {
+    background-color: var(--darkreader-background-ffffff, #181a1b) !important;
+}
+html {
+    color-scheme: dark !important;
+}
+iframe {
+    color-scheme: dark !important;
+}
+html, body {
+    background-color: var(--darkreader-background-ffffff, #181a1b);
+}
+html, body {
+    border-color: var(--darkreader-border-4c4c4c, #736b5e);
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+a {
+    color: var(--darkreader-text-0040ff, #3391ff);
+}
+table {
+    border-color: var(--darkreader-border-808080, #545b5e);
+}
+mark {
+    color: var(--darkreader-text-000000, #e8e6e3);
+}
+::placeholder {
+    color: var(--darkreader-text-a9a9a9, #b2aba1);
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: var(--darkreader-background-faffbd, #404400) !important;
+    color: var(--darkreader-text-000000, #e8e6e3) !important;
+}
+::selection {
+    background-color: var(--darkreader-background-0060d4, #004daa) !important;
+    color: var(--darkreader-text-ffffff, #e8e6e3) !important;
+}
+::-moz-selection {
+    background-color: var(--darkreader-background-0060d4, #004daa) !important;
+    color: var(--darkreader-text-ffffff, #e8e6e3) !important;
+}
+}</style>
+    <title>Yazi - Cheat Sheet - Rico Berger</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Rico Berger">
+    <meta name="description" content="Blazing fast terminal file manager written in Rust, based on async I/O">
+    <meta name="keywords" content="yazi,terminal file manager,rust">
+
+    <link rel="icon" type="image/png" href="https://ricoberger.de/assets/img/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="https://ricoberger.de/assets/img/icons/favicon.svg">
+    <link rel="shortcut icon" href="https://ricoberger.de/assets/img/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ricoberger.de/assets/img/icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Rico Berger">
+    <link rel="manifest" href="https://ricoberger.de/assets/img/icons/site.webmanifest">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Yazi - Cheat Sheet - Rico Berger">
+    <meta property="og:description" content="Blazing fast terminal file manager written in Rust, based on async I/O">
+    <meta property="og:url" content="https://ricoberger.de/cheat-sheets/yazi/">
+    <meta property="og:image" content="https://ricoberger.de/cheat-sheets/yazi/assets/yazi-cheat-sheet.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@rico_berger">
+    <meta name="twitter:title" content="Yazi - Cheat Sheet - Rico Berger">
+    <meta name="twitter:description" content="Blazing fast terminal file manager written in Rust, based on async I/O">
+    <meta name="twitter:image" content="https://ricoberger.de/cheat-sheets/yazi/assets/yazi-cheat-sheet.png">
+
+    <link rel="alternate" href="https://ricoberger.de/blog/feed.xml" type="application/rss+xml" title="Blog - Rico Berger">
+
+    <link href="Yazi%20-%20Cheat%20Sheet%20-%20Rico%20Berger_files/output.css" rel="stylesheet"><style class="darkreader darkreader--sync" media="screen"></style>
+
+    <script defer="defer" src="Yazi%20-%20Cheat%20Sheet%20-%20Rico%20Berger_files/cdn.min.js"></script>
+  <meta name="darkreader" content="69e118290d2f4905a506145856f0135e"><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: var(--darkreader-background-ffd76e, #684b00) !important;
+    border-color: var(--darkreader-background-c59d00, #9e7e00) !important;
+    color: var(--darkreader-text-302505, #d7d4cf) !important;
+}
+#vimvixen-console-frame {
+    color-scheme: light !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1,
+.nfe-quote-text {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: var(--darkreader-background-add8e6, #1b4958) !important;
+}
+.tou-z65h9k,
+.tou-mignzq,
+.tou-1b6i2ox,
+.tou-lnqlqk {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.tou-75mvi {
+    background-color: var(--darkreader-background-cfecf5, #0f3a47) !important;
+}
+.tou-ta9e87,
+.tou-1w3fhi0,
+.tou-1b8t2us,
+.tou-py7lfi,
+.tou-1lpmd9d,
+.tou-1frrtv8,
+.tou-17ezmgn {
+    background-color: var(--darkreader-background-f5f5f5, #1e2021) !important;
+}
+.tou-uknfeu {
+    background-color: var(--darkreader-background-faedda, #432c09) !important;
+}
+.tou-6i3zyv {
+    background-color: var(--darkreader-background-85c3d8, #245d70) !important;
+}
+div.mermaid-viewer-control-panel .btn {
+    background-color: var(--darkreader-neutral-background);
+    fill: var(--darkreader-neutral-text);
+}
+svg g rect.er {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.entityBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxOdd {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.er.attributeBoxEven {
+    fill: var(--darkreader-selection-background);
+    fill-opacity: 0.8 !important;
+}
+svg rect.er.relationshipLabelBox {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g g.nodes rect,
+svg g g.nodes polygon {
+    fill: var(--darkreader-neutral-background) !important;
+}
+svg g rect.task {
+    fill: var(--darkreader-selection-background) !important;
+}
+svg line.messageLine0,
+svg line.messageLine1 {
+    stroke: var(--darkreader-neutral-text) !important;
+}
+div.mermaid .actor {
+    fill: var(--darkreader-neutral-background) !important;
+}
+mitid-authenticators-code-app > .code-app-container {
+    background-color: white !important;
+    padding-top: 1rem;
+}
+iframe#unpaywall[src$="unpaywall.html"] {
+    color-scheme: light !important;
+}
+select option {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+body#tumblr {
+    --darkreader-bg--secondary-accent: 31, 32, 34 !important;
+    --darkreader-bg--white: 23, 23, 23 !important;
+    --darkreader-text--black: 228, 224, 218 !important;
+}
+:host {
+    --d2l-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-button-icon-background-color-hover: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-color-ferrite: var(--darkreader-neutral-text) !important;
+    --d2l-color-sylvite: var(--darkreader-bg--d2l-color-sylvite) !important;
+    --d2l-dropdown-background-color: var(--darkreader-neutral-background) !important;
+    --d2l-dropdown-border-color: var(--darkreader-border--d2l-color-mica) !important;
+    --d2l-input-backgroud-color: var(--darkreader-neutral-background) !important;
+    --d2l-menu-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+    --d2l-tooltip-background-color: var(--darkreader-neutral-background) !important;
+    --d2l-tooltip-border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+:host([_floating]) .d2l-floating-buttons-container {
+    background-color: var(--darkreader-neutral-background) !important;
+    border-top-color: var(--darkreader-border--d2l-color-mica) !important;
+    opacity: 0.88 !important;
+}
+d2l-card {
+    background: var(--darkreader-neutral-background) !important;
+    border-color: var(--darkreader-border--d2l-color-gypsum) !important;
+}
+d2l-dropdown-content > div,
+d2l-menu-item {
+    background-color: var(--darkreader-neutral-background) !important;
+    border-radius: 10px !important;
+}
+d2l-empty-state-simple {
+    border-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-button-filter > ul > li > a.vui-button {
+    border-color: var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-label-text:has(.d2l-button-subtle-content):hover,
+.d2l-label-text:has(.d2l-button-subtle-content):focus,
+.d2l-label-text:has(.d2l-button-subtle-content):active {
+    background-color: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-navigation-centerer {
+    color: inherit !important;
+}
+.d2l-tabs-layout {
+    border-color: var(--darkreader-border--d2l-color-gypsum) !important;
+}
+.d2l-input,
+.d2l-calendar-date,
+.d2l-htmleditor-container {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.d2l-collapsible-panel {
+    border: 1px solid var(--darkreader-border--d2l-color-mica) !important;
+    border-radius: 0.4rem !important;
+}
+.d2l-collapsible-panel-divider {
+    border-bottom: 1px solid var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-w2d-flex {
+    border-bottom: 2px solid var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-collapsible-panel scrolled,
+.d2l-collapsible-panel-header,
+.d2l-w2d-collection-fixed {
+    background-color: var(--darkreader-neutral-background) !important;
+}
+.d2l-loading-spinner-bg {
+    fill: var(--darkreader-bg--d2l-color-gypsum) !important;
+}
+.d2l-loading-spinner-bg-stroke {
+    stroke: var(--darkreader-border--d2l-color-mica) !important;
+}
+.d2l-loading-spinner-wrapper svg path,
+.d2l-loading-spinner-wrapper svg circle {
+    fill: var(--darkreader-neutral-background) !important;
+}
+embed[type="application/pdf"] { filter: invert(100%) contrast(90%); }</style><style>:is([id*='google_ads_iframe'],[id*='taboola-'],.taboolaHeight,.taboola-placeholder,#top-ad,#credential_picker_container,#credentials-picker-container,#credential_picker_iframe,[id*='google-one-tap-iframe'],#google-one-tap-popup-container,.google-one-tap__module,.google-one-tap-modal-div,#amp_floatingAdDiv,#ez-content-blocker-container) {display:none!important;min-height:0!important;height:0!important;}</style><style class="darkreader darkreader--sync" media="screen"></style></head>
+
+  <body class="bg-base">
+    <div id="header" x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="absolute w-full z-50 flex items-center justify-between px-6 py-4">
+      <div></div>
+
+      <div class="hidden items-center gap-4 md:flex">
+        <div>
+          <a href="https://ricoberger.de/" class="font-medium text-text hover:text-primary">Home</a>
+        </div>
+        <div>
+          <a href="https://ricoberger.de/about/" class="font-medium text-text hover:text-primary">About</a>
+        </div>
+        <div>
+          <a href="https://ricoberger.de/blog/" class="font-medium text-text hover:text-primary">Blog</a>
+        </div>
+        <div>
+          <a href="https://ricoberger.de/cheat-sheets/" class="font-medium text-text hover:text-primary">Cheat Sheets</a>
+        </div>
+      </div>
+      <button x-on:click="mobileMenuIsOpen = !mobileMenuIsOpen" x-bind:aria-expanded="mobileMenuIsOpen" x-bind:class="mobileMenuIsOpen ? 'fixed top-6 right-6 z-20' : null" type="button" class="flex cursor-pointer text-text md:hidden" aria-label="mobile menu" aria-controls="mobileMenu" aria-expanded="false">
+        <svg x-show="!mobileMenuIsOpen" class="w-[20px] h-[20px] text-text hover:text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="--darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+          
+          <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"></path>
+        </svg>
+        <svg x-show="mobileMenuIsOpen" class="w-[20px] h-[20px] text-text hover:text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" style="display: none; --darkreader-inline-fill: currentColor;" data-darkreader-inline-fill="">
+          
+          <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+        </svg>
+      </button>
+
+      <div x-show="mobileMenuIsOpen" x-transition:enter="transition motion-reduce:transition-none ease-out duration-300" x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition motion-reduce:transition-none ease-out duration-300" x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" id="mobileMenu" class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-10 flex flex-col divide-y divide-text bg-base px-6 pb-6 pt-20 md:hidden" style="display: none;">
+        <div class="py-4">
+          <a href="https://ricoberger.de/" class="w-full text-lg font-medium text-text hover:text-primary">Home</a>
+        </div>
+        <div class="py-4">
+          <a href="https://ricoberger.de/about/" class="w-full text-lg font-medium text-text hover:text-primary">About</a>
+        </div>
+        <div class="py-4">
+          <a href="https://ricoberger.de/blog/" class="w-full text-lg font-medium text-text hover:text-primary">Blog</a>
+        </div>
+        <div class="py-4">
+          <a href="https://ricoberger.de/cheat-sheets/" class="w-full text-lg font-medium text-text hover:text-primary">Cheat Sheets</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      fetch("https://ricoberger-de-analytics.private-ec2.workers.dev", {
+        method: "POST",
+        body: JSON.stringify({
+          url: location.href,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    </script>
+
+    
+<div class="px-10 py-[64px]">
+  <div class="flex flex-col gap-4">
+    
+    <h3>Yazi</h3>
+    <div class="xs:columns-1 sm:columns-2 md:columns-3 lg:columns-5 gap-4">
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">General</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p>Yazi is a blazing fast terminal file manager written in Rust, based on async I/O.</p>
+<p><a href="https://ricoberger.de/cheat-sheets/yazi/assets/yazi.png"><img src="Yazi%20-%20Cheat%20Sheet%20-%20Rico%20Berger_files/yazi.png" alt="Yazi"></a></p>
+<ul>
+<li><a href="https://yazi-rs.github.io/">Website</a></li>
+<li><a href="https://github.com/sxyazi/yazi">GitHub Repository</a></li>
+<li>Download Cheat Sheet as <a href="https://ricoberger.de/cheat-sheets/yazi/assets/yazi-cheat-sheet.pdf">PDF</a> | <a href="https://ricoberger.de/cheat-sheets/yazi/assets/yazi-cheat-sheet.png">PNG</a></li>
+</ul>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Navigation</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>k</code> or <code>Up</code> - Move the cursor up</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>j</code> or <code>Down</code> - Move the cursor down</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>l</code> or <code>Right</code> - Enter hovered directory</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>h</code> or <code>Left</code> - Leave the current directory and into its parent</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>K</code> - Seek up 5 units in the preview</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>J</code> - Seek down 5 units in the preview</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>gg</code> - Move cursor to the top</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>G</code> - Move cursor to the bottom</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>z</code> - Jump to a directory using zoxide</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Z</code> - Jump to a directory or reveal a file using fzf</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">File Operations</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>o</code> - Open selected files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>O</code> - Open selected files interactively</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Enter</code> - Open selected files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Shift</code> + <code>Enter</code> - Open selected files interactively (some terminals don't support it yet)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Tab</code> - Show the file information</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>y</code> - Yank selected files (copy)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>x</code> - Yank selected files (cut)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>p</code> - Paste yanked files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>P</code> - Paste yanked files (overwrite if the destination exists)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Y</code> or <code>X</code> - Cancel the yank status</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>d</code> - Trash selected files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>D</code> - Permanently delete selected files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>a</code> - Create a file (ends with / for directories)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>r</code> - Rename selected file(s)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>.</code> - Toggle the visibility of hidden files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>;</code> - Run a shell command</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>:</code> - Run a shell command (block until finishes)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>-</code> - Symlink the absolute path of yanked files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>_</code> - Symlink the relative path of yanked files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Ctrl</code> + <code>-</code> - Hardlink yanked files</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Selection</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Space</code> - Toggle selection of hovered file/directory</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>v</code> - Enter visual mode (selection mode)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>V</code> - Enter visual mode (unset mode)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Ctrl</code> + <code>a</code> - Select all files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Ctrl</code> + <code>r</code> - Inverse selection of all files</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Esc</code> - Cancel selection</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Copy Paths</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>cc</code> - Copy the file path</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>cd</code> - Copy the directory path</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>cf</code> - Copy the filename</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>cn</code> - Copy the filename without extension</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Filter Files</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>f</code> - Filter files</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Find Files</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>/</code> - Find next file</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>?</code> - Find previous file</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>n</code> - Go to the next found</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>N</code> - Go to the previous found</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Search Files</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>s</code> - Search files by name using fd</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>S</code> - Search files by content using ripgrep</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Ctrl</code> + <code>s</code> - Cancel the ongoing search</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Sorting</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,m</code> - Sort by modified time</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,M</code> - Sort by modified time (reverse)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,b</code> - Sort by birth time</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,B</code> - Sort by birth time (reverse)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,e</code> - Sort by file extension</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,E</code> - Sort by file extension (reverse)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,a</code> - Sort alphabetically</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,A</code> - Sort alphabetically (reverse)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,n</code> - Sort naturally</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,N</code> - Sort naturally (reverse)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,s</code> - Sort by size</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,S</code> - Sort by size (reverse)</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>,r</code> - Sort randomly</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Multi-Tab</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>t</code> - Create a new tab with CWD</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>0 or ... or 9</code> - Switch to the n-th tab</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>[</code> - Switch to the previous tab</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>]</code> - Switch to the next tab</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>{</code> - Swap current tab with previous tab</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>}</code> - Swap current tab with next tab</p>
+
+          </div>
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p><code>Ctrl + c</code> - Close the current tab</p>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <div class="py-3 break-inside-avoid-column">
+        <h5 style="margin: 0px">Configuration</h5>
+        <div class="flex flex-col text-sm">
+          
+          <div class="py-[6px] border-b-1 border-surface border-dashed cheat-sheet flex flex-col gap-2">
+            <p>There are three configuration files for Yazi:</p>
+<ul>
+<li><a href="https://yazi-rs.github.io/docs/configuration/yazi"><code>yazi.toml</code></a> - General configuration.</li>
+<li><a href="https://yazi-rs.github.io/docs/configuration/keymap"><code>keymap.toml</code></a> - Keybindings configuration.</li>
+<li><a href="https://yazi-rs.github.io/docs/configuration/theme"><code>theme.toml</code></a> - Color scheme configuration.</li>
+</ul>
+<p>The location for these configuration files is:</p>
+<ul>
+<li><code>~/.config/yazi/</code> on Unix-like systems.</li>
+<li><code>%AppData%\yazi\config\</code> on Windows.</li>
+</ul>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+ 
+    <script src="Yazi%20-%20Cheat%20Sheet%20-%20Rico%20Berger_files/prism.js"></script>
+    
+  
+
+</body></html>

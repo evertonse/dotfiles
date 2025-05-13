@@ -5,6 +5,7 @@ fi
 
 alias open='wsl-open'
 alias explorer="$WINDOWS_DRIVER_PATH/Windows/explorer.exe"
+alias cmd="$WINDOWS_DRIVER_PATH/Windows/System32/cmd.exe"
 
 exe() {
     cmd_output=$(wslpath $(cmd.exe /c where "$1" 2>/dev/null))

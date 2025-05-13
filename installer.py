@@ -162,6 +162,7 @@ def dotdirs():
         (f"{home}/.config/zsh/env.zsh",         f"{home}/.config/zsh/.zshenv"),
         (f"{home}/.config/zsh/login.zsh",       f"{home}/.config/zsh/.zprofile"),
         (f"{home}/.config/zsh/logout.zsh",      f"{home}/.config/zsh/.zlogout"),
+        # ("/usr/local/bin/nvim")
 
 
         (f"{home}/.config/kitty.0/", f"{home}/.config/kitty"),
@@ -195,7 +196,7 @@ def dotdirs():
         src = Path(src)
         dst = Path(dst)
         cmd(f"sudo rm -rf {dst} || rm -f {dst}")
-        cmd(f"ln -sf {src} {dst}")
+        cmd(f"ln -sfT {src} {dst}")
     print(f"<<--------Links--------\n")
 
     print(f">>--------Copies--------\n")
