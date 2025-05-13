@@ -10,8 +10,23 @@ if [ -z "$line" ]; then
 fi
 
 
-# Find first pane running nvim or vim
 pane=$(tmux list-panes -F '#{pane_id} #{pane_current_command}' | grep -E 'n?vim' | head -n 1 | awk '{print $1}')
+
+usercommand="true"
+
+if [ -z "$usercommand"]; then
+    # Escape quotes
+    # line=$(echo $line | sed 's/"/\\\0/g')
+    # edit: Not necessary anymore because we're using lua raw strings of level 4
+    #       See: https://www.lua.org/manual/5.3/manual.html#3.1
+    #       But we might need, albeit unlikely, to escape ]====], and [====[.
+    #       Correction not escape it, we nuking it
+    #
+    # Rember that we need to escape ], [ for the literal brackets and escape | for the OR logical operator in sed
+
+    # Find first pane running nvim or vim
+    line=$(echo $line | sed 's/\]====\]\|\[====\[//g')
+fi
 
 # Le little bit of comment debug xD
 # echo "Runinng... on $line $pane"
@@ -20,9 +35,16 @@ if [ -n "$pane" ]; then
     # Ensure we're in normal mode, we could be in terminal
     tmux send-keys -t "$pane" Escape Escape ^\\ ^n
 
-    # Open the file and let neovim handled it, expected GotoFileFromLine global function
-    # Another option could be do the full filename extrancting from shell and then: tmux send-keys -t "$pane" ":e $file" Enter
-    tmux send-keys -t "$pane" ":lua GotoFile [[$line]]" Enter
+    if [ -z "$usercommand"]; then
+        # Open the file and let neovim handled it, expected GotoFile global lua function
+        # Another option could be do the full filename extrancting from shell and then: tmux send-keys -t "$pane" ":e $file" Enter
+        tmux send-keys -t "$pane" ":lua GotoFile [====[$line]====]" Enter
+    else
+        # If you have defined a GotoFile user-command with 'nargs = 1' then, we can forget about raw string just pass as is.
+        # Because neovim will assuming every space and symbol is part of the string
+        tmux send-keys -t "$pane" ":GotoFile $line" Enter
+    fi
+
 
     # Focus the pane and start typing shit
     tmux select-pane -t "$pane"
