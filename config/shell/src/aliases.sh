@@ -54,6 +54,7 @@ alias YT='youtube-viewer'
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 alias nvim-chad='NVIM_APPNAME="nvim-chad" nvim'
 alias nvim-11='NVIM_APPNAME="nvim-11" nvim'
+alias nvim-tmp='NVIM_APPNAME="nvim-tmp" nvim'
 
 # System command aliases
 alias shutdown='killall chrome --wait;sudo poweroff;'

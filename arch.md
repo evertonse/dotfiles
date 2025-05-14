@@ -1,3 +1,7 @@
+# Mirror timeout or not configured
+
+    sudo reflector --country 'Brazil' --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
 # Keys trolling with signing
 
 The error you are encountering suggests that the PGP signature for the archlinux-keyring package cannot be verified. This issue can often be resolved by refreshing the keyring and ensuring that your system trusts the required keys. Here's a step-by-step guide to resolving this issue:
@@ -50,7 +54,7 @@ sudo pacman-key --recv-keys F99FFE0FEAE999BD
 sudo pacman-key --lsign-key F99FFE0FEAE999BD
 ```
 
-5. Clean the Package Cache
+## Clean the Package Cache
 Sometimes, cached packages can cause issues. Clear the package cache:
 
 ```bash
@@ -63,8 +67,7 @@ Then, try updating the keyring again:
 sudo pacman -Sy archlinux-keyring
 ```
 
-Summary of Commands
-Here’s a summary of the commands to run:
+# Summary of Commands
 
 ```bash
 sudo rm -rf /etc/pacman.d/gnupg
@@ -84,7 +87,8 @@ sudo pacman -Sy archlinux-keyring
 
 ------
 
-The error you encountered indicates that the download of a package from the specified mirror was too slow and eventually timed out. Here are some steps to address this issue:
+
+# Pacman error
 
 1. Change the Download Mirror
 Sometimes the mirror you are downloading from may be slow or experiencing issues. You can change the mirror by editing your mirror list.
@@ -92,7 +96,7 @@ Sometimes the mirror you are downloading from may be slow or experiencing issues
 Edit the Mirror List:
 
 ```bash
-sudo nano /etc/pacman.d/mirrorlist
+sudo vim /etc/pacman.d/mirrorlist
 ```
 
 Move a Different Mirror to the Top:

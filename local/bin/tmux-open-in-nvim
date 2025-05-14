@@ -12,9 +12,9 @@ fi
 
 pane=$(tmux list-panes -F '#{pane_id} #{pane_current_command}' | grep -E 'n?vim' | head -n 1 | awk '{print $1}')
 
-usercommand="true"
+usercommand=""
 
-if [ -z "$usercommand"]; then
+if [ -z "$usercommand" ]; then
     # Escape quotes
     # line=$(echo $line | sed 's/"/\\\0/g')
     # edit: Not necessary anymore because we're using lua raw strings of level 4
@@ -35,7 +35,7 @@ if [ -n "$pane" ]; then
     # Ensure we're in normal mode, we could be in terminal
     tmux send-keys -t "$pane" Escape Escape ^\\ ^n
 
-    if [ -z "$usercommand"]; then
+    if [ -z "$usercommand" ]; then
         # Open the file and let neovim handled it, expected GotoFile global lua function
         # Another option could be do the full filename extrancting from shell and then: tmux send-keys -t "$pane" ":e $file" Enter
         tmux send-keys -t "$pane" ":lua GotoFile [====[$line]====]" Enter
