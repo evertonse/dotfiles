@@ -15,10 +15,6 @@ autoload -U colors && colors    # Load colors
 # When using bash you could have this
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-setopt autocd   # Automatically cd into typed directory.
-setopt interactive_comments
-setopt MENU_COMPLETE
-unsetopt flow_control
 
 # Hash holding paths that shouldn't be grepped (globbed) – blacklist for slow disks, mounts, etc.:
 typeset -gA FAST_BLIST_PATTERNS
@@ -67,15 +63,53 @@ export HISTFILE="$XDG_DATA_HOME/history/history_${window_name}"
 
 
 
-
+###########################################################################################################################
+# Autocomplete
+###########################################################################################################################
 # Basic auto/tab complete:
-autoload -U compinit
+unsetopt flow_control
+setopt NO_BEEP
+setopt autocd   # Automatically cd into typed directory.
+setopt interactive_comments
+
+# Initialize completion system first
+autoload -Uz compinit
+compinit
+
+# Fix syntax errors in your code (asterisks should be underscores)
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
-_comp_options+=(globdots)        # Include hidden files.
-setopt NO_BEEP
+_comp_options+=(globdots)        # Include hidden files (fixed syntax)
 
+# Enable bash-style tab completion behavior
+setopt COMPLETE_IN_WORD      # Complete from both ends of a word
+setopt ALWAYS_TO_END         # Move cursor to end of word after completion
+setopt MENU_COMPLETE         # Select first match immediately
+
+# Configure completion system with proper quotes around values
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Extra  bash-like completion explicitly
+zstyle ':completion:*' accept-exact-dirs true
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' insert-tab false
+zstyle ':completion:*' expand prefix suffix
+
+# Additional settings to make completion more aggressive
+zstyle ':completion:*' show-ambiguity true
+zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' path-completion true
+
+# Bind Tab key to force completion at cursor position
+bindkey '^I' expand-or-complete-prefix
+
+###########################################################################################################################
+###########################################################################################################################
+
+###########################################################################################################################
+# keymap
+###########################################################################################################################
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
     case $KEYMAP in
