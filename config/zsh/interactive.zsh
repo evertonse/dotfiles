@@ -82,19 +82,25 @@ zmodload zsh/complist
 _comp_options+=(globdots)        # Include hidden files (fixed syntax)
 
 # Enable bash-style tab completion behavior
-setopt COMPLETE_IN_WORD      # Complete from both ends of a word
-setopt ALWAYS_TO_END         # Move cursor to end of word after completion
-setopt MENU_COMPLETE         # Select first match immediately
+setopt  COMPLETE_IN_WORD      # Complete from both ends of a word
+setopt  ALWAYS_TO_END         # Move cursor to end of word after completion
+setopt  MENU_COMPLETE         # Select first match immediately
+setopt  completeinword
+unsetopt list_ambiguous
 
 # Configure completion system with proper quotes around values
-zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' completer _complete _match _ignored _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Extra  bash-like completion explicitly
 zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' insert-tab false
+zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' expand yes
 
 # Additional settings to make completion more aggressive
 zstyle ':completion:*' show-ambiguity true
