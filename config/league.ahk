@@ -140,7 +140,7 @@ RButton::RButton
 ;         Send "{ç}"
 ;     }
 ; }
-; See for key and meaning of things like <^>!, ttps://www.autohotkey.com/docs/v2/Hotkeys.htm
+; See for key and meaning of things like <^>!, https://www.autohotkey.com/docs/v2/Hotkeys.htm
 
 
 <^>!c::ç
@@ -155,6 +155,8 @@ RButton::RButton
 
 ^9::Send "{{}"
 ^0::Send "{}}"
+
+^space::Backspace
 
 
 
