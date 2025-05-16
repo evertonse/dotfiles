@@ -5,7 +5,7 @@
 
 [wsl2]
 
-memory=12GB
+memory=16GB
 
 processors=8
 
@@ -21,7 +21,7 @@ guiApplications=true
 # kernelCommandLine = vsyscall=emulate
 
 # Sets amount of swap storage space to 8GB, default is 25% of available RAM
-swap=8GB
+swap=4GB
 
 # Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
 # edit: Gotta exist otherwise wsl will complain
@@ -34,7 +34,6 @@ swap=8GB
 # Turn on default connection to bind WSL 2 localhost to Windows localhost. Setting is ignored when networkingMode=mirrored
 localhostforwarding=true
 
-# Disables nested virtualization
 nestedVirtualization=true
 
 # Turns on output console showing contents of dmesg when opening a WSL 2 distro for debugging
@@ -43,4 +42,4 @@ debugConsole=false
 # Enable experimental features
 [experimental]
 sparseVhd=true
-autoMemoryReclaim="gradual"
+# autoMemoryReclaim="gradual"

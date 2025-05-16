@@ -128,14 +128,10 @@ SetCapsLockState("AlwaysOff")
 }
 
 Esc::Esc
-CapsLock::Esc
-NumpadDiv::CapsLock
+CapsLock::CapsLock
+NumpadDiv::NumpadDiv
 Shift::Shift
 RButton::RButton
-
-
-<^>!c::ç
-ç::;
 
 ; $(RAlt & c) :: {
 ;     if (GetKeyState("Shift", "P")) {
@@ -147,13 +143,20 @@ RButton::RButton
 ; See for key and meaning of things like <^>!, ttps://www.autohotkey.com/docs/v2/Hotkeys.htm
 
 
+<^>!c::ç
+
 <^>!a::Send "{{}"
 <^>!s::Send "{}}"
 <^>!d::Send "{[}"
 <^>!f::Send "{]}"
 
-^+9::Send "{{}"
-^+0::Send "{}}"
+^+9::Send "{[}"
+^+0::Send "{]}"
+
+^9::Send "{{}"
+^0::Send "{}}"
+
+
 
 ; RAlt & a::{
 ;     if (GetKeyState("Shift", "P")) {

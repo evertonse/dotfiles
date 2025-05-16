@@ -26,12 +26,12 @@ ahk:
 wsl-config: SOURCE = ./setup/win/.wslconfig
 wsl-config: DEST = "$$WIN_USERPROFILE/.wslconfig"
 wsl-config:
-	@echo "Configuring wsl on guest linux vm ..."
-	cp config/wsl.conf $(DEST)
-	@echo "Configuring wsl on windows host ..."
+	echo "Configuring wsl on guest linux vm ..."
+	sudo cp config/wsl.conf /etc/wsl.conf
+	echo "Configuring wsl on windows host ..."
 	@rm -f $(DEST)
 	cp $(SOURCE) $(DEST)
-	@echo "Opening $$WIN_USERPROFILE/.wslconfig .."
+	echo "Opening $$WIN_USERPROFILE/.wslconfig .."
 	wsl-open $(DEST)
 
 
