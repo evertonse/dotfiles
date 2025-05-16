@@ -156,8 +156,8 @@ RButton::RButton
 ^9::Send "{{}"
 ^0::Send "{}}"
 
-^space::Backspace
-
+^space::^Backspace
++space::Backspace
 
 
 ; RAlt & a::{
