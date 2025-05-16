@@ -106,7 +106,7 @@ SetCapsLockState "AlwaysOff"
 
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
 ; SetCapsLockState "Off"
-; SetCapsLockState("AlwaysOff")
+SetCapsLockState("AlwaysOff")
 ; Define the hotkey (Ctrl+Shift+D in this example)
 #n:: {
 
@@ -126,16 +126,43 @@ SetCapsLockState "AlwaysOff"
     Run notes_file_path
 
 }
+
 Esc::Esc
 CapsLock::Esc
 NumpadDiv::CapsLock
 Shift::Shift
 RButton::RButton
 
-´::[
-[::]
-]::´
 
-; k::k
+<^>!c::ç
+ç::;
+
+; $(RAlt & c) :: {
+;     if (GetKeyState("Shift", "P")) {
+;         Send "{Ç}"
+;     } else {
+;         Send "{ç}"
+;     }
+; }
+; See for key and meaning of things like <^>!, ttps://www.autohotkey.com/docs/v2/Hotkeys.htm
+
+
+<^>!a::Send "{{}"
+<^>!s::Send "{}}"
+<^>!d::Send "{[}"
+<^>!f::Send "{]}"
+
+^+9::Send "{{}"
+^+0::Send "{}}"
+
+; RAlt & a::{
+;     if (GetKeyState("Shift", "P")) {
+;         Send "{{}"
+;     } else {
+;         Send "{}}"
+;     }
+; }
+
+
 #HotIf ; Only when league not active
 

@@ -96,10 +96,11 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 
 # Extra  bash-like completion explicitly
 zstyle ':completion:*' accept-exact-dirs true
-zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' special-dirs false
 zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' expand prefix suffix
+# zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' expand prefix
 zstyle ':completion:*' expand yes
 
 # Additional settings to make completion more aggressive

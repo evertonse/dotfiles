@@ -333,7 +333,9 @@ def main():
         print_okay("Finished")
     else:
         print_info(
-            f"Finished with {error_count} errors.\n\tThese are the failed commands:\n\t{'\n\t'.join(ordinal(i+1) + ": " + s for i,s in enumerate(error_cmds))}"
+            f"Finished with {error_count} errors."
+            + "\n\tThese are the failed commands:\n\t"
+            + f"{'\n\t'.join(ordinal(i+1) + ": " + s for i,s in enumerate(error_cmds))}"
         )
 
 
