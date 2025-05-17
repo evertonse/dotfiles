@@ -21,7 +21,7 @@ guiApplications=true
 # kernelCommandLine = vsyscall=emulate
 
 # Sets amount of swap storage space to 8GB, default is 25% of available RAM
-swap=4GB
+swap=16GB
 
 # Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
 # edit: Gotta exist otherwise wsl will complain
@@ -42,4 +42,4 @@ debugConsole=false
 # Enable experimental features
 [experimental]
 sparseVhd=true
-# autoMemoryReclaim="gradual"
+autoMemoryReclaim="gradual"
