@@ -66,53 +66,101 @@ export HISTFILE="$XDG_DATA_HOME/history/history_${window_name}"
 ###########################################################################################################################
 # Autocomplete
 ###########################################################################################################################
-# Basic auto/tab complete:
-unsetopt flow_control
-setopt NO_BEEP
-setopt autocd   # Automatically cd into typed directory.
-setopt interactive_comments
 
 # Initialize completion system first
 autoload -Uz compinit
 compinit
 
-# Fix syntax errors in your code (asterisks should be underscores)
-zstyle ':completion:*' menu select
+# Basic auto/tab complete:
+# unsetopt flow_control
+setopt NO_BEEP
+setopt autocd   # Automatically cd into typed directory.
+setopt interactive_comments
+
 zmodload zsh/complist
 _comp_options+=(globdots)        # Include hidden files (fixed syntax)
 
-# Enable bash-style tab completion behavior
-setopt  COMPLETE_IN_WORD      # Complete from both ends of a word
-setopt  ALWAYS_TO_END         # Move cursor to end of word after completion
-setopt  MENU_COMPLETE         # Select first match immediately
+
 setopt  completeinword
-unsetopt list_ambiguous
+setopt  ALWAYS_TO_END            # Move cursor to end after completion
+setopt  MENU_COMPLETE         # Select first match immediately
+
+zstyle ':completion:*' completer _prefix _complete _match _ignored _approximate
+# zstyle ':completion:*' completer _complete _match _ignored _approximate
+zstyle ':completion:*' menu select
+zstyle ':completion:*' insert-unambiguous true
+# zstyle ':completion:*' squeeze-slashes true
+
+# This is the key: truncate the unmatched suffix
 
 # Configure completion system with proper quotes around values
-zstyle ':completion:*' completer _complete _match _ignored _approximate
-zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 1 numeric
+# zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 2 numeric
+
+# zstyle ':completion:*' matcher-list '' 'r:|[._-]=**' 'l:|=* r:|=*'
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 # Extra  bash-like completion explicitly
 zstyle ':completion:*' accept-exact-dirs true
-zstyle ':completion:*' special-dirs false
-zstyle ':completion:*' insert-tab false
-zstyle ':completion:*' insert-unambiguous true
-# zstyle ':completion:*' expand prefix suffix
-zstyle ':completion:*' expand prefix
-zstyle ':completion:*' expand yes
+# zstyle ':completion:*' special-dirs false
+# zstyle ':completion:*' insert-tab true
+# zstyle ':completion:*' insert-unambiguous true
+
+zstyle ':completion:*' expand yes prefix
+zstyle ':completion:*' expand suffix
 
 # Additional settings to make completion more aggressive
 zstyle ':completion:*' show-ambiguity true
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' path-completion true
 
+
 # Bind Tab key to force completion at cursor position
-bindkey '^I' expand-or-complete-prefix
+# bindkey '^I'
+function complete-and-trim-tail() {
+  # Save cursor position
+  local CURSOR=$CURSOR BUFFER=$BUFFER
+
+  # Let Zsh complete the word
+  zle expand-or-complete-prefix
+
+  # Only run cleanup if cursor moved
+  if [[ $BUFFER != $BUFFER[$CURSOR+1,-1] ]]; then
+    # Kill everything after the new cursor up to word boundary
+    zle kill-word
+  fi
+}
+
+zle -N complete-and-trim-tail
+
+bindkey '^I' complete-and-trim-tail  # Bind to Tab (Ctrl+I)
+# bindkey '\t' expand-or-complete
+
+function menu_cancel_to_normal_mode() {
+  zle send-break       # Exit the completion menu
+  zle vi-cmd-mode      # Switch to normal mode
+}
+zle -N menu_cancel_to_normal_mode
+
+# Unused
+function accept_menu_and_normal_mode() {
+  zle .accept-and-hold        # Accept current menu selection (does not run line)
+  zle vi-cmd-mode             # Switch to normal mode
+}
+
+zle -N accept_menu_and_normal-mode
+
+bindkey -M menuselect '\e' menu_cancel_to_normal_mode
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 ###########################################################################################################################
-###########################################################################################################################
+
 
 ###########################################################################################################################
 # keymap
@@ -193,24 +241,20 @@ export KEYTIMEOUT=1
 bindkey -M viins '^S' history-incremental-search-backward
 # bindkey '^S' history-incremental-search-backward
 
-# Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+
+
 bindkey -v '^?' backward-delete-char
 
 bindkey '^y' accept-line-and-run
 bindkey '^L' autosuggest-accept
 bindkey '^H' backward-delete-char
+# bindkey '^w' kill-word
 
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 bindkey '^K' kill-line
 # bindkey -M viins '^K' kill-line  # for vi insert mode
 
-
-bindkey '\t' expand-or-complete
 
 bindkey '^[[Z' reverse-menu-complete
 bindkey "^E" forward-word

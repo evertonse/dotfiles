@@ -16,7 +16,7 @@ pull:
 ahk: SOURCE = ./config/league.ahk
 ahk: DEST   = /mnt/c/league.ahk
 ahk:
-	@rm -f $(DEST)
+	# @rm -f $(DEST);
 	@cp $(SOURCE) $(DEST)
 	wsl-open $(DEST)
 
@@ -46,7 +46,7 @@ alacritty:
 # wslconfig:
 # 	cp ./setup/win/.wslconfig $(WIN_USERPROFILE)
 
-file2clip: SOURCE = "setup/win/assets/file2clip.exe"
+file2clip: OURCE = "setup/win/assets/file2clip.exe"
 file2clip: DEST = "$$WINDOWS_DRIVER_PATH/Windows/"
 file2clip:
 	cp -i $(SOURCE) $(DEST)

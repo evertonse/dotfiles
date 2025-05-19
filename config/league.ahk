@@ -150,32 +150,37 @@ RButton::RButton
 <^>!d::Send "{[}"
 <^>!f::Send "{]}"
 
+
 ; Hotkey "<^>!i", "{}}"
 
 <^>!h::Send "{/}"
 <^>!j::Send "{=}"
 <^>!k::Send "{_}"
-<^>!l::Send "{:}"
+
 
 
 <^>!i::#{
 <^>!+i::#[
 
-<^>!i::#}
-<^>!+i::#]
+<^>!o::#}
+<^>!+o::#]
 
-<^>!9::Send "{[}"
-<^>!0::Send "{]}"
+<^>!9::Send "{{}"
+<^>!0::Send "{}}"
 
-^+9::Send "{[}"
-^+0::Send "{]}"
+^9::Send "{[}"
+^0::Send "{]}"
 
-^9::Send "{{}"
-^0::Send "{}}"
+<^>!z::#\
+
+<^>!;::Send "{~}{space}"
+<^>!+;::Send "{^}{space}"
 
 
-^space::^Backspace
-+space::Backspace
+
+; <^>!z::Send "{}\\\|\/}"
+
+<^>!space::Backspace
 
 
 ; RAlt & a::{
