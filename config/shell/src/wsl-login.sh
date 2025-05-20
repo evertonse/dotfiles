@@ -3,14 +3,13 @@
 export WINDOWS_DRIVER_PATH="/mnt/c" # Assuming C:\
 
 # Lets add theses one path in case 'appendWindowsPath' isn't 'true'
-# Important for yanking with win32yank.exe
-# pathappend "$WINDOWS_DRIVER_PATH/Windows/System32/" PATH
+# Important for yanking with win32yank.exe which currently is in /mnt/c/Windows/System32/win32yank.exe
+pathappend "$WINDOWS_DRIVER_PATH/Windows/System32/" PATH
 
 # NOTE: Certain Paths is too bad too include because programs try tries to keeping reading it and getting blocked
 #       Helix editor is one of them, it just HANGS a fuck ton until I remove something from PATH that is using 9p protocol.
 # pathappend "$WINDOWS_DRIVER_PATH/Windows/" PATH
 
-# ´cmd.exe´ should be in $PATH now
 export WIN_USER=$($WINDOWS_DRIVER_PATH/Windows/cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
 export WIN_USERPROFILE="/mnt/c/Users/$WIN_USER/"
 export WIN_DOWNLOADS="/mnt/c/Users/$WIN_USER/Downloads"

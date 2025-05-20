@@ -103,9 +103,9 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 
 # Extra  bash-like completion explicitly
 zstyle ':completion:*' accept-exact-dirs true
-# zstyle ':completion:*' special-dirs false
-# zstyle ':completion:*' insert-tab true
-# zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' special-dirs false
+zstyle ':completion:*' insert-tab true
+zstyle ':completion:*' insert-unambiguous true
 
 zstyle ':completion:*' expand yes prefix
 zstyle ':completion:*' expand suffix
@@ -115,27 +115,27 @@ zstyle ':completion:*' show-ambiguity true
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' path-completion true
 
-
-# Bind Tab key to force completion at cursor position
-# bindkey '^I'
 function complete-and-trim-tail() {
-  # Save cursor position
-  local CURSOR=$CURSOR BUFFER=$BUFFER
+  # Save initial cursor and buffer state
+  local OLD_CURSOR=$CURSOR OLD_BUFFER=$BUFFER
 
-  # Let Zsh complete the word
+  # Trigger completion
   zle expand-or-complete-prefix
 
-  # Only run cleanup if cursor moved
-  if [[ $BUFFER != $BUFFER[$CURSOR+1,-1] ]]; then
-    # Kill everything after the new cursor up to word boundary
-    zle kill-word
+  # Only trim if cursor moved and the next character is not a space
+  if [[ $CURSOR -ne $OLD_CURSOR ]]; then
+    local next_char=${BUFFER[$CURSOR+1]}
+    if [[ -n $next_char && $next_char != [[:space:]] ]]; then
+      zle kill-word
+    fi
   fi
 }
+
 
 zle -N complete-and-trim-tail
 
 bindkey '^I' complete-and-trim-tail  # Bind to Tab (Ctrl+I)
-# bindkey '\t' expand-or-complete
+# bindkey '\t' expand-or-complete    # Old
 
 function menu_cancel_to_normal_mode() {
   zle send-break       # Exit the completion menu

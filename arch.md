@@ -1,8 +1,8 @@
 # Mirror timeout or not configured
+Read https://wiki.archlinux.org/title/Mirrors
 
     sudo pacman -S reflector
-    sudo reflector --country 'Brazil' --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-    sudo reflector --country Brazil --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+    sudo reflector -p https --sort rate -c Brazil --verbose --save /etc/pacman.d/mirrorlist
 
 
 # Keys trolling with signing

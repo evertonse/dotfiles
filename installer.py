@@ -157,11 +157,16 @@ def dotdirs():
 
     links = {
         # NOTE: Every path is relative to $HOME/.config
-        (f"{home}/.config/zsh/interactive.zsh", f"{home}/.zshrc"),
+        # Source                                Destination
         (f"{home}/.config/zsh/interactive.zsh", f"{home}/.config/zsh/.zshrc"),
         (f"{home}/.config/zsh/env.zsh",         f"{home}/.config/zsh/.zshenv"),
         (f"{home}/.config/zsh/login.zsh",       f"{home}/.config/zsh/.zprofile"),
         (f"{home}/.config/zsh/logout.zsh",      f"{home}/.config/zsh/.zlogout"),
+        (f"{home}/.config/zsh/interactive.zsh", f"{home}/.zshrc"),
+        (f"{home}/.config/zsh/interactive.zsh", f"{home}/.zshrc"),
+        (f"{home}/.config/zsh/env.zsh",         f"{home}/.zshenv"),
+        (f"{home}/.config/zsh/login.zsh",       f"{home}/.zprofile"),
+        (f"{home}/.config/zsh/logout.zsh",      f"{home}/.zlogout"),
         # ("/usr/local/bin/nvim")
 
 
