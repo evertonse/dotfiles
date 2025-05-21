@@ -74,7 +74,7 @@ export HISTFILE="$XDG_DATA_HOME/history/history_${window_name}"
 ###########################################################################################################################
 safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fsh/fast-syntax-highlighting.plugin.zsh"
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 
 
