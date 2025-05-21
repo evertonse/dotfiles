@@ -54,9 +54,9 @@ fi
 # @neovim
 read -n1 -rep 'Do you want install neovim? ' answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-  dir="$HOME/code/neovim"
+  dir="$HOME/programs/neovim"
   [ ! -d $dir ] && git clone https://github.com/neovim/neovim.git $dir
-  cd $HOME/code/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
+  cd $dir && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install
 fi
 
 # @x11 stuff
@@ -204,7 +204,7 @@ read -p "Do you want install the user stuff (tmux, lf , zathura, htop)? [y/n]: "
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   timedatectl set-timezone America/Maceio
   sudo pacman -S --noconfirm lf mpv zsh tmux mupdf
-  sudo pacman -S --noconfirm fd ripgrep flameshot grim sysstat wget netctl networkmanager 
+  sudo pacman -S --noconfirm fd ripgrep flameshot grim sysstat wget netctl networkmanager lsd
 
   sudo pacman -S --noconfirm google-chrome 
   yay --noconfirm -S vivid 

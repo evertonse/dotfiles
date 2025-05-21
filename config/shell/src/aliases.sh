@@ -41,9 +41,16 @@ alias grep='grep -i --color=auto'
 alias egrep='egrep --color=auto'
 alias pacman='sudo pacman --color=auto'
 alias yay='yay --color=auto'
-alias ls='ls -AF --color=always --group-directories-first'
-alias ll='ls -AlhF --color=always --group-directories-first'
-alias l='ls -CF'
+
+# Check if 'lsd' is available
+
+list_cmd='ls'
+if command -v lsd >/dev/null 2>&1; then
+  list_cmd='lsd'
+fi
+alias ls="$list_cmd -AF --color=always --group-directories-first"
+alias ll="$list_cmd -AlhF --color=always --group-directories-first"
+
 alias gdb='gdb --quiet -tui -iex "set disassembly-flavor intel"'
 alias objdump='objdump -M intel'
 alias py='python3'

@@ -5,18 +5,17 @@ stty stop undef # Disable ctrl-s to freeze terminal.
 stty -ixon
 
 
-setopt correct                    # Auto correct mistakes
+setopt nocorrect                  # No Auto correct mistakes
 setopt extendedglob               # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob                 # Case insensitive globbing
 setopt rcexpandparam              # Array expension with parameters
-setopt nocheckjobs                # Don't warn about running processes when exiting
+# setopt nocheckjobs                # Don't warn about running processes when exiting
 setopt numericglobsort            # Sort filenames numerically when it makes sense
 setopt nobeep                     # No beep
-setopt appendhistory              # Immediately append history instead of overwriting
 setopt histignorealldups          # If a new command is a duplicate, remove the older one
-setopt autocd                     # if only directory path is entered, cd there.
 setopt histignorespace            # Don't save commands that start with space
-autoload -U colors && colors
+setopt appendhistory              # Immediately append history instead of overwriting
+setopt autocd                     # if only directory path is entered, cd there.
 
 # To check for scripts that should be posix compliant
 # Install checkbashisms.
@@ -84,7 +83,7 @@ safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fast-syntax-highlighting/fast
 ###########################################################################################################################
 
 # Initialize completion system first
-autoload -U compinit colors zcalc   # theming
+# autoload -U compinit colors zcalc   # theming
 autoload -Uz compinit
 compinit
 
@@ -244,8 +243,6 @@ bindkey '^t'  clear_and_tmux
 # ^[ is basically Alt
 bindkey '^[n' clear_and_nvim
 bindkey '^q' clear_and_exit
-
-bindkey -s ^f "tmux-sessionizer\n"
 
 # vi mode
 bindkey -v
