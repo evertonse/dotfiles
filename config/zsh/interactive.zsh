@@ -4,6 +4,10 @@ source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/interactive.sh"
 stty stop undef # Disable ctrl-s to freeze terminal.
 stty -ixon
 
+# INFO:
+#      ´zle -al´ to see all them commands
+#      ´set -o´  give a list of thy options
+
 
 setopt nocorrect                  # No Auto correct mistakes
 setopt extendedglob               # Extended globbing. Allows using regular expressions with *
@@ -16,6 +20,15 @@ setopt histignorealldups          # If a new command is a duplicate, remove the 
 setopt histignorespace            # Don't save commands that start with space
 setopt appendhistory              # Immediately append history instead of overwriting
 setopt autocd                     # if only directory path is entered, cd there.
+
+# on exit, history appends rather than overwrites; history is appended as soon as cmds executed; history shared across sessions
+setopt auto_menu menu_complete    # autocmp first menu match
+setopt auto_param_slash           # when a dir is completed, add a / instead of a trailing space
+setopt no_case_glob no_case_match # make cmp case insensitive
+setopt globdots                   # include dotfiles
+setopt extended_glob              # match ~ # ^
+setopt interactive_comments       # allow comments in shell
+unsetopt prompt_sp                # don't autoclean blanklines
 
 # To check for scripts that should be posix compliant
 # Install checkbashisms.
@@ -48,16 +61,24 @@ if [ ! -f "$ZPROFILE_PATH" ]; then
 fi
 
 
+# fzf setup
+safe_source <(fzf --zsh) # allow for fzf history widget
+
 # History in cache directory:
+setopt append_history   # better history
 setopt inc_append_history      # Append to history file immediately
 setopt share_history           # Share history between terminals
 setopt extended_history        # Save timestamp with commands
 setopt hist_ignore_all_dups    # Remove older duplicates
 setopt HIST_EXPIRE_DUPS_FIRST  # Remove duplicates first when trimming
 setopt HIST_IGNORE_DUPS        # Don't store consecutive duplicates
-setopt SHARE_HISTORY           # Share history between terminals (duplicate)
 export HISTSIZE=10000          # Mem history size (POSIX compatible)
 export SAVEHIST=10000          # File history size (ZSH specific)
+
+# bindkey '^s' fzf-history-widget
+# bindkey -M viins '^S' history-incremental-search-backward
+bindkey -M viins '^S' fzf-history-widget
+# bindkey '^S' history-incremental-search-backward
 
 
 if [ -n "$TMUX" ]; then
@@ -90,7 +111,6 @@ compinit
 # Basic auto/tab complete:
 # unsetopt flow_control
 setopt NO_BEEP
-setopt interactive_comments
 
 zmodload zsh/complist
 _comp_options+=(globdots)        # Include hidden files (fixed syntax)
@@ -98,7 +118,7 @@ _comp_options+=(globdots)        # Include hidden files (fixed syntax)
 
 setopt  completeinword
 setopt  ALWAYS_TO_END            # Move cursor to end after completion
-setopt  MENU_COMPLETE         # Select first match immediately
+# setopt  MENU_COMPLETE         # Select first match immediately
 
 zstyle ':completion:*' completer _prefix _complete _match _ignored _approximate
 # zstyle ':completion:*' completer _complete _match _ignored _approximate
@@ -250,9 +270,6 @@ export KEYTIMEOUT=1
 
 # Map Ctrl+S to history search in vi insert mode
 
-# bindkey '^S' accept-line-and-run # TODO: crtl+s is too useful to be wasted, make a use of it
-bindkey -M viins '^S' history-incremental-search-backward
-# bindkey '^S' history-incremental-search-backward
 
 
 

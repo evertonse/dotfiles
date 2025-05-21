@@ -1,0 +1,231 @@
+<table class="wikitable" summary="A description of the hierarchy specified in the FHS.">
+
+<tbody><tr>
+<th>Directory
+</th>
+<th>Description
+</th></tr>
+<tr>
+<td><code>/</code>
+</td>
+<td><i>Primary hierarchy</i> root and <a href="/wiki/Root_directory" title="Root directory">root directory</a> of the entire file system hierarchy.
+</td></tr>
+<tr>
+<td><code>/bin</code>
+</td>
+<td>Essential command <a href="/wiki/Executable" title="Executable">binaries</a> that need to be available in <a href="/wiki/Single-user_mode" title="Single-user mode">single-user mode</a>, including to bring up the system or repair it,<sup id="cite_ref-3" class="reference"><a href="#cite_note-3"><span class="cite-bracket">[</span>3<span class="cite-bracket">]</span></a></sup> for all users (e.g., <a href="/wiki/Cat_(Unix)" title="Cat (Unix)">cat</a>, <a href="/wiki/Ls" title="Ls">ls</a>, <a href="/wiki/Cp_(Unix)" title="Cp (Unix)">cp</a>).
+</td></tr>
+<tr>
+<td><code><a href="/wiki/Boot_folder" title="Boot folder">/boot</a></code>
+</td>
+<td><a href="/wiki/Boot_loader" class="mw-redirect" title="Boot loader">Boot loader</a> files (e.g., <a href="/wiki/Kernel_(operating_system)" title="Kernel (operating system)">kernels</a>, <a href="/wiki/Initrd" class="mw-redirect" title="Initrd">initrd</a>).
+</td></tr>
+<tr>
+<td><code><a href="/wiki//dev" class="mw-redirect" title="/dev">/dev</a></code>
+</td>
+<td><a href="/wiki/Device_file" title="Device file">Device files</a> (e.g., <code><a href="/wiki/Null_device" title="Null device">/dev/null</a></code>, <code>/dev/disk0</code>,  <code>/dev/sda1</code>, <code>/dev/tty</code>, <code><a href="/wiki//dev/random" title="/dev/random">/dev/random</a></code>).
+</td></tr>
+<tr>
+<td><code>/etc</code>
+</td>
+<td>Host-specific system-wide <a href="/wiki/Configuration_file" title="Configuration file">configuration files</a>.<br>
+<p>There has been controversy over the meaning of the name itself. In early versions of the UNIX Implementation Document from Bell Labs, <code>/etc</code> is referred to as the <i><a href="/wiki/Et_cetera" title="Et cetera">etcetera</a> directory</i>,<sup id="cite_ref-4" class="reference"><a href="#cite_note-4"><span class="cite-bracket">[</span>4<span class="cite-bracket">]</span></a></sup> as this directory historically held everything that did not belong elsewhere (however, the FHS restricts <code>/etc</code> to static configuration files and may not contain binaries).<sup id="cite_ref-/etc_5-0" class="reference"><a href="#cite_note-/etc-5"><span class="cite-bracket">[</span>5<span class="cite-bracket">]</span></a></sup> Since the publication of early documentation, the directory name has been re-explained in various ways. Recent interpretations include <a href="/wiki/Backronym" title="Backronym">backronyms</a> such as "Editable Text Configuration" or "Extended Tool Chest".<sup id="cite_ref-6" class="reference"><a href="#cite_note-6"><span class="cite-bracket">[</span>6<span class="cite-bracket">]</span></a></sup>
+</p>
+</td></tr>
+<tr>
+<td><code>/etc/opt</code>
+</td>
+<td>Configuration files for add-on packages stored in <code>/opt</code>.
+</td></tr>
+<tr>
+<td><code>/etc/sgml</code>
+</td>
+<td>Configuration files, such as catalogs, for software that processes <a href="/wiki/SGML" class="mw-redirect" title="SGML">SGML</a>.
+</td></tr>
+<tr>
+<td><code>/etc/X11</code>
+</td>
+<td>Configuration files for the <a href="/wiki/X_Window_System" title="X Window System">X Window System</a>, version 11.
+</td></tr>
+<tr>
+<td><code>/etc/xml</code>
+</td>
+<td>Configuration files, such as catalogs, for software that processes <a href="/wiki/XML" title="XML">XML</a>.
+</td></tr>
+<tr>
+<td><code>/home</code>
+</td>
+<td>Users' <a href="/wiki/Home_directory" title="Home directory">home directories</a>, containing saved files, personal settings, etc.
+</td></tr>
+<tr>
+<td><code>/lib</code>
+</td>
+<td><a href="/wiki/Library_(computer_science)" class="mw-redirect" title="Library (computer science)">Libraries</a> essential for the <a href="/wiki/Binaries" class="mw-redirect" title="Binaries">binaries</a> in <code>/bin</code> and <code>/sbin</code>.
+</td></tr>
+<tr>
+<td><code>/lib&lt;qual&gt;</code>
+</td>
+<td>Alternate format essential libraries. These are typically used on systems that support more than one executable code format, such as systems supporting <a href="/wiki/32-bit" class="mw-redirect" title="32-bit">32-bit</a> and <a href="/wiki/64-bit" class="mw-redirect" title="64-bit">64-bit</a> versions of an <a href="/wiki/Instruction_set" class="mw-redirect" title="Instruction set">instruction set</a>.  Such directories are optional, but if they exist, they have some requirements.
+</td></tr>
+<tr>
+<td><code>/media</code>
+</td>
+<td>Mount points for <a href="/wiki/Removable_media" title="Removable media">removable media</a> such as <a href="/wiki/CD-ROM" title="CD-ROM">CD-ROMs</a> (appeared in FHS-2.3 in 2004).
+</td></tr>
+<tr>
+<td><code>/mnt</code>
+</td>
+<td>Temporarily <a href="/wiki/Mount_(computing)" title="Mount (computing)">mounted</a> filesystems.
+</td></tr>
+<tr>
+<td><code>/opt</code>
+</td>
+<td>Add-on <a href="/wiki/Application_software" title="Application software">application software</a> <a href="/wiki/Software_package_(installation)" class="mw-redirect" title="Software package (installation)">packages</a>.<sup id="cite_ref-/opt_7-0" class="reference"><a href="#cite_note-/opt-7"><span class="cite-bracket">[</span>7<span class="cite-bracket">]</span></a></sup>
+</td></tr>
+<tr>
+<td><code><a href="/wiki//proc" class="mw-redirect" title="/proc">/proc</a></code>
+</td>
+<td>Virtual <a href="/wiki/File_system" title="File system">filesystem</a> providing <a href="/wiki/Process_(computing)" title="Process (computing)">process</a> and <a href="/wiki/Kernel_(operating_system)" title="Kernel (operating system)">kernel</a> information as files. In Linux, corresponds to a <a href="/wiki/Procfs" title="Procfs">procfs</a> mount. Generally, automatically generated and populated by the system, on the fly.
+</td></tr>
+<tr>
+<td><code>/root</code>
+</td>
+<td><a href="/wiki/Home_directory" title="Home directory">Home directory</a> for the <a href="/wiki/Superuser" title="Superuser">root</a> user.
+</td></tr>
+<tr>
+<td><code>/run</code>
+</td>
+<td>Run-time variable data: Information about the running system since last boot, e.g., currently logged-in users and running <a href="/wiki/Daemon_(computer_software)" class="mw-redirect" title="Daemon (computer software)">daemons</a>. Files under this directory must be either removed or truncated at the beginning of the boot process, but this is not necessary on systems that provide this directory as a <a href="/wiki/Temporary_filesystem" class="mw-redirect" title="Temporary filesystem">temporary filesystem</a> (<a href="/wiki/Tmpfs" title="Tmpfs">tmpfs</a>) (appeared in FHS-3.0 in 2015).
+</td></tr>
+<tr>
+<td><code>/sbin</code>
+</td>
+<td>Essential system binaries (e.g., <a href="/wiki/Fsck" title="Fsck">fsck</a>, <a href="/wiki/Init" title="Init">init</a>, <a href="/wiki/Route_(command)" title="Route (command)">route</a>).
+</td></tr>
+<tr>
+<td><code>/srv</code>
+</td>
+<td>Site-specific data served by this system, such as data and scripts for web servers, data offered by <a href="/wiki/FTP" class="mw-redirect" title="FTP">FTP</a> servers, and repositories for <a href="/wiki/Version_control_systems" class="mw-redirect" title="Version control systems">version control systems</a> (appeared in FHS-2.3 in 2004).
+</td></tr>
+<tr>
+<td><code><a href="/wiki//sys" class="mw-redirect" title="/sys">/sys</a></code>
+</td>
+<td>Contains information about devices, drivers, and some kernel features.<sup id="cite_ref-/sys_8-0" class="reference"><a href="#cite_note-/sys-8"><span class="cite-bracket">[</span>8<span class="cite-bracket">]</span></a></sup>
+</td></tr>
+<tr>
+<td><code>/tmp</code>
+</td>
+<td><a href="/wiki/Temporary_folder" title="Temporary folder">Directory for temporary files</a> (see also <code>/var/tmp</code>). Often not preserved between system reboots and may be severely size-restricted.
+</td></tr>
+<tr>
+<td><code>/usr</code>
+</td>
+<td><i>Secondary hierarchy</i> for read-only user data; contains the majority of (<a href="/wiki/Multi-user" class="mw-redirect" title="Multi-user">multi-</a>)user utilities and applications.  Should be shareable and read-only.<sup id="cite_ref-9" class="reference"><a href="#cite_note-9"><span class="cite-bracket">[</span>9<span class="cite-bracket">]</span></a></sup><sup id="cite_ref-10" class="reference"><a href="#cite_note-10"><span class="cite-bracket">[</span>10<span class="cite-bracket">]</span></a></sup>
+</td></tr>
+<tr>
+<td><code>/usr/bin</code>
+</td>
+<td>Non-essential command <a href="/wiki/Executable" title="Executable">binaries</a> (not needed in <a href="/wiki/Single-user_mode" title="Single-user mode">single-user mode</a>); for all users.
+</td></tr>
+<tr>
+<td><code>/usr/include</code>
+</td>
+<td>Standard <a href="/wiki/Header_file" class="mw-redirect" title="Header file">include files</a>.
+</td></tr>
+<tr>
+<td><code>/usr/lib</code>
+</td>
+<td><a href="/wiki/Library_(computer_science)" class="mw-redirect" title="Library (computer science)">Libraries</a> for the <a href="/wiki/Binaries" class="mw-redirect" title="Binaries">binaries</a> in <code>/usr/bin</code> and <code>/usr/sbin</code>.
+</td></tr>
+<tr>
+<td><code>/usr/libexec</code>
+</td>
+<td>Binaries run by other programs that are not intended to be executed directly by users or shell scripts (optional).
+</td></tr>
+<tr>
+<td><code>/usr/lib&lt;qual&gt;</code>
+</td>
+<td>Alternative-format libraries (e.g., <code>/usr/lib32</code> for 32-bit libraries on a 64-bit machine (optional)).
+</td></tr>
+<tr>
+<td><code>/usr/local</code>
+</td>
+<td><i>Tertiary hierarchy</i> for local data, specific to this host. Typically has further subdirectories (e.g., <code>bin</code>, <code>lib</code>, <code>share</code>).<sup id="cite_ref-11" class="reference"><a href="#cite_note-11"><span class="cite-bracket">[</span>NB 1<span class="cite-bracket">]</span></a></sup>
+</td></tr>
+<tr>
+<td><code>/usr/sbin</code>
+</td>
+<td>Non-essential system binaries (e.g., <a href="/wiki/Daemon_(computer_software)" class="mw-redirect" title="Daemon (computer software)">daemons</a> for various <a href="/wiki/Network_service" title="Network service">network services</a>).
+</td></tr>
+<tr>
+<td><code>/usr/share</code>
+</td>
+<td>Architecture-independent (shared) data.
+</td></tr>
+<tr>
+<td><code>/usr/src</code>
+</td>
+<td><a href="/wiki/Source_code" title="Source code">Source code</a> (e.g., the kernel source code with its header files).
+</td></tr>
+<tr>
+<td><code>/usr/X11R6</code>
+</td>
+<td><a href="/wiki/X_Window_System" title="X Window System">X Window System</a>, Version 11, Release 6 (up to FHS-2.3, optional).
+</td></tr>
+<tr>
+<td><code>/var</code>
+</td>
+<td>Variable files: files whose content is expected to continually change during normal operation of the system, such as logs, spool files, and temporary e-mail files.
+</td></tr>
+<tr>
+<td><code>/var/cache</code>
+</td>
+<td>Application cache data. Such data are locally generated as a result of time-consuming I/O or calculation. The application must be able to regenerate or restore the data. The cached files can be deleted without loss of data.
+</td></tr>
+<tr>
+<td><code>/var/lib</code>
+</td>
+<td>State information. Persistent data modified by programs as they run (e.g., databases, packaging system metadata, etc.).
+</td></tr>
+<tr>
+<td><code>/var/lock</code>
+</td>
+<td>Lock files. Files keeping track of resources currently in use.
+</td></tr>
+<tr>
+<td><code>/var/log</code>
+</td>
+<td>Log files. Various logs.
+</td></tr>
+<tr>
+<td><code>/var/mail</code>
+</td>
+<td>Mailbox files. In some distributions, these files may be located in the deprecated <code>/var/spool/mail</code>.
+</td></tr>
+<tr>
+<td><code>/var/opt</code>
+</td>
+<td>Variable data from add-on packages that are stored in <code>/opt</code>.
+</td></tr>
+<tr>
+<td><code>/var/run</code>
+</td>
+<td>Run-time variable data. This directory contains system information data describing the system since it was booted.<sup id="cite_ref-12" class="reference"><a href="#cite_note-12"><span class="cite-bracket">[</span>11<span class="cite-bracket">]</span></a></sup><br>
+<p>In FHS 3.0, <code>/var/run</code> is replaced by <code>/run</code>; a system should either continue to provide a <code>/var/run</code> directory or provide a symbolic link from <code>/var/run</code> to <code>/run</code> for backwards compatibility.<sup id="cite_ref-13" class="reference"><a href="#cite_note-13"><span class="cite-bracket">[</span>12<span class="cite-bracket">]</span></a></sup>
+</p>
+</td></tr>
+<tr>
+<td><code>/var/spool</code>
+</td>
+<td><a href="/wiki/Spooling" title="Spooling">Spool</a> for tasks waiting to be processed (e.g., print queues and outgoing mail queue).
+</td></tr>
+<tr>
+<td><code>/var/spool/mail</code>
+</td>
+<td><a href="/wiki/Deprecated" class="mw-redirect" title="Deprecated">Deprecated</a> location for users' mailboxes.<sup id="cite_ref-14" class="reference"><a href="#cite_note-14"><span class="cite-bracket">[</span>13<span class="cite-bracket">]</span></a></sup>
+</td></tr>
+<tr>
+<td><code>/var/tmp</code>
+</td>
+<td>Temporary files to be preserved between reboots.
+</td></tr></tbody></table>

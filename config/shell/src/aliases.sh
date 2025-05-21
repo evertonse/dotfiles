@@ -50,6 +50,15 @@ if command -v lsd >/dev/null 2>&1; then
 fi
 alias ls="$list_cmd -AF --color=always --group-directories-first"
 alias ll="$list_cmd -AlhF --color=always --group-directories-first"
+alias \
+c="clear" \
+shell="exec $SHELL -l" \
+mv="mv -i" \
+rm="rm -Iv" \
+df="df -h" \
+du="du -h -d 1" \
+k="killall" \
+p="ps aux | grep $1" \
 
 alias gdb='gdb --quiet -tui -iex "set disassembly-flavor intel"'
 alias objdump='objdump -M intel'
