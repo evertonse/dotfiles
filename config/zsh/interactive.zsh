@@ -16,6 +16,7 @@ setopt appendhistory              # Immediately append history instead of overwr
 setopt histignorealldups          # If a new command is a duplicate, remove the older one
 setopt autocd                     # if only directory path is entered, cd there.
 setopt histignorespace            # Don't save commands that start with space
+autoload -U colors && colors
 
 # To check for scripts that should be posix compliant
 # Install checkbashisms.
@@ -68,10 +69,12 @@ fi
 [ -d "$XDG_DATA_HOME/history" ] || mkdir -p "$XDG_DATA_HOME/history" 2>/dev/null
 export HISTFILE="$XDG_DATA_HOME/history/history_${window_name}"
 
-
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-# [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fsh/fast-syntax-highlighting.plugin.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fsh/fast-syntax-highlighting.plugin.zsh"
+###########################################################################################################################
+# Plugins
+###########################################################################################################################
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fsh/fast-syntax-highlighting.plugin.zsh"
 
 
 
@@ -81,6 +84,7 @@ export HISTFILE="$XDG_DATA_HOME/history/history_${window_name}"
 ###########################################################################################################################
 
 # Initialize completion system first
+autoload -U compinit colors zcalc   # theming
 autoload -Uz compinit
 compinit
 
