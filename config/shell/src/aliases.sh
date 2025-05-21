@@ -3,6 +3,7 @@
 
 # Basic tmux alias
 alias tm='/usr/bin/tmux -2 a || /bin/tmux -2'
+alias vim='VIMRUNTIME=;vim'
 
 # tmfzf function
 tmfzf() {
