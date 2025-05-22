@@ -294,6 +294,9 @@ def dotfiles():
 
     dotdirs()
 
+    cmd(f"zsh -i -c \"fast-theme {home}/.config/zsh/fast-syntax-highlighting/themes/default.ini\"")
+    
+
 
 install_commands = [
     install_neovim_on_windows_from_wsl,
