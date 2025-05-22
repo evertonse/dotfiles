@@ -1,1 +1,1 @@
-sudo xbps-install -S bat fzf fd rg
+sudo xbps-install -S bat fzf fd ripgrep
