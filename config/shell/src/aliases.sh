@@ -44,12 +44,16 @@ alias yay='yay --color=auto'
 
 # Check if 'lsd' is available
 
+alias 'rync -Pavh'
+
 list_cmd='ls'
 if command -v lsd >/dev/null 2>&1; then
   list_cmd='lsd'
 fi
 alias ls="$list_cmd -AF --color=always --group-directories-first"
 alias ll="$list_cmd -AlhF --color=always --group-directories-first"
+
+
 alias \
 c="clear" \
 shell="exec $SHELL -l" \

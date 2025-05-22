@@ -1,11 +1,11 @@
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/login.sh"
 
-nvim_runtime_dir="${XDG_CONFIG_HOME:-$HOME/.config}/nvim/runtime/"
+vim_runtime_dir="${XDG_CONFIG_HOME:-$HOME/.config}/nvim/runtime/"
 
 # Check if the file exists
-if [ -e "$nvim_runtime_dir" ]; then
-    export NVIMRUNTIME="$nvim_runtime_dir"
+if [ -e "$vim_runtime_dir" ]; then
+    export VIMRUNTIME="$vim_runtime_dir"
 fi
 
 # Following automatically calls "startx" when you login on tty1:

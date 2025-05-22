@@ -89,12 +89,6 @@ fi
 [ -d "$XDG_DATA_HOME/history" ] || mkdir -p "$XDG_DATA_HOME/history" 2>/dev/null
 export HISTFILE="$XDG_DATA_HOME/history/history_${window_name}"
 
-###########################################################################################################################
-# Plugins
-###########################################################################################################################
-safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-# safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 
 
@@ -164,6 +158,7 @@ function complete-and-trim-tail() {
       zle kill-word
     fi
   fi
+  zle redisplay
 }
 
 
@@ -263,6 +258,8 @@ bindkey '^t'  clear_and_tmux
 # ^[ is basically Alt
 bindkey '^[n' clear_and_nvim
 bindkey '^q' clear_and_exit
+
+# TODO: fix why ctrl+w is so slow
 
 # vi mode
 bindkey -v
@@ -403,6 +400,14 @@ PROMPT='[%n @ %B%~%b]${NEWLINE}$ '
 # PROMPT='${NEWLINE}$ '
 RPROMPT='$(exit_code_indicator) $(git_branch) %T'
 ###########################################################################################################################
+
+###########################################################################################################################
+# Plugins
+###########################################################################################################################
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# TODO: fast-syntax-highlighting stops highlighting when I press tab. Find out more about it
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 
 ###########################################################################################################################

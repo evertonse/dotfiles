@@ -11,7 +11,7 @@ export WINDOWS_SYSTEM32="$WINDOWS_DRIVER_PATH/Windows/System32/"
 #       Helix editor is one of them, it just HANGS a fuck ton until I remove something from PATH that is using 9p protocol.
 # pathappend "$WINDOWS_DRIVER_PATH/Windows/" PATH
 
-export WIN_USER=$($WINDOWS_DRIVER_PATH/Windows/cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
+export WIN_USER=$($WINDOWS_SYSTEM32/cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
 export WIN_USERPROFILE="/mnt/c/Users/$WIN_USER/"
 export WIN_DOWNLOADS="/mnt/c/Users/$WIN_USER/Downloads"
 
