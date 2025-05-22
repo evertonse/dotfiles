@@ -1,5 +1,5 @@
-# Adapted from here: https://github.com/Mellbourn/lsColorsToToml.git
 #!/usr/bin/env python3
+# Adapted from here: https://github.com/Mellbourn/lsColorsToToml.git
 """
 Convert LS_COLORS environment variable to TOML theme format
 """
@@ -29,7 +29,7 @@ modes = {
 
 fg_colors = {
     30: "black",
-    31: "red", 
+    31: "red",
     32: "green",
     33: "yellow",
     34: "blue",
@@ -228,7 +228,7 @@ def convert_ls_colors_to_toml(ls_colors):
 def main():
     """Main function to convert LS_COLORS to TOML"""
     theme_toml_content = convert_ls_colors_to_toml(ls_colors_content)
-    print(theme_toml_content)
+    print(f"[filetype]\nrules = [\n{theme_toml_content}\n]")
     
     # Optionally write to file
     # with open('theme.toml', 'w') as f:

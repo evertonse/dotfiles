@@ -20,9 +20,9 @@ def ordinal(n: int):
     return str(n) + suffix
 
 
-def cmd_std_out(command):
+def cmd_std_out(command, autoyes=False):
     """Run a shell command and return the output."""
-    if getch(f"{command} [y/n]?").lower() == "y":
+    if autoyes or getch(f"{command} [y/n]?").lower() == "y":
         result = subprocess.run(
             command, shell=True, capture_output=True, text=True, check=True
         )
@@ -77,6 +77,12 @@ def cp(src, dst):
         cpfile(src, dst)
     else:
         print_info(f"Source file {src} doesn't exist")
+
+
+def write(file_path, content):
+    # Open the file in write mode, which will override if it exists
+    with open(file_path, 'w') as file:
+        file.write(content)
 
 
 
@@ -294,8 +300,15 @@ def dotfiles():
 
     dotdirs()
 
-    cmd(f"zsh -i -c \"fast-theme {home}/.config/zsh/fast-syntax-highlighting/themes/default.ini\"")
-    
+    out = cmd_std_out("toml2lscolors local/share/lscolors.toml", True)
+    write(f'{home}/.config/shell/src/ls_colors.sh', f'export LS_COLORS="{out}"')
+    shell_interpret = [
+        f'fast-theme {home}/.config/zsh/fast-syntax-highlighting/themes/default.ini',
+        f'lscolors2toml > {home}/.config/yazi/ls_colors.toml',
+    ]
+
+    for shell_cmd in shell_interpret:
+        cmd(f'zsh -i -c "{shell_cmd}"')
 
 
 install_commands = [
