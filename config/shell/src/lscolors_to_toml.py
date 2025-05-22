@@ -1,1 +1,238 @@
 # Adapted from here: https://github.com/Mellbourn/lsColorsToToml.git
+#!/usr/bin/env python3
+"""
+Convert LS_COLORS environment variable to TOML theme format
+"""
+
+import os
+import re
+
+MODES = [
+    "bold",
+    "underline",
+    "blink",
+    "blink_rapid",
+    "reversed",
+    "hidden",
+    "crossed"
+]
+
+modes = {
+    1: "bold",
+    4: "underline",
+    5: "blink",
+    6: "blink_rapid",
+    7: "reversed",
+    8: "hidden",
+    9: "crossed",
+}
+
+fg_colors = {
+    30: "black",
+    31: "red", 
+    32: "green",
+    33: "yellow",
+    34: "blue",
+    35: "magenta",
+    36: "cyan",
+    37: "gray",
+    90: "darkgray",
+    91: "lightred",
+    92: "lightgreen", 
+    93: "lightyellow",
+    94: "lightblue",
+    95: "lightmagenta",
+    96: "lightcyan",
+}
+
+bg_colors = {
+    40: "black",
+    41: "red",
+    42: "green", 
+    43: "yellow",
+    44: "blue",
+    45: "magenta",
+    46: "cyan",
+    47: "gray",
+    100: "darkgray",
+    101: "lightred",
+    102: "lightgreen",
+    103: "lightyellow", 
+    104: "lightblue",
+    105: "lightmagenta",
+    106: "lightcyan",
+}
+
+# Get LS_COLORS content from environment variable
+ls_colors_content = os.environ.get('LS_COLORS', '')
+
+def rgb_to_hex(r, g, b):
+    """Convert RGB values to hex color string"""
+    return f"#{r:02x}{g:02x}{b:02x}"
+
+def generate_256_color_palette():
+    """Generate the 256-color palette"""
+    palette = {}
+    
+    # Generate the 6x6x6 color cube
+    for r in range(6):
+        for g in range(6):
+            for b in range(6):
+                index = 16 + r * 36 + g * 6 + b
+                palette[index] = rgb_to_hex(
+                    (55 if r else 0) + r * 40,
+                    (55 if g else 0) + g * 40, 
+                    (55 if b else 0) + b * 40
+                )
+    
+    # Generate the grayscale spectrum
+    for i in range(24):
+        shade = 8 + i * 10
+        index = 232 + i
+        palette[index] = rgb_to_hex(shade, shade, shade)
+    
+    return palette
+
+palette = generate_256_color_palette()
+
+def ansi_code_to_hex(code):
+    """Convert ANSI code to hex colors and styles"""
+    colors = {}
+    
+    if not code:
+        return {}
+    
+    try:
+        parts = [int(p) for p in code.split(";")]
+    except ValueError:
+        return {}
+    
+    i = 0
+    while i < len(parts):
+        # Check if the current part is '38', indicating a foreground color code
+        if parts[i] == 38 and i + 1 < len(parts):
+            # 5 indicates 256 color palette
+            if parts[i + 1] == 5 and i + 2 < len(parts):
+                color_index = parts[i + 2]
+                colors['fg'] = palette.get(color_index, "#ffffff")
+                i += 3
+            # 2 indicates 24-bit RGB color
+            elif parts[i + 1] == 2 and i + 4 < len(parts):
+                r, g, b = parts[i + 2:i + 5]
+                colors['fg'] = rgb_to_hex(r, g, b)
+                i += 5
+            else:
+                i += 1
+        # Check if the current part is '48', indicating a background color code
+        elif parts[i] == 48 and i + 1 < len(parts):
+            # 5 indicates 256 color palette
+            if parts[i + 1] == 5 and i + 2 < len(parts):
+                color_index = parts[i + 2]
+                colors['bg'] = palette.get(color_index, "#ffffff")
+                i += 3
+            # 2 indicates 24-bit RGB color
+            elif parts[i + 1] == 2 and i + 4 < len(parts):
+                r, g, b = parts[i + 2:i + 5]
+                colors['bg'] = rgb_to_hex(r, g, b)
+                i += 5
+            else:
+                i += 1
+        elif parts[i] == 0:
+            # reset
+            colors = {}
+            i += 1
+        elif parts[i] in modes:
+            mode = modes[parts[i]]
+            colors[mode] = True
+            i += 1
+        elif parts[i] in fg_colors:
+            color = fg_colors[parts[i]]
+            colors['fg'] = color
+            i += 1
+        elif parts[i] in bg_colors:
+            color = bg_colors[parts[i]]
+            colors['bg'] = color
+            i += 1
+        else:
+            i += 1
+    
+    return colors
+
+def ls_pattern_to_yazi(ls_colors_pattern):
+    """Convert LS_COLORS pattern to Yazi pattern format"""
+    if len(ls_colors_pattern) < 3:
+        pattern_map = {
+            'di': {'name': '*/'},
+            'bd': {'name': '*', 'is': 'block'},
+            'cd': {'name': '*', 'is': 'char'},
+            'ex': {'name': '*', 'is': 'exec'},
+            'pi': {'name': '*', 'is': 'fifo'},
+            'ln': {'name': '*', 'is': 'link'},
+            'or': {'name': '*', 'is': 'orphan'},
+            'so': {'name': '*', 'is': 'sock'},
+            'st': {'name': '*', 'is': 'sticky'}
+        }
+        
+        mapped_pattern = pattern_map.get(ls_colors_pattern)
+        if mapped_pattern:
+            return mapped_pattern
+        return {'name': ''}
+    else:
+        return {'name': ls_colors_pattern}
+
+def convert_ls_colors_to_toml(ls_colors):
+    """Parse LS_COLORS and convert to theme.toml content"""
+    if not ls_colors:
+        return ""
+    
+    entries = ls_colors.split(":")
+    rules = []
+    
+    for entry in entries:
+        if '=' not in entry:
+            continue
+            
+        pattern, codes = entry.split("=", 1)  # Split only on first '='
+        pattern_info = ls_pattern_to_yazi(pattern)
+        name = pattern_info.get('name')
+        
+        if not name:
+            continue
+            
+        style = ansi_code_to_hex(codes)
+        fg = style.get('fg')
+        bg = style.get('bg')
+        
+        rule_parts = []
+        rule_parts.append(f'name = "{name}"')
+        
+        if 'is' in pattern_info:
+            rule_parts.append(f'is = "{pattern_info["is"]}"')
+        
+        if fg:
+            rule_parts.append(f'fg = "{fg}"')
+        
+        if bg:
+            rule_parts.append(f'bg = "{bg}"')
+        
+        for mode in MODES:
+            if style.get(mode):
+                rule_parts.append(f'{mode} = true')
+        
+        # Only produce a rule if there's more than just the name
+        if len(rule_parts) > 1:
+            rules.append(f"  {{ {', '.join(rule_parts)} }}")
+    
+    return ",\n".join(rules) + ","
+
+def main():
+    """Main function to convert LS_COLORS to TOML"""
+    theme_toml_content = convert_ls_colors_to_toml(ls_colors_content)
+    print(theme_toml_content)
+    
+    # Optionally write to file
+    # with open('theme.toml', 'w') as f:
+    #     f.write(theme_toml_content)
+
+if __name__ == "__main__":
+    main()

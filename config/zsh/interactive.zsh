@@ -43,8 +43,6 @@ autoload -U colors && colors    # Load colors
 
 
 # Hash holding paths that shouldn't be grepped (globbed) – blacklist for slow disks, mounts, etc.:
-typeset -gA FAST_BLIST_PATTERNS
-FAST_BLIST_PATTERNS[/mnt/*/**]=1
 ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
 
 
@@ -261,14 +259,53 @@ bindkey '^t'  clear_and_tmux
 bindkey '^[n' clear_and_nvim
 bindkey '^q' clear_and_exit
 
-# TODO: fix why ctrl+w is so slow
 
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
-# Map Ctrl+S to history search in vi insert mode
 
+# DONE: fix why ctrl+w is so slow
+# Smart delete word function for Zsh
+# Behaves like Ctrl+W in Vim - stops at symbols and non-word characters
+smart-delete-word() {
+    local WORDCHARS_ORIG="$WORDCHARS"
+    
+    # Temporarily modify WORDCHARS to exclude symbols
+    # This makes word boundaries stop at symbols like /, ., @, #, etc.
+    WORDCHARS=""
+    
+    # If we're at the beginning of the line or after whitespace,
+    # delete any leading whitespace first
+    if [[ $CURSOR -gt 0 ]]; then
+        local char_before="${BUFFER[CURSOR]}"
+        if [[ "$char_before" == " " || "$char_before" == $'\t' ]]; then
+            # Delete trailing whitespace
+            while [[ $CURSOR -gt 0 && ("${BUFFER[CURSOR]}" == " " || "${BUFFER[CURSOR]}" == $'\t') ]]; do
+                ((CURSOR--))
+            done
+            BUFFER="${BUFFER[1,CURSOR]}${BUFFER[CURSOR+1,-1]}"
+        else
+            # Use backward-delete-word with modified WORDCHARS
+            zle backward-delete-word
+        fi
+    fi
+    
+    # Restore original WORDCHARS
+    WORDCHARS="$WORDCHARS_ORIG"
+}
+
+zle -N smart-delete-word
+
+bindkey '^w' smart-delete-word
+
+# Alternative bindings you might want to try:
+# bindkey '^[^?' smart-delete-word  # Alt+Backspace
+# bindkey '^H' smart-delete-word    # Ctrl+H
+
+# Optional: Bind to a different key like Ctrl+Backspace
+# bindkey '^[[3;5~' smart-delete-word  # Common Ctrl+Backspace sequence
+# bindkey '^?' smart-delete-word       # Alternative Ctrl+Backspace
 
 
 
@@ -406,9 +443,12 @@ RPROMPT='$(exit_code_indicator) $(git_branch) %T'
 ###########################################################################################################################
 # Plugins
 ###########################################################################################################################
-safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # TODO: fast-syntax-highlighting stops highlighting when I press tab. Find out more about it
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+typeset -gA FAST_BLIST_PATTERNS
+FAST_BLIST_PATTERNS[/mnt/*/**]=1
 safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 
