@@ -62,7 +62,9 @@ fi
 
 
 # fzf setup
-safe_source <(fzf --zsh) # allow for fzf history widget
+if command -v fzf >/dev/null 2>&1; then
+  safe_source <(fzf --zsh) # allow for fzf history widget
+fi
 
 # History in cache directory:
 setopt append_history   # better history
