@@ -215,7 +215,7 @@ function clear_and_nvim {
   # Clear the curret line
   zle kill-whole-line
   # Insert the command
-  LBUFFER="nvim-0.11"
+  LBUFFER="nvim"
   # Simulate pressing Enter
   zle accept-line
 }

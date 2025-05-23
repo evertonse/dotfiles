@@ -1,3 +1,5 @@
+# Nice intruduction: https://www.youtube.com/watch?v=5DHz23VQJxk
+
 iwctl
 station w<tab> connect <tab> <enter>
 exit
