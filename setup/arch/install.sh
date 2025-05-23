@@ -212,8 +212,10 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
   yay --noconfirm -S nsxiv
   yay --noconfirm -S feh
   yay --noconfirm -S gummy
-  # just htop with vim motions
+  yay --noconfirm -S xdg-ninja
 
+
+  # just htop with vim motions
   yay --noconfirm -S htim  || yay --noconfirm -S htop-vim 
   yay --noconfirm -S btop
 
