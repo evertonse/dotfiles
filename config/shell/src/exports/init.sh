@@ -70,7 +70,6 @@ fi
 
 
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 
 export GTK2_RC_FILES="$XDG_DATA_HOME/themes/dark/gtk-2.0/gtkrc"
@@ -79,12 +78,10 @@ export QT_STYLE_OVERRIDE=adwaita-dark
 export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
 
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
-export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export KODI_DATA="$XDG_DATA_HOME/kodi"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
-export GOPATH="$XDG_DATA_HOME/go"
 export FLUTTERPATH="$XDG_DATA_HOME/flutter"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export ANSIBLE_CONFIG="$XDG_CONFIG_HOME/ansible/ansible.cfg"
@@ -102,6 +99,14 @@ export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export MOZ_USE_XINPUT2="1" # Mozilla smooth scrolling/touchpads.
 export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1 # Fix for Java applications in dwm
+export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
+export ANDROID_HOME="$XDG_DATA_HOME/android/sdk"
+
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+
+export INPUTRC="$XDG_CONFIG_HOME/shell/inputrc"
+export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 
 ############################################
 ######## WAYLAND WITH NVIDIA THINGS ########
@@ -114,11 +119,22 @@ export XCURSOR_THEME=whiteglass
 ############################################
 ############################################
 
+export EASYOCR_MODULE_PATH="$XDG_CONFIG_HOME/EasyOCR"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup/"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
+export GOPATH="$XDG_DATA_HOME/go"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export KERAS_HOME="${XDG_STATE_HOME}/keras"
+export PYTHONSTARTUP="$HOME/python/pythonrc"
 
 # NOTE: Use programs_dir for compiling manually and having hte source code
 export ODIN_ROOT="$XDG_PROGRAMS_DIR/Odin/"
+export VMODULES="$XDG_DATA_HOME/vmodules"
+
 
 # export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
