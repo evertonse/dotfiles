@@ -22,13 +22,14 @@ setopt appendhistory              # Immediately append history instead of overwr
 setopt autocd                     # if only directory path is entered, cd there.
 
 # on exit, history appends rather than overwrites; history is appended as soon as cmds executed; history shared across sessions
-setopt auto_menu menu_complete    # autocmp first menu match
-setopt auto_param_slash           # when a dir is completed, add a / instead of a trailing space
-setopt no_case_glob no_case_match # make cmp case insensitive
-setopt globdots                   # include dotfiles
-setopt extended_glob              # match ~ # ^
-setopt interactive_comments       # allow comments in shell
-unsetopt prompt_sp                # don't autoclean blanklines
+setopt auto_menu menu_complete    # Autocmp first menu match
+setopt auto_param_slash           # When a dir is completed, add a / instead of a trailing space
+setopt noautoremoveslash          # When canceling keep the slash /
+setopt no_case_glob no_case_match # Make cmp case insensitive
+setopt globdots                   # Include dotfiles
+setopt extended_glob              # Match ~ # ^
+setopt interactive_comments       # Allow comments in shell
+unsetopt prompt_sp                # Don't autoclean blanklines
 
 # To check for scripts that should be posix compliant
 # Install checkbashisms.
@@ -78,6 +79,8 @@ export SAVEHIST=10000          # File history size (ZSH specific)
 # bindkey '^s' fzf-history-widget
 # bindkey -M viins '^S' history-incremental-search-backward
 bindkey -M viins '^S' fzf-history-widget
+bindkey -M vicmd '^[n' clear_and_nvim
+bindkey -M vicmd 'U' 'redo'
 # bindkey '^S' history-incremental-search-backward
 
 
@@ -112,36 +115,38 @@ _comp_options+=(globdots)        # Include hidden files (fixed syntax)
 
 setopt  completeinword
 setopt  ALWAYS_TO_END            # Move cursor to end after completion
-# setopt  MENU_COMPLETE         # Select first match immediately
+setopt  MENU_COMPLETE         # Select first match immediately
 
-zstyle ':completion:*' completer _prefix _complete _match _ignored _approximate
+zstyle ':completion:*' completer _prefix _complete _match _ignored _approximate _files _directories
 # zstyle ':completion:*' completer _complete _match _ignored _approximate
+zstyle ':completion:*' use-cache
 zstyle ':completion:*' menu select
 zstyle ':completion:*' insert-unambiguous true
-# zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' squeeze-slashes false
 
 # This is the key: truncate the unmatched suffix
 
 # Configure completion system with proper quotes around values
 # zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 2 numeric
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # zstyle ':completion:*' matcher-list '' 'r:|[._-]=**' 'l:|=* r:|=*'
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 # Extra  bash-like completion explicitly
+zstyle ':completion:*' accept-exact true
 zstyle ':completion:*' accept-exact-dirs true
 zstyle ':completion:*' special-dirs false
 zstyle ':completion:*' insert-tab true
 zstyle ':completion:*' insert-unambiguous true
 
 zstyle ':completion:*' expand yes prefix
-zstyle ':completion:*' expand suffix
+# zstyle ':completion:*' expand suffix
 
 # Additional settings to make completion more aggressive
 zstyle ':completion:*' show-ambiguity true
-zstyle ':completion:*' list-suffixes true
+zstyle ':completion:*' list-suffixes  true
 zstyle ':completion:*' path-completion true
 
 function complete-and-trim-tail() {

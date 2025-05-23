@@ -2,8 +2,7 @@
 Read https://wiki.archlinux.org/title/Mirrors
 
     sudo pacman -S reflector
-    sudo reflector -p https --sort rate -c Brazil --verbose --save /etc/pacman.d/mirrorlist
-
+    sudo reflector -p https --sort rate --country US --country Brazil --verbose --save /etc/pacman.d/mirrorlist
 
 # Keys trolling with signing
 

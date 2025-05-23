@@ -301,7 +301,7 @@ def dotfiles():
     dotdirs()
 
     out = cmd_std_out("toml2lscolors local/share/lscolors.toml", True)
-    write(f'{home}/.config/shell/src/ls_colors.sh', f'export LS_COLORS="{out}"')
+    write(f'{home}/.config/shell/src/exports/ls_colors.sh', f'export LS_COLORS="{out}"')
     shell_interpret = [
         f'fast-theme {home}/.config/zsh/fast-syntax-highlighting/themes/default.ini',
         f'lscolors2toml > {home}/.config/yazi/ls_colors.toml',
