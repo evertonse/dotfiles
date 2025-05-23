@@ -2,7 +2,9 @@
 
 
 if [ -z $TMUX ]; then
-    pathappend "$HOME/.cargo/bin" PATH
+    pathappend "$CARGO_HOME/bin" PATH
+    pathappend "$RUSTUP_HOME/bin" PATH
+
     pathappend "$HOME/.local/bin" PATH
     pathappend "$HOME/.local/bin/statusbar/" PATH
     pathappend "$XDG_DATA_HOME/go/bin/" PATH
