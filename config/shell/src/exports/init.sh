@@ -22,16 +22,25 @@ export BROWSER="google-chrome-stable"
 
 export PAGER="nvimpager"
 
-export PROGRAMS_DIR="$HOME/programs"
-export CODE_DIR="$HOME/code"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_RUNTIME_DIR="$HOME/.cache/runtime/"
 export XDG_DESKTOP_DIR="$HOME/desktop"
-export XDG_CURRENT_DESKTOP="$WM"
+export XDG_DESKTOP_DIR="$HOME/desktop"
+export XDG_DOCUMENTS_DIR="$HOME/docs"
+export XDG_DOWNLOAD_DIR="$HOME/downloads"
+export XDG_MUSIC_DIR="$HOME/music"
+export XDG_PICTURES_DIR="$HOME/pictures"
+export XDG_PUBLICSHARE_DIR="$HOME/public"
+export XDG_TEMPLATES_DIR="$HOME/templates"
+export XDG_VIDEOS_DIR="$HOME/videos"
 
+export XDG_CODE_DIR="$HOME/code"         # Made-up. Used for your code or cloned
+export XDG_PROGRAMS_DIR="$HOME/programs" # Made-up. Used for compiling daily drive programs
+
+export XDG_CURRENT_DESKTOP="$WM"
 
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
 # Or using `vivid` program
@@ -75,7 +84,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export KODI_DATA="$XDG_DATA_HOME/kodi"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GOPATH="$XDG_DATA_HOME/go"
 export FLUTTERPATH="$XDG_DATA_HOME/flutter"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
@@ -106,8 +114,11 @@ export XCURSOR_THEME=whiteglass
 ############################################
 ############################################
 
-export ODIN_ROOT="$PROGRAMS_DIR/Odin/"
-export RUSTUP_HOME="$PROGRAMS_DIR/rustup/"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup/"
+
+# NOTE: Use programs_dir for compiling manually and having hte source code
+export ODIN_ROOT="$XDG_PROGRAMS_DIR/Odin/"
 
 # export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
