@@ -22,6 +22,9 @@ export BROWSER="google-chrome-stable"
 
 export PAGER="nvimpager"
 
+export PROGRAMS_DIR="$HOME/programs"
+export CODE_DIR="$HOME/code"
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -103,7 +106,8 @@ export XCURSOR_THEME=whiteglass
 ############################################
 ############################################
 
-export ODIN_ROOT="$HOME/.local/Odin/"
+export ODIN_ROOT="$PROGRAMS_DIR/Odin/"
+export RUSTUP_HOME"$PROGRAMS_DIR/rustup/"
 
 # export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
