@@ -107,7 +107,7 @@ export XCURSOR_THEME=whiteglass
 ############################################
 
 export ODIN_ROOT="$PROGRAMS_DIR/Odin/"
-export RUSTUP_HOME"$PROGRAMS_DIR/rustup/"
+export RUSTUP_HOME="$PROGRAMS_DIR/rustup/"
 
 # export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
