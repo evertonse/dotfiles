@@ -164,3 +164,15 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+# nvim Stuff
+.nvim.lua
+.vim/
+
+# clangd
+.cache/
+
+# misc
+.last_yank.txt
+.trails
