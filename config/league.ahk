@@ -1,3 +1,4 @@
+
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
 ;     - Shift -> k
@@ -180,17 +181,35 @@ $<^>!f::&
 
 
 ; '{' needs escaping with `
-$<^>!8::`{
-$<^>!9::}
 
-$<^8::[
-$<^9::]
+invert_brackets := False
+; // This if doesn't work. It's compile time or something
+if invert_brackets {
+    ; $<^>!8::`{
+    ; $<^>!9::}
+    ;
+    ; $<^8::[
+    ; $<^9::]
+    ;
+    ; $>^8::<
+    ; $>^9::>
+    ;
+    ; +8::(
+    ; +9::)
+    ; +0::*
+} else {
+    $<^>!9::`{
+    $<^>!0::}
 
-$>^8::<
-$>^9::>
+    $<^9::[
+    $<^0::]
 
-$>+8::(
-$>+9::)
+    $>^9::<
+    $>^0::>
+
+    +9::(
+    +0::)
+}
 
 ; RControl & 9::#<
 ; RControl & 0::#>
@@ -214,8 +233,6 @@ $>+9::)
 ;         Send "{}}"
 ;     }
 ; }
-
-
 
 #HotIf ; Only when league not active
 
