@@ -2,8 +2,8 @@
 
 export EDITOR=nvim
 export TERM="xterm-256color"
-export WM="Hyprland"
-export WM_EXEC="Hyprland"
+export WM="xfce4"
+export WM_EXEC="startxfce4"
 
 export WORK_DIRS="$HOME/code/"
 export PROJECT_DIRS="$HOME/code/"

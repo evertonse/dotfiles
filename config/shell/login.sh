@@ -5,4 +5,6 @@ if grep -i Microsoft /proc/version >/dev/null 2>&1; then
   safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/src/wsl/login.sh"
 fi
 
+safe_source "$HOME/start.sh"
+
 echo "login.sh setup correctly" > /tmp/shell.log
