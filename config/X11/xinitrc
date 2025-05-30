@@ -37,39 +37,45 @@ xrandr --dpi 100		# Set DPI. User may want to use a larger number for larger scr
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/X11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 xset r rate 235 32
 xset s off -dpms
-# setxkbmap -option ''
+
 # setxkbmap -model br-abnt2-excyber -layout br-excyber
+
+# Remap Caps Lock to Escape
 setxkbmap -option caps:escape
 
-# exec /usr/bin/tmux &
-# autostart="mpd dunst unclutter blueman-applet" # pipewire instead of pulseaudio ? also, picom add picom
-# start() {
-#   pidof -sx "$1" > /dev/null 2> /dev/null || "$@" &
-# }
-#
-# /home/excyber/.config/sh/vars.sh &
-#
+# Remap [ to Backspace
+xmodmap -e "keycode 34 = BackSpace"
+
+
+
+start() {
+  pidof -sx "$1" > /dev/null 2> /dev/null || "$@" &
+}
+
+start tmux
+
 # for program in $autostart; do
 # 	start "$program"
 # done >/dev/null 2>&1
 #
 # start xsettingsd
-# start sxhkd
+start sxhkd
+
 # # Ensure that xrdb has finished running before moving on to start the WM/DE.
 # # [ -n "$xrdbpid" ] && wait "$xrdbpid"
 #
 # #start picom --config ~/.config/picom/picon.conf & # enable it if your pc is a little faster
-#
-# xwallpaper --zoom ~/Pictures/681587.png &
-# xkbcomp $HOME/.config/X11/xkb/keymap/excyber-keymap $DISPLAY
-pkill picom &
-pkill pipewire &
-pkill pipewire-pulse &
-pkill pulseaudio
-pulseaudio --start
+
+xkbcomp $HOME/.config/X11/xkb/keymap/excyber-keymap $DISPLAY
+# pkill picom &
+# pkill pipewire &
+# pkill pipewire-pulse &
+# pkill pulseaudio
+# pulseaudio --start
+
 # google-chrome-stable &
 # exec dwmblocks &
-# mode-sleep
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
 # exec dwm
+exec startxfce4
