@@ -6,6 +6,6 @@ safe_source () {
 }
 
 safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/src/utils/append.sh"
-safe_source "$HOME/startup.sh"
+safe_source "$HOME/start.sh"
 
 umask 0077
