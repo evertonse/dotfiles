@@ -455,8 +455,12 @@ RPROMPT='$(exit_code_indicator) $(git_branch) %T'
 # TODO: fast-syntax-highlighting stops highlighting when I press tab. Find out more about it
 safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-typeset -gA FAST_BLIST_PATTERNS
-FAST_BLIST_PATTERNS[/mnt/*/**]=1
+
+if [[ -d /mnt ]]; then
+    typeset -gA FAST_BLIST_PATTERNS
+    FAST_BLIST_PATTERNS[/mnt/*/**]=1
+fi
+
 safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 
