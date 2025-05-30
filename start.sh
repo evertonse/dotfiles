@@ -6,7 +6,7 @@ start() {
 }
 
 # start tmux
-start light 30
+start light -S 30
 
 
 # Check if DISPLAY is unset and if the current terminal is /dev/tty1
