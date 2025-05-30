@@ -174,6 +174,7 @@ def dotdirs():
         (f"{home}/.config/zsh/login.zsh",       f"{home}/.zprofile"),
         (f"{home}/.config/zsh/logout.zsh",      f"{home}/.zlogout"),
         (f"{home}/.config/X11/xinitrc",         f"{home}/.xinitrc"),
+        (f"{home}/.config/X11/xkeyboard.sh",    f"{home}/.local/bin/xkeyboard"),
         # ("/usr/local/bin/nvim")
 
 

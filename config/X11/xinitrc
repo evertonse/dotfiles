@@ -47,24 +47,14 @@ sysmodmap="/etc/X11/xinit/.Xmodmap"
 #     unset f
 # fi
 
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/X11/keyboard.sh"
+
 # Set DPI and other settings
 start xrandr --dpi 100
 
-# Remap keys
-start setxkbmap -option caps:escape
-start xmodmap -e "keycode 34 = BackSpace"
-
-xset r rate 235 32 &
-# start xset s off -dpms
-
-start sxhkd
-
-# Load custom keymap
-# start xkbcomp "$HOME/.config/X11/xkb/keymap/excyber-keymap" "$DISPLAY"
 
 # Uncomment to start additional services or applications
 # start pulseaudio --start
 # start google-chrome-stable
 
 exec $WM_EXEC &
-xset r rate 235 32 &
