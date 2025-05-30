@@ -220,10 +220,10 @@ def dotdirs():
     print(f"<<--------Copies--------\n")
 
     cmd(f"sudo ln -sf /{home}/.local/include/* /usr/include")
-    cmd(f"sudo cp -rf ./.config/X11/xorg.conf.d/ /etc/X11/")
+    cmd(f"sudo cp -rf config/X11/xorg.conf.d/ /etc/X11/")
     cmd(f"sudo ln -sf /{home}/.local/include/* /usr/include")
     cmd(
-        f"sudo ln -s  /{home}/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber"
+        f"sudo ln -sfT  /{home}/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber"
     )
     # cmd(f'setxkbmap -model br-abnt2 -layout br -option ""')
     # cmd('setxkbmap -model br-abnt2-excyber -layout br-excyber -option ""')
