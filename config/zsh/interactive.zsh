@@ -44,11 +44,10 @@ autoload -U colors && colors    # Load colors
 
 
 # Check if the /mnt directory exists and is a directory
-if [[ -d /mnt ]]; then
-    # Add to the blacklist if the directory exists
+if [[ -d /mnt && "$(ls -A /mnt)" ]]; then
+    # Add to the blacklist if the directory exists and is not empty
     ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
 fi
-
 
 # The .profile should take case of this, but it doesn't get sourced every in WSL only /etc/profile.
 # .zprofile on the other hand gets sourced once and login (from a login shell they call it)
@@ -456,7 +455,8 @@ RPROMPT='$(exit_code_indicator) $(git_branch) %T'
 safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 
-if [[ -d /mnt ]]; then
+# Check if the /mnt directory exists and is a directory
+if [[ -d /mnt && "$(ls -A /mnt)" ]]; then
     typeset -gA FAST_BLIST_PATTERNS
     FAST_BLIST_PATTERNS[/mnt/*/**]=1
 fi
