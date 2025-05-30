@@ -173,6 +173,7 @@ def dotdirs():
         (f"{home}/.config/zsh/env.zsh",         f"{home}/.zshenv"),
         (f"{home}/.config/zsh/login.zsh",       f"{home}/.zprofile"),
         (f"{home}/.config/zsh/logout.zsh",      f"{home}/.zlogout"),
+
         (f"{home}/.config/X11/xinitrc",         f"{home}/.xinitrc"),
         (f"{home}/.config/X11/xkeyboard.sh",    f"{home}/.local/bin/xkeyboard"),
         # ("/usr/local/bin/nvim")
@@ -223,6 +224,7 @@ def dotdirs():
 
     cmd(f"sudo ln -sf /{home}/.local/include/* /usr/include")
     cmd(f"sudo cp -rf config/X11/xorg.conf.d/ /etc/X11/")
+    cmd(f"sudo cp -rf config/X11 /{home}/.config/X11")
     cmd(f"sudo ln -sf /{home}/.local/include/* /usr/include")
     cmd(
         f"sudo ln -sfT  /{home}/.config/X11/xkb/symbols/br-excyber /usr/share/X11/xkb/symbols/br-excyber"

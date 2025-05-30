@@ -16,6 +16,7 @@ start() {
 }
 
 
+
 userresources="$HOME/.config/X11/xresources"
 usermodmap="$HOME/.config/X11/xmodmap"
 sysresources="/etc/X11/xinit/.Xresources"
