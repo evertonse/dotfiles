@@ -184,7 +184,8 @@ def dotdirs():
     }
 
     copies = {
-        # (f"{home}/.config/zsh/zshrc", f"{home}/.zshrc"),
+        # Source                                Destination
+        (f"./start.sh", f"{home}/.config/start.sh"),
     }
 
     for file in dirs:
