@@ -56,11 +56,10 @@ start setxkbmap -option caps:escape
 start xmodmap -e "keycode 34 = BackSpace"
 
 # Start tmux and sxhkd
-start tmux
 start sxhkd
 
 # Load custom keymap
-start xkbcomp "$HOME/.config/X11/xkb/keymap/excyber-keymap" "$DISPLAY"
+# start xkbcomp "$HOME/.config/X11/xkb/keymap/excyber-keymap" "$DISPLAY"
 
 # Uncomment to start additional services or applications
 # start pulseaudio --start
