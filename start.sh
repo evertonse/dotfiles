@@ -17,7 +17,7 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
     # Check if WM_EXEC is set and not empty
     if [ -n "$WM_EXEC" ]; then
         # Uncomment to start you're window manager executable
-        # exec "$WM_EXEC" &> /dev/null
+        exec "$WM_EXEC" &> /dev/null
         # exec startx -- -keeptty -nolisten tcp > ~/.xorg.log 2>&1
     fi
 fi
