@@ -47,7 +47,7 @@ sysmodmap="/etc/X11/xinit/.Xmodmap"
 #     unset f
 # fi
 
-safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/X11/keyboard.sh"
+safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/X11/xkeyboard.sh"
 
 # Set DPI and other settings
 start xrandr --dpi 100
