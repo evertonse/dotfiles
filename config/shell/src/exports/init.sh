@@ -139,10 +139,9 @@ export VMODULES="$XDG_DATA_HOME/vmodules"
 # export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
 export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
-export MANPAGER="less -R --use-color -Dd+r -Du+b" # colored man pages
 
-# colored less + termcap vars
-export LESS="R --use-color -Dd+r -Du+b"
+export MANPAGER="less -R --use-color"
+export LESS="R --use-color"
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
 export LESS_TERMCAP_me="$(printf '%b' '[0m')"

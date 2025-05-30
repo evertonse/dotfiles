@@ -68,8 +68,8 @@ pkill pipewire-pulse &
 pkill pulseaudio
 pulseaudio --start
 # google-chrome-stable &
-exec dwmblocks &
-mode-sleep
+# exec dwmblocks &
+# mode-sleep
 #exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 
-exec dwm
+# exec dwm

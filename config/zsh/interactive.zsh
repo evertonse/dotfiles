@@ -43,8 +43,11 @@ autoload -U colors && colors    # Load colors
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 
-# Hash holding paths that shouldn't be grepped (globbed) – blacklist for slow disks, mounts, etc.:
-ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
+# Check if the /mnt directory exists and is a directory
+if [[ -d /mnt ]]; then
+    # Add to the blacklist if the directory exists
+    ZSH_HIGHLIGHT_DIRS_BLACKLIST+=(/mnt/*)
+fi
 
 
 # The .profile should take case of this, but it doesn't get sourced every in WSL only /etc/profile.

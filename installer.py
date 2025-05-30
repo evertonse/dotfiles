@@ -300,7 +300,7 @@ def dotfiles():
 
     dotdirs()
 
-    out = cmd_std_out("toml2lscolors local/share/lscolors.toml", True)
+    out = cmd_std_out("./local/bin/toml2lscolors local/share/lscolors.toml", True)
     write(f'{home}/.config/shell/src/exports/ls_colors.sh', f'export LS_COLORS="{out}"')
     shell_interpret = [
         f'fast-theme {home}/.config/zsh/fast-syntax-highlighting/themes/default.ini',
