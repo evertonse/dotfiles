@@ -1,4 +1,4 @@
-
+#Requires AutoHotkey v2.0
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
 ;     - Shift -> k
@@ -233,6 +233,39 @@ if invert_brackets {
 ;         Send "{}}"
 ;     }
 ; }
+
+#1::
+{
+    ; Search for Zen Browser window
+    zen_hwnd := WinExist("ahk_exe zen.exe")
+    
+    if (!zen_hwnd) {
+        ; Try alternative window class/title patterns for Zen Browser
+        zen_hwnd := WinExist("Zen Browser")
+        if (!zen_hwnd) {
+            zen_hwnd := WinExist("ahk_class MozillaWindowClass")
+        }
+    }
+    
+    if (zen_hwnd) {
+        ; Check if window is minimized
+        if (WinGetMinMax(zen_hwnd) == -1) {
+            WinRestore(zen_hwnd)
+        }
+        
+        ; Check if window is maximized
+        if (WinGetMinMax(zen_hwnd) != 1) {
+            WinMaximize(zen_hwnd)
+        }
+        
+        ; Activate/focus the window
+        WinActivate(zen_hwnd)
+    }
+    else {
+        ; Zen Browser not found
+        MsgBox("Zen Browser not found", "Error", 48)
+    }
+}
 
 #HotIf ; Only when league not active
 

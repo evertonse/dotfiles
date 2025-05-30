@@ -66,4 +66,5 @@ start sxhkd
 # start pulseaudio --start
 # start google-chrome-stable
 
-exec $WM_EXEC
+exec $WM_EXEC &
+xset r rate 235 32 &
