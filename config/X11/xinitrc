@@ -57,4 +57,4 @@ start xrandr --dpi 100
 # start pulseaudio --start
 # start google-chrome-stable
 
-exec $WM_EXEC &
+exec $WM_EXEC
