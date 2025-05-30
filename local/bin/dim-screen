@@ -15,6 +15,7 @@ print_help() {
     echo "Modes:"
     echo "  dark   → temperature=4500K, dim=0.2, backlight=9 (default)"
     echo "  light  → temperature=6500K, dim=0.9, backlight=50"
+    echo "  reset  → reset to normal"
     echo ""
     echo "Example:"
     echo "  $0 light     # switch to daytime settings"
@@ -41,6 +42,10 @@ case "$1" in
         ;;
     dark|"")
         # use default values
+    reset|"")
+        gammastep -m randr -x
+        light -S 100
+        exit 0
         ;;
     -h|--help)
         print_help
