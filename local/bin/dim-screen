@@ -40,12 +40,13 @@ case "$1" in
         backlight="50"
         mode="light"
         ;;
-    dark|"")
-        # use default values
-    reset|"")
+    reset)
         gammastep -m randr -x
         light -S 100
         exit 0
+        ;;
+    dark|"")
+        # use default values
         ;;
     -h|--help)
         print_help
