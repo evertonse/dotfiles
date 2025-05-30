@@ -5,21 +5,17 @@ start() {
   pidof -sx "$1" > /dev/null 2> /dev/null || "$@" &
 }
 
-
 # start tmux
-
 
 
 # Check if DISPLAY is unset and if the current terminal is /dev/tty1
 if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-    # Check if WM_EXEC is set and not empty
-    if [ -n "$WM_EXEC" ]; then
-        # Uncomment to start you're window manager executable
-        # exec "$WM_EXEC" &> /dev/null
-        exec "$WM_EXEC" &
-        # exec startx -- -keeptty -nolisten tcp > ~/.xorg.log 2>&1
-    fi
-fi
+    #
+    # Uncomment to start you're window manager executable
+    # Or jsut uncomment startx IF you have `xinitrc` setup
+    #
+    # After starting X11 THEN it runs xinitrc with DISPLAY set. That means you'll be able to call x's functions such as xmodmap xset
 
-# Supposedly not necessary as it'll trigger by itself once x11 starts
-start "${XDG_CONFIG_HOME:-$HOME/.config}/X11/xinitrc"
+    # exec "$WM_EXEC" &> /dev/null
+    exec startx -- -keeptty -nolisten tcp > ~/.xorg.log 2>&1
+fi
