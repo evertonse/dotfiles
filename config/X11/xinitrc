@@ -9,7 +9,7 @@ sysmodmap="/etc/X11/xinit/.Xmodmap"
 start() {
     if command -v "$1" > /dev/null 2>&1; then
         # Check if the program is already running
-        if ! pidof -sx "$1" > /dev/null; then
+        if ! pidof -sx "$1" &> /dev/null; then
             "$@" &
             echo "Started: $*" >> ~/xinit.log
         else
@@ -65,7 +65,4 @@ start xkbcomp "$HOME/.config/X11/xkb/keymap/excyber-keymap" "$DISPLAY"
 # Uncomment to start additional services or applications
 # start pulseaudio --start
 # start google-chrome-stable
-
-# Start the window manager or desktop environment
-exec startxfce4
 
