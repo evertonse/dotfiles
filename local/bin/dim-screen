@@ -61,7 +61,7 @@ echo "  → Dim: $dim"
 echo "  → Backlight: $backlight"
 
 # Apply settings first we reset with -x then actually apply
-gammastep -x
+gammastep -m randr -x
 gammastep -m randr -O "$temperature" -b "$dim:$dim" &> /dev/null
 # I think light is lowlevel from the kernel or something ? fuck If I know
 light -S "$backlight"
