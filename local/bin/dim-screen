@@ -1,0 +1,68 @@
+#!/usr/bin/env sh
+temperature="4500K"
+dim="0.2"
+backlight="9"
+mode="dark"
+
+# Help message
+print_help() {
+    echo "Usage: $0 [light|dark] [--help|-h]"
+    echo ""
+    echo "Adjusts screen color temperature, brightness, and backlight settings using:"
+    echo " - gammastep (for screen color)"
+    echo " - light (for backlight brightness)"
+    echo ""
+    echo "Modes:"
+    echo "  dark   → temperature=4500K, dim=0.2, backlight=9 (default)"
+    echo "  light  → temperature=6500K, dim=0.9, backlight=50"
+    echo ""
+    echo "Example:"
+    echo "  $0 light     # switch to daytime settings"
+    echo "  $0 dark      # switch to nighttime settings"
+    echo ""
+    exit 0
+}
+
+# Check for dependencies
+check_dependency() {
+    command -v "$1" >/dev/null 2>&1 || {
+        echo "Error: '$1' command not found. Please install it." >&2
+        exit 1
+    }
+}
+
+# Parse arguments
+case "$1" in
+    light)
+        temperature="6500K"
+        dim="0.9"
+        backlight="50"
+        mode="light"
+        ;;
+    dark|"")
+        # use default values
+        ;;
+    -h|--help)
+        print_help
+        ;;
+    *)
+        echo "Error: Unknown option '$1'" >&2
+        print_help
+        ;;
+esac
+
+check_dependency gammastep
+check_dependency light
+
+# Inform the user
+echo "Setting $mode mode:"
+echo "  → Temperature: $temperature"
+echo "  → Dim: $dim"
+echo "  → Backlight: $backlight"
+
+# Apply settings first we reset with -x then actually apply
+gammastep -x
+gammastep -m randr -O "$temperature" -b "$dim:$dim" &> /dev/null
+# I think light is lowlevel from the kernel or something ? fuck If I know
+light -S "$backlight"
+
