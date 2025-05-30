@@ -6,7 +6,8 @@ clean:
 	rm -rf *.bin
 
 push:
-	 git add . && git commit -m "$$(date)${MSG}" && git push
+	chmod +x local/bin/*
+	git add . && git commit -m "$$(date)${MSG}" && git push
 
 pull:
 	git pull
