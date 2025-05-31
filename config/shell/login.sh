@@ -19,7 +19,7 @@ fi
 
 # From here onwards it's only relevant if not on WSL
 if [ -n $WSL ]; then
-    exit 0
+    return 0
 fi
 
 
