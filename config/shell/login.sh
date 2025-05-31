@@ -18,7 +18,7 @@ if [ -e "$vim_runtime_dir" ]; then
 fi
 
 # From here onwards it's only relevant if not on WSL
-if [ -n $WSL ]; then
+if grep -i Microsoft /proc/version >/dev/null 2>&1; then
     return 0
 fi
 
