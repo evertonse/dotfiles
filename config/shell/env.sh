@@ -2,13 +2,13 @@
 safe_start() {
     # Check if the command is provided
     if [ -z "$1" ]; then
-        echo "Error: No command provided."
+        echo "Error: No command provided." >> /tmp/env.log
         return 1
     fi
 
     # Check if the command exists
     if ! command -v "$1" > /dev/null 2>&1; then
-        echo "Error: Command '$1' not found."
+        echo "Error: Command '$1' not found." >> /tmp/env.log
         return 1
     fi
 
@@ -17,7 +17,7 @@ safe_start() {
         # Start the command in the background
         "$@" &
     else
-        echo "$1 is already running."
+        echo "$1 is already running." >> /tmp/env.log
     fi
 }
 
