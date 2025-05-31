@@ -85,7 +85,9 @@ for command in backlight mount umount sv updatedb su poweroff; do
   alias $command="sudo $command"
 done
 
-alias reboot='pkill -2 chrome; sudo reboot'
+alias reboot='pkill -2 chrome; pkill -2 chromium; sudo reboot'
+alias kitty='kitty --start-as maximized'
+
 
 # Anime CLI function
 ani() {
