@@ -43,9 +43,6 @@ alacritty:
 	@rm -rf $(ROAMING)
 	@cp -r ./config/alacritty/ $(ROAMING)
 
-# WIN_USERPROFILE := "/mnt/c/Users/$(WIN_USER)"
-# wslconfig:
-# 	cp ./setup/win/.wslconfig $(WIN_USERPROFILE)
 
 file2clip: OURCE = "setup/win/assets/file2clip.exe"
 file2clip: DEST = "$$WINDOWS_DRIVER_PATH/Windows/"
