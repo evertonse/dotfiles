@@ -234,38 +234,125 @@ if invert_brackets {
 ;     }
 ; }
 
+FocusWindow(exe_name := "", window_title := "", window_class := "") {
+    target_hwnd := 0
+    
+    ; Try to find window using provided parameters
+    if (exe_name != "") {
+        target_hwnd := WinExist("ahk_exe " . exe_name)
+    }
+    
+    if (!target_hwnd && window_title != "") {
+        target_hwnd := WinExist(window_title)
+    }
+    
+    if (!target_hwnd && window_class != "") {
+        target_hwnd := WinExist("ahk_class " . window_class)
+    }
+    
+    if (target_hwnd) {
+        ; Check if window is minimized and restore if needed
+        if (WinGetMinMax(target_hwnd) == -1) {
+            WinRestore(target_hwnd)
+        }
+        
+        ; Activate first to prevent window snapping behavior
+        WinActivate(target_hwnd)
+        
+        ; Small delay to ensure activation, then maximize if not already maximized
+        Sleep(50)
+        if (WinGetMinMax(target_hwnd) != 1) {
+            WinMaximize(target_hwnd)
+        }
+        
+        return true
+    }
+    
+    return false
+}
+
+OpenApp(exe_path) {
+    try {
+        Run(exe_path)
+        return true
+    } catch {
+        return false
+    }
+}
+
+FocusOrOpen(exe_name := "", window_title := "", window_class := "", exe_path := "") {
+    if (FocusWindow(exe_name, window_title, window_class)) {
+        return true
+    }
+    
+    ; If not found and exe_path provided, try to open it
+    if (exe_path != "") {
+        if (OpenApp(exe_path)) {
+            ; Wait a bit for the app to start, then try to focus again
+            Sleep(2000)
+            return FocusWindow(exe_name, window_title, window_class)
+        }
+    }
+    
+    return false
+}
+
+
+; Hotkey examples
 #1::
 {
-    ; Search for Zen Browser window
-    zen_hwnd := WinExist("ahk_exe zen.exe")
-    
-    if (!zen_hwnd) {
-        ; Try alternative window class/title patterns for Zen Browser
-        zen_hwnd := WinExist("Zen Browser")
-        if (!zen_hwnd) {
-            zen_hwnd := WinExist("ahk_class MozillaWindowClass")
-        }
-    }
-    
-    if (zen_hwnd) {
-        ; Check if window is minimized
-        if (WinGetMinMax(zen_hwnd) == -1) {
-            WinRestore(zen_hwnd)
-        }
-        
-        ; Check if window is maximized
-        if (WinGetMinMax(zen_hwnd) != 1) {
-            WinMaximize(zen_hwnd)
-        }
-        
-        ; Activate/focus the window
-        WinActivate(zen_hwnd)
-    }
-    else {
-        ; Zen Browser not found
+    if (!FocusWindow("zen.exe", "Zen Browser", "MozillaWindowClass")) {
         MsgBox("Zen Browser not found", "Error", 48)
     }
 }
+
+; #2::
+; {
+;     if (!FocusWindow("chrome.exe", "", "Chrome_WidgetWin_1")) {
+;         MsgBox("Chrome not found", "Error", 48)
+;     }
+; }
+
+
+#5::
+{
+    if (!FocusWindow("notepad.exe", "Notepad", "Notepad")) {
+        MsgBox("Notepad not found", "Error", 48)
+    }
+}
+
+; #1::
+; {
+;     ; Search for Zen Browser window
+;     zen_hwnd := WinExist("ahk_exe zen.exe")
+;     
+;     if (!zen_hwnd) {
+;         ; Try alternative window class/title patterns for Zen Browser
+;         zen_hwnd := WinExist("Zen Browser")
+;         if (!zen_hwnd) {
+;             zen_hwnd := WinExist("ahk_class MozillaWindowClass")
+;         }
+;     }
+;     
+;     if (zen_hwnd) {
+;         ; Check if window is minimized
+;         if (WinGetMinMax(zen_hwnd) == -1) {
+;             WinRestore(zen_hwnd)
+;         }
+;         
+;         ; Check if window is maximized
+;         if (WinGetMinMax(zen_hwnd) != 1) {
+;             WinMaximize(zen_hwnd)
+;         }
+;         
+;         ; Activate/focus the window
+;         WinActivate(zen_hwnd)
+;     }
+;     else {
+;         ; Zen Browser not found
+;         MsgBox("Zen Browser not found", "Error", 48)
+;     }
+; }
 
 #HotIf ; Only when league not active
 

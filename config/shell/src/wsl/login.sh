@@ -1,5 +1,7 @@
 #!/usr/bin/sh
 
+export WSL="true"
+# Assuming C:\
 export WINDOWS_DRIVER_PATH="/mnt/c" # Assuming C:\
 export WINDOWS_SYSTEM32="$WINDOWS_DRIVER_PATH/Windows/System32/"
 
@@ -50,3 +52,5 @@ filter_windows_path() {
 if [ "$disable_windows_path" = 'true' ]; then
     PATH=$(filter_windows_path)
 fi
+
+safe_start tmux

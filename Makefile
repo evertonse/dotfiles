@@ -14,12 +14,12 @@ pull:
 
 
 # TODO make ahk slow down mouse then in drawing software or my pressing a certain big combination of keys
-ahk: SOURCE = ./config/league.ahk
-ahk: DEST   = /mnt/c/league.ahk
 ahk:
-	# @rm -f $(DEST);
-	@cp $(SOURCE) $(DEST)
-	wsl-open $(DEST)
+	@cp setup/win/src/ahk/league.ahk /mnt/c/league.ahk
+	wsl-open /mnt/c/league.ahk
+
+	@cp setup/win/src/ahk/wm.ahk /mnt/c/wm.ahk
+	wsl-open /mnt/c/wm.ahk
 
 
 
