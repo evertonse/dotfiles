@@ -6,6 +6,15 @@
 
 
 # Tips
+Pass files from PC to notebook
+
+On notebook find ip
+
+    ip addr show
+
+Then
+
+    rsync $HOME/path/to/file/pc user@ip:/path/to/file/notebook
 
 Keyboard
 
