@@ -164,6 +164,7 @@ def dotdirs():
     links = {
         # NOTE: Every path is relative to $HOME/.config
         # Source                                Destination
+        # Shell
         (f"{home}/.config/zsh/interactive.zsh", f"{home}/.config/zsh/.zshrc"),
         (f"{home}/.config/zsh/env.zsh",         f"{home}/.config/zsh/.zshenv"),
         (f"{home}/.config/zsh/login.zsh",       f"{home}/.config/zsh/.zprofile"),
@@ -175,7 +176,10 @@ def dotdirs():
         (f"{home}/.config/zsh/login.zsh",       f"{home}/.zprofile"),
         (f"{home}/.config/zsh/logout.zsh",      f"{home}/.zlogout"),
 
+        # X11
         (f"{home}/.config/X11/xinitrc",         f"{home}/.xinitrc"),
+        (f"{home}/.config/X11/xresources",      f"{home}/.Xresources"),
+        
         (f"{home}/.config/X11/xkeyboard.sh",    f"{home}/.local/bin/xkeyboard"),
         # ("/usr/local/bin/nvim")
 
