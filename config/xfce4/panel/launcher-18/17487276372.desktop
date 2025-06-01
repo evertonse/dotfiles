@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=kitty
+Comment=Fast, feature-rich, GPU based terminal
+Exec=kitty --start-as maximized
+Icon=kitty
+Path=
+Terminal=false
+StartupNotify=true
+X-XFCE-Source=file:///home/excyber/kitty.desktop

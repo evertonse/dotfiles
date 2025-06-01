@@ -1,0 +1,22 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=stremio %U
+Icon=smartcode-stremio
+StartupNotify=false
+Terminal=false
+Categories=Network;X-XFCE;X-Xfce-Toplevel;
+Keywords[pt_BR]=internet;web;navegador;surfar;explorar;xfce;
+Keywords[pt]=internet;web;navegador;surfar;explorador;xfce;
+Keywords=internet;web;browser;surf;explore;xfce;
+OnlyShowIn=XFCE;
+X-XFCE-MimeType=x-scheme-handler/http;x-scheme-handler/https;
+X-AppStream-Ignore=True
+Name[pt_BR]=Stremio
+Name[pt]=Navegador web
+Name=Web Browser
+Comment[pt_BR]=Video organizer for your Movies, TV Shows and TV Channels
+Comment[pt]=Navegar na web
+Comment=Browse the web
+X-XFCE-Source=file:///usr/share/applications/xfce4-web-browser.desktop
+Path=

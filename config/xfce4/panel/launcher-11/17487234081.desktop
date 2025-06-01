@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Rofi
+Comment=
+Exec=rofi -show run
+Icon=rofi
+Path=
+Terminal=false
+StartupNotify=false
+X-XFCE-Source=file:///home/excyber/Rofi.desktop
