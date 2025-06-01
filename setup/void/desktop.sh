@@ -4,3 +4,5 @@ sudo xbps-install -Syu elogind dbus dbus-elogind polkit-elogind
 sudo ln -sf /etc/sv/elogind /var/service/
 sudo ln -sf /etc/sv/dbus    /var/service/
 sudo ln -sf /etc/sv/polkitd /var/service/
+
+sudo xbps-install -y xcursor-themes xcursor-vanilla-dmz xcursor-vanilla-dmz-aa

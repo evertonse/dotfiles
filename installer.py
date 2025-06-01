@@ -167,6 +167,7 @@ def dotdirs():
         (f"{home}/.config/zsh/interactive.zsh", f"{home}/.config/zsh/.zshrc"),
         (f"{home}/.config/zsh/env.zsh",         f"{home}/.config/zsh/.zshenv"),
         (f"{home}/.config/zsh/login.zsh",       f"{home}/.config/zsh/.zprofile"),
+        (f"{home}/.config/zsh/login-post.zsh",  f"{home}/.config/zsh/.zlogin"),
         (f"{home}/.config/zsh/logout.zsh",      f"{home}/.config/zsh/.zlogout"),
         (f"{home}/.config/zsh/interactive.zsh", f"{home}/.zshrc"),
         (f"{home}/.config/zsh/interactive.zsh", f"{home}/.zshrc"),

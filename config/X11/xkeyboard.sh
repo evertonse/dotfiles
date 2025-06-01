@@ -18,7 +18,7 @@ start() {
 start setxkbmap -option caps:escape
 start xmodmap -e "keycode 34 = BackSpace"
 
-xset r rate 235 32 &
+xset r rate 220 32 &
 # start xset s off -dpms
 
 start sxhkd

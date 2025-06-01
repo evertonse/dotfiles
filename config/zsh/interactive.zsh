@@ -445,6 +445,13 @@ NEWLINE=$'\n'
 PROMPT='[%n @ %B%~%b]${NEWLINE}$ '
 # PROMPT='${NEWLINE}$ '
 RPROMPT='$(exit_code_indicator) $(git_branch) %T'
+
+# From here onwards it's only relevant if not on WSL
+if grep -i Microsoft /proc/version > /dev/null 2>&1; then
+    RPROMPT='$(exit_code_indicator) $(git_branch) wsl %T'
+else
+    RPROMPT='$(exit_code_indicator) $(git_branch) %T'
+fi
 ###########################################################################################################################
 
 ###########################################################################################################################

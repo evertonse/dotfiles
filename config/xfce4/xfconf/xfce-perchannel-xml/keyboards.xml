@@ -4,8 +4,8 @@
   <property name="Default" type="empty">
     <property name="Numlock" type="bool" value="false"/>
     <property name="KeyRepeat" type="empty">
-      <property name="Delay" type="int" value="200"/>
-      <property name="Rate" type="int" value="30"/>
+      <property name="Delay" type="int" value="220"/>
+      <property name="Rate" type="int" value="32"/>
     </property>
   </property>
 </channel>

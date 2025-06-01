@@ -1,12 +1,36 @@
-
 ![](assets/webdev_vs_c_enJOYer.png)
+
+# Tips
+
+## Mount remote directory to edit locally
+
+Install SSHFS
+
+    mkdir ~/remote_mount
+
+Mount remote directory
+
+    sshfs user@remote-host:/remote/path ~/local/mount/point
+
+When done, unmount
+
+    fusermount -u ~/local/mount/point
+    umount ~/local/mount/point         # privileged
+
+Edit files with your local Neovim
+
+    nvim ~/local/mount/point/file.txt
+
+Can also do this in neovim, haven't test it tho
+
+    :edit scp://user@remote-host//path/to/file
+
 
 ## Cleaning
     on arch https://averagelinuxuser.com/clean-arch-linux/
 
 
-# Tips
-Pass files from PC to notebook
+## Copy directory from PC to notebook
 
 On notebook find ip
 
@@ -14,13 +38,13 @@ On notebook find ip
 
 Then
 
-    rsync $HOME/path/to/file/pc user@ip:/path/to/file/notebook
+    rsync -r $HOME/path/to/file/pc_dir/ user@ip:/path/to/file/notebook_dir/
 
-Keyboard
+## Keyboard
 
     https://isamert.net/2020/05/30/better-keyboard-experience-in-linux.html
 
-Posix Shell
+## Posix Shell
 
     https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18
 

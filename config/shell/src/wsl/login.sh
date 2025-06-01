@@ -53,16 +53,13 @@ if [ "$disable_windows_path" = 'true' ]; then
     PATH=$(filter_windows_path)
 fi
 
-# Check if tmux is installed
 if ! command -v tmux &> /dev/null; then
-    echo "tmux is not installed. Exiting."
-    exit 1
+    return 0
 fi
 
-# Check if a tmux server is already running
+# Tmux server is already running, nothing to do.
 if pgrep -x "tmux" > /dev/null; then
-    echo "tmux is already running. Exiting."
-    exit 0
+    return 0
 fi
 
 # Check if the tmux session named 'code' exists
