@@ -229,7 +229,9 @@ draw_bold_text_with_bright_colors = true
 # foreground = "#bea492"
 # foreground = "#a58e7e"
 # foreground = "#e3e0dd"
-foreground = "#c0b0a2"
+# foreground = "#c0b0a2"
+foreground = "#BEA496"
+
 
 # >>> [hex(x) for x in [190,164,146]]
 # ['0xbe', '0xa4', '0x92']
@@ -239,7 +241,7 @@ foreground = "#c0b0a2"
 # background = "#232323"
 # background = "#191919"
 # background = "#201817"
-background = "#181512"
+background = "#191612"
 # ('0x18', '0x1f', '0x12')
 
 
