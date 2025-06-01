@@ -18,10 +18,10 @@ start() {
 # Set DPI and other settings
 start xrandr --dpi 100
 
-safe_start xkeyboard
-safe_start alacritty
-safe_start dim-screen dark
-safe_start chromium
+start xkeyboard
+start alacritty
+start dim-screen dark
+start chromium
 
 
 # Uncomment to start additional services or applications
