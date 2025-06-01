@@ -26,5 +26,5 @@ pulseaudio &
 google-chrome-stable &
 exec dwmblocks &
 # mode-sleep &
-#exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
+# exec slstatus & # if you use slstatus instead of signal sending Giga Chad dwmblocks 
 

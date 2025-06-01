@@ -53,4 +53,4 @@ if [ "$disable_windows_path" = 'true' ]; then
     PATH=$(filter_windows_path)
 fi
 
-safe_start tmux
+# safe_start tmux

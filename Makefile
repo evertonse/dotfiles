@@ -15,16 +15,16 @@ pull:
 
 # TODO make ahk slow down mouse then in drawing software or my pressing a certain big combination of keys
 ahk:
-	@cp setup/win/src/ahk/league.ahk /mnt/c/league.ahk
+	@cp setup/windows/src/ahk/league.ahk /mnt/c/league.ahk
 	wsl-open /mnt/c/league.ahk
 
-	@cp setup/win/src/ahk/wm.ahk /mnt/c/wm.ahk
+	@cp setup/windows/src/ahk/wm.ahk /mnt/c/wm.ahk
 	wsl-open /mnt/c/wm.ahk
 
 
 
 
-wsl-config: SOURCE = ./setup/win/.wslconfig
+wsl-config: SOURCE = ./setup/windows/.wslconfig
 wsl-config: DEST = "$$WIN_USERPROFILE/.wslconfig"
 wsl-config:
 	echo "Configuring wsl on guest linux vm ..."
@@ -44,7 +44,7 @@ alacritty:
 	@cp -r ./config/alacritty/ $(ROAMING)
 
 
-file2clip: OURCE = "setup/win/assets/file2clip.exe"
+file2clip: OURCE = "setup/windows/assets/file2clip.exe"
 file2clip: DEST = "$$WINDOWS_DRIVER_PATH/Windows/"
 file2clip:
 	cp -i $(SOURCE) $(DEST)

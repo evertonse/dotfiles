@@ -2,7 +2,6 @@
 notes.md
 
 # Django #
-*.log
 *.pot
 *.pyc
 __pycache__
@@ -104,7 +103,6 @@ celerybeat-schedule.*
 env/ 
 venv/ 
 ENV/ 
-env.bak/ 
 venv.bak/ 
 
 # mkdocs documentation 
@@ -176,3 +174,12 @@ Temporary Items
 # misc
 .last_yank.txt
 .trails
+
+*.swp
+*.bak
+*.tmp
+*.log
+Thumbs.db
+.idea/
+.vscode/
+

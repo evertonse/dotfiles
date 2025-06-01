@@ -190,6 +190,8 @@ def dotdirs():
         (f"./start.sh", f"{home}/start.sh"),
     }
 
+    cmd(f"chmod +x local/bin/*")
+
     for file in dirs:
         src = Path(file)
         dst = Path(home, f".{src}")
@@ -234,7 +236,6 @@ def dotdirs():
     # cmd(
     #     f"xkbcomp -w0 -I$HOME/.config/X11/xkb/ {home}/.config/X11/xkb/keymap/excyber-keymap $DISPLAY"
     # )
-    cmd(f"chmod +x {home}/.local/bin/*")
     cmd(
         f"ln -sf {home}/.config/picom/picom.jonaburg.conf {home}/.config/picom/picom.conf"
     )
@@ -272,7 +273,6 @@ def dotrepos():
 def dotfiles():
     files = [
         *glob("./.*"),
-        "./pacman.conf",
         "./.gitconfig",
     ]
 
@@ -323,7 +323,6 @@ install_commands = [
 ]
 
 autoyes = False
-
 
 def main():
     global autoyes

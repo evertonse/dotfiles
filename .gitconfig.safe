@@ -1,7 +1,0 @@
-[user]
-	email = evertonse.junior@gmail.com
-	name = evertonse
-[credential]
-	helper = store
-[init]
-	defaultBranch = main
