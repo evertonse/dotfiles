@@ -16,7 +16,10 @@ start() {
 
 # Remap keys
 start setxkbmap -option caps:escape
-start xmodmap -e "keycode 34 = BackSpace"
+
+xmodmap -e "keycode 34 = BackSpace"
+xmodmap -e "keycode 49 = BackSpace"
+xmodmap -e "keycode 151 = Alt_R"
 
 xset r rate 220 32 &
 # start xset s off -dpms
