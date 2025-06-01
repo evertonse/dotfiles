@@ -184,6 +184,8 @@ def dotdirs():
         (f"{home}/.config/eww.XX/", f"{home}/.config/eww"),
         (f"{home}/.config/waybar.Zanius/", f"{home}/.config/waybar"),
         (f"{home}/.config/rofi.titus/", f"{home}/.config/rofi"),
+
+        (f"{home}/.config/etc/locale.conf", f"/etc/locale.conf"),
     }
 
     copies = {
@@ -214,7 +216,7 @@ def dotdirs():
         src = Path(src)
         dst = Path(dst)
         cmd(f"sudo rm -rf {dst} || rm -f {dst}")
-        cmd(f"ln -sfT {src} {dst}")
+        cmd(f"sudo ln -sfT {src} {dst}")
     print(f"<<--------Links--------\n")
 
     print(f">>--------Copies--------\n")
