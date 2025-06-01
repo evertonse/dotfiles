@@ -6,9 +6,5 @@ if grep -i Microsoft /proc/version > /dev/null 2>&1; then
     return 0
 fi
 
-safe_start xkeyboard
-safe_start alacritty
-safe_start dim-screen dark
-safe_start chromium
 
 echo "Login Post works" > /tmp/login-post.log

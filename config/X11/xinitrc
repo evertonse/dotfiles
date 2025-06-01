@@ -15,44 +15,13 @@ start() {
     fi
 }
 
-
-
-userresources="$HOME/.config/X11/xresources"
-usermodmap="$HOME/.config/X11/xmodmap"
-sysresources="/etc/X11/xinit/.Xresources"
-sysmodmap="/etc/X11/xinit/.Xmodmap"
-#
-# # Load system resources
-# if [ -f "$sysresources" ]; then
-#     start xrdb -merge "$sysresources"
-# fi
-#
-# if [ -f "$sysmodmap" ]; then
-#     start xmodmap "$sysmodmap"
-# fi
-#
-# # Load user resources
-# if [ -f "$userresources" ]; then
-#     start xrdb -merge "$userresources"
-# fi
-#
-# if [ -f "$usermodmap" ]; then
-#     start xmodmap "$usermodmap" > ~/xmodap.works
-# fi
-#
-# # Start additional scripts if they exist
-# if [ -d /etc/X11/xinit/xinitrc.d ]; then
-#     for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
-#         [ -x "$f" ] && . "$f"
-#     done
-#     unset f
-# fi
-
-# safe_source "${XDG_CONFIG_HOME:-$HOME/.config}/X11/xkeyboard.sh"
-start xkeyboard
-
 # Set DPI and other settings
 start xrandr --dpi 100
+
+safe_start xkeyboard
+safe_start alacritty
+safe_start dim-screen dark
+safe_start chromium
 
 
 # Uncomment to start additional services or applications
