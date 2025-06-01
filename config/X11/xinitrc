@@ -57,9 +57,9 @@ start xkeyboard
 start xrandr --dpi 100
 
 start dim-screen dark
-start stremio
 start chromium
 start alacritty
+start stremio
 
 
 
