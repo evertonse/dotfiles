@@ -2,6 +2,11 @@
 
 # Tips
 
+## X11 check which cursor is being used
+
+    ls -l ~/.icons/default/index.theme  # Should point to your theme
+    xrdb -query | grep Xcursor         # Should show your theme
+
 ## Mount remote directory to edit locally
 
 Install SSHFS
