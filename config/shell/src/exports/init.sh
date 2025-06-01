@@ -72,11 +72,18 @@ fi
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
 
-# Make themes be dark
+#
+# Make themes be dark (edit: for now the files being under ~/.config is enough to pick up the themes)
+# So we're leaving this uncomment just in case any problem were to arrive we can easily force some themes again
+# But tbf that might mess up the cursor theme, because it's distinct form the overall theme.
+#
+# Gtk
 # export GTK2_RC_FILES="$XDG_DATA_HOME/themes/dark/gtk-2.0/gtkrc"
 # export GTK_THEME="Adwaita:dark"
+# QT
 # export QT_QPA_PLATFORMTHEME="gtk2" # Have QT use gtk2 theme.
 # export QT_STYLE_OVERRIDE=adwaita-dark
+export QT_QPA_EGLFS_HIDECURSOR=0
 
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -117,6 +124,7 @@ export GDK_SCALE=1
 
 export XCURSOR_SIZE=26
 export XCURSOR_THEME=Bibata-Modern-Ice
+export XCURSOR_PATH="$XDG_CONFIG_HOME/icons/"
 ############################################
 ############################################
 ############################################
