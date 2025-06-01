@@ -114,8 +114,9 @@ export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
 ############################################
 export WLR_NO_HARDWARE_CURSORS=1
 export GDK_SCALE=1
+
 export XCURSOR_SIZE=26
-export XCURSOR_THEME=DMZ-White
+export XCURSOR_THEME=Bibata-Modern-Ice
 ############################################
 ############################################
 ############################################
