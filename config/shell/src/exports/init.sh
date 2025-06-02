@@ -42,6 +42,10 @@ export XDG_PROGRAMS_DIR="$HOME/programs" # Made-up. Used for compiling daily dri
 
 export XDG_CURRENT_DESKTOP="$WM"
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+
 # Generate LS_COLORS https://geoff.greer.fm/lscolors/
 # Or using `vivid` program
 # Using POSIX-compliant shell syntax

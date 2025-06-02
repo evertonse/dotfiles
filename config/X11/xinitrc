@@ -55,7 +55,7 @@ start xkeyboard
 # Set DPI and other settings
 start xrandr --dpi 100
 
-start dim-screen dark
+start dim-screen light
 start chromium --disable-features=DefaultPassthroughCursor
 start alacritty
 start stremio
