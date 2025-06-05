@@ -178,6 +178,8 @@ def dotdirs():
         (f"{home}/.config/zsh/login-post.zsh",  f"{home}/.zlogin"),
 
         (f"{home}/.config/icons/",  f"{home}/.icons/"),
+        # (f"{home}/.config/themes/",  f"{home}/.themes/"),
+        # (f"{home}/.config/fonts/",  f"{home}/.fonts/"),
 
         # X11
         (f"{home}/.config/X11/xinitrc",         f"{home}/.xinitrc"),

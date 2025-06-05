@@ -68,6 +68,29 @@ Login Shells
 
     vim /etc/systemd/system/getty@tty1.service.d/autologin.conf
 
+
+## Wifi
+https://www.youtube.com/watch?v=X2rFkqyD0oY&list=TLPQMDUwNjIwMjVLJSzEa9zU_g&index=2
+
+Check devices
+
+    ifconfig -a
+    ip a
+    iwconfig
+
+Check hardware components
+
+    lspci -knn | grep Network -A3 # -A3 to show 3 lines after the match -k Shows kernel drivers -n to show vendor stuff
+    sudo lshw -class network
+
+Check is there's a driver listing
+
+    inxi -N
+
+Check if its loaded
+
+    lsmod| grep -e wl -e
+
 ## Wayland
 
 
