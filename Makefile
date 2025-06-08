@@ -18,8 +18,8 @@ ahk:
 	@cp setup/windows/src/ahk/league.ahk /mnt/c/league.ahk
 	wsl-open /mnt/c/league.ahk
 
-	@cp setup/windows/src/ahk/wm.ahk /mnt/c/wm.ahk
-	wsl-open /mnt/c/wm.ahk
+	# @cp setup/windows/src/ahk/wm.ahk /mnt/c/wm.ahk
+	# wsl-open /mnt/c/wm.ahk
 
 
 

@@ -18,8 +18,10 @@ SendMode "Input"
 
 ; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite ksk being up
 LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
+
 #HotIf WinActive(LEAGUE_PROCESS_NAME)
 WinWaitActive LEAGUE_PROCESS_NAME
+
 active_pid := WinGetPID(LEAGUE_PROCESS_NAME)
 prio := "Realtime"
 if ProcessSetPriority(prio, active_pid) {
@@ -31,31 +33,32 @@ if ProcessSetPriority(prio, active_pid) {
 l_down := False
 $^s:: {
     global l_down
-    if (l_down) {
+    if (GetKeyState("l")) {
+    ; if (l_down) {
         Send "{l up}"
     } else {
         Send "{l down}"
     }
+
     l_down :=  not l_down
 }
 
-CapsLock::y
+Esc::y
+CapsLock::Esc
 
 ; ^s::^s
 ; $s:: {
 ;     Send "{s down}{c}"
 ; }
  
-
-
 s::s
 $s::{
     ; SetKeyDelay -1
     ; SetMouseDelay -1
-    if (GetKeyState("k")) {
+    if (GetKeyState(".")) {
         Send "{s}"
     } else {
-        Send "{k down}{s}{k up}"
+        Send "{. down}{Backspace}{s}{. up}"
     }
 }
 
@@ -63,19 +66,16 @@ u::u
 $u::{
     ; SetKeyDelay -1
     ; SetMouseDelay -1
-    if (GetKeyState("k")) {
+    if (GetKeyState(".")) {
         Send "{u}"
     } else {
-        Send "{k down}{u}{k up}"
+        Send "{. down}{Backspace}{u}{. up}"
     }
 }
 
 
-; $Shift & RButton::{
-;     Send "{u}"
-; }
 
-; Shift::k
+Shift::.
 ':: Shift
 
 
@@ -94,9 +94,9 @@ $u::{
 
 RButton:: u
 $RButton:: {
-    SendInput "{k down}{u}"
+    SendInput "{. down}{u}"
     if (not GetKeyState("Shift", "P")) {
-        SendInput "{k up}"
+        SendInput "{. up}"
     }
 }
 
