@@ -134,15 +134,6 @@ NumpadDiv::NumpadDiv
 Shift::Shift
 RButton::RButton
 
-; $(RAlt & c) :: {
-;     if (GetKeyState("Shift", "P")) {
-;         Send "{Ç}"
-;     } else {
-;         Send "{ç}"
-;     }
-; }
-; See for key and meaning of things like <^>!, https://www.autohotkey.com/docs/v2/Hotkeys.htm
-
 
 <^>!c::ç
 
@@ -175,6 +166,9 @@ $<^>!f::&
 ; <^>!i::#&
 ; <^>!+i::#$
 ;
+<^>!o::"
+<^>!+o::'
+
 <^>!o::"
 <^>!+o::'
 
