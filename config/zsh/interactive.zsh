@@ -191,10 +191,10 @@ zle -N accept_menu_and_normal-mode
 bindkey -M menuselect '\e' menu_cancel_to_normal_mode
 
 # Use vim keys in tab complete menu:
-bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect ';' vi-down-line-or-history
 
 ###########################################################################################################################
 
@@ -342,10 +342,10 @@ vi_g_prefix_widget() {
   read -k key  # Read the next key after 'g'
 
   case "$key" in
-    l)
+    ';')
       zle end-of-line
       ;;
-    h)
+    j)
       zle beginning-of-line
       ;;
     *)
@@ -356,12 +356,36 @@ vi_g_prefix_widget() {
   esac
 }
 
+# Use bindkey -M vicmd or bindkey -M viopp to inspect current bindings.
 zle -N vi_g_prefix_widget
 
 # Bind 'gh' to move to beginning of line
 # Bind 'g' in vicmd to our custom prefix widget
 # Bind 'gl' to move to end of line
 bindkey -M vicmd 'g' vi_g_prefix_widget
+# Make sure we're using vi keymaps
+bindkey -v
+
+# Clear old movement bindings from vicmd and viopp
+for key in j k l \;;
+do
+  bindkey -M vicmd $key self-insert-unmeta
+  bindkey -M viopp $key self-insert-unmeta
+done
+
+# Remap jkl; instead of hjkl
+# 'vicmd' is for normal mode
+# 'viopp' is for operator-pending mode (e.g., after d, y, c, etc.)
+
+bindkey -M vicmd j vi-backward-char
+bindkey -M vicmd k down-line-or-history
+bindkey -M vicmd l up-line-or-history
+bindkey -M vicmd \; vi-forward-char
+
+bindkey -M viopp j vi-backward-char
+bindkey -M viopp k down-line-or-history
+bindkey -M viopp l up-line-or-history
+bindkey -M viopp \; vi-forward-char
 
 
 

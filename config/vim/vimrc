@@ -1,8 +1,8 @@
 " Remap keys in normal, visual, and operator-pending modes
+
 " nnoremap l h
 " nnoremap ; l
 " nnoremap h b
-"
 " onoremap l h
 " onoremap ; l
 " onoremap h b
