@@ -1,11 +1,26 @@
 " Remap keys in normal, visual, and operator-pending modes
+" '''''''''''''''''''''''''''''''''''''''''''''''''''''''
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
 
-" nnoremap l h
-" nnoremap ; l
-" nnoremap h b
-" onoremap l h
-" onoremap ; l
-" onoremap h b
+onoremap j h
+onoremap k j
+onoremap l k
+onoremap ; l
+
+vnoremap j h
+vnoremap k j
+vnoremap l k
+vnoremap ; l
+
+xnoremap j h
+xnoremap k j
+xnoremap l k
+xnoremap ; l
+
+" '''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 nnoremap gh _
 nnoremap gl $

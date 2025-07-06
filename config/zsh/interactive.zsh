@@ -372,6 +372,17 @@ do
   bindkey -M vicmd $key self-insert-unmeta
   bindkey -M viopp $key self-insert-unmeta
 done
+# Custom widget to move backward over a WORD (like Vim's B)
+backward_big_word() {
+  while [[ $LBUFFER != *[![:space:]] ]]; do
+    zle backward-char || break
+  done
+
+  while [[ $LBUFFER == *[^[:space:]] ]]; do
+    zle backward-char || break
+  done
+}
+zle -N backward_big_word
 
 # Remap jkl; instead of hjkl
 # 'vicmd' is for normal mode
@@ -386,6 +397,18 @@ bindkey -M viopp j vi-backward-char
 bindkey -M viopp k down-line-or-history
 bindkey -M viopp l up-line-or-history
 bindkey -M viopp \; vi-forward-char
+
+# Unbind default b/B in vicmd and viopp
+bindkey -M vicmd b self-insert-unmeta
+bindkey -M vicmd B self-insert-unmeta
+bindkey -M viopp b self-insert-unmeta
+bindkey -M viopp B self-insert-unmeta
+
+bindkey -M vicmd m vi-backward-word
+bindkey -M vicmd M vi-backward-blank-word
+bindkey -M viopp m vi-backward-word
+bindkey -M viopp M vi-backward-blank-word
+
 
 
 
