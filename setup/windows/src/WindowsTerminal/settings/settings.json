@@ -1,17 +1,10 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://raw.githubusercontent.com/microsoft/terminal/main/doc/cascadia/profiles.schema.json",
-    "actions":
+    "actions": 
     [
         {
-            "command":
-            {
-                "action": "scrollUp"
-            },
-            "id": "User.scrollUp.0"
-        },
-        {
-            "command":
+            "command": 
             {
                 "action": "sendInput",
                 "input": "\u0002"
@@ -29,10 +22,17 @@
         {
             "command": 
             {
-                "action": "sendInput",
-                "input": "\u001b[48;5u"
+                "action": "scrollUp"
             },
-            "id": "User.sendInput.FE935414"
+            "id": "User.scrollUp.0"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001b[59;5u"
+            },
+            "id": "User.sendInput.AC260877"
         },
         {
             "command": 
@@ -52,6 +52,14 @@
         {
             "command": 
             {
+                "action": "sendInput",
+                "input": "\u001b[48;5u"
+            },
+            "id": "User.sendInput.FE935414"
+        },
+        {
+            "command": 
+            {
                 "action": "moveFocus",
                 "direction": "left"
             },
@@ -60,17 +68,17 @@
         {
             "command": 
             {
-                "action": "prevTab"
-            },
-            "id": "User.prevTab.0"
-        },
-        {
-            "command": 
-            {
                 "action": "sendInput",
                 "input": "\u001b[15;6u"
             },
             "id": "User.sendInput.708B4BBE"
+        },
+        {
+            "command": 
+            {
+                "action": "prevTab"
+            },
+            "id": "User.prevTab.0"
         },
         {
             "command": 
@@ -104,16 +112,16 @@
             "id": "User.moveFocus.F747588A"
         },
         {
+            "command": "toggleFullscreen",
+            "id": "User.toggleFullscreen"
+        },
+        {
             "command": 
             {
                 "action": "resizePane",
                 "direction": "left"
             },
             "id": "User.resizePane.2A0DA8E0"
-        },
-        {
-            "command": "toggleFullscreen",
-            "id": "User.toggleFullscreen"
         },
         {
             "command": 
@@ -150,20 +158,16 @@
         {
             "command": 
             {
-                "action": "splitPane"
-            },
-            "id": "User.splitPane.91AB55B1"
-        },
-        {
-            "command": 
-            {
                 "action": "nextTab"
             },
             "id": "User.nextTab.0"
         },
         {
-            "command": "paste",
-            "id": "User.paste"
+            "command": 
+            {
+                "action": "splitPane"
+            },
+            "id": "User.splitPane.91AB55B1"
         },
         {
             "command": 
@@ -172,6 +176,10 @@
                 "direction": "next"
             },
             "id": "User.findMatch.2A0DA8E0"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
         },
         {
             "command": "find",
@@ -240,6 +248,10 @@
     "keybindings": 
     [
         {
+            "id": "User.sendInput.AC260877",
+            "keys": "ctrl+;"
+        },
+        {
             "id": null,
             "keys": "ctrl+shift+up"
         },
@@ -256,10 +268,6 @@
             "keys": "ctrl+shift+9"
         },
         {
-            "id": "User.sendInput.CC94DA31",
-            "keys": "ctrl+b"
-        },
-        {
             "id": null,
             "keys": "alt+shift+left"
         },
@@ -268,20 +276,24 @@
             "keys": "ctrl+shift+0"
         },
         {
-            "id": null,
-            "keys": "ctrl+shift+v"
+            "id": "User.sendInput.CC94DA31",
+            "keys": "ctrl+b"
         },
         {
             "id": "User.sendInput.708B4BBE",
             "keys": "ctrl+shift+o"
         },
         {
-            "id": "User.sendInput.AE44F3AD",
-            "keys": "ctrl+shift+i"
+            "id": null,
+            "keys": "ctrl+shift+v"
         },
         {
             "id": null,
             "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.sendInput.AE44F3AD",
+            "keys": "ctrl+shift+i"
         },
         {
             "id": "User.paste",
@@ -292,12 +304,16 @@
             "keys": "f1"
         },
         {
+            "id": null,
+            "keys": "shift+insert"
+        },
+        {
             "id": "User.copy.644BA8F2",
             "keys": "ctrl+shift+y"
         },
         {
             "id": null,
-            "keys": "shift+insert"
+            "keys": "ctrl+0"
         },
         {
             "id": null,
@@ -305,7 +321,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+0"
+            "keys": "ctrl+shift+k"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+c"
         },
         {
             "id": "User.scrollDown.0",
@@ -313,19 +333,7 @@
         },
         {
             "id": null,
-            "keys": "ctrl+c"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+shift+k"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+comma"
-        },
-        {
-            "id": null,
-            "keys": "ctrl+v"
+            "keys": "ctrl+shift+f"
         },
         {
             "id": null,
@@ -333,11 +341,11 @@
         },
         {
             "id": null,
-            "keys": "ctrl+shift+f"
+            "keys": "ctrl+v"
         },
         {
             "id": null,
-            "keys": "ctrl+alt+c"
+            "keys": "ctrl+comma"
         },
         {
             "id": "User.scrollUp.0",
@@ -345,11 +353,15 @@
         },
         {
             "id": null,
-            "keys": "ctrl+alt+v"
+            "keys": "ctrl+alt+c"
         },
         {
             "id": "User.toggleFullscreen",
             "keys": "win+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+v"
         },
         {
             "id": null,
@@ -361,19 +373,15 @@
         },
         {
             "id": null,
-            "keys": "alt+shift+right"
-        },
-        {
-            "id": null,
             "keys": "ctrl+shift+c"
         },
         {
             "id": null,
-            "keys": "alt+left"
+            "keys": "alt+shift+right"
         },
         {
             "id": null,
-            "keys": "alt+down"
+            "keys": "alt+left"
         },
         {
             "id": "User.nextTab.0",
@@ -381,11 +389,15 @@
         },
         {
             "id": null,
-            "keys": "alt+right"
+            "keys": "alt+down"
         },
         {
             "id": null,
             "keys": "ctrl+alt+p"
+        },
+        {
+            "id": null,
+            "keys": "alt+right"
         },
         {
             "id": null,
@@ -400,12 +412,12 @@
             "keys": "alt+f4"
         },
         {
-            "id": null,
-            "keys": "alt+enter"
-        },
-        {
             "id": "User.prevTab.0",
             "keys": "ctrl+alt+h"
+        },
+        {
+            "id": null,
+            "keys": "alt+enter"
         },
         {
             "id": null,
@@ -424,12 +436,12 @@
             "keys": "ctrl+insert"
         },
         {
-            "id": null,
-            "keys": "ctrl+alt+n"
-        },
-        {
             "id": "User.tabSearch",
             "keys": "ctrl+alt+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+n"
         },
         {
             "id": null,
@@ -530,7 +542,7 @@
             },
             {
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
@@ -544,12 +556,6 @@
                 "hidden": true,
                 "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": false,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
             },
             {
                 "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",

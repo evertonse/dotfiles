@@ -1,2 +1,9 @@
 { "command": { "action": "sendInput", "input": "\u001b[43;5u" }, "keys": "ctrl+shift+i" },
 { "command": { "action": "sendInput", "input": "\u001b[15;6u" }, "keys": "ctrl+shift+o" },
+{
+    "command": {
+        "action": "sendinput",
+        "input": "\u001b[59;5u" // esc[59;5u = ctrl+;
+    },
+    "keys": "ctrl+;"
+},
