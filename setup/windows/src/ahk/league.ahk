@@ -134,6 +134,15 @@ NumpadDiv::NumpadDiv
 Shift::Shift
 RButton::RButton
 
+; $(RAlt & c) :: {
+;     if (GetKeyState("Shift", "P")) {
+;         Send "{Ç}"
+;     } else {
+;         Send "{ç}"
+;     }
+; }
+; See for key and meaning of things like <^>!, https://www.autohotkey.com/docs/v2/Hotkeys.htm
+
 
 <^>!c::ç
 
@@ -144,40 +153,48 @@ RButton::RButton
 
 $<^>!h::/
 $+<^>!h::\
+$^h::|
+
 $<^>!z::|
 
 ; <^>!z::#\
 <^>!j::=
 <^>!k::_
 +<^>!k::-
-<^>!l::%
+<^>!l::?
 <^>!n::%
-<^>!b::!
-
+<^>!;::!
+<^>!b::Send "{~}{space}{/}"
 
 $<^>!a::$
-
-$<^>!s::Send "{+}"
-$<^>!d::Send "{-}"
+$<^>!s::Send "{0}"
+$<^>!d::$
 $<^>!x::*
 $<^>!f::&
 <^>!g::#
 
+'::"
++'::'
+
+$<^>!i::-
+$<^>!u::+
+<^>!o::*
+<^>!p::\
+<^>!+p::|
+<^>!+o::|
+
 ; <^>!i::#&
 ; <^>!+i::#$
 ;
-<^>!o::"
-<^>!+o::'
 
-<^>!o::"
-<^>!+o::'
 
 
 
 ; '{' needs escaping with `
 
 invert_brackets := False
-; // This if doesn't work. It's compile time or something
+
+; // This 'if' doesn't work. It's compile time or something
 if invert_brackets {
     ; $<^>!8::`{
     ; $<^>!9::}
@@ -208,16 +225,14 @@ if invert_brackets {
 ; RControl & 9::#<
 ; RControl & 0::#>
 
-<^>!;::Send "{~}{space}"
 <^>!+;::Send "{^}{space}"
-
 ; +~::=
 ; ~::_
 ;
 ; <^>!~::+
 ; ^~::-
 
-<^>!space::Backspace
+<^>!space::^Backspace
 
 
 ; RAlt & a::{
