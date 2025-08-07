@@ -4,7 +4,6 @@
 ;     - Shift -> k
 ;     - CapsLock -> y ; this one might be optional idk
 
-SetCapsLockState "Off"
 
 ; A_HotkeyInterval := 0  ; This is the default value (milliseconds).
 A_MaxHotkeysPerInterval := 2000000
@@ -102,13 +101,12 @@ $RButton:: {
 
 
 
-SetCapsLockState "AlwaysOff"
 #HotIf ; Only active during league
 
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
 ; SetCapsLockState "Off"
-SetCapsLockState("AlwaysOff")
-; Define the hotkey (Ctrl+Shift+D in this example)
+; SetCapsLockState("AlwaysOff")
+
 #n:: {
 
     ; Get the current date
@@ -127,6 +125,7 @@ SetCapsLockState("AlwaysOff")
     Run notes_file_path
 
 }
+
 
 Esc::Esc
 CapsLock::CapsLock
@@ -183,6 +182,9 @@ $<^>!u::+
 <^>!+p::|
 <^>!+o::|
 
+$<^>!.::-
+$<^>!,::+
+
 ; <^>!i::#&
 ; <^>!+i::#$
 ;
@@ -232,6 +234,8 @@ if invert_brackets {
 ; <^>!~::+
 ; ^~::-
 
+; Stop annoyng change keyboard lang shortcut
+#space::Send "{}"
 <^>!space::^Backspace
 
 
