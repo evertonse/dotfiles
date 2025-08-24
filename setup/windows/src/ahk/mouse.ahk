@@ -16,13 +16,13 @@ sensitivity := 4.3
 ;     Click("Middle Up")    ; Release middle button
 ;     return
 ; }
-XButton1::
+$XButton1::
 {
     Click("Middle Down")  ; Press and hold middle button
     return
 }
 
-XButton1 Up::
+$XButton1 Up::
 {
     Click("Middle Up")    ; Release middle button
     return
@@ -49,7 +49,7 @@ XButton2::
     scrolling := true
     
     ; Wait for button release or mouse movement
-    while GetKeyState("XButton1", "P")
+    while GetKeyState("XButton2", "P")
     {
         MouseGetPos(, &newY)
         deltaY := startY - newY
