@@ -16,13 +16,13 @@ sensitivity := 4.3
 ;     Click("Middle Up")    ; Release middle button
 ;     return
 ; }
-XButton2::
+XButton1::
 {
     Click("Middle Down")  ; Press and hold middle button
     return
 }
 
-XButton2 Up::
+XButton1 Up::
 {
     Click("Middle Up")    ; Release middle button
     return
@@ -39,7 +39,7 @@ XButton2 Up::
 }
 
 ; Mouse Button 4 down - start scroll mode
-XButton1::
+XButton2::
 {
     global scrolling, startY
     
