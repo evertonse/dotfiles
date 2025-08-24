@@ -28,6 +28,16 @@ XButton2 Up::
     return
 }
 
+^XButton2::
+{
+    Click("XButton2")
+}
+
+^XButton1::
+{
+    Click("XButton1")
+}
+
 ; Mouse Button 4 down - start scroll mode
 XButton1::
 {
