@@ -298,7 +298,6 @@ FocusOrOpen(exe_name := "", window_title := "", window_class := "", exe_path := 
     if (FocusWindow(exe_name, window_title, window_class)) {
         return true
     }
-    
     ; If not found and exe_path provided, try to open it
     if (exe_path != "") {
         if (OpenApp(exe_path)) {
@@ -307,7 +306,6 @@ FocusOrOpen(exe_name := "", window_title := "", window_class := "", exe_path := 
             return FocusWindow(exe_name, window_title, window_class)
         }
     }
-    
     return false
 }
 
