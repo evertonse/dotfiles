@@ -9,7 +9,7 @@ startY := 0
 
 ; Adjust this value to change scroll sensitivity (lower = more sensitive).
 ; Also, word to the wise, it depends highly and your configuration on how much lines per scroll you have configured
-sensitivity := 2.3
+sensitivity := 13.8
 
 ; ^XButton1::
 ; {
@@ -62,19 +62,22 @@ XButton2::
             if (deltaY > 0)
             {
                 ; Mouse moved up, scroll up
-                Click("WheelUp")
+                Click("WheelDown")
             }
             else
             {
                 ; Mouse moved down, scroll down
-                Click("WheelDown")
+                Click("WheelUp")
             }
             
             ; Update start position for continuous scrolling
             startY := newY
         }
         
-        Sleep(10)  ; Small delay to prevent excessive CPU usage
+        ; Small delay to prevent excessive CPU usage
+        ; This inadvertently creates an upper bound on sensitivity, because while sleeping you wont cout the extra pixels the mouse moved.
+        ; Sleep(0.2)
+        Sleep(0.0)
     }
     
     scrolling := false
