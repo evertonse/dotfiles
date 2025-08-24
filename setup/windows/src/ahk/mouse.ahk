@@ -6,8 +6,10 @@
 ; Variables for scroll simulation
 scrolling := false
 startY := 0
-; sensitivity := 0.01  ; Adjust this value to change scroll sensitivity (lower = more sensitive)
-sensitivity := 4.3
+
+; Adjust this value to change scroll sensitivity (lower = more sensitive).
+; Also, word to the wise, it depends highly and your configuration on how much lines per scroll you have configured
+sensitivity := 2.3
 
 ; ^XButton1::
 ; {
