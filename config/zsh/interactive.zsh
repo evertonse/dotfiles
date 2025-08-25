@@ -200,8 +200,9 @@ bindkey -M menuselect ';' vi-down-line-or-history
 
 
 ###########################################################################################################################
-# keymap
+# Start Keymaps
 ###########################################################################################################################
+
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
     case $KEYMAP in
@@ -367,11 +368,12 @@ bindkey -M vicmd 'g' vi_g_prefix_widget
 bindkey -v
 
 # Clear old movement bindings from vicmd and viopp
-for key in j k l \;;
-do
-  bindkey -M vicmd $key self-insert-unmeta
-  bindkey -M viopp $key self-insert-unmeta
-done
+# for key in j k l \;
+# do
+#   bindkey -M vicmd $key self-insert-unmeta
+#   bindkey -M viopp $key self-insert-unmeta
+# done
+
 # Custom widget to move backward over a WORD (like Vim's B)
 backward_big_word() {
   while [[ $LBUFFER != *[![:space:]] ]]; do
@@ -384,18 +386,106 @@ backward_big_word() {
 }
 zle -N backward_big_word
 
+# Custom widgets for virtual line navigation
+function vi-virtual-line-up() {
+    local current_pos=$CURSOR
+    local line_length=${#BUFFER}
+    local terminal_width=${COLUMNS}
+    
+    # If we're at the beginning of the buffer, do nothing
+    if [[ $current_pos -eq 0 ]]; then
+        return
+    fi
+    
+    # Calculate current column position
+    local current_col=$((current_pos % terminal_width))
+    
+    # Move up one virtual line (terminal width characters back)
+    local new_pos=$((current_pos - terminal_width))
+    
+    # Ensure we don't go before the beginning of the buffer
+    if [[ $new_pos -lt 0 ]]; then
+        new_pos=0
+    fi
+    
+    # If we're moving to a shorter line, adjust column position
+    local target_line_start=$((new_pos - (new_pos % terminal_width)))
+    local target_line_end=$((target_line_start + terminal_width - 1))
+    if [[ $target_line_end -ge $line_length ]]; then
+        target_line_end=$((line_length - 1))
+    fi
+    
+    local target_line_length=$((target_line_end - target_line_start + 1))
+    if [[ $current_col -ge $target_line_length ]]; then
+        # Move to end of the shorter line
+        CURSOR=$target_line_end
+    else
+        # Maintain column position
+        CURSOR=$((target_line_start + current_col))
+    fi
+}
+
+function vi-virtual-line-down() {
+    local current_pos=$CURSOR
+    local line_length=${#BUFFER}
+    local terminal_width=${COLUMNS}
+    
+    # If we're at the end of the buffer, do nothing
+    if [[ $current_pos -eq $line_length ]]; then
+        return
+    fi
+    
+    # Calculate current column position
+    local current_col=$((current_pos % terminal_width))
+    
+    # Move down one virtual line (terminal width characters forward)
+    local new_pos=$((current_pos + terminal_width))
+    
+    # Ensure we don't go past the end of the buffer
+    if [[ $new_pos -gt $line_length ]]; then
+        new_pos=$line_length
+    fi
+    
+    # If we're moving to a shorter line, adjust column position
+    local target_line_start=$((new_pos - (new_pos % terminal_width)))
+    local target_line_end=$((target_line_start + terminal_width - 1))
+    if [[ $target_line_end -ge $line_length ]]; then
+        target_line_end=$((line_length - 1))
+    fi
+    
+    local target_line_length=$((target_line_end - target_line_start + 1))
+    if [[ $current_col -ge $target_line_length ]]; then
+        # Move to end of the shorter line
+        CURSOR=$target_line_end
+    else
+        # Maintain column position
+        CURSOR=$((target_line_start + current_col))
+    fi
+}
+
+# Register the custom widgets
+zle -N vi-virtual-line-up
+zle -N vi-virtual-line-down
+
+
+
 # Remap jkl; instead of hjkl
 # 'vicmd' is for normal mode
 # 'viopp' is for operator-pending mode (e.g., after d, y, c, etc.)
 
+bindkey -M visual j vi-backward-char
+bindkey -M visual k vi-virtual-line-down
+bindkey -M visual l vi-virtual-line-up
+bindkey -M visual \; vi-forward-char
+
 bindkey -M vicmd j vi-backward-char
-bindkey -M vicmd k down-line-or-history
-bindkey -M vicmd l up-line-or-history
+bindkey -M vicmd k vi-virtual-line-down
+bindkey -M vicmd l vi-virtual-line-up
 bindkey -M vicmd \; vi-forward-char
 
 bindkey -M viopp j vi-backward-char
-bindkey -M viopp k down-line-or-history
-bindkey -M viopp l up-line-or-history
+bindkey -M viopp k vi-virtual-line-down
+bindkey -M viopp l vi-virtual-line-up
 bindkey -M viopp \; vi-forward-char
 
 # Unbind default b/B in vicmd and viopp
@@ -408,9 +498,198 @@ bindkey -M vicmd m vi-backward-word
 bindkey -M vicmd M vi-backward-blank-word
 bindkey -M viopp m vi-backward-word
 bindkey -M viopp M vi-backward-blank-word
+bindkey -v  # enable vi mode
+
+# Enhanced change inside quotes with better quote detection
+function vi-change-inside-quotes() {
+    local buf="$BUFFER"
+    local pos=$CURSOR
+    local quote_char=""
+    local start_pos=-1
+    local end_pos=-1
+    
+    # Look for quotes around cursor position
+    for ((i=pos; i>=0; i--)); do
+        if [[ "${buf:$i:1}" == \" || "${buf:$i:1}" == "'" ]]; then
+            # Check if this is an opening quote (not escaped)
+            if [[ $i -eq 0 || "${buf:$((i-1)):1}" != "\\" ]]; then
+                quote_char="${buf:$i:1}"
+                start_pos=$i
+                break
+            fi
+        fi
+    done
+    
+    # If we found an opening quote, find the matching closing quote
+    if [[ -n "$quote_char" ]]; then
+        local depth=1
+        for ((i=start_pos+1; i<${#buf}; i++)); do
+            if [[ "${buf:$i:1}" == "\\" ]]; then
+                # Skip escaped characters
+                ((i++))
+            elif [[ "${buf:$i:1}" == "$quote_char" ]]; then
+                ((depth--))
+                if [[ $depth -eq 0 ]]; then
+                    end_pos=$i
+                    break
+                fi
+            elif [[ "${buf:$i:1}" == "$quote_char" && $i -ne $start_pos ]]; then
+                # Handle nested quotes of same type? Maybe not, but here's the structure
+                ((depth++))
+            fi
+        done
+        
+        if [[ $end_pos -ge 0 ]]; then
+            # Delete content inside quotes and enter insert mode
+            local content_start=$((start_pos + 1))
+            local content_end=$((end_pos - 1))
+            
+            BUFFER="${buf:0:$content_start}${buf:$((end_pos))}"
+            CURSOR=$content_start
+            zle vi-insert
+        else
+            # No matching quote found
+            zle vi-change
+        fi
+    else
+        # No quotes found around cursor
+        zle vi-change
+    fi
+}
+
+
+function vi-quote-text-object() {
+    local buf="$BUFFER"
+    local pos=$CURSOR
+    local quote_char=""
+    local start_pos=-1
+    local end_pos=-1
+    
+    # Look for quotes around cursor position
+    for ((i=pos; i>=0; i--)); do
+        if [[ "${buf:$i:1}" == \" || "${buf:$i:1}" == "'" ]]; then
+            # Check if this is an opening quote (not escaped)
+            if [[ $i -eq 0 || "${buf:$((i-1)):1}" != "\\" ]]; then
+                quote_char="${buf:$i:1}"
+                start_pos=$i
+                break
+            fi
+        fi
+    done
+    
+    # If we found an opening quote, find the matching closing quote
+    if [[ -n "$quote_char" ]]; then
+        for ((i=start_pos+1; i<${#buf}; i++)); do
+            if [[ "${buf:$i:1}" == "$quote_char" ]]; then
+                # Check if it's not escaped
+                if [[ $i -eq 0 || "${buf:$((i-1)):1}" != "\\" ]]; then
+                    end_pos=$i+1
+                    break
+                fi
+            fi
+        done
+        
+        if [[ $end_pos -ge 0 ]]; then
+            # Set the region for the text object (inside quotes, excluding the quotes)
+            local content_start=$((start_pos + 1))
+            local content_end=$((end_pos - 1))
+            
+            if [[ $content_end -ge $content_start ]]; then
+                # For operator pending mode, we need to set the region
+                if [[ $KEYMAP == "viopp" ]]; then
+                    # Set the region for the operator
+                    REGION_ACTIVE=1
+                    MARK=$content_start
+                    CURSOR=$content_end
+                else
+                    # For visual mode, just set the selection
+                    MARK=$content_start
+                    CURSOR=$content_end
+                fi
+                return 0
+            fi
+        fi
+    fi
+
+    return 1
+}
+function vi-block-text-object() {
+    local buf="$BUFFER"
+    local pos=$CURSOR
+    local open_char=""
+    local close_char=""
+    local start_pos=-1
+    local end_pos=-1
+
+    # Map of opening → closing
+    local -A pairs=(
+        ["("]=")"
+        ["["]="]"
+        ["{"]="}"
+        ["<"]=">"
+    )
+
+    # 1. Look backwards for the nearest opening block
+    for ((i=pos; i>=0; i--)); do
+        local ch="${buf:$i:1}"
+        if [[ -n "${pairs[$ch]}" ]]; then
+            open_char="$ch"
+            close_char="${pairs[$ch]}"
+            start_pos=$i
+            break
+        fi
+    done
+
+    # 2. If we found an opening block, search forward for its matching closing
+    if [[ -n "$open_char" ]]; then
+        local depth=1
+        for ((i=start_pos+1; i<${#buf}; i++)); do
+            local ch="${buf:$i:1}"
+            if [[ "$ch" == "$open_char" ]]; then
+                ((depth++))
+            elif [[ "$ch" == "$close_char" ]]; then
+                ((depth--))
+                if ((depth == 0)); then
+                    end_pos=$i+1
+                    break
+                fi
+            fi
+        done
+
+        # 3. If a valid match found, set the selection (inside only)
+        if (( end_pos > start_pos )); then
+            local content_start=$((start_pos + 1))
+            local content_end=$((end_pos - 1))
+
+            if [[ $KEYMAP == "viopp" ]]; then
+                REGION_ACTIVE=1
+                MARK=$content_start
+                CURSOR=$content_end
+            else
+                MARK=$content_start
+                CURSOR=$content_end
+            fi
+            return 0
+        fi
+    fi
+
+    # Fallback: inner word
+    return 1
+}
+
+zle -N vi-block-text-object
+bindkey -M viopp  "ib" vi-block-text-object
+bindkey -M visual "ib" vi-block-text-object
+
+zle -N vi-quote-text-object
+bindkey -M viopp  "iq" vi-quote-text-object
+bindkey -M visual "iq" vi-quote-text-object
 
 
 
+###########################################################################################################################
+# End Keymaps
+###########################################################################################################################
 
 ###########################################################################################################################
 # Prompt
