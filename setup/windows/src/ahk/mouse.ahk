@@ -41,7 +41,7 @@ $XButton1 Up::
 }
 
 ; Mouse Button 4 down - start scroll mode
-$*XButton2::
+*XButton2::
 {
     global scrolling, startY
     
