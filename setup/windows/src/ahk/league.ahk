@@ -129,7 +129,6 @@ $RButton:: {
 
 Esc::Esc
 CapsLock::CapsLock
-NumpadDiv::NumpadDiv
 Shift::Shift
 RButton::RButton
 
@@ -144,6 +143,8 @@ RButton::RButton
 
 
 <^>!c::ç
+
+NumpadDiv::_
 
 ; <^>!d::Send "{[}"
 
@@ -192,7 +193,7 @@ $<^>!,::+
 
 
 
--::_
+; See: https://www.autohotkey.com/docs/v2/KeyList.htm#numpad
 
 
 ; '{' needs escaping with `
