@@ -18,29 +18,105 @@ sensitivity := 13.8
 ;     Click("Middle Up")    ; Release middle button
 ;     return
 ; }
-$XButton1::
+
+; *XButton1::
+; {
+;     Click("Middle Down")  ; Press and hold middle button
+;     return
+; }
+;
+; *XButton1 Up::
+; {
+;     Click("Middle Up")    ; Release middle button
+;     return
+; }
+
+*XButton1::
 {
-    Click("Middle Down")  ; Press and hold middle button
+    ; Check if Right Alt is pressed
+    if GetKeyState("RAlt", "P")
+    {
+        ; Use normal XButton1 behavior
+        Send("{XButton1 down}")
+    }
+    else
+    {
+        ; Emulate middle mouse button
+        Click("Middle Down")
+    }
     return
 }
 
-$XButton1 Up::
+*XButton1 Up::
 {
-    Click("Middle Up")    ; Release middle button
+    ; Check if Right Alt is pressed
+    if GetKeyState("RAlt", "P")
+    {
+        ; Use normal XButton1 behavior
+        Send("{XButton1 up}")
+    }
+    else
+    {
+        ; Emulate middle mouse button
+        Click("Middle Up")
+    }
     return
 }
 
-^XButton2::
-{
-    Click("XButton2")
-}
-
-^XButton1::
-{
-    Click("XButton1")
-}
+; $*XButton1::
+; {
+;     Send("{MButton down}")
+; }
+;
+; $*XButton1 Up::
+; {
+;     Send("{MButton up}")
+; }
 
 ; Mouse Button 4 down - start scroll mode
+; *XButton2::
+; {
+;     global scrolling, startY
+;     
+;     ; Get current mouse position
+;     MouseGetPos(, &currentY)
+;     startY := currentY
+;     scrolling := true
+;     
+;     ; Wait for button release or mouse movement
+;     while GetKeyState("XButton2", "P")
+;     {
+;         MouseGetPos(, &newY)
+;         deltaY := startY - newY
+;         
+;         ; If mouse moved enough, scroll
+;         if (Abs(deltaY) >= sensitivity)
+;         {
+;             if (deltaY > 0)
+;             {
+;                 ; Mouse moved up, scroll up
+;                 Click("WheelDown")
+;             }
+;             else
+;             {
+;                 ; Mouse moved down, scroll down
+;                 Click("WheelUp")
+;             }
+;             
+;             ; Update start position for continuous scrolling
+;             startY := newY
+;         }
+;         
+;         ; Small delay to prevent excessive CPU usage
+;         ; This inadvertently creates an upper bound on sensitivity, because while sleeping you wont cout the extra pixels the mouse moved.
+;         ; Sleep(0.2)
+;         Sleep(0.0)
+;     }
+;     
+;     scrolling := false
+;     return
+; }
+
 *XButton2::
 {
     global scrolling, startY
@@ -56,61 +132,38 @@ $XButton1 Up::
         MouseGetPos(, &newY)
         deltaY := startY - newY
         
+        ; Check if Shift is pressed for faster scrolling
+        isShiftPressed := GetKeyState("Shift", "P")
+        scrollAmount := isShiftPressed ? 7 : 1  ; More scroll units with Shift
+        
         ; If mouse moved enough, scroll
-        if (Abs(deltaY) >= sensitivity)
-        {
-            if (deltaY > 0)
-            {
-                ; Mouse moved up, scroll up
-                Click("WheelDown")
+        if (Abs(deltaY) >= sensitivity) {
+            if (deltaY > 0) {
+                if (scrollAmount == 1) {
+                    Click("WheelDown")
+                }
+                else {
+                    Send("{WheelDown " . scrollAmount . "}")
+                }
             }
             else
             {
-                ; Mouse moved down, scroll down
-                Click("WheelUp")
+                ; Mouse moved up, scroll up
+                if (scrollAmount == 1) {
+                    Click("WheelUp")
+                }
+                else {
+                    Send("{WheelUp " . scrollAmount . "}")
+                }
             }
-            
             ; Update start position for continuous scrolling
             startY := newY
         }
         
         ; Small delay to prevent excessive CPU usage
-        ; This inadvertently creates an upper bound on sensitivity, because while sleeping you wont cout the extra pixels the mouse moved.
-        ; Sleep(0.2)
-        Sleep(0.0)
+        ; Sleep(0.0)
     }
     
     scrolling := false
     return
 }
-
-; Optional: Mouse Button 5 could be used for horizontal scrolling if needed
-; Uncomment the lines below if you want horizontal scrolling with Mouse Button 5
-/*
-XButton2::
-{
-    global
-    MouseGetPos(&startX, )
-    
-    while GetKeyState("XButton2", "P")
-    {
-        MouseGetPos(&newX, )
-        deltaX := startX - newX
-        
-        if (Abs(deltaX) >= sensitivity)
-        {
-            if (deltaX > 0)
-            {
-                Click("WheelLeft")
-            }
-            else
-            {
-                Click("WheelRight")
-            }
-            startX := newX
-        }
-        Sleep(10)
-    }
-    return
-}
-*/
