@@ -18,6 +18,15 @@ sensitivity := 13.8
 ;     Click("Middle Up")    ; Release middle button
 ;     return
 ; }
+;
+; ^XButton2::
+; {
+;     Click("Middle Down")  ; Press and hold middle button
+;     KeyWait("XButton2")   ; Wait for Mouse Button 4 to be released
+;     Click("Middle Up")    ; Release middle button
+;     return
+; }
+
 
 ; *XButton1::
 ; {
@@ -37,7 +46,7 @@ sensitivity := 13.8
     if GetKeyState("RAlt", "P")
     {
         ; Use normal XButton1 behavior
-        Send("{XButton1 down}")
+        Send("{XButton1}")
     }
     else
     {
@@ -53,7 +62,7 @@ sensitivity := 13.8
     if GetKeyState("RAlt", "P")
     {
         ; Use normal XButton1 behavior
-        Send("{XButton1 up}")
+        ; Send("{XButton1 up}")
     }
     else
     {
@@ -119,6 +128,15 @@ sensitivity := 13.8
 
 *XButton2::
 {
+
+    ; Check if Right Alt is pressed
+    if GetKeyState("RAlt", "P")
+    {
+        ; Use normal XButton1 behavior
+        Send("{XButton2}")
+        return
+    }
+
     global scrolling, startY
     
     ; Get current mouse position
