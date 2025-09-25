@@ -900,6 +900,7 @@ bindings = [
     # { key = "Plus",   mods = "Control|Shift", chars  = "\u001b[43;5u"  },
     # { key = "Equals", mods = "Control",       chars  = "\u001b[61;5u"  }, Conflict with crtl + plus
     { key = "O",      mods = "Control|Shift", chars  = "\u001b[15;6u"  },
+    { key = ";",      mods = "Control", chars  = "\u001b[59;5u"  },
     # { key = "I",      mods = "Control|Shift", chars  = "\u001b[43;5u"  }, # crlt + shift +p, works in tmux
     
     # { key = "I",      mods = "Control|Shift", chars  = "\u001b[73;5u"  }, # WORKS but not in tmux
