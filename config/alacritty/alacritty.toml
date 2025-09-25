@@ -209,11 +209,11 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
 #
 # italic = { family = "JetBrainsMonoNL Nerd Font", style  = "Medium Italic" }
 
-offset = { x = 0, y = -7 }
+offset = { x = 0, y = -6 }
 
 # size = 17
 size = 19
-builtin_box_drawing = true
+builtin_box_drawing = false
 
 # COLORS
 # This section documents the [colors] table of the configuration file.
@@ -222,7 +222,7 @@ builtin_box_drawing = true
 # colors primary
 # This section documents the [colors.primary] table of the configuration file.
 [colors]
-draw_bold_text_with_bright_colors = false
+draw_bold_text_with_bright_colors = true
 
 [colors.primary]
 # foreground = "#d8d8d8"
