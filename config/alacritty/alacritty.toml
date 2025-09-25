@@ -209,7 +209,7 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
 #
 # italic = { family = "JetBrainsMonoNL Nerd Font", style  = "Medium Italic" }
 
-offset = { x = 0, y = -6.5 }
+offset = { x = 0, y = -7 }
 
 # size = 17
 size = 19
