@@ -139,7 +139,7 @@ title = "Alacritty"
 dynamic_title = true
 decorations_theme_variant = "None"
 decorations = "None" # decorations = "Full" | "None" | "Transparent" | "Buttonless"
-opacity = 0.93
+opacity = 0.989
 blur = true
 
 
@@ -209,10 +209,10 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
 #
 # italic = { family = "JetBrainsMonoNL Nerd Font", style  = "Medium Italic" }
 
-offset = { x = 0, y = -5 }
+offset = { x = 0, y = -6 }
 
 # size = 17
-size = 20
+size = 19
 builtin_box_drawing = true
 
 # COLORS
@@ -226,11 +226,13 @@ draw_bold_text_with_bright_colors = true
 
 [colors.primary]
 # foreground = "#d8d8d8"
-# foreground = "#bea492"
-# foreground = "#a58e7e"
+# foreground = "#bea492" # Cephon Normal Text (middle)
+# foreground = "#8b786a" # Cephon Normal Text (top)
+foreground = "#a58e7e"
 # foreground = "#e3e0dd"
 # foreground = "#c0b0a2"
-foreground = "#BEA496"
+# foreground = "#BEA496"
+
 
 
 # >>> [hex(x) for x in [190,164,146]]
