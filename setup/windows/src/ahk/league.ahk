@@ -1,13 +1,12 @@
 #Requires AutoHotkey v2.0
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
-;     - Shift -> k
-;     - CapsLock -> y ; this one might be optional idk
+;     - Shift -> .
 
 
 ; A_HotkeyInterval := 0  ; This is the default value (milliseconds).
-A_MaxHotkeysPerInterval := 2000000
-A_HotkeyModifierTimeout := -1
+A_MaxHotkeysPerInterval := 200000000
+; A_HotkeyModifierTimeout := -1
 
 SetKeyDelay -1
 SetMouseDelay -1
@@ -22,13 +21,15 @@ LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
 WinWaitActive LEAGUE_PROCESS_NAME
 
 active_pid := WinGetPID(LEAGUE_PROCESS_NAME)
-prio := "Realtime"
+; prio := "Realtime"
+prio := "High"
 if ProcessSetPriority(prio, active_pid) {
-    ; MsgBox "Success: Its priority was changed to " prio 
+    ; MsgBox "Success: Its priority was changed to " prio active_pid
 } else {
-    MsgBox "Error: Its priority could not be changed to " prio
+    MsgBox "Error: Its priority could not be changed to " prio " pid = " active_pid
 }
 
+; Show full thingy
 l_down := False
 $^s:: {
     global l_down
@@ -38,7 +39,6 @@ $^s:: {
     } else {
         Send "{l down}"
     }
-
     l_down :=  not l_down
 }
 
@@ -50,32 +50,64 @@ CapsLock::Esc
 ;     Send "{s down}{c}"
 ; }
  
-s::s
+; s::s
 $s::{
-    ; SetKeyDelay -1
-    ; SetMouseDelay -1
-    if (GetKeyState(".")) {
+    SetKeyDelay -1
+    SetMouseDelay -1
+    if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+    ; if (GetKeyState(".", "P")) {
         Send "{s}"
     } else {
         Send "{. down}{Backspace}{s}{. up}"
     }
 }
 
-u::u
-$u::{
-    ; SetKeyDelay -1
-    ; SetMouseDelay -1
-    if (GetKeyState(".")) {
+$RButton::{
+    SetKeyDelay -1
+    SetMouseDelay -1
+    if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+    ; if (GetKeyState(".", "P")) {
         Send "{u}"
     } else {
         Send "{. down}{Backspace}{u}{. up}"
     }
 }
 
+; RButton & .:: {
+;     SetKeyDelay -1
+;     SetMouseDelay -1
+;     SendInput "{. down}{u}{. up}"
+; }
 
+; .:: {
+;     if (GetKeyState(".", "P")) {
+;         ; MsgBox "Hello"
+;     } else {
+;         ; MsgBox "Hello2"
+;     }
+; }
 
-Shift::.
-':: Shift
+~:: Shift
+.::Shift
+
+Shift::{
+    SetKeyDelay -1
+    SetMouseDelay -1
+    if (GetKeyState(".", "P")) {
+    } else {
+        Send "{. down}"
+    }
+}
+
+Shift Up::{
+    SetKeyDelay -1
+    SetMouseDelay -1
+    if (GetKeyState(".", "P")) {
+    } else {
+        Send "{. up}"
+    }
+}
+
 
 
 ; *s up:: SendInput "{blind up}"
@@ -91,46 +123,27 @@ Shift::.
 
 
 
-RButton:: u
-$RButton:: {
-    SendInput "{. down}{u}"
-    if (not GetKeyState("Shift", "P")) {
-        SendInput "{. up}"
-    }
-}
+; RButton:: u
 
 
 
 #HotIf ; Only active during league
 
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
-; SetCapsLockState "Off"
-; SetCapsLockState("AlwaysOff")
 
-#n:: {
 
-    ; Get the current date
-    current_date := FormatTime(,"yyyy-MM-dd")
+SendInput "{Shift up}"
+SendInput "{. up}"
 
-    notes_file_path := "C:\Users\Administrator\OneDrive\Personal\docs\ObsidianVaults\ExCyber\Habits\Journal\" current_date  ".txt"
-    ; Create the file and write the current date into it
-
-    ; Check if the file already exists
-    if !FileExist(notes_file_path) {
-        ; If the file doesnkt exist, create it and write the current date into it
-        FileAppend current_date, notes_file_path
-    }
-
-    ; Open the file in Notepad
-    Run notes_file_path
-
-}
-
+Shift::Shift
 
 Esc::Esc
 CapsLock::CapsLock
-Shift::Shift
 RButton::RButton
+; SetCapsLockState "Off"
+; SetCapsLockState("AlwaysOff")
+
+
 
 ; $(RAlt & c) :: {
 ;     if (GetKeyState("Shift", "P")) {
@@ -250,6 +263,25 @@ if invert_brackets {
 ;         Send "{}}"
 ;     }
 ; }
+
+#n:: {
+
+    ; Get the current date
+    current_date := FormatTime(,"yyyy-MM-dd")
+
+    notes_file_path := "C:\Users\Administrator\OneDrive\Personal\docs\ObsidianVaults\ExCyber\Habits\Journal\" current_date  ".txt"
+    ; Create the file and write the current date into it
+
+    ; Check if the file already exists
+    if !FileExist(notes_file_path) {
+        ; If the file doesnkt exist, create it and write the current date into it
+        FileAppend current_date, notes_file_path
+    }
+
+    ; Open the file in Notepad
+    Run notes_file_path
+
+}
 
 FocusWindow(exe_name := "", window_title := "", window_class := "") {
     target_hwnd := 0
