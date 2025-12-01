@@ -14,10 +14,15 @@ pull:
 
 
 # TODO make ahk slow down mouse then in drawing software or my pressing a certain big combination of keys
+
+WIN_STARTUP_DIR := "$$WIN_USERPROFILE/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/"
 ahk:
-	@cp -r   setup/windows/src/ahk/ /mnt/c/
+	@cp -r setup/windows/src/ahk/ /mnt/c/
+	@cp setup/windows/startup.bat "$(WIN_STARTUP_DIR)/startup.bat"
 	wsl-open /mnt/c/ahk/league.ahk
 	wsl-open /mnt/c/ahk/mouse.ahk
+	wsl-open "$(WIN_STARTUP_DIR)/startup.bat"
+
 
 	# @cp setup/windows/src/ahk/wm.ahk /mnt/c/wm.ahk
 	# wsl-open /mnt/c/wm.ahk
