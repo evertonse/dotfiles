@@ -49,7 +49,7 @@ Esc::y
 CapsLock::Esc
 
 s::{
-    Critical
+    ; Critical
     if (
         false
         || GetKeyState("Shift", "P")
@@ -67,7 +67,7 @@ s::{
 }
 
 c::{
-    Critical
+    ; Critical
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState(".", "P")) {
         Send "{u down}"
@@ -77,7 +77,7 @@ c::{
 }
 
 c Up::{
-    Critical
+    ; Critical
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState(".", "P")) {
         Send "{u}{u up}"
@@ -99,7 +99,7 @@ LButton::LButton
 ; RButton::LButton
 
 *RButton::{
-    Critical
+    ; Critical
     ; SetKeyDelay -1
     ; SetMouseDelay -1
     ; Critical "on"
@@ -111,13 +111,12 @@ LButton::LButton
         ; Send "{blind}"
         ; Send "{. down}{u}{u}{. up}"
         Send "{. down}{u}{u}"
-        Send "{no}"
     }
     ; Critical "off"
 }
 
 *RButton Up::{
-    Critical
+    ; Critical
     ; SetKeyDelay -1
     ; SetMouseDelay -1
     ; Critical "on"
@@ -132,6 +131,32 @@ LButton::LButton
     ; Critical "off"
 }
 
+
+.::.
+; .::{
+;     ; Critical
+;     ; SetKeyDelay -1
+;     ; SetMouseDelay -1
+;     ; Critical "on"
+;     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+;     } else {
+;         Send "{. down}"
+;     }
+;     ; Critical "off"
+; }
+;
+; . Up::{
+;     ; Critical
+;     ; SetKeyDelay -1
+;     ; SetMouseDelay -1
+;     ; Critical "on"
+;     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+;     } else {
+;         Send "{. up}"
+;     }
+;     ; Critical "off"
+; }
+;
 ; RButton::u
 
 ; $RButton Up::{
@@ -168,7 +193,6 @@ LButton::LButton
 ~:: Shift
 
 
-.::.
 ; HotKey("Shift", "off")
 
 
