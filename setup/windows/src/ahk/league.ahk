@@ -49,6 +49,7 @@ Esc::y
 CapsLock::Esc
 
 s::{
+    Critical
     if (
         false
         || GetKeyState("Shift", "P")
