@@ -1,12 +1,14 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
+
 ; DOCS: https://www.autohotkey.com/docs/v2/lib/GetKeyState.htm
 ; NOTE(Everton): For this to work correctly need powertoys to be one with the following remaps:
 ;     - Shift -> .
 
 
 ; A_HotkeyInterval := 0  ; This is the default value (milliseconds).
-A_MaxHotkeysPerInterval := 200000000
-; A_HotkeyModifierTimeout := -1
+A_MaxHotkeysPerInterval := 2000000000
+A_HotkeyModifierTimeout := -1
 
 SetKeyDelay -1
 SetMouseDelay -1
@@ -19,6 +21,7 @@ LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
 
 #HotIf WinActive(LEAGUE_PROCESS_NAME)
 WinWaitActive LEAGUE_PROCESS_NAME
+
 
 active_pid := WinGetPID(LEAGUE_PROCESS_NAME)
 ; prio := "Realtime"
@@ -45,68 +48,127 @@ $^s:: {
 Esc::y
 CapsLock::Esc
 
-; ^s::^s
-; $s:: {
-;     Send "{s down}{c}"
-; }
- 
-; s::s
-$s::{
-    SetKeyDelay -1
-    SetMouseDelay -1
-    if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
-    ; if (GetKeyState(".", "P")) {
-        Send "{s}"
+s::{
+    if (
+        false
+        || GetKeyState("Shift", "P")
+        || GetKeyState(".", "P")
+        ; || GetKeyState("RButton", "P")
+    ) {
+        ; MsgBox("sss", "Error", 48)
+        Send "{s}{s}"
+        ; Sleep 3000
+        ; ToolTip  ; Turn off the tip.
     } else {
-        Send "{. down}{Backspace}{s}{. up}"
+        ; MsgBox("ss2", "Error", 48)
+        Send "{. down}{s}{s}{. up}"
     }
 }
 
-$RButton::{
-    SetKeyDelay -1
-    SetMouseDelay -1
+c::{
+    Critical
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState(".", "P")) {
+        Send "{u down}"
+    } else {
+        Send "{. down}{u down}{u down}"
+    }
+}
+
+c Up::{
+    Critical
+    if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+    ; if (GetKeyState(".", "P")) {
+        Send "{u}{u up}"
+        ; MsgBox("yes", "Error", 48)
+    } else {
+        Send "{u}{u up}{. up}"
+        ; MsgBox("no", "Error", 48)
+    }
+}
+
+; shift & e::{
+;     Send "{. down}{Backspace}{u down}"
+; }
+
+
+
+; RButton::LButton
+LButton::LButton
+; RButton::LButton
+
+*RButton::{
+    Critical
+    ; SetKeyDelay -1
+    ; SetMouseDelay -1
+    ; Critical "on"
+    if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+    ; if (GetKeyState("shift", "P")) {
+        ; Send "{blind}"
+        Send "{u}{u}"
+    } else {
+        ; Send "{blind}"
+        ; Send "{. down}{u}{u}{. up}"
+        Send "{. down}{u}{u}"
+        Send "{no}"
+    }
+    ; Critical "off"
+}
+
+*RButton Up::{
+    Critical
+    ; SetKeyDelay -1
+    ; SetMouseDelay -1
+    ; Critical "on"
+    if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+    ; if (GetKeyState("shift", "P")) {
+        ; Send "{blind}"
         Send "{u}"
     } else {
-        Send "{. down}{Backspace}{u}{. up}"
+        ; Send "{blind}"
+        Send "{u}{. up}"
     }
+    ; Critical "off"
 }
 
-; RButton & .:: {
-;     SetKeyDelay -1
-;     SetMouseDelay -1
-;     SendInput "{. down}{u}{. up}"
-; }
+; RButton::u
 
-; .:: {
+; $RButton Up::{
+;     ; Critical
+;     ; ToolTip "No new threads will launch until after this ToolTip disappears."
+;     ;   Sleep 3000
+;     ;   ToolTip  ; Turn off the tip.
 ;     if (GetKeyState(".", "P")) {
-;         ; MsgBox "Hello"
+;         Send "{u}{u}"
 ;     } else {
-;         ; MsgBox "Hello2"
+;         Send "{u}{u}{. up}"
 ;     }
+;     ; Critical "off"
 ; }
 
+; *Shift::{
+;     Critical
+;     if (GetKeyState("RButton", "P")) {
+;     } else {
+;         Send "{. down}"
+;     }
+;     Critical "off"
+; }
+;
+; *Shift Up::{
+;     Critical
+;     if (GetKeyState("RButton", "P")) {
+;     } else {
+;         Send "{. up}"
+;     }
+;     Critical "off"
+; }
+;
 ~:: Shift
-.::Shift
 
-Shift::{
-    SetKeyDelay -1
-    SetMouseDelay -1
-    if (GetKeyState(".", "P")) {
-    } else {
-        Send "{. down}"
-    }
-}
 
-Shift Up::{
-    SetKeyDelay -1
-    SetMouseDelay -1
-    if (GetKeyState(".", "P")) {
-    } else {
-        Send "{. up}"
-    }
-}
+.::.
+; HotKey("Shift", "off")
 
 
 
@@ -130,16 +192,13 @@ Shift Up::{
 #HotIf ; Only active during league
 
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
-
-
 SendInput "{Shift up}"
 SendInput "{. up}"
-
-Shift::Shift
 
 Esc::Esc
 CapsLock::CapsLock
 RButton::RButton
+.::LShift
 ; SetCapsLockState "Off"
 ; SetCapsLockState("AlwaysOff")
 

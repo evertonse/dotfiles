@@ -193,5 +193,4 @@ ipconfig /flushdns >nul 2>&1
 echo.
 echo DONE. Aggressive optimizations applied (some changes require reboot).
 echo Review the script and UNCOMMENT only those dangerous lines you explicitly want.
-pause
-exit /b 0
+exit

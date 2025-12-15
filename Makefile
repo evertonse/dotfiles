@@ -19,8 +19,8 @@ WIN_STARTUP_DIR := "$$WIN_USERPROFILE/AppData/Roaming/Microsoft/Windows/Start\ M
 ahk:
 	@cp -r setup/windows/src/ahk/ /mnt/c/
 	@cp setup/windows/startup.bat "$(WIN_STARTUP_DIR)/startup.bat"
-	wsl-open /mnt/c/ahk/league.ahk
-	wsl-open /mnt/c/ahk/mouse.ahk
+	# wsl-open /mnt/c/ahk/league.ahk
+	# wsl-open /mnt/c/ahk/mouse.ahk
 	wsl-open "$(WIN_STARTUP_DIR)/startup.bat"
 
 
