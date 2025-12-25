@@ -18,6 +18,7 @@ pull:
 WIN_STARTUP_DIR := "$$WIN_USERPROFILE/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/"
 ahk:
 	@cp -r setup/windows/src/ahk/ /mnt/c/
+	@mkdir -p "$(WIN_STARTUP_DIR)/"
 	@cp setup/windows/startup.bat "$(WIN_STARTUP_DIR)/startup.bat"
 	# wsl-open /mnt/c/ahk/league.ahk
 	# wsl-open /mnt/c/ahk/mouse.ahk
@@ -29,7 +30,6 @@ ahk:
 
 
 
-
 wsl-config: SOURCE = ./setup/windows/.wslconfig
 wsl-config: DEST = "$$WIN_USERPROFILE/.wslconfig"
 wsl-config:
@@ -38,8 +38,8 @@ wsl-config:
 	echo "Configuring wsl on windows host ..."
 	@rm -f $(DEST)
 	cp $(SOURCE) $(DEST)
-	echo "Opening $$WIN_USERPROFILE/.wslconfig .."
-	wsl-open $(DEST)
+	echo "Displaying $$WIN_USERPROFILE/.wslconfig .."
+	cat $(DEST)
 
 
 ROAMING := "/mnt/c/Users/$(WIN_USER)/AppData/Roaming/alacritty/"
@@ -48,7 +48,12 @@ alacritty:
 	@echo $(ROAMING)
 	@rm -rf $(ROAMING)
 	@cp -r ./config/alacritty/ $(ROAMING)
+	
 
+
+win-yank:
+	# cp ./setup/windows/assets/win32yank.exe /mnt/c/Windows/System32/win32yank.exe
+	cp ./setup/windows/assets/win32yank.exe /mnt/c/Windows/win32yank.exe
 
 file2clip: OURCE = "setup/windows/assets/file2clip.exe"
 file2clip: DEST = "$$WINDOWS_DRIVER_PATH/Windows/"

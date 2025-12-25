@@ -223,7 +223,8 @@ SendInput "{. up}"
 Esc::Esc
 CapsLock::CapsLock
 RButton::RButton
-.::LShift
+.::.
+LShift::LShift
 ; SetCapsLockState "Off"
 ; SetCapsLockState("AlwaysOff")
 

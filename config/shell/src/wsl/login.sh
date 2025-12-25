@@ -1,8 +1,7 @@
 #!/usr/bin/sh
 
 export WSL="true"
-# Assuming C:\
-export WINDOWS_DRIVER_PATH="/mnt/c" # Assuming C:\
+export WINDOWS_DRIVER_PATH="/mnt/c" # Assuming C:\ Always
 export WINDOWS_SYSTEM32="$WINDOWS_DRIVER_PATH/Windows/System32/"
 
 # Lets add theses one path in case 'appendWindowsPath' isn't 'true'
@@ -14,6 +13,10 @@ export WINDOWS_SYSTEM32="$WINDOWS_DRIVER_PATH/Windows/System32/"
 # pathappend "$WINDOWS_DRIVER_PATH/Windows/" PATH
 
 export WIN_USER=$($WINDOWS_SYSTEM32/cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r\n')
+if [ -z "$WIN_USER" ]; then
+    WIN_USER="Administrator"
+fi
+
 export WIN_USERPROFILE="/mnt/c/Users/$WIN_USER/"
 export WIN_DOWNLOADS="/mnt/c/Users/$WIN_USER/Downloads"
 
