@@ -4,6 +4,42 @@ start "" "C:\ahk\mouse.ahk"
 
 echo === ENABLING GAMING MODE ===
 
+REM Keyboard Stuff
+
+powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
+
+REM Use the windows register to set priority to high for process called "League of Legends (TM) Client.exe"
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\League of Legends.exe\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d 3 /f
+
+@echo off
+echo Disabling Microsoft Defender (policy + realtime protection)...
+echo.
+
+REM ---- Main Defender policy ----
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" ^
+ /v DisableAntiSpyware /t REG_DWORD /d 1 /f
+
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" ^
+ /v DisableAntiVirus /t REG_DWORD /d 1 /f
+
+REM ---- Real-time protection policies ----
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" ^
+ /v DisableBehaviorMonitoring /t REG_DWORD /d 1 /f
+
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" ^
+ /v DisableOnAccessProtection /t REG_DWORD /d 1 /f
+
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection" ^
+ /v DisableScanOnRealtimeEnable /t REG_DWORD /d 1 /f
+
+REM ---- Disable Defender services startup (best-effort) ----
+sc config WinDefend start= disabled >nul 2>&1
+sc config WdNisSvc start= disabled >nul 2>&1
+
+echo.
+echo Done. Reboot required.
+
+
 REM ---- Disable Disk Indexing (Windows Search) ----
 REM net stop "WSearch"
 
@@ -145,6 +181,7 @@ REM  These are left commented. You can enable them intentionally by removing REM
 REM -------------------------
 REM ***** DANGEROUS: Disable Defender real-time (DO NOT UNCOMMENT unless you KNOW risks)
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableRealtimeMonitoring /t REG_DWORD /d 1 /f
+
 
 REM ***** DANGEROUS: Disable Windows Update service permanently
 REM sc config wuauserv start= disabled

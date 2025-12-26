@@ -45,10 +45,11 @@ $^s:: {
     l_down :=  not l_down
 }
 
+
 Esc::y
 CapsLock::Esc
 
-s::{
+$s::{
     ; Critical
     if (
         false
@@ -66,30 +67,48 @@ s::{
     }
 }
 
-c::{
+$c::{
     ; Critical
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState(".", "P")) {
-        Send "{u down}"
+        Send "{c down}"
     } else {
-        Send "{. down}{u down}{u down}"
+        Send "{. down}{c down}{c down}"
     }
 }
 
-c Up::{
+$c Up::{
     ; Critical
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState(".", "P")) {
-        Send "{u}{u up}"
+        Send "{c}{c up}"
         ; MsgBox("yes", "Error", 48)
     } else {
-        Send "{u}{u up}{. up}"
+        Send "{c}{c up}{. up}"
         ; MsgBox("no", "Error", 48)
     }
 }
 
-; shift & e::{
-;     Send "{. down}{Backspace}{u down}"
+$+e:: {
+    ; Critical
+    if (GetKeyState(".", "P") ) {
+        Send "{e down}"
+    } else {
+        Send "{. down}{e down}"
+    }
+}
+
+$+e Up:: {
+    ; Critical
+    if (GetKeyState(".", "P")) {
+        Send "{e up}"
+    } else {
+        Send "{e up}{. up}"
+    }
+}
+
+; Shift & e :: {
+;     Send "{. down}{Backspace}{e}{c down}{. up}"
 ; }
 
 
@@ -106,11 +125,11 @@ LButton::LButton
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState("shift", "P")) {
         ; Send "{blind}"
-        Send "{u}{u}"
+        Send "{c}{c}"
     } else {
         ; Send "{blind}"
-        ; Send "{. down}{u}{u}{. up}"
-        Send "{. down}{u}{u}"
+        ; Send "{. down}{c}{c}{. up}"
+        Send "{. down}{c}{c}"
     }
     ; Critical "off"
 }
@@ -123,16 +142,15 @@ LButton::LButton
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState("shift", "P")) {
         ; Send "{blind}"
-        Send "{u}"
+        Send "{c}"
     } else {
         ; Send "{blind}"
-        Send "{u}{. up}"
+        Send "{c}{. up}"
     }
     ; Critical "off"
 }
 
 
-.::.
 ; .::{
 ;     ; Critical
 ;     ; SetKeyDelay -1
@@ -165,9 +183,9 @@ LButton::LButton
 ;     ;   Sleep 3000
 ;     ;   ToolTip  ; Turn off the tip.
 ;     if (GetKeyState(".", "P")) {
-;         Send "{u}{u}"
+;         Send "{c}{c}"
 ;     } else {
-;         Send "{u}{u}{. up}"
+;         Send "{c}{c}{. up}"
 ;     }
 ;     ; Critical "off"
 ; }
@@ -201,9 +219,9 @@ LButton::LButton
 ; *s:: SendInput "{blind down}{s}"
 
 ; RButton:: {
-;     SendInput "{u}"
+;     SendInput "{c}"
 ;     if (GetKeyState("Shift", "P")) {
-;         SendInput "{u}"
+;         SendInput "{c}"
 ;     } else {
 ;     }
 ; }
@@ -217,14 +235,22 @@ LButton::LButton
 #HotIf ; Only active during league
 
 #HotIf not WinActive(LEAGUE_PROCESS_NAME) ; Not evaluated eveytime aparrently
+
 SendInput "{Shift up}"
 SendInput "{. up}"
 
 Esc::Esc
 CapsLock::CapsLock
+RShift::RShift
 RButton::RButton
-.::.
-LShift::LShift
+
+; .::.
+; LShift::LShift
+
+; LShift::.
+; .::LShift
+
+
 ; SetCapsLockState "Off"
 ; SetCapsLockState("AlwaysOff")
 

@@ -18,12 +18,20 @@ pull:
 WIN_STARTUP_DIR := "$$WIN_USERPROFILE/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/"
 ahk:
 	@cp -r setup/windows/src/ahk/ /mnt/c/
+	@cp setup/windows/src/keyboard-rate.ps1 /mnt/c/ahk/
 	@mkdir -p "$(WIN_STARTUP_DIR)/"
 	@cp setup/windows/startup.bat "$(WIN_STARTUP_DIR)/startup.bat"
 	# wsl-open /mnt/c/ahk/league.ahk
 	# wsl-open /mnt/c/ahk/mouse.ahk
 	wsl-open "$(WIN_STARTUP_DIR)/startup.bat"
 
+
+
+MPV_ROAMING := "/mnt/c/Users/$(WIN_USER)/AppData/Roaming/mpv/"
+mpv:
+	@echo $(MPV_ROAMING)
+	@rm -rf $(MPV_ROAMING)
+	@cp -r ./config/mpv/ $(MPV_ROAMING)
 
 	# @cp setup/windows/src/ahk/wm.ahk /mnt/c/wm.ahk
 	# wsl-open /mnt/c/wm.ahk
@@ -42,12 +50,11 @@ wsl-config:
 	cat $(DEST)
 
 
-ROAMING := "/mnt/c/Users/$(WIN_USER)/AppData/Roaming/alacritty/"
-
+ALACRITTY_ROAMING := "/mnt/c/Users/$(WIN_USER)/AppData/Roaming/alacritty/"
 alacritty:
-	@echo $(ROAMING)
-	@rm -rf $(ROAMING)
-	@cp -r ./config/alacritty/ $(ROAMING)
+	@echo $(ALACRITTY_ROAMING)
+	@rm -rf $(ALACRITTY_ROAMING)
+	@cp -r ./config/alacritty/ $(ALACRITTY_ROAMING)
 	
 
 
