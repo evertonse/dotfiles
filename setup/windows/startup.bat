@@ -36,15 +36,18 @@ REM ---- Disable Defender services startup (best-effort) ----
 sc config WinDefend start= disabled >nul 2>&1
 sc config WdNisSvc start= disabled >nul 2>&1
 
-echo.
-echo Done. Reboot required.
+REM Make sure that the hypervisor launch is enabled in your boot configuration. You can validate this by running elevated powershell:
+REM bcdedit /enum | findstr -i hypervisorlaunchtype
+REM If you see hypervisorlaunchtype Off, then the hypervisor is disabled. To enable it run in an elevated powershell:
+REM https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#error-0x80370102-the-virtual-machine-could-not-be-started-because-a-required-feature-is-not-installed
+bcdedit /set hypervisorlaunchtype Auto
 
 
 REM ---- Disable Disk Indexing (Windows Search) ----
-REM net stop "WSearch"
+net stop "WSearch"
 
 REM ---- Disable SysMain (Superfetch) - reduces stuttering on HDD/SSD ----
-REM net stop "SysMain"
+net stop "SysMain"
 
 REM ---- Disable Telemetry ----
 net stop "DiagTrack"
@@ -79,7 +82,7 @@ REM -------------------------
 REM  2) Ensure Ultimate Performance Power Plan is active
 REM     GUID used below is the built-in Ultimate Performance plan GUID.
 REM -------------------------
-powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
+REM powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
 REM (If the plan doesn't exist on Windows Home, this will fail harmlessly.)
 
 REM -------------------------
@@ -108,22 +111,22 @@ REM     Note: stopping services at runtime reduces immediate resource use.
 REM     To permanently disable, change 'sc config <name> start= disabled' (commented out below)
 REM -------------------------
 echo Stopping services (non-critical for gaming). Some may report errors if missing.
-REM sc stop "WSearch"          >nul 2>&1     REM Windows Search (indexing)
-REM REM sc stop "SysMain"          >nul 2>&1     REM Superfetch / SysMain
-REM sc stop "wuauserv"         >nul 2>&1     REM Windows Update service (stopping only)
-REM sc stop "DoSvc"            >nul 2>&1     REM Delivery Optimization
-REM sc stop "Spooler"          >nul 2>&1     REM Print Spooler
-REM sc stop "bthserv"          >nul 2>&1     REM Bluetooth Support
-REM sc stop "WbioSrvc"         >nul 2>&1     REM Biometrics
-REM sc stop "CDPSvc"           >nul 2>&1     REM Connected Devices Platform Service
-REM sc stop "CDPUserSvc_"      >nul 2>&1     REM per-user CDP instances (wildcards not supported via sc)
-REM sc stop "TabletInputService" >nul 2>&1   REM Touch Keyboard and Handwriting Panel
-REM sc stop "RetailDemo"       >nul 2>&1
-REM sc stop "smartscreen"      >nul 2>&1
-REM sc stop "XboxGipSvc"       >nul 2>&1
-REM sc stop "XblAuthManager"   >nul 2>&1
-REM sc stop "XblGameSave"      >nul 2>&1
-REM sc stop "XboxNetApiSvc"    >nul 2>&1
+sc stop "WSearch"          >nul 2>&1     REM Windows Search (indexing)
+sc stop "SysMain"          >nul 2>&1     REM Superfetch / SysMain
+sc stop "wuauserv"         >nul 2>&1     REM Windows Update service (stopping only)
+sc stop "DoSvc"            >nul 2>&1     REM Delivery Optimization
+sc stop "Spooler"          >nul 2>&1     REM Print Spooler
+sc stop "bthserv"          >nul 2>&1     REM Bluetooth Support
+sc stop "WbioSrvc"         >nul 2>&1     REM Biometrics
+sc stop "CDPSvc"           >nul 2>&1     REM Connected Devices Platform Service
+sc stop "CDPUserSvc_"      >nul 2>&1     REM per-user CDP instances (wildcards not supported via sc)
+sc stop "TabletInputService" >nul 2>&1   REM Touch Keyboard and Handwriting Panel
+sc stop "RetailDemo"       >nul 2>&1
+sc stop "smartscreen"      >nul 2>&1
+sc stop "XboxGipSvc"       >nul 2>&1
+sc stop "XblAuthManager"   >nul 2>&1
+sc stop "XblGameSave"      >nul 2>&1
+sc stop "XboxNetApiSvc"    >nul 2>&1
 
 REM -------------------------
 REM  8) OPTIONAL: Permanently disable a service (DANGEROUS)
@@ -144,14 +147,14 @@ REM netsh interface tcp set global ecncapability=disabled
 REM -------------------------
 REM Core parking: aggressive disable
 REM https://learn.microsoft.com/en-us/answers/questions/1524213/remove-parked-status-of-cpu
-REM reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583" /v "Attribute" /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583" /v "Attribute" /t REG_DWORD /d 0 /f
 
 REM -------------------------
 REM 13) RAM compression: option to disable (risky)
 REM     Disabling memory compression may reduce pagefile overhead but increases RAM usage.
 REM     COMMENTED OUT by default. Uncomment only after research and full backups.
 REM -------------------------
-REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 1 /f
 
 REM -------------------------
 REM 14) Tweak visual effects (system animation off)
@@ -168,8 +171,8 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTeleme
 REM -------------------------
 REM 16) Disable background apps and tips notifications
 REM -------------------------
-REM reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f
-REM reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscriptionId /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SubscriptionId /t REG_DWORD /d 0 /f
 
 REM -------------------------
 REM 17) Aggressive optional items (COMMENTED OUT — HIGH RISK)
@@ -184,10 +187,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableRealtimeMo
 
 
 REM ***** DANGEROUS: Disable Windows Update service permanently
-REM sc config wuauserv start= disabled
-
-REM ***** DANGEROUS: Disable VBS / HVCI (requires reboot; risk to security)
-REM bcdedit /set hypervisorlaunchtype off
+sc config wuauserv start= disabled
 
 REM ***** DANGEROUS: TDR delay increase (can hide GPU crashes)
 REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v TdrDelay /t REG_DWORD /d 10 /f

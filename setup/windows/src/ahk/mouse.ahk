@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
 ; AutoHotkey v2 script to replace broken middle mouse button
 ; Ctrl + Mouse Button 4 = Middle Click
 ; Hold Mouse Button 4 + Move Mouse = Scroll Wheel simulation

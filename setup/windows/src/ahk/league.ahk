@@ -125,7 +125,7 @@ LButton::LButton
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState("shift", "P")) {
         ; Send "{blind}"
-        Send "{c}{c}"
+        Send "{. down}{c}{c}"
     } else {
         ; Send "{blind}"
         ; Send "{. down}{c}{c}{. up}"
@@ -142,7 +142,7 @@ LButton::LButton
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState("shift", "P")) {
         ; Send "{blind}"
-        Send "{c}"
+        Send "{c}{. up}"
     } else {
         ; Send "{blind}"
         Send "{c}{. up}"
