@@ -82,14 +82,14 @@ REM -------------------------
 REM  2) Ensure Ultimate Performance Power Plan is active
 REM     GUID used below is the built-in Ultimate Performance plan GUID.
 REM -------------------------
-REM powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
+powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
 REM (If the plan doesn't exist on Windows Home, this will fail harmlessly.)
 
 REM -------------------------
 REM  4) Disable background apps (user-level toggles)
 REM -------------------------
-REM reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v GlobalUserDisabled /t REG_DWORD /d 1 /f
-REM reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppPrivacy" /v LetAppsRunInBackground /t REG_DWORD /d 2 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v GlobalUserDisabled /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppPrivacy" /v LetAppsRunInBackground /t REG_DWORD /d 2 /f
 
 REM -------------------------
 REM  5) Disable Game DVR and related recording (reduces hitching)
