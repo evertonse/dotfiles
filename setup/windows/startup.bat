@@ -94,10 +94,10 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppPrivacy" /v LetAppsRu
 REM -------------------------
 REM  5) Disable Game DVR and related recording (reduces hitching)
 REM -------------------------
-REM reg add "HKCU\System\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 0 /f
-REM reg add "HKCU\System\GameConfigStore" /v GameDVR_FSEBehaviorMode /t REG_DWORD /d 2 /f
-REM reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f
-REM reg add "HKCU\System\GameConfigStore" /v GameDVR_FSEBehavior /t REG_DWORD /d 2 /f
+reg add "HKCU\System\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 0 /f
+reg add "HKCU\System\GameConfigStore" /v GameDVR_FSEBehaviorMode /t REG_DWORD /d 2 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f
+reg add "HKCU\System\GameConfigStore" /v GameDVR_FSEBehavior /t REG_DWORD /d 2 /f
 
 REM -------------------------
 REM  6) GPU: Hardware-accelerated GPU scheduling (attempt to enable)
@@ -132,16 +132,62 @@ REM -------------------------
 REM  8) OPTIONAL: Permanently disable a service (DANGEROUS)
 REM  Uncomment only if you know what you do.
 REM  Example: to permanently disable Windows Search:
-REM sc config "WSearch" start= disabled
+sc config "WSearch" start= disabled
 
-REM -------------------------
-REM  9) NETWORK: aggressive TCP tuning for lower latency
-REM     - disable heuristics, disable autotuning, set CTCP
-REM -------------------------
-REM netsh interface tcp set heuristics disabled
-REM netsh interface tcp set global autotuninglevel=disabled
-REM netsh interface tcp set global congestionprovider=ctcp
-REM netsh interface tcp set global ecncapability=disabled
+
+REM ------------------------------------------ REM
+REM -----------NetWork------------------------ REM
+REM ------------------------------------------ REM
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{NIC-GUID}" /v TcpAckFrequency /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{NIC-GUID}" /v TCPNoDelay /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{GUID}" /v TcpAckFrequency /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{GUID}" /v TCPNoDelay /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{GUID}" /v TcpDelAckTicks /t REG_DWORD /d 0 /f
+
+REM ------------DEFAULTS------------------------------
+
+REM netsh interface tcp set heuristics enabled
+REM netsh int udp set global uro=enabled
+REM netsh interface tcp set global congestionprovider=none
+REM netsh int tcp set global autotuninglevel=normal
+REM netsh int tcp set global ecncapability=disabled
+REM netsh int tcp set global timestamps=disabled
+REM netsh int tcp set global rss=enabled
+REM netsh int tcp set global rsc=enabled
+
+REM Resetting such as below
+REM netsh int ip reset
+REM ipconfig /flushdns
+REM route -f
+
+REM ------------------------------------------
+
+netsh interface tcp set heuristics disabled
+
+netsh int udp set global uro=disabled
+netsh int udp set global uso=disabled
+
+netsh int tcp set global autotuninglevel=disabled
+
+netsh interface tcp set global congestionprovider=ctcp
+netsh int tcp set global ecncapability=disabled
+netsh int tcp set global timestamps=disabled
+netsh int tcp set global rss=enabled
+netsh int tcp set global rsc=disabled
+
+REM ------------------------------------------ REM
+
+netsh int ipv4 set subinterface "Wi-Fi" mtu=1472 store=persistent
+powercfg -setactive SCHEME_MIN
+wmic process where name="League of Legends.exe" CALL setpriority 128
+
+
+
+REM ------------------------------------------ REM
+REM -----------NetWork------------------------ REM
+REM ------------------------------------------ REM
+
 
 
 REM -------------------------

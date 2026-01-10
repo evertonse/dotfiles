@@ -11,6 +11,10 @@ set confirm off
 tui enable
 focus cmd
 
+set print pretty on
+set print frame-arguments all
+set pagination off
+set disassemble-next-line on
 
 define c
   continue
