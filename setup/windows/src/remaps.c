@@ -32,8 +32,10 @@ BOOL logical_champions_only_down_by[]  = {
    ['W'] = 0,
    ['E'] = 0,
    ['R'] = 0,
+
    ['C'] = 0,
    ['S'] = 0,
+
    ['B'] = 0 // Right Mouse [B]utton.
 };
 
@@ -52,10 +54,10 @@ void track_key_state(const KBDLLHOOKSTRUCT *k, WPARAM wParam) {
    if (k->flags & LLKHF_INJECTED) {
       if (down) {
          logical_keydown[vk] = TRUE;
-         printf("%x logical (injected) down\n", vk);
+         // printf("%x logical (injected) down\n", vk);
       }
       if (up) {
-         printf("%x logical (injected) up\n", vk);
+         // printf("%x logical (injected) up\n", vk);
          logical_keydown[vk] = FALSE;
       }
    } else {
@@ -162,8 +164,14 @@ void release_all_logical_keys(void) {
          send_scancode(MapVirtualKey(vk, MAPVK_VK_TO_VSC), KEYEVENTF_KEYUP);
          logical_keydown[vk] = FALSE;
       }
+
+   }
+
+   for (size_t i = 0; i < count_of(logical_champions_only_down_by); i++) {
+      logical_champions_only_down_by[i] = false;
    }
 }
+
 
 LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
    auto hook = keyboard_hook;
@@ -188,7 +196,6 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
          return CallNextHookEx(hook, code, wParam, lParam);
       }
 
-      // ESC -> Y
       if (key == VK_ESCAPE && keydown) {
          printf("Escape Down\n");
          send_scancode('Y', KeyDown);
@@ -197,7 +204,6 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
       }
 
       if (key == VK_ESCAPE && keyup) {
-         // send_scancode(sc_y, KeyDown);
          printf("Escape Up\n");
          send_scancode('Y', KeyUp);
          return 1;
@@ -261,16 +267,25 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
             return 1;
          }
       }
-      char abilities[] = {'Q', 'W', 'E', 'R'};
+
+      static volatile bool flip_abilities_champion_only_default = false;
+      if (key == VK_F5 && keyup) {
+         flip_abilities_champion_only_default = !flip_abilities_champion_only_default;
+         release_all_logical_keys();
+         MessageBeep(MB_OK);
+         return 1;
+      }
+
+      static const char abilities[] = {'Q', 'W', 'E', 'R'};
+      bool send_champion_only_abilities = flip_abilities_champion_only_default ? physical_keydown[VK_LSHIFT] : !physical_keydown[VK_LSHIFT];
       for (int i = 0; i < count_of(abilities); i++) {
          WORD ability_key = abilities[i];
          if (key == ability_key) {
-            if (physical_keydown[VK_LSHIFT]) {
-               continue;
-            }
 
             if (keydown) {
-               send_champion_only_down(ability_key);
+               if (send_champion_only_abilities) {
+                  send_champion_only_down(ability_key);
+               }
                send_scancode(ability_key, KeyDown);
                return 1;
             }
