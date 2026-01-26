@@ -2,6 +2,10 @@
 start "" "C:\ahk\league.ahk"
 start "" "C:\ahk\mouse.ahk"
 
+taskkill /f /im 'C:\ahk\remaps.exe' >nul 2>&1
+start "" /min "C:\ahk\remaps.exe"
+REM powershell -Command "Start-Process 'C:\ahk\remaps.exe' -Verb RunAs"
+
 echo === ENABLING GAMING MODE ===
 
 REM Keyboard Stuff
@@ -10,6 +14,8 @@ powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
 
 REM Use the windows register to set priority to high for process called "League of Legends (TM) Client.exe"
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\League of Legends.exe\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d 3 /f
+
+reg add "HKEY_CURRENT_USER\Control Panel\Accessibility\StickyKeys" /v Flags /t REG_SZ /d 0 /f
 
 @echo off
 echo Disabling Microsoft Defender (policy + realtime protection)...

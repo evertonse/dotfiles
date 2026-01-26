@@ -17,8 +17,9 @@ SendMode "Input"
 ; SetMouseDelay 0
 
 ; TODO: Test if setdelay -1 once solves the s up:: bug, where hold tagert champions only keep being down despite ksk being up
-LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
+LEAGUE_PROCESS_NAME := "none"
 
+; LEAGUE_PROCESS_NAME := "League of Legends (TM) Client"
 #HotIf WinActive(LEAGUE_PROCESS_NAME)
 WinWaitActive LEAGUE_PROCESS_NAME
 
@@ -49,14 +50,23 @@ $^s:: {
 Esc::y
 CapsLock::Esc
 
+champion_only_down := False
 $s::{
     ; Critical
-    if (
-        false
-        || GetKeyState("Shift", "P")
-        || GetKeyState(".", "P")
-        ; || GetKeyState("RButton", "P")
-    ) {
+    if (champion_only_down) {
+        ; MsgBox("sss", "Error", 48)
+        Send "{s}{s}"
+        ; Sleep 3000
+        ; ToolTip  ; Turn off the tip.
+    } else {
+        ; MsgBox("ss2", "Error", 48)
+        Send "{. down}{s}{s}{. up}"
+    }
+}
+
+$s Up::{
+    ; Critical
+    if (champion_only_down) {
         ; MsgBox("sss", "Error", 48)
         Send "{s}{s}"
         ; Sleep 3000
@@ -107,6 +117,60 @@ $+e Up:: {
     }
 }
 
+$+r:: {
+    ; Critical
+    if (GetKeyState(".", "P") ) {
+        Send "{r down}"
+    } else {
+        Send "{. down}{r down}"
+    }
+}
+
+$+r Up:: {
+    ; Critical
+    if (GetKeyState(".", "P")) {
+        Send "{r up}"
+    } else {
+        Send "{r up}{. up}"
+    }
+}
+
+$+q:: {
+    ; Critical
+    if (GetKeyState(".", "P") ) {
+        Send "{q down}"
+    } else {
+        Send "{. down}{q down}"
+    }
+}
+
+$+q Up:: {
+    ; Critical
+    if (GetKeyState(".", "P")) {
+        Send "{q up}"
+    } else {
+        Send "{q up}{. up}"
+    }
+}
+
+$+w:: {
+    ; Critical
+    if (GetKeyState(".", "P") ) {
+        Send "{w down}"
+    } else {
+        Send "{. down}{w down}"
+    }
+}
+
+$+w Up:: {
+    ; Critical
+    if (GetKeyState(".", "P")) {
+        Send "{w up}"
+    } else {
+        Send "{w up}{. up}"
+    }
+}
+
 ; Shift & e :: {
 ;     Send "{. down}{Backspace}{e}{c down}{. up}"
 ; }
@@ -122,6 +186,7 @@ LButton::LButton
     ; SetKeyDelay -1
     ; SetMouseDelay -1
     ; Critical "on"
+    ; if (GetKeyState(".", "P") || GetKeyState("Shift", "P") || GetKeyState("s", "P")) {
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
     ; if (GetKeyState("shift", "P")) {
         ; Send "{blind}"
@@ -140,6 +205,7 @@ LButton::LButton
     ; SetMouseDelay -1
     ; Critical "on"
     if (GetKeyState(".", "P") || GetKeyState("Shift", "P")) {
+    ; if (GetKeyState(".", "P") || GetKeyState("Shift", "P") || GetKeyState("s", "P")) {
     ; if (GetKeyState("shift", "P")) {
         ; Send "{blind}"
         Send "{c}{. up}"
@@ -239,10 +305,10 @@ LButton::LButton
 SendInput "{Shift up}"
 SendInput "{. up}"
 
-Esc::Esc
-CapsLock::CapsLock
-RShift::RShift
-RButton::RButton
+; Esc::Esc
+; CapsLock::CapsLock
+; RShift::RShift
+; RButton::RButton
 
 ; .::.
 ; LShift::LShift
