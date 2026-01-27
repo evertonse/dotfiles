@@ -111,8 +111,9 @@ static void send_scancode(WORD vk, DWORD flags) {
 
 
 // #define VK_CHAMPION_ONLY VK_OEM_PERIOD
-// #define VK_CHAMPION_ONLY VK_DOWN
-#define VK_CHAMPION_ONLY VK_SCROLL
+// #define VK_CHAMPION_ONLY VK_SCROLL
+#define VK_CHAMPION_ONLY VK_F6
+// #define VK_CHAMPION_ONLY VK_INSERT it needs KEYEVENTF_EXTENDEDKEY to be set in 'flags'
 static int champion_only_count = 0;
 static void send_champion_only_down(WORD vk_sorta_XD) {
    send_scancode(VK_CHAMPION_ONLY, KeyDown);
