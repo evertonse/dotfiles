@@ -22,7 +22,7 @@ static HHOOK mouse_hook;
   ((size_of(x) / size_of(x[0])) / ((!(size_of(x) % size_of(x[0])))))
 #endif
 
-// Assuming VK_OEM_CLEAR is biggest value for all Vks
+// IMPORTANT Assuming VK_OEM_CLEAR is biggest value for all Vks
 WORD scan_codes[VK_OEM_CLEAR]       = {0};
 BOOL physical_keydown[VK_OEM_CLEAR] = {0};
 BOOL logical_keydown[VK_OEM_CLEAR]  = {0};
@@ -93,25 +93,29 @@ BOOL is_league_active(void) {
 //    send_virtual_key('C', 0);
 //    send_virtual_key('C', KEYEVENTF_KEYUP);
 static void send_virtual_key(WORD vk, DWORD flags) {
-   INPUT in = {0};
-   in.type = INPUT_KEYBOARD;
-   in.ki.wVk = vk;
+   INPUT in      = {0};
+   in.type       = INPUT_KEYBOARD;
+   in.ki.wVk     = vk;
    in.ki.dwFlags = flags;
    SendInput(1, &in, sizeof(INPUT));
 }
 
 static void send_scancode(WORD vk, DWORD flags) {
-   INPUT in = {0};
-   in.type = INPUT_KEYBOARD;
-   in.ki.wScan = scan_codes[vk];
+   INPUT in      = {0};
+   in.type       = INPUT_KEYBOARD;
+   in.ki.wScan   = scan_codes[vk];
    in.ki.dwFlags = KEYEVENTF_SCANCODE | flags;
    SendInput(1, &in, sizeof(INPUT));
 }
 
-static int champion_only_count = 0;
 
+
+// #define VK_CHAMPION_ONLY VK_OEM_PERIOD
+// #define VK_CHAMPION_ONLY VK_DOWN
+#define VK_CHAMPION_ONLY VK_SCROLL
+static int champion_only_count = 0;
 static void send_champion_only_down(WORD vk_sorta_XD) {
-   send_scancode(VK_OEM_PERIOD, KeyDown);
+   send_scancode(VK_CHAMPION_ONLY, KeyDown);
    logical_champions_only_down_by[vk_sorta_XD] = true;
 }
 
@@ -126,12 +130,13 @@ static void send_champion_only_up(WORD vk_sorta_XD) {
    logical_champions_only_down_by[vk_sorta_XD] = false;
 
    if (count <= 1) {
-      send_scancode(VK_OEM_PERIOD, KeyUp);
+      send_scancode(VK_CHAMPION_ONLY, KeyUp);
    }
 }
 
-volatile LONG league_active = FALSE;
 
+
+volatile LONG league_active = FALSE;
 LRESULT CALLBACK mouse_procedure(int code, WPARAM wParam, LPARAM lParam) {
    if (!InterlockedCompareExchange(&league_active, 0, 0)) {
       return CallNextHookEx(NULL, code, wParam, lParam);

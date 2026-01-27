@@ -21,7 +21,7 @@ ahk:
 	@cp setup/windows/src/keyboard-rate.ps1 /mnt/c/ahk/
 	@mkdir -p "$(WIN_STARTUP_DIR)/"
 	@cp setup/windows/startup.bat "$(WIN_STARTUP_DIR)/startup.bat"
-	clang --target=x86_64-w64-windows-gnu -std=gnu2x setup/windows/src/remaps.c -o setup/windows/src/remaps.exe -mwindows -luser32 -O2
+	clang --target=x86_64-w64-windows-gnu -std=gnu2x setup/windows/src/remaps.c -o setup/windows/src/remaps.exe -mwindows -luser32 -O3
 	/mnt/c/Windows/System32/taskkill.exe /F /IM remaps.exe 2>/dev/null || true
 	@cp setup/windows/src/remaps.exe /mnt/c/ahk/
 	# wsl-open /mnt/c/ahk/league.ahk

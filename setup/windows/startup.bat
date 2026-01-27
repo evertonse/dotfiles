@@ -3,18 +3,21 @@ start "" "C:\ahk\league.ahk"
 start "" "C:\ahk\mouse.ahk"
 
 taskkill /f /im 'C:\ahk\remaps.exe' >nul 2>&1
-start "" /min "C:\ahk\remaps.exe"
 REM powershell -Command "Start-Process 'C:\ahk\remaps.exe' -Verb RunAs"
+start "" /min "C:\ahk\remaps.exe"
 
-echo === ENABLING GAMING MODE ===
+
+
+powershell -Command "New-NetQosPolicy -Name 'LeagueGameQoS' -AppPathNameMatchCondition 'League of Legends.exe' -DSCPAction 46" >nul 2>&1
+powershell -Command "New-NetQosPolicy -Name 'LeagueClientQoS' -AppPathNameMatchCondition 'LeagueClientUx.exe' -DSCPAction 46" >nul 2>&1
 
 REM Keyboard Stuff
-
 powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
 
 REM Use the windows register to set priority to high for process called "League of Legends (TM) Client.exe"
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\League of Legends.exe\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d 3 /f
 
+REM Disable Sticky Keys
 reg add "HKEY_CURRENT_USER\Control Panel\Accessibility\StickyKeys" /v Flags /t REG_SZ /d 0 /f
 
 @echo off
@@ -109,7 +112,7 @@ REM -------------------------
 REM  6) GPU: Hardware-accelerated GPU scheduling (attempt to enable)
 REM      Note: supported only on compatible drivers/GPUs. No harm trying.
 REM -------------------------
-REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f
 
 REM -------------------------
 REM  7) Disable unneeded services (stop only here; not permanently disable)
@@ -160,7 +163,7 @@ REM netsh int tcp set global autotuninglevel=normal
 REM netsh int tcp set global ecncapability=disabled
 REM netsh int tcp set global timestamps=disabled
 REM netsh int tcp set global rss=enabled
-REM netsh int tcp set global rsc=enabled
+REM netsh int tcp set glbal rsc=enabled
 
 REM Resetting such as below
 REM netsh int ip reset
@@ -171,12 +174,11 @@ REM ------------------------------------------
 
 netsh interface tcp set heuristics disabled
 
-netsh int udp set global uro=disabled
-netsh int udp set global uso=disabled
+netsh int udp set global uro=enabled
+netsh int udp set global uso=enabled
 
 netsh int tcp set global autotuninglevel=disabled
 
-netsh interface tcp set global congestionprovider=ctcp
 netsh int tcp set global ecncapability=disabled
 netsh int tcp set global timestamps=disabled
 netsh int tcp set global rss=enabled
@@ -184,9 +186,12 @@ netsh int tcp set global rsc=disabled
 
 REM ------------------------------------------ REM
 
-netsh int ipv4 set subinterface "Wi-Fi" mtu=1472 store=persistent
-powercfg -setactive SCHEME_MIN
-wmic process where name="League of Legends.exe" CALL setpriority 128
+powercfg -setactive SCHEME_MAX
+:: Optional: Disable power throttling (Win10+)
+powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_PROCESSOR IDLEDISABLE 1
+powercfg /SETACTIVE SCHEME_CURRENT
+
+REM powercfg -setactive e9a42b02-d5df-448d-aa00-03f14749eb61
 
 
 
@@ -248,4 +253,5 @@ REM -------------------------
 REM 18) Final steps: flush DNS cache and inform user
 REM -------------------------
 REM ipconfig /flushdns >nul 2>&1
-exit
+echo "Script finished you may close"
+pause
