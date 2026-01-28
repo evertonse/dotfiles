@@ -149,14 +149,23 @@ LRESULT CALLBACK mouse_procedure(int code, WPARAM wParam, LPARAM lParam) {
 
       if (wParam == WM_RBUTTONDOWN) {
          send_champion_only_down('B');
+
          send_scancode('C', KeyDown);
          send_scancode('C', KeyUp);
+
+         send_scancode('C', KeyDown);
+         send_scancode('C', KeyUp);
+
          return 1; // swallow right click
       }
 
       if (wParam == WM_RBUTTONUP) {
          send_scancode('C', KeyDown);
          send_scancode('C', KeyUp);
+
+         send_scancode('C', KeyDown);
+         send_scancode('C', KeyUp);
+
          send_champion_only_up('B');
          return 1; // swallow right click
       }
