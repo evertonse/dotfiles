@@ -1,4 +1,5 @@
-// clang --target=x86_64-w64-windows-gnu -std=gnu2x setup/windows/src/remaps.c -o remaps && ./remaps.exe
+// clang --target=x86_64-w64-windows-gnu -std=gnu2x setup/windows/src/remaps.c -o setup/windows/src/remaps.exe && setup/windows/src/remaps.exe
+
 #define WIN32_LEAN_AND_MEAN
 #include <stdio.h>
 #include <windows.h>
@@ -101,11 +102,12 @@ static void send_virtual_key(WORD vk, DWORD flags) {
 }
 
 static void send_scancode(WORD vk, DWORD flags) {
+   printf("%c %s \n", vk, flags == KeyDown ? "down" : "up");
    INPUT in      = {0};
    in.type       = INPUT_KEYBOARD;
    in.ki.wScan   = scan_codes[vk];
    in.ki.dwFlags = KEYEVENTF_SCANCODE | flags;
-   SendInput(1, &in, sizeof(INPUT));
+   UINT inserted_count = SendInput(1, &in, sizeof(INPUT));
 }
 
 
@@ -194,6 +196,8 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
       auto key = k->vkCode;
 
 
+      BOOL keydown_before = physical_keydown[k->vkCode];
+
       // Always track first
       track_key_state(k, wParam);
 
@@ -201,6 +205,13 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
       if (k->flags & LLKHF_INJECTED) {
          return CallNextHookEx(hook, code, wParam, lParam);
       }
+
+      // Only trigger on first down, ignore auto-repeat
+      if (keydown_before && keydown && !keyup) {
+         return CallNextHookEx(hook, code, wParam, lParam);
+      }
+
+
 
       if (key == VK_ESCAPE && keydown) {
          printf("Escape Down\n");
@@ -329,7 +340,13 @@ DWORD WINAPI foreground_monitor(void *) {
 }
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR _2, int _3) {
-   FreeConsole();
+   const bool debugging = true;
+
+   // Calling "FreeConsole" makes any printf not appear anymore regardless if called from a shell
+   if (!debugging) {
+      FreeConsole();
+   }
+
    // CreateMutexA(
    //       NULL,                   // default security
    //       FALSE,                  // do NOT lock it immediately
