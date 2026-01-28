@@ -4,6 +4,14 @@
 #include <stdio.h>
 #include <windows.h>
 
+#define DEBUGGING 1
+#if DEBUGGING == 1
+#  include <assert.h>
+#else
+#  define assert(x)
+#endif
+
+
 #define VK_CAPSLOCK VK_CAPITAL
 
 #define KeyDown 0
@@ -55,10 +63,8 @@ void track_key_state(const KBDLLHOOKSTRUCT *k, WPARAM wParam) {
    if (k->flags & LLKHF_INJECTED) {
       if (down) {
          logical_keydown[vk] = TRUE;
-         // printf("%x logical (injected) down\n", vk);
       }
       if (up) {
-         // printf("%x logical (injected) up\n", vk);
          logical_keydown[vk] = FALSE;
       }
    } else {
@@ -101,28 +107,38 @@ static void send_virtual_key(WORD vk, DWORD flags) {
    SendInput(1, &in, sizeof(INPUT));
 }
 
+#define MAX_INPUTS (count_of(scan_codes) + 2)
+static INPUT input_buffer[MAX_INPUTS];
+static UINT  input_count = 0;
+
 static void send_scancode(WORD vk, DWORD flags) {
-   printf("%c %s \n", vk, flags == KeyDown ? "down" : "up");
-   INPUT in      = {0};
-   in.type       = INPUT_KEYBOARD;
-   in.ki.wScan   = scan_codes[vk];
-   in.ki.dwFlags = KEYEVENTF_SCANCODE | flags;
-   UINT inserted_count = SendInput(1, &in, sizeof(INPUT));
+   assert(input_count < MAX_INPUTS);
+
+   INPUT *in = &input_buffer[input_count++];
+   ZeroMemory(in, sizeof(INPUT));
+
+   in->type = INPUT_KEYBOARD;
+   in->ki.wScan = scan_codes[vk];
+   in->ki.dwFlags = KEYEVENTF_SCANCODE | flags;
 }
 
-
+static void flush_inputs(void) {
+   assert(input_count > 0);
+   SendInput(input_count, input_buffer, sizeof(INPUT));
+   input_count = 0;
+}
 
 // #define VK_CHAMPION_ONLY VK_OEM_PERIOD
 // #define VK_CHAMPION_ONLY VK_SCROLL
 #define VK_CHAMPION_ONLY VK_F6
 // #define VK_CHAMPION_ONLY VK_INSERT it needs KEYEVENTF_EXTENDEDKEY to be set in 'flags'
 static int champion_only_count = 0;
-static void send_champion_only_down(WORD vk_sorta_XD) {
+static void send_scancode_champion_only_down(WORD vk_sorta_XD) {
    send_scancode(VK_CHAMPION_ONLY, KeyDown);
    logical_champions_only_down_by[vk_sorta_XD] = true;
 }
 
-static void send_champion_only_up(WORD vk_sorta_XD) {
+static void send_scancode_champion_only_up(WORD vk_sorta_XD) {
    int count = 0;
    for (size_t i = 0; i < count_of(logical_champions_only_down_by); i++) {
       if (logical_champions_only_down_by[i]) {
@@ -148,7 +164,7 @@ LRESULT CALLBACK mouse_procedure(int code, WPARAM wParam, LPARAM lParam) {
    if (code == HC_ACTION) {
 
       if (wParam == WM_RBUTTONDOWN) {
-         send_champion_only_down('B');
+         send_scancode_champion_only_down('B');
 
          send_scancode('C', KeyDown);
          send_scancode('C', KeyUp);
@@ -156,6 +172,7 @@ LRESULT CALLBACK mouse_procedure(int code, WPARAM wParam, LPARAM lParam) {
          send_scancode('C', KeyDown);
          send_scancode('C', KeyUp);
 
+         flush_inputs();
          return 1; // swallow right click
       }
 
@@ -166,19 +183,21 @@ LRESULT CALLBACK mouse_procedure(int code, WPARAM wParam, LPARAM lParam) {
          send_scancode('C', KeyDown);
          send_scancode('C', KeyUp);
 
-         send_champion_only_up('B');
+         send_scancode_champion_only_up('B');
+         flush_inputs();
          return 1; // swallow right click
       }
    }
-end:
 
+end:
    return CallNextHookEx(NULL, code, wParam, lParam);
 }
 
 void release_all_logical_keys(void) {
-   for (int vk = 0; vk < 256; vk++) {
+   for (int vk = 0; vk < count_of(scan_codes); vk++) {
       if (logical_keydown[vk] && !physical_keydown[vk]) {
          send_scancode(MapVirtualKey(vk, MAPVK_VK_TO_VSC), KEYEVENTF_KEYUP);
+         flush_inputs();
          logical_keydown[vk] = FALSE;
       }
 
@@ -223,22 +242,21 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
 
 
       if (key == VK_ESCAPE && keydown) {
-         printf("Escape Down\n");
          send_scancode('Y', KeyDown);
-         // send_scancode(sc_y, KeyUp);
+         flush_inputs();
          return 1;
       }
 
       if (key == VK_ESCAPE && keyup) {
-         printf("Escape Up\n");
          send_scancode('Y', KeyUp);
+         flush_inputs();
          return 1;
       }
 
       if (key == VK_CAPSLOCK && keydown) {
-         printf("Escape Down\n");
          send_scancode(VK_ESCAPE, KeyDown);
          send_scancode(VK_ESCAPE, KeyUp);
+         flush_inputs();
          return 1;
       }
 
@@ -246,29 +264,24 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
 
       if (key == 'C') {
          if (keydown) {
-            send_champion_only_down('C');
+            send_scancode_champion_only_down('C');
             send_scancode('C', KeyDown);
+            flush_inputs();
             return 1;
          }
          if (keyup) {
             send_scancode('C', KeyUp);
-            send_champion_only_up('C');
+            send_scancode_champion_only_up('C');
+            flush_inputs();
             return 1;
          }
       }
 
 
       if (key == 'S') {
-
          if (keydown && physical_keydown[VK_LCONTROL]) {
-            send_scancode(MapVirtualKey('L', MAPVK_VK_TO_VSC), KeyDown);
-
-            // If user is physically holding L, do nothing
-            if (physical_keydown['L']) {
-               return CallNextHookEx(keyboard_hook, code, wParam, lParam);
-            }
-
             send_scancode(VK_LCONTROL, KeyUp);
+            // send_scancode('L', KeyDown);
 
             if (!logical_keydown['L']) {
                send_scancode('L', KeyDown);
@@ -276,20 +289,23 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
                send_scancode('L', KeyUp);
             }
 
+            flush_inputs();
             return 1; // swallow Ctrl+S
          }
 
          if (keydown) {
-            send_champion_only_down('S');
+            send_scancode_champion_only_down('S');
             send_scancode('S', KeyDown);
             send_scancode('S', KeyUp);
+            flush_inputs();
             return 1;
          }
 
          if (keyup) {
             send_scancode('S', KeyDown);
             send_scancode('S', KeyUp);
-            send_champion_only_up('S');
+            send_scancode_champion_only_up('S');
+            flush_inputs();
             return 1;
          }
       }
@@ -303,22 +319,24 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
       }
 
       static const char abilities[] = {'Q', 'W', 'E', 'R'};
-      bool send_champion_only_abilities = flip_abilities_champion_only_default ? physical_keydown[VK_LSHIFT] : !physical_keydown[VK_LSHIFT];
+      bool send_scancode_champion_only_abilities = flip_abilities_champion_only_default ? physical_keydown[VK_LSHIFT] : !physical_keydown[VK_LSHIFT];
       for (int i = 0; i < count_of(abilities); i++) {
          WORD ability_key = abilities[i];
          if (key == ability_key) {
 
             if (keydown) {
-               if (send_champion_only_abilities) {
-                  send_champion_only_down(ability_key);
+               if (send_scancode_champion_only_abilities) {
+                  send_scancode_champion_only_down(ability_key);
                }
                send_scancode(ability_key, KeyDown);
+               flush_inputs();
                return 1;
             }
 
             if (keyup) {
                send_scancode(ability_key, KeyUp);
-               send_champion_only_up(ability_key);
+               send_scancode_champion_only_up(ability_key);
+               flush_inputs();
                return 1;
             }
          }
@@ -349,10 +367,9 @@ DWORD WINAPI foreground_monitor(void *) {
 }
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR _2, int _3) {
-   const bool debugging = true;
-
    // Calling "FreeConsole" makes any printf not appear anymore regardless if called from a shell
-   if (!debugging) {
+   if (!DEBUGGING) {
+
       FreeConsole();
    }
 
