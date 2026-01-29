@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <windows.h>
 
-#define DEBUGGING 1
+#define DEBUGGING 0
 #if DEBUGGING == 1
 #  include <assert.h>
 #else
@@ -157,7 +157,11 @@ static void send_scancode_champion_only_up(WORD vk_sorta_XD) {
 
 volatile LONG league_active = FALSE;
 LRESULT CALLBACK mouse_procedure(int code, WPARAM wParam, LPARAM lParam) {
-   if (!InterlockedCompareExchange(&league_active, 0, 0)) {
+
+   // Tiny Race Conditions like this are irrelevant
+   // If you really care, do this instead:
+   // if (!InterlockedCompareExchange(&league_active, 0, 0)) {
+   if (!league_active) {
       return CallNextHookEx(NULL, code, wParam, lParam);
    }
 
@@ -362,7 +366,7 @@ DWORD WINAPI foreground_monitor(void *) {
          }
       }
 
-      Sleep(40);
+      Sleep(60 * 4);
    }
 }
 
