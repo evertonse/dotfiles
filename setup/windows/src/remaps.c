@@ -216,7 +216,13 @@ void release_all_logical_keys(void) {
 LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
    auto hook = keyboard_hook;
 
-   if (!InterlockedCompareExchange(&league_active, 0, 0)) {
+   // Tiny Race Conditions like this are irrelevant
+   // If you really care, do this instead:
+   // if (!InterlockedCompareExchange(&league_active, 0, 0)) {
+   //    return CallNextHookEx(hook, code, wParam, lParam);
+   // }
+
+   if (!league_active) {
       return CallNextHookEx(hook, code, wParam, lParam);
    }
 

@@ -88,11 +88,14 @@ REM  0) Basic safety notice
 REM -------------------------
 
 REM -------------------------
-REM  2) Ensure Ultimate Performance Power Plan is active
-REM     GUID used below is the built-in Ultimate Performance plan GUID.
+REM  Ultimate Performance Power Plan is active
+REM  GUID used below is the built-in Ultimate Performance plan GUID.
 REM -------------------------
 powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
-REM (If the plan doesn't exist on Windows Home, this will fail harmlessly.)
+:: Optional: Disable power throttling (Win10+)
+powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_PROCESSOR IDLEDISABLE 1
+powercfg /SETACTIVE SCHEME_CURRENT
+
 
 REM -------------------------
 REM  4) Disable background apps (user-level toggles)
@@ -184,14 +187,6 @@ netsh int tcp set global timestamps=disabled
 netsh int tcp set global rss=enabled
 netsh int tcp set global rsc=disabled
 
-REM ------------------------------------------ REM
-
-powercfg -setactive SCHEME_MAX
-:: Optional: Disable power throttling (Win10+)
-powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_PROCESSOR IDLEDISABLE 1
-powercfg /SETACTIVE SCHEME_CURRENT
-
-REM powercfg -setactive e9a42b02-d5df-448d-aa00-03f14749eb61
 
 
 
