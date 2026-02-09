@@ -399,7 +399,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR _2, int _3) {
    }
 
    keyboard_hook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboard_procedure, hInst, 0);
-   mouse_hook = SetWindowsHookEx(WH_MOUSE_LL, mouse_procedure, hInst, 0);
+   mouse_hook    = SetWindowsHookEx(WH_MOUSE_LL, mouse_procedure, hInst, 0);
 
    // Start foreground monitor thread
    CreateThread(NULL, 0, foreground_monitor, NULL, 0, NULL);
