@@ -320,14 +320,14 @@ bindkey '^w' smart-delete-word
 bindkey -v '^?' backward-delete-char
 
 bindkey '^y' accept-line-and-run
-bindkey '^;' autosuggest-accept
-# bindkey '^H' backward-delete-char
+bindkey '^L' autosuggest-accept
+bindkey '^H' backward-delete-char
 # bindkey '^w' kill-word
 
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 bindkey '^K' kill-line
-bindkey -M viins '^K' kill-line  # for vi insert mode
+# bindkey -M viins '^K' kill-line  # for vi insert mode
 
 
 bindkey '^[[Z' reverse-menu-complete
