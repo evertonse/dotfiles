@@ -238,9 +238,6 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
 
       BOOL keydown_before = physical_keydown[k->vkCode];
 
-      // Always track first
-      track_key_state(k, wParam);
-
       // Ignore injected keys (including our own)
       if (k->flags & LLKHF_INJECTED) {
          return CallNextHookEx(hook, code, wParam, lParam);
@@ -250,6 +247,26 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
       if (keydown_before && keydown && !keyup) {
          return CallNextHookEx(hook, code, wParam, lParam);
       }
+
+      // Always track first
+      track_key_state(k, wParam);
+
+
+      if (key == 'C') {
+         if (keydown) {
+            send_scancode_champion_only_down('C');
+            send_scancode('C', KeyDown);
+            flush_inputs();
+            return 1;
+         }
+         if (keyup) {
+            send_scancode('C', KeyUp);
+            send_scancode_champion_only_up('C');
+            flush_inputs();
+            return 1;
+         }
+      }
+
 
 
 
@@ -273,21 +290,6 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
       }
 
 
-
-      if (key == 'C') {
-         if (keydown) {
-            send_scancode_champion_only_down('C');
-            send_scancode('C', KeyDown);
-            flush_inputs();
-            return 1;
-         }
-         if (keyup) {
-            send_scancode('C', KeyUp);
-            send_scancode_champion_only_up('C');
-            flush_inputs();
-            return 1;
-         }
-      }
 
 
       if (key == 'S') {
