@@ -1,11 +1,10 @@
-// -m windows makes the printf not show
-// clang --target=x86_64-w64-windows-gnu -std=gnu2x setup/windows/src/remaps.c -o setup/windows/src/remaps.exe -luser32 -O3 && ./setup/windows/src/remaps.exe
+// clang --target=x86_64-w64-windows-gnu -std=gnu2x setup/windows/src/remaps.c -o setup/windows/src/remaps.exe && setup/windows/src/remaps.exe
 
 #define WIN32_LEAN_AND_MEAN
 #include <stdio.h>
 #include <windows.h>
 
-#define DEBUGGING 0
+#define DEBUGGING 1
 #if DEBUGGING == 1
 #  include <assert.h>
 #else
@@ -360,19 +359,9 @@ end:
 }
 
 
-
-bool is_hooks_on(void) {
-   return (keyboard_hook != nullptr) && (mouse_hook != nullptr);
-}
-
-
 void hooks_on(void) {
-   if (keyboard_hook == nullptr) {
-      keyboard_hook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboard_procedure, curresnt_instance, 0);
-   }
-   if (mouse_hook == nullptr) {
-      mouse_hook    = SetWindowsHookEx(WH_MOUSE_LL, mouse_procedure, curresnt_instance, 0);
-   }
+   keyboard_hook = SetWindowsHookEx(WH_KEYBOARD_LL, keyboard_procedure, curresnt_instance, 0);
+   mouse_hook    = SetWindowsHookEx(WH_MOUSE_LL, mouse_procedure, curresnt_instance, 0);
    printf("Hooks on.\n");
 }
 
@@ -380,23 +369,19 @@ void hooks_on(void) {
 void hooks_off(void) {
    if (keyboard_hook) {
       UnhookWindowsHookEx(keyboard_hook);
-      keyboard_hook = nullptr;
    }
 
    if (mouse_hook) {
       UnhookWindowsHookEx(mouse_hook);
-      mouse_hook = nullptr;
    }
-
 
    printf("Hooks off.\n");
    release_all_logical_keys();
 
 }
 
-
 DWORD WINAPI foreground_monitor(void *) {
-   for (;true;) {
+   for (; true;) {
       BOOL before_active = InterlockedCompareExchange(&league_active, 0, 0);
 
       BOOL active = is_league_active();
@@ -404,33 +389,38 @@ DWORD WINAPI foreground_monitor(void *) {
 
       if (active != before_active) {
          if (active) {
+            hooks_on();
             printf("%s Active\n", LEAGUE_PROCESS_NAME);
          } else {
+            hooks_off();
             printf("%s Not active\n", LEAGUE_PROCESS_NAME);
          }
       }
 
-      Sleep(60 * 2);
+      Sleep(60 * 3);
    }
 }
 
 
-int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR lpcmd, int _3) {
+int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR lp_cmd, int _3) {
+   printf("HIHIHI\n");
+   printf("%s runnning\n", lp_cmd);
    curresnt_instance = hInst;
    // Calling "FreeConsole" makes any printf not appear anymore regardless if called from a shell
    if (!DEBUGGING) {
-      FreeConsole();
+      // FreeConsole();
    }
 
-   HANDLE mutex = CreateMutexA(
-         NULL,                   // default security
-         FALSE,                  // do NOT lock it immediately
-         "LeagueRemapsSingleton" // GLOBAL NAME
-   );
-   if (GetLastError() == ERROR_ALREADY_EXISTS) {
-      printf("Executable Already started\n");
-      exit(0);
-   }
+   // CreateMutexA(
+   //       NULL,                   // default security
+   //       FALSE,                  // do NOT lock it immediately
+   //       "LeagueRemapsSingleton" // GLOBAL NAME
+   // );
+   //
+   // HANDLE mutex = CreateMutexA(NULL, FALSE, "LeagueRemapsSingleton");
+   // if (GetLastError() == ERROR_ALREADY_EXISTS) {
+   //    exit(0);
+   // }
 
    for (int vk = 0; vk < count_of(scan_codes); vk++) {
       scan_codes[vk] = MapVirtualKey(vk, MAPVK_VK_TO_VSC);
