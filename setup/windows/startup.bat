@@ -257,3 +257,9 @@ REM -------------------------
 REM ipconfig /flushdns >nul 2>&1
 echo "Script finished you may close"
 pause
+
+REM Windows scheduler tuning for foreground apps (games)
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 38 /f
+
+REM Reduce dynamic priority boost jitter
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v DisableBoost /t REG_DWORD /d 1 /f
