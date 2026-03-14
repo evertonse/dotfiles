@@ -96,8 +96,9 @@ REM  GUID used below is the built-in Ultimate Performance plan GUID.
 REM -------------------------
 REM powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
 :: Optional: Disable power throttling (Win10+)
-powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_PROCESSOR IDLEDISABLE 1
-powercfg /SETACTIVE SCHEME_CURRENT
+:: If set to 1 then 100% cpu usage all the time
+REM powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_PROCESSOR IDLEDISABLE 1
+REM powercfg /SETACTIVE SCHEME_CURRENT
 
 
 REM -------------------------
@@ -202,7 +203,7 @@ REM ------------------------------------------ REM
 REM -------------------------
 REM Core parking: aggressive disable
 REM https://learn.microsoft.com/en-us/answers/questions/1524213/remove-parked-status-of-cpu
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583" /v "Attribute" /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\54533252-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583" /v "Attribute" /t REG_DWORD /d 0 /f
 
 REM -------------------------
 REM 13) RAM compression: option to disable (risky)
@@ -245,7 +246,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v DisableRealtimeMo
 
 
 REM ***** DANGEROUS: Disable Windows Update service permanently
-sc config wuauserv start= disabled
+sc config wuauserv start=disabled
 
 REM ***** DANGEROUS: TDR delay increase (can hide GPU crashes)
 REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v TdrDelay /t REG_DWORD /d 10 /f
