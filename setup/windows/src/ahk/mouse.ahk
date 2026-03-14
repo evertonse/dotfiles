@@ -41,6 +41,8 @@ sensitivity := 13.8
 ;     return
 ; }
 
+#HotIf not WinActive("ahk_exe deadlock.exe")
+
 *XButton1::
 {
     ; Check if Right Alt is pressed
@@ -186,3 +188,4 @@ sensitivity := 13.8
     scrolling := false
     return
 }
+#HotIf ; Only when league not active

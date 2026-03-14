@@ -11,6 +11,11 @@ start "" /min "C:\ahk\remaps.exe"
 powershell -Command "New-NetQosPolicy -Name 'LeagueGameQoS' -AppPathNameMatchCondition 'League of Legends.exe' -DSCPAction 46" >nul 2>&1
 powershell -Command "New-NetQosPolicy -Name 'LeagueClientQoS' -AppPathNameMatchCondition 'LeagueClientUx.exe' -DSCPAction 46" >nul 2>&1
 
+powershell -Command "Enable-MMAgent -ApplicationLaunchPrefetching" >nul 2>&1
+
+
+
+
 REM Keyboard Stuff
 powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
 
@@ -55,8 +60,6 @@ bcdedit /set hypervisorlaunchtype Auto
 REM ---- Disable Disk Indexing (Windows Search) ----
 net stop "WSearch"
 
-REM ---- Disable SysMain (Superfetch) - reduces stuttering on HDD/SSD ----
-net stop "SysMain"
 
 REM ---- Disable Telemetry ----
 net stop "DiagTrack"
@@ -91,7 +94,7 @@ REM -------------------------
 REM  Ultimate Performance Power Plan is active
 REM  GUID used below is the built-in Ultimate Performance plan GUID.
 REM -------------------------
-powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
+REM powercfg -setactive E9A42B02-D5DF-448D-AA00-03F14749EB61
 :: Optional: Disable power throttling (Win10+)
 powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_PROCESSOR IDLEDISABLE 1
 powercfg /SETACTIVE SCHEME_CURRENT
@@ -112,10 +115,10 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t RE
 reg add "HKCU\System\GameConfigStore" /v GameDVR_FSEBehavior /t REG_DWORD /d 2 /f
 
 REM -------------------------
-REM  6) GPU: Hardware-accelerated GPU scheduling (attempt to enable)
+REM  6) GPU: Hardware-accelerated GPU scheduling (HAGS)
 REM      Note: supported only on compatible drivers/GPUs. No harm trying.
 REM -------------------------
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f
+REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f
 
 REM -------------------------
 REM  7) Disable unneeded services (stop only here; not permanently disable)
@@ -124,7 +127,6 @@ REM     To permanently disable, change 'sc config <name> start= disabled' (comme
 REM -------------------------
 echo Stopping services (non-critical for gaming). Some may report errors if missing.
 sc stop "WSearch"          >nul 2>&1     REM Windows Search (indexing)
-sc stop "SysMain"          >nul 2>&1     REM Superfetch / SysMain
 sc stop "wuauserv"         >nul 2>&1     REM Windows Update service (stopping only)
 sc stop "DoSvc"            >nul 2>&1     REM Delivery Optimization
 sc stop "Spooler"          >nul 2>&1     REM Print Spooler
@@ -180,7 +182,8 @@ netsh interface tcp set heuristics disabled
 netsh int udp set global uro=enabled
 netsh int udp set global uso=enabled
 
-netsh int tcp set global autotuninglevel=disabled
+REM netsh int tcp set global autotuninglevel=enabled
+netsh int tcp set global autotuninglevel=normal
 
 netsh int tcp set global ecncapability=disabled
 netsh int tcp set global timestamps=disabled
@@ -206,7 +209,10 @@ REM 13) RAM compression: option to disable (risky)
 REM     Disabling memory compression may reduce pagefile overhead but increases RAM usage.
 REM     COMMENTED OUT by default. Uncomment only after research and full backups.
 REM -------------------------
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 1 /f
+REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 1 /f
+
+REM Enabling for now
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 0 /f
 
 REM -------------------------
 REM 14) Tweak visual effects (system animation off)

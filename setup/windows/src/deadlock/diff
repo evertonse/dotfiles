@@ -1,0 +1,17 @@
+22d21
+< 		DisallowTokenContexts	1
+349,358d347
+< 		
+< 		TextureCompiler
+< 		{
+< 			//Compressor              "lz4"
+< 			//CompressMipsOnDisk      "1"
+< 			//CompressMinRatio        "95"
+< 			AllowNP2Textures		"1"
+< 			AllowPanoramaMipGeneration	"1"
+< 			//PublicToolsDefaultMaxRes "2048"
+< 		}
+521,523d509
+< 
+< 		// Perf/Parallelism
+< 		"iv_parallel_restore" "1"
