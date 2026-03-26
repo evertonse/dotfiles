@@ -14,10 +14,20 @@ powershell -Command "New-NetQosPolicy -Name 'LeagueClientQoS' -AppPathNameMatchC
 powershell -Command "Enable-MMAgent -ApplicationLaunchPrefetching" >nul 2>&1
 
 
+REM HPET disable it
+bcdedit /deletevalue useplatformclock
+bcdedit /set disabledynamictick yes
 
 
-REM Keyboard Stuff
-powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
+REM Keyboard Stuff eiter this from power shell
+REM powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
+REM Or this from cmd mermo
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatDelay       /t REG_SZ /d 180 /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatRate        /t REG_SZ /d 30  /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v DelayBeforeAcceptance /t REG_SZ /d 0   /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v BounceTime            /t REG_SZ /d 0   /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v Flags                 /t REG_SZ /d 59  /f
+
 
 REM Use the windows register to set priority to high for process called "League of Legends (TM) Client.exe"
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\League of Legends.exe\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d 3 /f
@@ -210,7 +220,7 @@ REM 13) RAM compression: option to disable (risky)
 REM     Disabling memory compression may reduce pagefile overhead but increases RAM usage.
 REM     COMMENTED OUT by default. Uncomment only after research and full backups.
 REM -------------------------
-REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 1 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 1 /f
 
 REM Enabling for now
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v DisableCompression /t REG_DWORD /d 0 /f
@@ -263,3 +273,16 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32Priority
 
 REM Reduce dynamic priority boost jitter
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v DisableBoost /t REG_DWORD /d 1 /f
+
+REM ---- Disable Filter Keys ----
+reg add "HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response" /v Flags /t REG_SZ /d 122 /f
+
+REM ---- Disable Filter Keys hotkey (hold Right Shift 8s) ----
+reg add "HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response" /v "On Off Feedback" /t REG_SZ /d 0 /f
+
+REM ---- Disable Mouse Power Saving (USB selective suspend per-device workaround) ----
+powershell -Command "Get-PnpDevice -Class Mouse | ForEach-Object { $path = 'HKLM:\SYSTEM\CurrentControlSet\Enum\' + $_.InstanceId + '\Device Parameters'; if (Test-Path $path) { Set-ItemProperty -Path $path -Name 'EnhancedPowerManagementEnabled' -Value 0 -ErrorAction SilentlyContinue } }"
+
+REM ---- Disable USB Selective Suspend (prevents USB mouse sleep) ----
+powershell -Command "powercfg /SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0"
+powershell -Command "powercfg /SETACTIVE SCHEME_CURRENT"
