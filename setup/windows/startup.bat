@@ -22,8 +22,8 @@ bcdedit /set disabledynamictick yes
 REM Keyboard Stuff eiter this from power shell
 REM powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
 REM Or this from cmd mermo
-reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatDelay       /t REG_SZ /d 180 /f
-reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatRate        /t REG_SZ /d 30  /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatDelay       /t REG_SZ /d 178 /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatRate        /t REG_SZ /d 32  /f
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v DelayBeforeAcceptance /t REG_SZ /d 0   /f
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v BounceTime            /t REG_SZ /d 0   /f
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v Flags                 /t REG_SZ /d 59  /f
