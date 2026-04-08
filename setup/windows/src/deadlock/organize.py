@@ -196,7 +196,10 @@ def main():
                 answer = None
                 while answer is None or answer == '':
                     answer = str(input(f"Mismatch\n{current_name}[{key}] = {convars[key]}\n{file}[{key}] = {value}\nType value: "))
-                    if answer == ''
+                    if answer == '':
+                        answer = convars[key]
+                        print(f"Assuming we're keeping the former choice ({answer}).")
+
                     try:
                         if '.' in answer:
                             answer = str(float(answer))
