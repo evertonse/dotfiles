@@ -7,5 +7,5 @@ Set-ItemProperty -Path . -Name AutoRepeatDelay       -Value 178
 Set-ItemProperty -Path . -Name AutoRepeatRate        -Value 32
 Set-ItemProperty -Path . -Name DelayBeforeAcceptance -Value 0
 Set-ItemProperty -Path . -Name BounceTime            -Value 0
-Set-ItemProperty -Path . -Name Flags                 -Value 59
-# Set-ItemProperty -Path . -Name Flags                 -Value 47
+# Set-ItemProperty -Path . -Name Flags                 -Value 59
+Set-ItemProperty -Path . -Name Flags                 -Value 47

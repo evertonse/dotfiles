@@ -67,6 +67,9 @@
 			// These are optional low-violence paths. They will only get mounted if you're in a low-violence mode.
 			Game_LowViolence	citadel_lv
 
+			Mod					citadel
+			Write				citadel
+			Game				citadel/addons
 			Game				citadel
 			Game				core
 		}
@@ -99,8 +102,8 @@
 	{
 		BetaUniverse
 		{
-			FakeLag			40
-			FakeLoss		.1
+			FakeLag			0
+			FakeLoss		0
 			//FakeReorderPct 0.05
 			//FakeReorderDelay 10
 			//FakeJitter "low"
@@ -110,12 +113,14 @@
 			FakeJitter "off"
 		}
 
+		"UseSerializedEntityPool" "1"
 		"SkipRedundantChangeCallbacks"	"1"
 	}
 
 	RenderSystem
 	{
 		IndexBufferPoolSizeMB 32
+		VertexBufferPoolSizeMB 32
 		UseReverseDepth 1
 		Use32BitDepthBuffer 0
 		Use32BitDepthBufferWithoutStencil 0
@@ -141,6 +146,7 @@
 	{
 		AppID 103371621
 		SupportsDLSS 1
+		ReflexLateWarp 1
 	}
 
 	Engine2
@@ -151,11 +157,14 @@
 		RenderingPipeline
 		{
 			SupportsMSAA 0
-			DistanceField 1
+			DistanceField 0
+			AmbientOcclusionProxies 0
 		}
 		PauseSinglePlayerOnGameOverlay 1
 		DefensiveConCommands 1
 		DisableLoadingPlaque 1
+		AllowKeyChordBindings 0
+		LightmapUVQuery 0
 	}
 
 	ContentBuilder
@@ -206,9 +215,9 @@
 		"SupportsDisplacementMapping" "0"
 		"SteamAudioEnabled"				"1"
 		"LatticeDeformerEnabled"		"1"
-		"ShadowAtlasWidth" "16384"
-		"ShadowAtlasHeight" "16384"
-		"TimeSlicedShadowMapRendering" "1"
+		"ShadowAtlasWidth" "0"
+		"ShadowAtlasHeight" "0"
+		"TimeSlicedShadowMapRendering" "0"
 	}
 
 	SoundTool
@@ -377,36 +386,47 @@
 		"EnvironmentMapUseCubeArray" 	1
 		"EnvironmentMapCacheSizeTools"  300
 		BindlessSceneObjectDesc			CitadelBindlessDesc
-		GrassCastsShadows				1
+		GrassCastsShadows				0
+		LPVEdgeBlending 0
 	}
 
 	SceneSystem
 	{
 		GpuLightBinner 1
-		FogCachedShadowAtlasWidth 2048
-		FogCachedShadowAtlasHeight 2048
-		FogCachedShadowTileSize 128
+		FogCachedShadowAtlasWidth 0
+		FogCachedShadowAtlasHeight 0
+		FogCachedShadowTileSize 0
 		GpuLightBinnerSunLightFastPath 1
-		CSMCascadeResolution 2048
+		CSMCascadeResolution 0
 		SunLightManagerCount 0
 		SunLightManagerCountTools 0
-		DefaultShadowTextureWidth 6144
-		DefaultShadowTextureHeight 6144
-		DynamicShadowResolution 1
-
+		DefaultShadowTextureWidth 0
+		DefaultShadowTextureHeight 0
+		DynamicShadowResolution 0
 		TransformTextureRowCount	1024
 		TransformTextureRowCountToolsMode 6144
-		SunLightMaxCascadeSize		4
+		SunLightMaxCascadeSize		2
 		SunLightShadowRenderMode	Depth
-		LayerBatchThresholdFullsort 20
-		NonTexturedGradientFog		1
+		LayerBatchThresholdFullsort 128
+		NonTexturedGradientFog		0
 		// Temp till I can add support in citadel shaders
 		DisableLateAllocatedTransformBuffer 1
 		MinimumLateAllocatedVertexCacheBufferSizeMB 64
-		CubemapFog 1
-		VolumetricFog 1
+		CubemapFog 0
+		VolumetricFog 0
 		FrameBufferCopyFormat R11G11B10F
 		Tonemapping 0
+		CMTAtlasWidth 512
+		CMTAtlasHeight 256
+		CharacterDecals 0
+		HDRFrameBuffer 0
+		SupportsInstancedFade 1
+		GpuLightBinnerSupportViewModelCascade 1
+		ParticleBufferSize 256
+		ShadowmapMaxFilterRadius 0
+		FogCachedShadowTileMaxFilterRadius 0
+		PointLightShadowsEnabled 0
+		PunctualContactShadows 0
 		
 		WellKnownLightCookies
 		{
@@ -458,10 +478,43 @@
 		"Float16HDRBackBuffer" "1"
 		"PET_SupportFadingOpaqueModels" "1"
 		"Features" "non_homogenous_forward_layer_only"
+		"ParticleTraceOffsetOnlyHit" "1"
+		"ParticlesFoggedByDefault" "0"
 	}
 
 	ConVars
-	{	 
+	{
+
+//=====================================================================================
+// README:
+// https://docs.comfig.app/latest/tf2/misconceptions/#bad-cvars
+//      This config tries to optimize memory contention from cpu because I only have 1 stick of ram DDR4 32gb 32mhz
+//      The CPU is Ryzen 5 4600g and GPU is 1660 GTX. So we try to sacrifice GPU to help the low end CPU and RAM usage
+//      the GPU is usually not the bottleneck as long as we're using under 6G VRAM
+//=====================================================================================
+// +exec autoexec.cfg  -convars_visible_by_default -dev -dx11 -no_environment_maps -novid -noassert -nojoy  -high +@panorama_min_comp_layer_cache_cost_TURNED_OFF 256 
+// +exec autoexec.cfg -dx11 -novid -noassert -nojoy  +@panorama_min_comp_layer_cache_cost_TURNED_OFF 256
+// CS 1.6 https://gist.github.com/LeBaux/27223336ed5a44529208e8e17c63e0c1
+// -dev -convars_visible_by_default -novid -noassert -nojoy 
+// [QOL-2-2-3]:Aig0SxQjZMhMDi8lk6khZCADh4clKBQCQEEGkIyigGVkZIxYQjZiCZlkAKBQwBgigwyAjCAcWVoyAicDycHjwRJLsMQShweZM4ADAIAMMmTQyJDJUPKBASXDkkwi
+//
+// Auto updated CVARLIST https://github.com/Mikooboy/deadlock-cvar-list/blob/main/cvarlist.md
+//=====================================================================================
+
+//>>> ================ INPUT ================
+// m_rawinput  1
+// m_filter 0                            // Disables mouse smoothing, improves responsiveness
+cl_input_enable_raw_keyboard 1
+cl_showerror 0
+//<<< ================ INPUT ================
+
+
+
+
+// ======================================================================== \\
+// ============================ END OF CONFIG  ============================ \\
+// ======================================================================== \\
+
 		"rate"
 		{
 			"min"		"98304"
@@ -520,7 +573,7 @@
 		"cl_poll_network_early" "0"
 
 		// Perf/Parallelism
-		"iv_parallel_restore" "1"
+		"iv_parallel_restore" "1" // EDITED BY BOOT
 
 		// For perf reasons, since we don't use source-based DSP:
 		"disable_source_soundscape_trace"       "1"
@@ -531,9 +584,9 @@
 		"cl_async_usercmd_send_disabled_recvmargin_min" "0.5"	// Additional frame since we do not use the async usercmd send (potentially unneccessary)
 		"cl_clock_buffer_ticks"	"1"
 		"cl_interp_ratio" "0"
-		"cl_async_usercmd_send" "false"
+		"cl_async_usercmd_send" "true"
 
-		"fps_max"		"400"
+		"fps_max"		"0"
 		"fps_max_ui"	"120"
 
 		"in_button_double_press_window" "0.3"
@@ -570,6 +623,8 @@
 		"cl_aggregate_particles" "true"
 		
 		"citadel_enable_vdata_sound_preload" "true"
+
+		"r_particle_allowprerender" "false"
 	}
 
 	Memory
@@ -581,4 +636,3 @@
 		"ShowLowAvailableVirtualMemoryMessageBox" "1"
 	}
 }
-

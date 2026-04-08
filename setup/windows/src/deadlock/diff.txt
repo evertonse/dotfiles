@@ -1,0 +1,172 @@
+16a17
+> ai_lod_auto_enabled 1
+17a19
+> ai_think_interval_lod_med 0.4
+33a36
+> skeleton_instance_lod_optimization 1
+40d42
+< cl_updaterate 128
+61d62
+< r_drawparticles 1
+66c67
+< r_particle_cables_render 0
+---
+> r_particle_cables_render 1
+68c69
+< r_particle_max_detail_level 0
+---
+> r_particle_max_detail_level 1 
+71c72
+< r_particle_max_texture_layers 4
+---
+> r_particle_max_texture_layers 3
+75c76
+< r_particle_model_per_thread_count 32
+---
+> r_particle_model_per_thread_count 48
+94a96
+> cl_predict_after_every_createmove 0
+95a98
+> cl_predictioncopy_runs 0
+104c107
+< ai_async_queue_max_jobs 1
+---
+> ai_async_queue_max_jobs 8
+119,120c122
+< citadel_boss_glow_disabled 0
+< citadel_camera_hero_fov 90
+---
+> citadel_boss_glow_disabled 1
+123,124c125,126
+< citadel_cinematic_intro_duration_npc 0.01
+< citadel_cinematic_intro_duration_player 0.01
+---
+> citadel_cinematic_intro_duration_npc 0
+> citadel_cinematic_intro_duration_player 0
+126,128c128
+< citadel_commend_toast_enemy_seconds 0
+< citadel_commend_toast_seconds 0
+< citadel_crosshair_hit_marker_duration 0.01
+---
+> citadel_crosshair_hit_marker_duration 0
+130d129
+< citadel_damage_report_enable 1
+138,140c137
+< citadel_hud_objective_health_idle_timeout 4
+< citadel_in_world_item_panel_dpi 0.25
+< citadel_match_details_lane_stats_time 360
+---
+> citadel_in_world_item_panel_dpi 0.75
+144d140
+< citadel_npc_disable_floor_point_caching 0
+146,147c142
+< citadel_player_glow_disabled 0
+< citadel_player_outline_enemies 1
+---
+> citadel_player_outline_enemies 0
+150,154c145,147
+< citadel_trooper_friendly_glow_disabled 0
+< citadel_trooper_glow_disabled 0
+< citadel_trooper_outline_enabled 1
+< citadel_unit_status_delta_decay_delay 0
+< citadel_unit_status_delta_decay_rate 10
+---
+> citadel_trooper_friendly_glow_disabled 1
+> citadel_trooper_glow_disabled 1
+> citadel_trooper_outline_enabled 0
+176d168
+< cl_resend 15
+180d171
+< cl_smooth 1
+225d215
+< engine_no_focus_sleep 0
+236c226
+< func_break_max_pieces 1
+---
+> func_break_max_pieces 0
+242a233
+> g_ragdoll_maxcount 1
+275c266
+< lb_enable_baked_shadows 0
+---
+> lb_enable_baked_shadows 1
+283d273
+< lb_max_visible_envmaps_override 4
+288,290d277
+< // === M === //
+< m_rawinput 1
+< 
+294c281
+< mat_colorcorrection 1
+---
+> mat_colorcorrection 0
+298c285
+< mat_viewportscale 1
+---
+> mat_viewportscale 0.01
+302a290,292
+> // === MINIMAP === //
+> minimap_update_rate_hz 30
+> 
+304d293
+< mm_idle_enabled 0
+319c308
+< panorama_disable_box_shadow 1
+---
+> panorama_disable_box_shadow 0
+335c324
+< props_break_max_pieces_perframe 0.5
+---
+> props_break_max_pieces_perframe 0
+341d329
+< r_aspectratio 2.15
+356,357c344,345
+< r_citadel_npr_force_solid_outline 1
+< r_citadel_npr_outlines 1
+---
+> r_citadel_npr_force_solid_outline 0
+> r_citadel_npr_outlines 0
+359d346
+< r_citadel_selection_outline2_alpha 255
+376c363
+< r_directlighting 1
+---
+> r_directlighting 0
+377a365
+> r_dopixelvisibility 1
+382c370
+< r_drawskybox 0
+---
+> r_drawskybox 1
+395,396c383
+< r_fullscreen_gamma 2.2
+< r_gbuffer_disable_npr_lighting 1
+---
+> r_fullscreen_gamma 1.4
+405d391
+< r_lightmap_bicubic_filtering 1
+413d398
+< r_multiscattering 1
+417,418c402,404
+< r_postprocess_enable 1
+< r_propsmaxdist 700
+---
+> r_postprocess_enable 0
+> r_propsmaxdist 600
+> r_render_decals 0
+420d405
+< r_render_portals 1
+432a418
+> r_texture_nonstreaming_load 1
+436c422
+< r_texture_stream_mip_bias 8
+---
+> r_texture_stream_mip_bias 3
+439d424
+< r_translucent 1
+521a507
+> sv_hide_ent_in_pvs 1
+527c513
+< sv_pvs_max_distance 8500
+---
+> sv_pvs_max_distance 2800
