@@ -22,12 +22,12 @@ bcdedit /set disabledynamictick yes
 REM Keyboard Stuff
 REM powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
 REM Or this from cmd mermo
-reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatDelay       /t REG_SZ /d 178 /f
-reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatRate        /t REG_SZ /d 34  /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatDelay       /t REG_SZ /d 168 /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatRate        /t REG_SZ /d 35  /f
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v DelayBeforeAcceptance /t REG_SZ /d 0   /f
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v BounceTime            /t REG_SZ /d 0   /f
 REM Disable Filter Keys with 122 and enable with 59 or 47 this setting above depend on filter keys system
-reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v Flags                 /t REG_SZ /d 47  /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v Flags                 /t REG_SZ /d 59  /f
 REM Disable Filter Keys hotkey (hold Right Shift 8s)
 reg add "HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response" /v "On Off Feedback" /t REG_SZ /d 0 /f
 
@@ -270,11 +270,11 @@ REM -------------------------
 REM ipconfig /flushdns >nul 2>&1
 
 REM Windows scheduler tuning for foreground apps (games)
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 38 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 38 /f >nul 2>&1
 
 REM Boosting diable by setting to one or make sure it exists by removing the key (cleaner imo)
 REM reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v DisableBoost /t REG_DWORD /d 1 /f
-reg delete "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v DisableBoost /f
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v DisableBoost /f >nul 2>&1
 
 
 REM ---- Disable Mouse Power Saving (USB selective suspend per-device workaround) ----
@@ -284,4 +284,5 @@ REM ---- Disable USB Selective Suspend (prevents USB mouse sleep) ----
 powershell -Command "powercfg /SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0"
 powershell -Command "powercfg /SETACTIVE SCHEME_CURRENT"
 
+echo Finished! Can close safely.
 pause

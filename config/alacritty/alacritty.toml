@@ -133,14 +133,14 @@
 
 [window]
 startup_mode = "Maximized" # "Windowed" | "Maximized" | "Fullscreen" | ""
-padding = { x = 0, y = 0 }
-dynamic_padding = false
-title = "Alacritty"
-dynamic_title = true
 decorations_theme_variant = "None"
 decorations = "None" # decorations = "Full" | "None" | "Transparent" | "Buttonless"
-opacity = 0.982
-blur = true
+opacity = 0.9925
+# blur = true
+# padding = { x = 0, y = 0 }
+# dynamic_padding = false
+# title = "Alacritty"
+# dynamic_title = true
 
 
 # SCROLLING
@@ -155,9 +155,9 @@ blur = true
 # Number of line scrolled for every input scroll increment.
 # Default: 3
 
-[scrolling]
-history = 100000
-multiplier = 2
+# [scrolling]
+# history = 100000
+# multiplier = 2
 
 
 # FONT
@@ -209,10 +209,10 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
 #
 # italic = { family = "JetBrainsMonoNL Nerd Font", style  = "Medium Italic" }
 
-offset = { x = 0, y = -6 }
+offset = { x = 0, y = -6.5 }
 
 # size = 17
-size = 19
+size = 20
 # builtin_box_drawing = false
 
 # COLORS
@@ -221,8 +221,8 @@ size = 19
 
 # colors primary
 # This section documents the [colors.primary] table of the configuration file.
-[colors]
-draw_bold_text_with_bright_colors = true
+# [colors]
+# draw_bold_text_with_bright_colors = true
 
 [colors.primary]
 # foreground = "#d8d8d8"
@@ -285,9 +285,9 @@ cursor = "CellForeground"
 # This section documents the [colors.search] table of the configuration.
 # Allowed values are hexadecimal colors like #ff00ff, or CellForeground/CellBackground, which references the affected cell.
 
-[colors.search]
-matches = { foreground = "#181818", background = "#ac4242" }
-focused_match = { foreground = "#181818", background = "#f4bf75" }
+# [colors.search]
+# matches = { foreground = "#181818", background = "#ac4242" }
+# focused_match = { foreground = "#181818", background = "#f4bf75" }
 
 # matches = { foreground = "<string>", background = "<string>" }
 # Default: { foreground = "#181818", background = "#ac4242" }
@@ -310,9 +310,9 @@ focused_match = { foreground = "#181818", background = "#f4bf75" }
 # colors hints
 # This section documents the [colors.hints] table of the configuration.
 
-[colors.hints]
-start = { foreground = "#181818", background = "#f4bf75" }
-end = { foreground = "#181818", background = "#ac4242" }
+# [colors.hints]
+# start = { foreground = "#181818", background = "#f4bf75" }
+# end = { foreground = "#181818", background = "#ac4242" }
 
 # start = { foreground = "<string>", background = "<string>" }
 # First character in the hint label.
@@ -421,9 +421,9 @@ duration = 0
 # When set to true, selected text will be copied to the primary clipboard.
 # Default: false
 
-[selection]
-semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
-save_to_clipboard = false
+# [selection]
+# semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+# save_to_clipboard = false
 
 
 # CURSOR
@@ -501,11 +501,11 @@ osc52 = "CopyPaste"
 # { mouse = "Right", mods = "Control", action = "Paste" },
 # ]
 
-[mouse]
-hide_when_typing = false
-bindings = [
-{ mouse = "Right", mods = "Control", action = "Paste" },
-]
+# [mouse]
+# hide_when_typing = false
+# bindings = [
+# { mouse = "Right", mods = "Control", action = "Paste" },
+# ]
 
 
 # HINTS

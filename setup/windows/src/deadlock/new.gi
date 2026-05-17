@@ -464,10 +464,26 @@
     }
 
     ConVars
-    {    
+    {
+//=====================================================================================
+// README:
+// 	https://docs.comfig.app/latest/tf2/misconceptions/#bad-cvars
+//      This config tries to optimize memory contention from cpu because I only have 1 stick of ram DDR4 32gb 32mhz
+//      The CPU is Ryzen 5 4600g and GPU is 1660 GTX. So we try to sacrifice GPU to help the low end CPU and RAM usage
+//      the GPU is usually not the bottleneck as long as we're using under 6G VRAM
+//=====================================================================================
+// +exec autoexec.cfg  -convars_visible_by_default -dev -dx11 -no_environment_maps -novid -noassert -nojoy -high
+// CS 1.6 https://gist.github.com/LeBaux/27223336ed5a44529208e8e17c63e0c1
+// -dev -convars_visible_by_default -novid -noassert -nojoy
+// [QOL-2-2-3]:Aig0SxQjZMhMDi8lk6khZCADh4clKBQCQEEGkIyigGVkZIxYQjZiCZlkAKBQwBgigwyAjCAcWVoyAicDycHjwRJLsMQShweZM4ADAIAMMmTQyJDJUPKBASXDkkwi
+//
+// Auto updated CVARLIST https://github.com/Mikooboy/deadlock-cvar-list/blob/main/cvarlist.md
+//=====================================================================================
 
 // === ANIMATION === //
 
+anim_resource_validate_on_load 	0 // @change release 	Default: true
+Validates the animation group channel list against the animations on load for every animation
 anim_3wayblend 0
 anim_decode_forcewritealltransforms 0
 anim_disable 1
@@ -499,7 +515,6 @@ panorama_disable_animations 1
 r_enable_rigid_animation 0
 
 // === LOD === //
-
 ai_lod_auto_enabled 1
 ai_think_interval_lod_low 1
 ai_think_interval_lod_med 0.4
@@ -533,7 +548,7 @@ sc_instanced_mesh_lod_bias 15
 sc_instanced_mesh_lod_bias_shadow 10
 sc_instanced_mesh_size_cull_bias 10
 sc_instanced_mesh_size_cull_bias_shadow 10
-sc_screen_size_lod_scale_override 0.001
+sc_screen_size_lod_scale_override 0.000000025
 skeleton_instance_lod_optimization 0
 snd_cull_duplicates 0
 
@@ -555,7 +570,9 @@ phonemesnap 0
 shaderquality 0
 
 // === PARTICLES === //
-
+particle_cluster_manager_search_dist  	64 // devonly, sv, cl, rep 	Default: 256
+cl_particle_newinit 0 // devonly @change 	Default: true
+turn on optimized particle init
 cl_aggregate_particles 1
 cl_max_particle_pvs_aabb_edge_length 100
 cl_particle_batch_mode 1
@@ -569,7 +586,7 @@ cl_particle_sim_fallback_threshold_ms 0.001
 cl_particle_simulate_parallel 1
 mat_reduceparticles 1
 particle_cluster_nodraw 1
-particle_cluster_use_collision_hulls 0
+particle_cluster_use_collision_hulls 1 // devonly, sv, cl, rep 	Default: true @change
 particle_sim_alt_cores 2
 r_RainParticleDensity 0
 r_citadel_screenspace_particles_full_res 0
@@ -578,25 +595,31 @@ r_drawparticles 1
 r_late_particle_job_sync 1
 r_limit_particle_job_duration 1
 r_particle_allowprerender 1
-r_particle_batch_collections 1
+r_particle_explicit_fetch 	1 // @change devonly 	Default: false
+r_particle_fixedrandomseeds 1 // devonly 	Default: false
+Use fixed seeds for easier debugging
+r_particle_batch_collections 0 // @change
 r_particle_cables_cast_shadows 0
 r_particle_cables_culling 1
 r_particle_cables_render 0
 r_particle_cables_render_meshlets 0
 r_particle_debug_filter 0
 r_particle_depth_feathering 0
-r_particle_gpu_implicit 1
-r_particle_gpu_implicit_lds_cache 1
+r_particle_gpu_implicit 	1 // devonly 	Default: true
+r_particle_gpu_implicit_cull_columns 1 //	devonly 	Default: true
+r_particle_gpu_implicit_lds_cache 	1 // devonly 	Default: false
 r_particle_lighting_enable 0
 r_particle_low_res_render 1
-r_particle_max_detail_level 0
+r_particle_max_detail_level 1 // @change
 r_particle_max_draw_distance 32000
 r_particle_max_size_cull 1600
 r_particle_max_texture_layers 4
 r_particle_min_timestep 0.007
-r_particle_mixed_resolution_viewstart 800
+r_particle_mixed_resolution_viewstart 	10 // @change devonly 	Default: 500
 r_particle_model_new8 0
-r_particle_model_per_thread_count 64
+r_particle_model_per_thread_count 64 // Default: 32
+r_particle_newinput 1 // @change devonly 	Default: false Enable input path in particle ops
+r_update_particles_on_render_only_frames 1 // @change devonly, cl 	Default: false
 r_particle_radius_cull 1
 r_particle_shadows 0
 r_particle_shadows_compute 0
@@ -606,10 +629,10 @@ r_particle_skip_update 1
 r_particle_timescale 1.1
 r_particle_update_rate 2
 r_threaded_particles 1
+r_particles_memset_at_init -1 // @change 	devonly 	Default: 1 0=don't clear particle attrs at init 1=clear to zero 2=clear to 0xdb -1=clear to zero at first sim
 
 // === PHYSICS === //
-
-cl_phys_assume_fixed_tick_interval 0
+cl_phys_assume_fixed_tick_interval 	1 // devonly, cl 	Default: true If true, we assume the client uses a fixed tickrate like the server (which may not always be true). If false, we recalculate the number of physics substeps in each client tick based on the actual elapsed time in the tick.
 cl_phys_enabled 1 // @change
 cl_phys_maxticks 3
 cl_phys_networked_start_sleep 1
@@ -618,29 +641,31 @@ cl_phys_props_max 0
 cl_phys_sleep_enable 0
 cl_phys_timescale 1
 cl_physics_highlight_active 0
-parallel_perform_invalidate_physics 1
+parallel_perform_invalidate_physics 0 // @change
 phys_cull_internal_mesh_contacts 1
 phys_dynamic_scaling 1 // @change
 phys_expensive_shape_threshold 100
 phys_highlight_expensive_objects_strength 0
 phys_log_updaters 0
-phys_multithreading_enabled 1
+phys_multithreading_enabled 0 // @change
 phys_powered_ragdoll_debug 0
 phys_show_stats 0
-phys_step_threaded 0
-phys_threaded_cloth_bone_update 1
-phys_threaded_kinematic_bone_update 1
-phys_threaded_transform_update 1
+phys_step_threaded 0 // @change
+phys_threaded_cloth_bone_update 0 // @change
+phys_threaded_kinematic_bone_update 0 // @change
+phys_threaded_transform_update 0 // @change
 phys_visualize_traces 0
 r_PhysPropStaticLighting 0
 r_physics_particle_op_spawn_scale 0
 
 // === PREDICTION === //
 
-cl_pred_optimize 2
+cl_pred_print_every_cmd false
+// cl_pred_optimize 2
+cl_pred_optimize 1
 cl_pred_parallel_postnetwork 1
 cl_predict_after_every_createmove 1
-cl_prediction_savedata_postentitypacketreceived 1
+cl_prediction_savedata_postentitypacketreceived 0 // Experimental optimization. If you are reading this in 2026, please delete this convar.
 cl_predictioncopy_runs 1
 cl_predictphysics 0
 perf_fire_bullet_firstpredictedonly 1
@@ -653,15 +678,16 @@ pred_cloth_rot_multiplier 0
 
 // === AI === //
 
+ai_disabled 0 // tower move please
+ai_threaded_pathfind 	1 // @change devonly, sv 	Default: true
 ai_async_queue_max_jobs 8
-ai_disabled 1
 ai_expression_frametime 0
 ai_expression_optimization 1
 ai_foot_sweep_enable 0
 ai_frametime_limit 0.0052
 ai_gather_conditions_async 1
 ai_strong_optimizations_no_checkstand 1
-ai_think_interval 0.3
+ai_think_interval 0.9
 ai_use_async_ragdoll_fixup 1
 
 // === AUDIO === //
@@ -678,7 +704,7 @@ battery_saver 0
 blink_duration 0
 
 // === CITADEL === //
-
+citadel_zipline_render_mode 0 // model only
 citadel_boss_glow_disabled 1
 citadel_breakable_prop_break_airtime 0
 citadel_breakable_prop_breakable_enabled 1
@@ -686,6 +712,7 @@ citadel_bullet_log_entities_hit 0
 citadel_bullet_tracer_recycling_enabled 1
 citadel_camera_hero_fov 90
 citadel_camera_soft_collision 2 // @change
+citadel_camera_soft_collision_multi_thread 0 // @change devonly, cl 	Default: 8 Experimental: Use Multithreaded implementation. 0: Use regular style. > 0 number of jobs to chunk the 128 traces into. Power of 2 only, please. 8 is great.
 citadel_camera_soft_collision_angle 360
 citadel_camera_wobble_disable 1
 citadel_cinematic_intro_duration_npc 0.01
@@ -915,9 +942,9 @@ input_virtualization_block_mouse 1
 
 // === IV === //
 
-iv_parallel_latch 1
-iv_parallel_restore 1
-iv_wrapped_parallel_latch 1
+iv_parallel_latch 	1 // devonly, cl 	Default: true
+iv_parallel_restore 	1 // devonly, cl 	Default: true
+iv_wrapped_parallel_latch 	1 // devonly, cl 	Default: true
 
 // === LB === //
 
@@ -1130,7 +1157,6 @@ r_ambientmin 0
 r_aoproxy_min_dist 9999
 r_aoproxy_min_dist_box 9999
 r_arealights 0
-r_aspectratio 2.3
 r_async_compute_fog 1
 r_async_shader_compile_notify_frequency 999
 r_bloomtintb 0
@@ -1604,7 +1630,7 @@ zipline_use_new_latch 0
         // Networking - Induced latency (pred offset)
         "cl_tickpacket_recvmargin_desired" "5"                  // 5 ms base, min. floor for protecting against thrashing the queue
         "cl_tickpacket_desired_queuelength" "0"                 // 0 = attempt to always reach the queue's min floor
-        "cl_async_usercmd_send_disabled_recvmargin_min" "0.5"   // Additional frame since we do not use the async usercmd send (potentially unneccessary)
+        "cl_async_usercmd_send_disabled_recvmargin_min" 1 // @change "0.5" Additional frame since we do not use the async usercmd send (potentially unneccessary)
         "cl_clock_buffer_ticks" "1"
         "cl_interp_ratio" "0"
         "cl_async_usercmd_send" "true"
