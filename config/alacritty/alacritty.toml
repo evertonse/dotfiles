@@ -136,8 +136,8 @@ startup_mode = "Maximized" # "Windowed" | "Maximized" | "Fullscreen" | ""
 decorations_theme_variant = "None"
 decorations = "None" # decorations = "Full" | "None" | "Transparent" | "Buttonless"
 opacity = 0.9925
+padding = { x = 0, y = 0 }
 # blur = true
-# padding = { x = 0, y = 0 }
 # dynamic_padding = false
 # title = "Alacritty"
 # dynamic_title = true
@@ -201,7 +201,8 @@ opacity = 0.9925
 # normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 # These two below This one has more icons
 # normal = { family = "JetBrainsMonoNL Nerd Font" }
-normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
+# normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
+normal = { family = "JetBrainsMonoNL Nerd Font Mono" }
 
 # bold = { family = "JetBrainsMono Nerd Font", style = "Heavy" }
 #
@@ -209,10 +210,8 @@ normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Medium" }
 #
 # italic = { family = "JetBrainsMonoNL Nerd Font", style  = "Medium Italic" }
 
-offset = { x = 0, y = -6.5 }
-
-# size = 17
-size = 20
+offset = { x = 0, y = -6 }
+size = 20.5
 # builtin_box_drawing = false
 
 # COLORS
@@ -221,8 +220,7 @@ size = 20
 
 # colors primary
 # This section documents the [colors.primary] table of the configuration file.
-# [colors]
-# draw_bold_text_with_bright_colors = true
+[colors]
 
 [colors.primary]
 # foreground = "#d8d8d8"
@@ -474,8 +472,8 @@ thickness = 0.15
 # Controls the ability to write to the system clipboard with the OSC 52 escape sequence. While this escape sequence is useful to copy contents from the remote server, allowing any application to read from the clipboard can be easily abused while not providing significant benefits over explicitly pasting text.
 # Default: "OnlyCopy"
 
-[terminal]
-osc52 = "CopyPaste"
+# [terminal]
+# osc52 = "CopyPaste"
 
 
 # MOUSE
@@ -923,7 +921,7 @@ bindings = [
 # Live config reload (changes require restart)
 # Default: true
 
-live_config_reload = true
+live_config_reload = false
 # Alacritty - TOML configuration file format.
 
 # DESCRIPTION
