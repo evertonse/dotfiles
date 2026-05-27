@@ -241,7 +241,9 @@ foreground = "#a58e7e"
 # background = "#232323"
 # background = "#191919"
 # background = "#201817"
-background = "#191612"
+# background = "#191612"
+background = "#141210"
+# background = "#000000"
 # ('0x18', '0x1f', '0x12')
 
 
