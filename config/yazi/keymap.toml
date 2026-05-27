@@ -4,5 +4,16 @@ prepend_keymap = [
   { on = "k", run = "arrow next",  desc = "Move cursor down" },
   
   { on = "j", run = "leave",       desc = "Back to parent directory" },
-  { on = ";", run = "enter",       desc = "Enter the child directory" },
+  # { on = ";", run = 'enter', desc = "Open file or enter directory" }
+  # { on = ";", run = 'shell "if [ -d \"$0\" ]; then echo cd; else wsl-open \"$0\"; fi" --hidden', desc = "Open file or enter directory" }
+  { on = ";", run = """
+shell --block '
+if [ -d "$1" ]; then
+  ya emit enter
+else
+  nvim "$1"
+fi
+' -- "$@"
+""", desc = "Open file or enter directory" },
+
 ]
