@@ -334,8 +334,6 @@ SendInput "{. up}"
 
 <^>!c::ç
 
-NumpadDiv::_
-
 ; <^>!d::Send "{[}"
 
 

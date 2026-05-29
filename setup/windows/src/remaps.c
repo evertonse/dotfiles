@@ -7,8 +7,8 @@
 
 #define DEBUGGING 0
 #if DEBUGGING == 1
-#  include <assert.h>
 #else
+#  include <assert.h>
 #  define assert(x)
 #endif
 
@@ -37,6 +37,7 @@ static HHOOK mouse_hook;
 WORD scan_codes[VK_OEM_CLEAR]       = {0};
 BOOL physical_keydown[VK_OEM_CLEAR] = {0};
 BOOL logical_keydown[VK_OEM_CLEAR]  = {0};
+
 
 BOOL logical_champions_only_down_by[]  = {
    ['Q'] = 0,
@@ -109,7 +110,7 @@ static void send_virtual_key(WORD vk, DWORD flags) {
    SendInput(1, &in, sizeof(INPUT));
 }
 
-#define MAX_INPUTS (count_of(scan_codes) + 2)
+#define MAX_INPUTS (64 + count_of(scan_codes))
 static INPUT input_buffer[MAX_INPUTS];
 static UINT  input_count = 0;
 
@@ -156,14 +157,12 @@ static void send_scancode_champion_only_up(WORD vk_sorta_XD) {
 }
 
 
-
 volatile LONG league_active = FALSE;
 LRESULT CALLBACK mouse_procedure(int code, WPARAM wParam, LPARAM lParam) {
 
    // Tiny Race Conditions like this are irrelevant
    // If you really care, do this instead:
-   // if (!InterlockedCompareExchange(&league_active, 0, 0)) {
-   if (!league_active) {
+   if (!InterlockedCompareExchange(&league_active, 0, 0)) {
       return CallNextHookEx(NULL, code, wParam, lParam);
    }
 
@@ -214,17 +213,79 @@ void release_all_logical_keys(void) {
    }
 }
 
+// return 1 is handled
+bool keyboard_normally(int code, WPARAM wParam, LPARAM lParam) {
+
+   // Add these to your globals
+   static BOOL left_ctrl_down = FALSE;
+   static BOOL other_keys_pressed_while_ctrl = FALSE;
+
+   if (code == HC_ACTION) {
+      KBDLLHOOKSTRUCT *k = (KBDLLHOOKSTRUCT *)lParam;
+
+      BOOL keydown = (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN);
+      BOOL keyup   = (wParam == WM_KEYUP   || wParam == WM_SYSKEYUP);
+      auto key = k->vkCode;
+      // BOOL keydown_before = physical_keydown[k->vkCode];
+
+      // Ignore injected keys (including our own)
+      if (k->flags & LLKHF_INJECTED) {
+         return false;
+      }
+
+      // Only trigger on first down, ignore auto-repeat
+      // if (keydown_before && keydown && !keyup) {
+         // return false;
+      // }
+
+      // Always track first
+      // track_key_state(k, wParam);
+
+      // Track left Ctrl specifically
+      if (key == VK_LCONTROL) {
+         if (keydown) {
+            left_ctrl_down = TRUE;
+            printf("left_ctrl_down = true\n");
+            other_keys_pressed_while_ctrl = FALSE;
+            printf("other_keys_pressed_while_ctrl = FALSE;\n");
+         } else if (keyup) {
+            left_ctrl_down = FALSE;
+            printf("left_ctrl_down = false\n");
+
+            // If no other keys were pressed while Ctrl was held, emit Escape
+            if (!other_keys_pressed_while_ctrl) {
+               send_scancode(VK_LCONTROL, KeyUp);
+               send_scancode(VK_ESCAPE, KeyDown);
+               send_scancode(VK_ESCAPE, KeyUp);
+               send_scancode(VK_ESCAPE, KeyDown);
+               send_scancode(VK_ESCAPE, KeyUp);
+               // send_virtual_key(VK_ESCAPE, KeyDown);
+               // send_virtual_key(VK_ESCAPE, KeyUp);
+               flush_inputs();
+               printf("Sending VK_ESCAPE\n");
+               return true;
+            }
+         }
+      } else if (keydown && left_ctrl_down) {
+         // Mark that non-Ctrl keys were pressed while Ctrl is held
+         other_keys_pressed_while_ctrl = TRUE;
+         printf("other_keys_pressed_while_ctrl = TRUE;\n");
+      }
+      return false;
+   }
+   return false;
+}
+
 
 LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
    auto hook = keyboard_hook;
 
    // Tiny Race Conditions like this are irrelevant
-   // If you really care, do this instead:
-   // if (!InterlockedCompareExchange(&league_active, 0, 0)) {
-   //    return CallNextHookEx(hook, code, wParam, lParam);
-   // }
-
-   if (!league_active) {
+   // If we really care, we can do this instead:
+   if (!InterlockedCompareExchange(&league_active, 0, 0)) {
+      if (keyboard_normally(code, wParam, lParam)) {
+         return 1;
+      }
       return CallNextHookEx(hook, code, wParam, lParam);
    }
 
@@ -267,9 +328,6 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
          }
       }
 
-
-
-
       if (key == VK_ESCAPE && keydown) {
          send_scancode('Y', KeyDown);
          flush_inputs();
@@ -288,8 +346,6 @@ LRESULT CALLBACK keyboard_procedure(int code, WPARAM wParam, LPARAM lParam) {
          flush_inputs();
          return 1;
       }
-
-
 
 
       if (key == 'S') {
@@ -420,8 +476,13 @@ DWORD WINAPI foreground_monitor(void *) {
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR lpcmd, int _3) {
    curresnt_instance = hInst;
    // Calling "FreeConsole" makes any printf not appear anymore regardless if called from a shell
-   if (!DEBUGGING) {
+   if (0 == DEBUGGING) {
       FreeConsole();
+   } else {
+      AllocConsole();
+      freopen("CONOUT$", "w", stdout);
+      setvbuf(stdout, NULL, _IONBF, 0); // disable buffering
+      printf("Consoled Working.\n");
    }
 
    HANDLE mutex = CreateMutexA(
@@ -445,6 +506,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR lpcmd, int _3) {
 
    MSG msg;
    while (GetMessage(&msg, NULL, 0, 0)) {
+      printf("msg\n");
       TranslateMessage(&msg);
       DispatchMessage(&msg);
    }

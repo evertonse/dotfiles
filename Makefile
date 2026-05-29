@@ -24,8 +24,6 @@ ahk:
 	clang --target=x86_64-w64-windows-gnu -std=gnu2x setup/windows/src/remaps.c -o setup/windows/src/remaps.exe -mwindows -luser32 -O3
 	/mnt/c/Windows/System32/taskkill.exe /F /IM remaps.exe 2>/dev/null || true
 	@cp setup/windows/src/remaps.exe /mnt/c/ahk/
-	# wsl-open /mnt/c/ahk/league.ahk
-	# wsl-open /mnt/c/ahk/mouse.ahk
 	wsl-open "$(WIN_STARTUP_DIR)/startup.bat"
 
 
@@ -60,7 +58,6 @@ alacritty:
 	@rm -rf $(ALACRITTY_ROAMING)
 	@cp -r ./config/alacritty/ $(ALACRITTY_ROAMING)
 	
-
 
 win-yank:
 	# cp ./setup/windows/assets/win32yank.exe /mnt/c/Windows/System32/win32yank.exe
