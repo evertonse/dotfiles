@@ -5,10 +5,12 @@
 #include <stdio.h>
 #include <windows.h>
 
+#define MULTITHREAD 1
 #define DEBUGGING 0
+
 #if DEBUGGING == 1
-#else
 #  include <assert.h>
+#else
 #  define assert(x)
 #endif
 
@@ -34,10 +36,9 @@ static HHOOK mouse_hook;
 #endif
 
 // IMPORTANT Assuming VK_OEM_CLEAR is biggest value for all Vks
-WORD scan_codes[VK_OEM_CLEAR]       = {0};
+WORD scan_codes      [VK_OEM_CLEAR] = {0};
 BOOL physical_keydown[VK_OEM_CLEAR] = {0};
-BOOL logical_keydown[VK_OEM_CLEAR]  = {0};
-
+BOOL logical_keydown [VK_OEM_CLEAR] = {0};
 
 BOOL logical_champions_only_down_by[]  = {
    ['Q'] = 0,
@@ -97,6 +98,7 @@ BOOL is_league_active(void) {
    return strstr(title, LEAGUE_PROCESS_NAME) != NULL;
 }
 
+
 // Example:  "." down
 //    send_virtual_key(VK_OEM_PERIOD, 0);
 // C press + release
@@ -125,11 +127,76 @@ static void send_scancode(WORD vk, DWORD flags) {
    in->ki.dwFlags = KEYEVENTF_SCANCODE | flags;
 }
 
-static void flush_inputs(void) {
+static void flush_inputs_sync(void) {
    assert(input_count > 0);
    SendInput(input_count, input_buffer, sizeof(INPUT));
    input_count = 0;
 }
+
+#if MULTITHREAD == 1
+#  define flush_inputs flush_inputs_async
+#else
+#  define flush_inputs flush_inputs_sync
+#endif
+
+/////////////////////////
+/// MULTITHREADING //////
+/////////////////////////
+#include <stdatomic.h>
+#define QUEUE_SIZE 64
+
+typedef struct {
+   INPUT inputs[MAX_INPUTS];
+   int count;
+} InputBatch;
+
+static InputBatch queue[QUEUE_SIZE];
+static atomic_int queue_head = 0; // writer advances
+static atomic_int queue_tail = 0; // reader advances
+static HANDLE queue_event;        // signals the sender thread
+
+static bool queue_push(InputBatch batch) {
+   int head = atomic_load_explicit(&queue_head, memory_order_relaxed);
+   int next = (head + 1) % QUEUE_SIZE;
+   if (next == atomic_load_explicit(&queue_tail, memory_order_acquire))
+      return false; // full, shouldn't happen
+   queue[head] = batch;
+   atomic_store_explicit(&queue_head, next, memory_order_release);
+   SetEvent(queue_event);
+   return true;
+}
+
+static void flush_inputs_async(void) {
+   InputBatch batch;
+   memcpy(batch.inputs, input_buffer, input_count * sizeof(INPUT));
+   batch.count = input_count;
+   input_count = 0;
+   queue_push(batch);
+}
+
+static DWORD WINAPI input_sender_thread(LPVOID unused) {
+   (void)unused;
+   while (true) {
+      WaitForSingleObject(queue_event, INFINITE);
+      int tail = atomic_load_explicit(&queue_tail, memory_order_relaxed);
+      while (tail != atomic_load_explicit(&queue_head, memory_order_acquire)) {
+         SendInput(queue[tail].count, queue[tail].inputs, sizeof(INPUT));
+         tail = (tail + 1) % QUEUE_SIZE;
+         atomic_store_explicit(&queue_tail, tail, memory_order_release);
+      }
+   }
+   return 0;
+}
+
+// Call once at startup, before hooks probably
+void init_input_sender(void) {
+   queue_event = CreateEvent(NULL, FALSE, FALSE, NULL); // auto-reset
+   CreateThread(NULL, 0, input_sender_thread, NULL, 0, NULL);
+}
+
+/////////////////////////
+/// MULTITHREADING //////
+/////////////////////////
 
 // #define VK_CHAMPION_ONLY VK_OEM_PERIOD
 // #define VK_CHAMPION_ONLY VK_SCROLL
@@ -201,7 +268,7 @@ end:
 void release_all_logical_keys(void) {
    for (int vk = 0; vk < count_of(scan_codes); vk++) {
       if (logical_keydown[vk] && !physical_keydown[vk]) {
-         send_scancode(MapVirtualKey(vk, MAPVK_VK_TO_VSC), KEYEVENTF_KEYUP);
+         send_scancode(vk, KeyUp);
          flush_inputs();
          logical_keydown[vk] = FALSE;
       }
@@ -215,7 +282,6 @@ void release_all_logical_keys(void) {
 
 // return 1 is handled
 bool keyboard_normally(int code, WPARAM wParam, LPARAM lParam) {
-
    // Add these to your globals
    static BOOL left_ctrl_down = FALSE;
    static BOOL other_keys_pressed_while_ctrl = FALSE;
@@ -242,34 +308,46 @@ bool keyboard_normally(int code, WPARAM wParam, LPARAM lParam) {
       // track_key_state(k, wParam);
 
       // Track left Ctrl specifically
-      if (key == VK_LCONTROL) {
+      if (key == VK_DIVIDE) {
+         if (keydown) {
+            send_scancode(VK_ESCAPE, KeyDown);
+            flush_inputs();
+            return true;
+         }
+         if (keyup) {
+            send_scancode(VK_ESCAPE, KeyUp);
+            flush_inputs();
+            return true;
+         }
+      }
+
+
+      if (key == VK_ESCAPE) {
          if (keydown) {
             left_ctrl_down = TRUE;
-            printf("left_ctrl_down = true\n");
             other_keys_pressed_while_ctrl = FALSE;
-            printf("other_keys_pressed_while_ctrl = FALSE;\n");
+            send_scancode(VK_LCONTROL, KeyDown);
+            flush_inputs();
+            return true;
          } else if (keyup) {
             left_ctrl_down = FALSE;
-            printf("left_ctrl_down = false\n");
+            send_scancode(VK_LCONTROL, KeyUp);
 
             // If no other keys were pressed while Ctrl was held, emit Escape
             if (!other_keys_pressed_while_ctrl) {
-               send_scancode(VK_LCONTROL, KeyUp);
                send_scancode(VK_ESCAPE, KeyDown);
                send_scancode(VK_ESCAPE, KeyUp);
+
                send_scancode(VK_ESCAPE, KeyDown);
                send_scancode(VK_ESCAPE, KeyUp);
-               // send_virtual_key(VK_ESCAPE, KeyDown);
-               // send_virtual_key(VK_ESCAPE, KeyUp);
-               flush_inputs();
-               printf("Sending VK_ESCAPE\n");
-               return true;
             }
+
+            flush_inputs();
+            return true;
          }
       } else if (keydown && left_ctrl_down) {
          // Mark that non-Ctrl keys were pressed while Ctrl is held
          other_keys_pressed_while_ctrl = TRUE;
-         printf("other_keys_pressed_while_ctrl = TRUE;\n");
       }
       return false;
    }
@@ -452,6 +530,28 @@ void hooks_off(void) {
 
 }
 
+void CALLBACK foreground_changed(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG id_object, LONG id_child, DWORD id_event_thread, DWORD event_time) {
+   (void)hook;
+   (void)event;
+   (void)id_object;
+   (void)id_child;
+   (void)id_event_thread;
+   (void)event_time;
+
+   BOOL before_active = InterlockedCompareExchange(&league_active, 0, 0);
+   BOOL active = is_league_active();
+   InterlockedExchange(&league_active, active);
+
+   if (active != before_active) {
+      if (active) {
+         printf("%s Active\n", LEAGUE_PROCESS_NAME);
+      } else {
+         printf("%s Not active\n", LEAGUE_PROCESS_NAME);
+         release_all_logical_keys();
+      }
+   }
+}
+
 
 DWORD WINAPI foreground_monitor(void *) {
    for (;true;) {
@@ -465,6 +565,7 @@ DWORD WINAPI foreground_monitor(void *) {
             printf("%s Active\n", LEAGUE_PROCESS_NAME);
          } else {
             printf("%s Not active\n", LEAGUE_PROCESS_NAME);
+            release_all_logical_keys();
          }
       }
 
@@ -499,10 +600,24 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE _1, LPSTR lpcmd, int _3) {
       scan_codes[vk] = MapVirtualKey(vk, MAPVK_VK_TO_VSC);
    }
 
+#if MULTITHREAD == 1
+   init_input_sender();
+#endif
+
    hooks_on();
 
-   // Start foreground monitor thread
-   CreateThread(NULL, 0, foreground_monitor, NULL, 0, NULL);
+   const bool use_foreground_event = true;
+   if (use_foreground_event) {
+      SetWinEventHook(
+          EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND,
+          NULL, foreground_changed,
+          0, 0,
+          WINEVENT_OUTOFCONTEXT
+      );
+   } else {
+      // Start foreground monitor thread
+      CreateThread(NULL, 0, foreground_monitor, NULL, 0, NULL);
+   }
 
    MSG msg;
    while (GetMessage(&msg, NULL, 0, 0)) {
