@@ -16,12 +16,17 @@ set print pretty on
 set pagination off
 # set disassemble-next-line on
 
+define r
+  run
+  refresh
+end
+
 define c
   continue
   refresh
 end
 
-define N
+define n
   next
   refresh
 end

@@ -59,8 +59,6 @@ c="clear" \
 shell="exec $SHELL -l" \
 mv="mv -i" \
 rm="rm -Iv" \
-df="df -h" \
-du="du -h -d 1" \
 k="killall" \
 p="ps aux | grep $1" \
 

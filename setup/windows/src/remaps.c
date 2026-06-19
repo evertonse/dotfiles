@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <windows.h>
 
+// #define MULTITHREAD 1
 #define MULTITHREAD 1
 #define DEBUGGING 0
 
@@ -335,11 +336,11 @@ bool keyboard_normally(int code, WPARAM wParam, LPARAM lParam) {
 
             // If no other keys were pressed while Ctrl was held, emit Escape
             if (!other_keys_pressed_while_ctrl) {
-               send_scancode(VK_ESCAPE, KeyDown);
-               send_scancode(VK_ESCAPE, KeyUp);
-
-               send_scancode(VK_ESCAPE, KeyDown);
-               send_scancode(VK_ESCAPE, KeyUp);
+               // send_scancode(VK_ESCAPE, KeyDown);
+               // send_scancode(VK_ESCAPE, KeyUp);
+               //
+               // send_scancode(VK_ESCAPE, KeyDown);
+               // send_scancode(VK_ESCAPE, KeyUp);
             }
 
             flush_inputs();
