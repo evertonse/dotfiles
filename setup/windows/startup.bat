@@ -1,5 +1,5 @@
 @echo off
-start "" "C:\ahk\league.ahk"
+REM start "" "C:\ahk\league.ahk"
 start "" "C:\ahk\mouse.ahk"
 
 taskkill /f /im 'C:\ahk\remaps.exe' >nul 2>&1
@@ -22,8 +22,8 @@ bcdedit /set disabledynamictick yes
 REM Keyboard Stuff
 REM powershell -ExecutionPolicy Bypass -File "C:\ahk\keyboard-rate.ps1"
 REM Or this from cmd mermo
-reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatDelay       /t REG_SZ /d 168 /f
-reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatRate        /t REG_SZ /d 35  /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatDelay       /t REG_SZ /d 160 /f
+reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v AutoRepeatRate        /t REG_SZ /d 40  /f
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v DelayBeforeAcceptance /t REG_SZ /d 0   /f
 reg add "HKCU\Control Panel\Accessibility\Keyboard Response" /v BounceTime            /t REG_SZ /d 0   /f
 REM Disable Filter Keys with 122 and enable with 59 or 47 this setting above depend on filter keys system
@@ -285,4 +285,4 @@ powershell -Command "powercfg /SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402
 powershell -Command "powercfg /SETACTIVE SCHEME_CURRENT"
 
 echo Finished! Can close safely.
-pause
+exit
