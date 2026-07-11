@@ -354,16 +354,17 @@ constexpr int MAX_KEYS = 8;
 //            against the foreground app's actual layout, at fire time.
 
 typedef struct {
-   BYTE  trigger[MAX_KEYS + 1];
-   WCHAR output[MAX_KEYS + 1];
-   BYTE  output_vk; // for simple remaps
+   const BYTE  trigger[MAX_KEYS + 1];
+   const WCHAR output[MAX_KEYS + 1];
+   const BYTE  output_vk; // for simple remaps
+   bool  active;
 } KeyRemap;
 
 #define REMAP_MAGIC 0x12345678
 
 
 
-static const KeyRemap symbol_remaps[] = {
+static KeyRemap symbol_remaps[] = {
    { {VK_LCONTROL, VK_RMENU, 'J', 0},            {L'=', 0} },
    { {VK_LCONTROL, VK_RMENU, VK_LSHIFT, 'H', 0}, {L'\\', 0} },
    { {VK_LCONTROL, VK_RMENU, 'H', 0},            {L'/', 0} },
@@ -407,7 +408,7 @@ HKL keyboard_layout = {0};
 static bool try_symbol_remap(BYTE key) {
    BOOL result = FALSE;
    for (size_t i = 0; i < count_of(symbol_remaps); i++) {
-      const KeyRemap *r = &symbol_remaps[i];
+      KeyRemap *r = &symbol_remaps[i];
 
       int last = 0;
       while (r->trigger[last + 1]) last += 1;
@@ -417,15 +418,18 @@ static bool try_symbol_remap(BYTE key) {
       }
 
       bool matched = true;
-      for (int t = 0; t <= last; t += 1) {
-         auto vk = r->trigger[t];
-         auto ks = key_state[vk];
-         printf("input vk=0x%X state is %s %s\n", vk, key_state_to_string(ks), (KEY_RELEASED == ks) ? "FUCKYOU IS RELEASED IS RELEASED" : "");
+      if (!r->active) {
+         for (int t = 0; t <= last; t += 1) {
+            auto vk = r->trigger[t];
+            auto ks = key_state[vk];
+            printf("input vk=0x%X state is %s %s\n", vk, key_state_to_string(ks), (KEY_RELEASED == ks) ? "FUCKYOU IS RELEASED IS RELEASED" : "");
 
-         if (!(KEY_DOWN == ks || KEY_PRESSED == ks || KEY_RELEASED == ks)) {
-            matched = false;
-            break;
+            if (!(KEY_DOWN == ks || KEY_PRESSED == ks || KEY_RELEASED == ks)) {
+               matched = false;
+               break;
+            }
          }
+
       }
 
       printf("%s\n", matched ? "MATCHED" : "NOT MATCHED" );
@@ -449,10 +453,14 @@ static bool try_symbol_remap(BYTE key) {
          printf("output_vk: is 0x%x r->trigger[last] is 0x%x ks is %s\n", r->output_vk, r->trigger[last], key_state_to_string(ks));
          // hold-through: mirror this event, nothing more
          if (KEY_DOWN == ks || KEY_PRESSED == ks) {
+            r->active = true;
+
             printf("DONE SENDING DOWN output_vk\n");
             send_scancode(r->output_vk, KeyDown);
          }
          if (KEY_UP == ks || KEY_RELEASED == ks) {
+            r->active = false;
+
             printf("DONE SENDING UP output_vk\n");
             send_scancode(r->output_vk, KeyUp);
          }
@@ -477,16 +485,20 @@ static bool try_symbol_remap(BYTE key) {
 
          // The last should dictate the state of all this
          if (!(KEY_RELEASED == last_ks)) {
-            if (shift) send_scancode(VK_LSHIFT, KeyDown);
-            if (ctrl)  send_scancode(VK_LCONTROL, KeyDown);
-            if (altgr) send_scancode(VK_RMENU, KeyDown);
+            r->active = true;
+            send_scancode(VK_LSHIFT,   shift ? KeyDown : KeyUp);
+            send_scancode(VK_LCONTROL, ctrl  ? KeyDown : KeyUp);
+            send_scancode(VK_RMENU,    altgr ? KeyDown : KeyUp);
+
             send_scancode(vk, KeyDown);
          } else {
+            r->active = false;
+
             send_scancode(vk, KeyUp);
 
-            if (altgr) send_scancode(VK_RMENU, KeyUp);
+            if (altgr) send_scancode(VK_RMENU,    KeyUp);
             if (ctrl)  send_scancode(VK_LCONTROL, KeyUp);
-            if (shift) send_scancode(VK_LSHIFT, KeyUp);
+            if (shift) send_scancode(VK_LSHIFT,   KeyUp);
          }
 
       }
