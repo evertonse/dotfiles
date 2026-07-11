@@ -364,16 +364,6 @@ typedef struct {
 
 
 static const KeyRemap symbol_remaps[] = {
-   // TEST
-   // { {VK_LCONTROL, VK_RMENU, 'J',  0}, {0},  'L'},
-   // { {VK_LCONTROL, VK_RMENU, 'J',  0}, {0},  VK_OEM_PLUS},
-   // { {VK_LCONTROL, VK_RMENU, 'J',  0}, {0},  VK_OEM_MINUS},
-   // { {VK_LCONTROL, VK_RMENU, 'J',  0}, {0},  VK_OEM_COMMA},
-   // { {VK_LCONTROL, VK_RMENU, 'J',  0}, {0},  VK_OEM_1},
-   // { {VK_LCONTROL, VK_RMENU, 'J',  0}, {0},  VK_OEM_PERIOD},
-
-   // { {VK_LCONTROL,  0}, {0},  VK_ESCAPE},
-
    { {VK_LCONTROL, VK_RMENU, 'J', 0},            {L'=', 0} },
    { {VK_LCONTROL, VK_RMENU, VK_LSHIFT, 'H', 0}, {L'\\', 0} },
    { {VK_LCONTROL, VK_RMENU, 'H', 0},            {L'/', 0} },
@@ -443,12 +433,12 @@ static bool try_symbol_remap(BYTE key) {
          continue;
       }
 
-      send_scancode(VK_LMENU, KeyUp);
-      send_scancode(VK_RMENU, KeyUp);
-      send_scancode(VK_LSHIFT, KeyUp);
-      send_scancode(VK_LCONTROL,  KeyUp);
-      send_scancode(VK_RSHIFT, KeyUp);
-      send_scancode(VK_RCONTROL,  KeyUp);
+      // send_scancode(VK_LMENU, KeyUp);
+      // send_scancode(VK_RMENU, KeyUp);
+      // send_scancode(VK_LSHIFT, KeyUp);
+      // send_scancode(VK_LCONTROL,  KeyUp);
+      // send_scancode(VK_RSHIFT, KeyUp);
+      // send_scancode(VK_RCONTROL,  KeyUp);
       for (int t = 0; t <=  last; t += 1) {
          send_scancode(r->trigger[t], KeyUp); // don't let held modifiers bleed into output
       }
