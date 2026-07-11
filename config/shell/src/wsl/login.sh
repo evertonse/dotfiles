@@ -29,14 +29,11 @@ export WIN_DOWNLOADS="/mnt/c/Users/$WIN_USER/Downloads"
 # To re-enable Windows binaries, exit all WSL sessions and re-run bash.exe or run the following command as root:
 # echo 1 > /proc/sys/fs/binfmt_misc/WSLInterop
 
-# export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-DISPLAY_IP=$(ip route list default | awk '{print $3}')
-export DISPLAY="$DISPLAY_IP:0" # Only one that worked
-export LIBGL_ALWAYS_INDIRECT=1
 
-export GDK_BACKEND=x11
+export DISPLAY=:0
+export WAYLAND_DISPLAY=wayland-0
+export XDG_RUNTIME_DIR=/mnt/wslg/runtime-dir
+export PULSE_SERVER=unix:/mnt/wslg/PulseServer
  
 is_blacklisted() {
     case "$1" in
